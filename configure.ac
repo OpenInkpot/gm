@@ -1,7 +1,8 @@
-AC_INIT(configure.ac)
+AC_PREREQ(2.57)
+AC_INIT(gm, 0.1, dottedmag@dottedmag.net)
+AM_INIT_AUTOMAKE(foreign)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gm, 0.1)
 
 AC_LANG_C
 AC_PROG_CC
