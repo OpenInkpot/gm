@@ -52,14 +52,14 @@ collections {
                 type, RECT;
                 description {
                     state, "default" 0.0;
-                    color, 255 255 255 255;
+                    color, 255 255 255 0;
                     rel1 { relative, 0.0 0.0; offset, 0 0; }
                     rel2 { relative, 1.0 1.0; offset, -1 -1; }
                 }
                 description {
-                    state, "hidden" 0.0;
+                    state, "enabled" 0.0;
                     inherit, "default" 0.0;
-                    color, 255 255 255 0;
+                    color, 255 255 255 255;
                 }
             }
             part {
@@ -262,7 +262,7 @@ collections {
                 name, "set_even";
                 signal, "set_even";
                 script {
-                    set_state(PART:"choicebox/item/clipper", "default", 0.0);
+                    set_state(PART:"choicebox/item/clipper", "enabled", 0.0);
                     set_state(PART:"choicebox/item/background", "default", 0.0);
                     set_state(PART:"choicebox/item/left-side", "default", 0.0);
                     set_state(PART:"choicebox/item/right-side", "default", 0.0);
@@ -272,7 +272,7 @@ collections {
                 name, "set_odd";
                 signal, "set_odd";
                 script {
-                    set_state(PART:"choicebox/item/clipper", "default", 0.0);
+                    set_state(PART:"choicebox/item/clipper", "enabled", 0.0);
                     set_state(PART:"choicebox/item/background", "alternate", 0.0);
                     set_state(PART:"choicebox/item/left-side", "alternate", 0.0);
                     set_state(PART:"choicebox/item/right-side", "alternate", 0.0);
@@ -282,7 +282,7 @@ collections {
                 name, "empty";
                 signal, "empty";
                 script {
-                    set_state(PART:"choicebox/item/clipper", "hidden", 0.0);
+                    set_state(PART:"choicebox/item/clipper", "default", 0.0);
                 }
             }
             program {
