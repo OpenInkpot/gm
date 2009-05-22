@@ -1,0 +1,15 @@
+Source: gm
+Section: gui
+Maintainer: Alexander V. Nikolaev <avn@daemon.hole.ru>
+Build-Depends: debhelper (>= 7), automake
+XCS-Cross-Host-Build-Depends: debhelper (>= 7), cdbs, cdbs-embedded, automake, pkg-config
+XCS-Cross-Build-Depends: libecore-dev, libevas-dev 
+Priority: optional
+Standards-Version: 3.8.0
+
+Package: gm
+Priority: optional
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Global Menu
+
