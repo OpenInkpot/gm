@@ -2,12 +2,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include <Ecore.h>
 #include <Ecore_Evas.h>
 #include <Edje.h>
 
 #include <echoicebox.h>
+
+
+struct main_menu_item {
+    const char *title;
+    void (*execute)(void *arg);
+    void *argument;
+};
+
+void run_subshell(void * arg __attribute__((unused))) {
+    printf("Run subshell\n");
+};
+
+void stub(void *arg) {
+    if(!arg)
+        arg="<none>";
+    printf("Stub %s\n", (char *)arg);
+};
+
+struct main_menu_item main_menu[] = {
+    {"Current book: %s", stub, NULL }, // Special
+    {"Library", run_subshell, "/usr/bin/madshelf" },
+    {"Images", stub, "Images"},
+    {"Audio", stub, "Audio"},
+    {"", stub, ""},
+    {"Applications", stub, "Apps"},
+    {"games", stub, "Games"},
+    {"Setup", stub, "Setup"},
+    {"Clock setup", stub, "Clock"},
+    {NULL, NULL, NULL,},
+};
 
 static void die(const char* fmt, ...)
 {
@@ -18,13 +49,15 @@ static void die(const char* fmt, ...)
    exit(EXIT_FAILURE);
 }
 
-static int exit_handler(void* param, int ev_type, void* event)
+static int exit_handler(void* param __attribute__((unused)),
+                        int ev_type __attribute__((unused)),
+                        void* event __attribute__((unused)))
 {
    ecore_main_loop_quit();
    return 1;
 }
 
-static void main_win_close_handler(Ecore_Evas* main_win)
+static void main_win_close_handler(Ecore_Evas* main_win __attribute__((unused)))
 {
    ecore_main_loop_quit();
 }
@@ -35,19 +68,36 @@ static void draw_handler(Evas_Object* choicebox,
                          int page_position,
                          void* param)
 {
-   char foo[256];
-   sprintf(foo, "Item %d/%d", item_num, page_position);
-   edje_object_part_text_set(item, "choicebox/item/title", foo);
+    /* All time formatting taken from libc manual, don't hurt me */
+    char buf[256];
+    time_t curtime;
+    struct tm *loctime;
+
+    if((item_num == 0) && main_menu[item_num].title ) {
+        snprintf(buf, 256, main_menu[item_num].title , 
+        "Unknown");
+        edje_object_part_text_set(item, "choicebox/item/title", buf);
+    } else
+    if ((item_num == 9) && main_menu[item_num].title) {
+        curtime = time (NULL);
+        loctime = localtime (&curtime);
+        strftime(buf, 256, main_menu[item_num].title, loctime);
+        edje_object_part_text_set(item, "choicebox/item/title", buf);
+    } else
+    if (main_menu[item_num].title) {
+        edje_object_part_text_set(item, "choicebox/item/title", 
+        main_menu[item_num].title);
+    }
 
    fprintf(stderr, "handle: choicebox: %p, item: %p, item_num: %d, page_position: %d, param: %p\n",
           choicebox, item, item_num, page_position, param);
 }
 
 
-static void page_handler(Evas_Object* choicebox,
+static void page_handler(Evas_Object* choicebox __attribute__((unused)),
                                 int a,
                                 int b,
-                                void* param)
+                                void* param __attribute__((unused)))
 {
    printf("page: %d/%d\n", a, b);
 }
@@ -60,6 +110,7 @@ static void handler(Evas_Object* choicebox,
 {
    printf("handle: choicebox: %p, item_num: %d, is_alt: %d, param: %p\n",
           choicebox, item_num, is_alt, param);
+   main_menu[item_num].execute(main_menu[item_num].argument);
 }
 
 
@@ -77,26 +128,36 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
    evas_object_move(choicebox, 0, 0);
 }
 
-static void main_win_signal_handler(void* param, Evas_Object* o, const char* emission, const char* source)
+static void main_win_signal_handler(void* param __attribute__((unused)),
+        Evas_Object* o __attribute__((unused)),
+        const char* emission, const char* source)
 {
    printf("%s -> %s\n", source, emission);
 }
 
-static void main_win_key_handler(void* param, Evas* e, Evas_Object* o, void* event_info)
+static void main_win_key_handler(void* param __attribute__((unused)), 
+        Evas* e, Evas_Object* o __attribute__((unused)), void* event_info)
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
 
     Evas_Object* r = evas_object_name_find(e, "choicebox");
 
-    if(!strcmp(ev->keyname, "Up"))
+    if(!strcmp(ev->keyname, "Up") || !strcmp(ev->keyname, "Prior"))
         choicebox_prev(r);
-    if(!strcmp(ev->keyname, "Down"))
+    if(!strcmp(ev->keyname, "Down") || !strcmp(ev->keyname, "Next"))
         choicebox_next(r);
     if(!strcmp(ev->keyname, "Left"))
        choicebox_prevpage(r);
     if(!strcmp(ev->keyname, "Right"))
        choicebox_nextpage(r);
+    if(!strcmp(ev->keyname, "Return"))
+       choicebox_activate_current(r, false);
+    if(!strncmp(ev->keyname, "KP_", 3)
+       && (ev->keyname[3] >= '1') && (ev->keyname[3] <= '9') && !ev->keyname[4])
+       choicebox_activate_nth_visible(r, ev->keyname[3] - '1', false);
+    if(!strcmp(ev->keyname, "Escape"))
+       ecore_main_loop_quit();
 }
 
 static void run()
@@ -139,7 +200,7 @@ static void run()
    ecore_main_loop_begin();
 }
 
-int main(int argc, char** argv)
+int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 {
    if(!evas_init())
       die("Unable to initialize Evas\n");

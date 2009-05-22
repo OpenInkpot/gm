@@ -1,7 +1,8 @@
 bin_PROGRAMS = gm
 gm_SOURCES = gm.c
 
-AM_CFLAGS = -W -Wall -DTHEME_DIR='"$(pkgdatadir)/themes/"'
+AM_CFLAGS = -W -Wall -Werror \
+    -DTHEME_DIR='"$(pkgdatadir)/themes/"'
 
 INCLUDES = @EVAS_CFLAGS@ @ECORE_CFLAGS@ @ECORE_EVAS_CFLAGS@ @EDJE_CFLAGS@ @ECHOICEBOX_CFLAGS@
 gm_LDFLAGS = @EVAS_LIBS@ @ECORE_LIBS@ @ECORE_EVAS_LIBS@ @EDJE_LIBS@ @ECHOICEBOX_LIBS@
