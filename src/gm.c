@@ -118,8 +118,8 @@ static void run()
    evas_object_show(main_canvas_edje);
 
 
-   Evas_Object* choicebox = choicebox_new(main_canvas, "/home/dottedmag/openinkpot/gm/themes/gm.edj", "choicebox/item",
-                                          handler, draw_handler, page_handler, NULL);
+   Evas_Object* choicebox = choicebox_new(main_canvas, THEME_DIR "/gm.edj",
+        "choicebox/item", handler, draw_handler, page_handler, NULL);
    choicebox_set_size(choicebox, 16);
    evas_object_name_set(choicebox, "choicebox");
    evas_object_resize(choicebox, 600, 800);
