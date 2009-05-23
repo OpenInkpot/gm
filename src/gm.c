@@ -13,15 +13,16 @@
 
 struct main_menu_item {
     const char *title;
-    void (*execute)(void *arg);
+    void (*execute)(void *arg, void *evas_ptr);
     void *argument;
 };
 
-void run_subshell(void * arg __attribute__((unused))) {
+void run_subshell(void * arg __attribute__((unused)), 
+                  void * e __attribute__((unused))) {
     printf("Run subshell\n");
 };
 
-void stub(void *arg) {
+void stub(void *arg, void * e __attribute__((unused))) {
     if(!arg)
         arg="<none>";
     printf("Stub %s\n", (char *)arg);
@@ -110,7 +111,7 @@ static void handler(Evas_Object* choicebox,
 {
    printf("handle: choicebox: %p, item_num: %d, is_alt: %d, param: %p\n",
           choicebox, item_num, is_alt, param);
-   main_menu[item_num].execute(main_menu[item_num].argument);
+   main_menu[item_num].execute(main_menu[item_num].argument, param);
 }
 
 
@@ -128,20 +129,21 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
    evas_object_move(choicebox, 0, 0);
 }
 
-static void main_win_signal_handler(void* param __attribute__((unused)),
+static void main_win_signal_handler(void* param,
         Evas_Object* o __attribute__((unused)),
         const char* emission, const char* source)
 {
-   printf("%s -> %s\n", source, emission);
+    Evas_Object* r = evas_object_name_find((Evas *) param, "choicebox");
+    evas_object_del(r);
+    printf("%s -> %s\n", source, emission);
 }
 
 static void main_win_key_handler(void* param __attribute__((unused)), 
-        Evas* e, Evas_Object* o __attribute__((unused)), void* event_info)
+        Evas* e __attribute__((unused)), Evas_Object *r, void* event_info)
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
 
-    Evas_Object* r = evas_object_name_find(e, "choicebox");
 
     if(!strcmp(ev->keyname, "Up") || !strcmp(ev->keyname, "Prior"))
         choicebox_prev(r);
@@ -187,11 +189,11 @@ static void run()
    evas_object_move(choicebox, 0, 0);
    evas_object_show(choicebox);
 
-   evas_object_focus_set(main_canvas_edje, true);
-   evas_object_event_callback_add(main_canvas_edje,
+   evas_object_focus_set(choicebox, true);
+   evas_object_event_callback_add(choicebox,
                                   EVAS_CALLBACK_KEY_DOWN,
                                   &main_win_key_handler,
-                                  NULL);
+                                  main_canvas);
 
    ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
 
