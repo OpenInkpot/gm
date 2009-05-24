@@ -9,20 +9,20 @@
 #include <Edje.h>
 
 #include <echoicebox.h>
-
+#include "apps.h"
 
 struct main_menu_item {
     const char *title;
-    void (*execute)(void *arg, void *evas_ptr);
+    void (*execute)(void *evas_ptr, void *arg);
     void *argument;
 };
 
-void run_subshell(void * arg __attribute__((unused)), 
-                  void * e __attribute__((unused))) {
+void run_subshell(void * e __attribute__((unused)), 
+                  void * arg __attribute__((unused))) {
     printf("Run subshell\n");
 };
 
-void stub(void *arg, void * e __attribute__((unused))) {
+void stub(void * e __attribute__((unused)), void * arg) {
     if(!arg)
         arg="<none>";
     printf("Stub %s\n", (char *)arg);
@@ -35,7 +35,7 @@ struct main_menu_item main_menu[] = {
     {"Audio", stub, "Audio"},
     {"", stub, ""},
     {"Applications", stub, "Apps"},
-    {"games", stub, "Games"},
+    {"games", &run_applications , "Games"},
     {"Setup", stub, "Setup"},
     {"Clock setup", stub, "Clock"},
     {NULL, NULL, NULL,},
@@ -111,7 +111,7 @@ static void handler(Evas_Object* choicebox,
 {
    printf("handle: choicebox: %p, item_num: %d, is_alt: %d, param: %p\n",
           choicebox, item_num, is_alt, param);
-   main_menu[item_num].execute(main_menu[item_num].argument, param);
+   main_menu[item_num].execute(param, main_menu[item_num].argument);
 }
 
 
