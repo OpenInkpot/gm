@@ -7,6 +7,7 @@
 #include <Ecore.h>
 #include <Ecore_Evas.h>
 #include <Edje.h>
+#include <Efreet.h>
 
 #include <echoicebox.h>
 #include "apps.h"
@@ -144,20 +145,8 @@ static void main_win_key_handler(void* param __attribute__((unused)),
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
 
+    choicebox_aux_key_down_handler(r, ev);
 
-    if(!strcmp(ev->keyname, "Up") || !strcmp(ev->keyname, "Prior"))
-        choicebox_prev(r);
-    if(!strcmp(ev->keyname, "Down") || !strcmp(ev->keyname, "Next"))
-        choicebox_next(r);
-    if(!strcmp(ev->keyname, "Left"))
-       choicebox_prevpage(r);
-    if(!strcmp(ev->keyname, "Right"))
-       choicebox_nextpage(r);
-    if(!strcmp(ev->keyname, "Return"))
-       choicebox_activate_current(r, false);
-    if(!strncmp(ev->keyname, "KP_", 3)
-       && (ev->keyname[3] >= '1') && (ev->keyname[3] <= '9') && !ev->keyname[4])
-       choicebox_activate_nth_visible(r, ev->keyname[3] - '1', false);
     if(!strcmp(ev->keyname, "Escape"))
        ecore_main_loop_quit();
 }
@@ -182,7 +171,7 @@ static void run()
 
 
    Evas_Object* choicebox = choicebox_new(main_canvas, THEME_DIR "/gm.edj",
-        "choicebox/item", handler, draw_handler, page_handler, NULL);
+        "choicebox/item", handler, draw_handler, page_handler, main_canvas);
    choicebox_set_size(choicebox, 16);
    evas_object_name_set(choicebox, "choicebox");
    evas_object_resize(choicebox, 600, 800);
@@ -212,9 +201,12 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
       die("Unable to initialize Ecore_Evas\n");
    if(!edje_init())
       die("Unable to initialize Edje\n");
+   if(!efreet_init())
+      die("Unable to initialize Efreet\n");
 
    run();
 
+   efreet_shutdown();
    edje_shutdown();
    ecore_evas_shutdown();
    ecore_shutdown();
