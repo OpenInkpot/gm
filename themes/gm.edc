@@ -1,19 +1,12 @@
 images {
-    image, "grid1-side-right.png" COMP;
-    image, "grid1-body.png" COMP;
-    image, "grid1-side-left.png" COMP;
-    image, "grid2-side-right.png" COMP;
-    image, "grid2-body.png" COMP;
-    image, "grid2-side-left.png" COMP;
-    image, "sel-side.png" COMP;
 }
 
 collections {
     group {
-        name, "choicebox/footer";
+        name, "main_window";
         parts {
             part {
-                name, "choicebox/footer/background";
+                name, "background";
                 type, RECT;
                 mouse_events, 0;
                 description {
@@ -24,299 +17,88 @@ collections {
                 }
             }
             part {
-                name, "choicebox/footer/text";
-                type, TEXT;
-                mouse_events, 0;
-                description {
-                    state, "default" 0.0;
-                    color, 255 255 255 255;
-                    text {
-                        text, "omg, somebody forgot to set the text!!!!11oneone";
-                        font, "serif";
-                        size, 12;
-                        text_class, "chrome";
-                    }
-                }
-            }
-        }
-        data {
-            /* HACK: until edje fetches size_hints */
-            item, "min_height" "49";
-        }
-    }
-    group {
-        name, "choicebox/item";
-        parts {
-            part {
-                name, "choicebox/item/clipper";
-                type, RECT;
-                description {
-                    state, "default" 0.0;
-                    color, 255 255 255 0;
-                    rel1 { relative, 0.0 0.0; offset, 0 0; }
-                    rel2 { relative, 1.0 1.0; offset, -1 -1; }
-                }
-                description {
-                    state, "enabled" 0.0;
-                    inherit, "default" 0.0;
-                    color, 255 255 255 255;
-                }
-            }
-            part {
-                name, "choicebox/item/left-side";
-                type, IMAGE;
-                mouse_events, 0;
-                clip_to, "choicebox/item/clipper";
-                description {
-                    state, "default" 0.0;
-                    rel1 { relative, 0.0 0.0; offset, 0 0; }
-                    rel2 { relative, 0.0 1.0; offset, 14 -1; }
-                    image {
-                        normal, "grid1-side-left.png";
-                    }
-                    fill {
-                        size {
-                            relative, 0.0 0.0;
-                            offset, 15 2;
-                        }
-                    }
-                }
-                description {
-                    state, "alternate" 0.0;
-                    inherit, "default" 0.0;
-                    image {
-                        normal, "grid2-side-left.png";
-                    }
-                }
-            }
-            part {
-                name, "choicebox/item/right-side";
-                type, IMAGE;
-                mouse_events, 0;
-                clip_to, "choicebox/item/clipper";
-                description {
-                    state, "default" 0.0;
-                    rel1 { relative, 1.0 0.0; offset, -15 0; }
-                    rel2 { relative, 1.0 1.0; offset, -1 -1; }
-                    image {
-                        normal, "grid1-side-right.png";
-                    }
-                    fill {
-                        size {
-                            relative, 0.0 0.0;
-                            offset, 15 2;
-                        }
-                    }
-                }
-                description {
-                    state, "alternate" 0.0;
-                    inherit, "default" 0.0;
-                    image {
-                        normal, "grid2-side-right.png";
-                    }
-                }
-            }
-            part {
-                name, "choicebox/item/background";
-                type, IMAGE;
-                mouse_events, 0;
-                clip_to, "choicebox/item/clipper";
-                description {
-                    state, "default" 0.0;
-                    rel1 { relative, 0.0 0.0; offset, 15 0; }
-                    rel2 { relative, 1.0 1.0; offset, -16 -1; }
-                    image {
-                        normal, "grid1-body.png";
-                    }
-                    fill {
-                        size {
-                            relative, 0.0 0.0;
-                            offset, 1 2;
-                        }
-                    }
-                }
-                description {
-                    state, "alternate" 0.0;
-                    inherit, "default" 0.0;
-                    image {
-                        normal, "grid2-body.png";
-                    }
-                }
-            }
-
-            part {
-                name, "choicebox/item/sel-clipper";
-                type, RECT;
-                description {
-                    state, "default" 0.0;
-                    color, 255 255 255 0;
-                    rel1 { relative, 0.0 0.0; offset, 0 0; }
-                    rel2 { relative, 1.0 1.0; offset, -1 -1; }
-                }
-                description {
-                    state, "enabled" 0.0;
-                    inherit, "default" 0.0;
-                    color, 255 255 255 255;
-                }
-            }
-            part {
-                name, "choicebox/item/sel-background";
-                type, RECT;
-                mouse_events, 0;
-                clip_to, "choicebox/item/sel-clipper";
-                description {
-                    state, "default" 0.0;
-                    color, 255 255 255 255;
-                    rel1 { relative, 0.0 0.0; offset, 0 0; }
-                    rel2 { relative, 1.0 1.0; offset, -1 -1; }
-                }
-            }
-            part {
-                name, "choicebox/item/sel-left-side";
-                type, IMAGE;
-                mouse_events, 0;
-                clip_to, "choicebox/item/sel-clipper";
-                description {
-                    state, "default" 0.0;
-                    rel1 { relative, 0.0 0.0; offset, 0 0; }
-                    rel2 { relative, 0.0 1.0; offset, 14 -1; }
-                    image {
-                        normal, "sel-side.png";
-                    }
-                    fill {
-                        size {
-                            relative, 0.0 0.0;
-                            offset, 15 4;
-                        }
-                    }
-                }
-            }
-            part {
-                name, "choicebox/item/sel-right-side";
-                type, IMAGE;
-                mouse_events, 0;
-                clip_to, "choicebox/item/sel-clipper";
-                description {
-                    state, "default" 0.0;
-                    rel1 { relative, 1.0 0.0; offset, -15 0; }
-                    rel2 { relative, 1.0 1.0; offset, -1 -1; }
-                    image {
-                        normal, "sel-side.png";
-                    }
-                    fill {
-                        size {
-                            relative, 0.0 0.0;
-                            offset, 15 4;
-                        }
-                    }
-                }
-            }
-            part {
-                name, "choicebox/item/sel-top";
-                type, RECT;
-                mouse_events, 0;
-                clip_to, "choicebox/item/sel-clipper";
-                description {
-                    state, "default" 0.0;
-                    color, 0 0 0 255;
-                    rel1 { relative, 0.0 0.0; offset, 0 0; }
-                    rel2 { relative, 1.0 0.0; offset, -1 1; }
-                }
-            }
-            part {
-                name, "choicebox/item/sel-bottom";
-                type, RECT;
-                mouse_events, 0;
-                clip_to, "choicebox/item/sel-clipper";
-                description {
-                    state, "default" 0.0;
-                    color, 0 0 0 255;
-                    rel1 { relative, 0.0 1.0; offset, 0 -2; }
-                    rel2 { relative, 1.0 1.0; offset, -1 -1; }
-                }
-            }
-
-            part {
-                name, "choicebox/item/title";
-                type, TEXT;
-                mouse_events, 0;
-                clip_to, "choicebox/item/clipper";
-                description {
-                    state, "default" 0.0;
-                    color, 0 0 0 255;
-                    text {
-                        text, "omg, somebody forgot to set the text!!!!11oneone";
-                        font, "serif";
-                        size, 12;
-                        text_class, "chrome";
-                    }
-                }
-            }
-        }
-        data {
-            /* HACK: until edje fetches size_hints */
-            item, "min_height" 78;
-        }
-        programs {
-            program {
-                name, "set_even";
-                signal, "set_even";
-                script {
-                    set_state(PART:"choicebox/item/clipper", "enabled", 0.0);
-                    set_state(PART:"choicebox/item/background", "default", 0.0);
-                    set_state(PART:"choicebox/item/left-side", "default", 0.0);
-                    set_state(PART:"choicebox/item/right-side", "default", 0.0);
-                }
-            }
-            program {
-                name, "set_odd";
-                signal, "set_odd";
-                script {
-                    set_state(PART:"choicebox/item/clipper", "enabled", 0.0);
-                    set_state(PART:"choicebox/item/background", "alternate", 0.0);
-                    set_state(PART:"choicebox/item/left-side", "alternate", 0.0);
-                    set_state(PART:"choicebox/item/right-side", "alternate", 0.0);
-                }
-            }
-            program {
-                name, "empty";
-                signal, "empty";
-                script {
-                    set_state(PART:"choicebox/item/clipper", "default", 0.0);
-                }
-            }
-            program {
-               name, "select";
-               signal, "select";
-               script {
-                   set_state(PART:"choicebox/item/sel-clipper", "enabled", 0.0);
+               name, "contents-background";
+               type, RECT;
+               mouse_events, 0;
+               description {
+                  state, "default" 0.0;
+                  color, 255 255 255 255;
+                  rel1 { relative, 0.0 0.0; offset, 0 49; }
+                  rel2 { relative, 1.0 1.0; offset, -1 -50; }
                }
             }
-            program {
-               name, "deselect";
-               signal, "deselect";
-               script {
-                   set_state(PART:"choicebox/item/sel-clipper", "default", 0.0);
+            part {
+               name, "contents";
+               type, SWALLOW;
+               description {
+                  state, "default" 0.0;
+                  rel1 { relative, 0.0 0.0; offset, 0 49; }
+                  rel2 { relative, 1.0 1.0; offset, -1 -50; }
+               }
+            }
+            part {
+               name, "info_icon";
+               type, TEXT;
+               description {
+                  state, "default" 0.0;
+                  color, 255 255 255 255;
+                  text {
+                     text, "info icon";
+                     font, "serif";
+                     size, 20;
+                  }
+                  rel1 {
+                     relative, 0.0 0.0;
+                     offset, 5 5;
+                  }
+                  rel2 {
+                     relative, 0.0 0.0;
+                     offset, 60 20;
+                  }
+               }
+            }
+            part {
+               name, "path";
+               type, TEXT;
+               description {
+                  state, "default" 0.0;
+                  color, 255 255 255 255;
+                  text {
+                     text, "path";
+                     font, "serif";
+                     size, 20;
+                  }
+                  rel1 {
+                     relative, 0.0 0.0;
+                     offset, 200 5;
+                  }
+                  rel2 {
+                     relative, 0.0 0.0;
+                     offset, 400 20;
+                  }
+               }
+            }
+            part {
+               name, "footer";
+               type, TEXT;
+               description {
+                  state, "default" 0.0;
+                  color, 255 255 255 255;
+                  text {
+                     text, "footer";
+                     font, "serif";
+                     size, 28;
+                  }
+                  rel1 {
+                     relative, 0.0 1.0;
+                     offset, 0 -49;
+                  }
+                  rel2 {
+                     relative, 1.0 1.0;
+                     offset, -1 -1;
+                  }
                }
             }
         }
-    }
-
-    group {
-      name, "main_window";
-      min, 600 600;
-      max, 1024 1024;
-      parts {
-         part {
-            name, "background";
-            type, RECT;
-            description {
-               state, "default" 0.0;
-               color, 255 255 255 255;
-               rel1 { relative, 0.0 0.0; offset, 0 0; }
-               rel2 { relative, 1.0 1.0; offset, -1 -1; }
-            }
-         }
-      }
     }
 }
