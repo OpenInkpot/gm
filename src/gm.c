@@ -9,9 +9,11 @@
 #include <Ecore_Evas.h>
 #include <Edje.h>
 #include <Efreet.h>
+#include <Ecore_Con.h>
 
 #include <echoicebox.h>
 #include "apps.h"
+#include "sock.h"
 
 struct main_menu_item {
     const char *title;
@@ -158,16 +160,14 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 
 static void run()
 {
-   ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
    Ecore_Evas* main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+   gm_socket_server_start(main_win, "gm");
    ecore_evas_title_set(main_win, "GM");
    ecore_evas_name_class_set(main_win, "GM", "GM");
 
    Evas* main_canvas = ecore_evas_get(main_win);
-
    ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
-
    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
@@ -221,10 +221,16 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
       die("Unable to initialize Edje\n");
    if(!efreet_init())
       die("Unable to initialize Efreet\n");
+   if(!ecore_con_init())
+      die("Unable to initialize Ecore_Con\n");
 
    ecore_x_io_error_handler_set(exit_all, NULL);
-   run();
+   ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
+   run();
+   gm_socket_server_stop();
+
+   ecore_con_shutdown();
    efreet_shutdown();
    edje_shutdown();
    ecore_evas_shutdown();
