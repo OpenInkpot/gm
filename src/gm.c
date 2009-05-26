@@ -191,6 +191,10 @@ static void run()
    ecore_main_loop_begin();
 }
 
+void exit_all(void* param) { 
+    ecore_main_loop_quit(); 
+}
+
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 {
    if(!evas_init())
@@ -204,6 +208,7 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
    if(!efreet_init())
       die("Unable to initialize Efreet\n");
 
+   ecore_x_io_error_handler_set(exit_all, NULL);
    run();
 
    efreet_shutdown();
