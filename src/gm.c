@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include <Ecore.h>
+#include <Ecore_X.h>
 #include <Ecore_Evas.h>
 #include <Edje.h>
 #include <Efreet.h>
@@ -19,8 +20,12 @@ struct main_menu_item {
 };
 
 void run_subshell(void * e __attribute__((unused)), 
-                  void * arg __attribute__((unused))) {
+                  void * arg) {
+    Ecore_Exe *exe;
     printf("Run subshell\n");
+    exe = ecore_exe_run((const char *) arg, NULL);
+    if(exe)
+        ecore_exe_free(exe);
 };
 
 void stub(void * e __attribute__((unused)), void * arg) {
@@ -191,7 +196,8 @@ static void run()
    ecore_main_loop_begin();
 }
 
-void exit_all(void* param) { 
+static
+void exit_all(void* param __attribute__((unused))) { 
     ecore_main_loop_quit(); 
 }
 
