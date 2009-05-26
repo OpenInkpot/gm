@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include <Ecore.h>
+#include <Ecore_X.h>
 #include <Ecore_Evas.h>
 #include <Edje.h>
 #include <Efreet.h>
@@ -19,8 +20,12 @@ struct main_menu_item {
 };
 
 void run_subshell(void * e __attribute__((unused)), 
-                  void * arg __attribute__((unused))) {
+                  void * arg) {
+    Ecore_Exe *exe;
     printf("Run subshell\n");
+    exe = ecore_exe_run((const char *) arg, NULL);
+    if(exe)
+        ecore_exe_free(exe);
 };
 
 void stub(void * e __attribute__((unused)), void * arg) {
@@ -36,7 +41,7 @@ struct main_menu_item main_menu[] = {
     {"Audio", stub, "Audio"},
     {"", stub, ""},
     {"Applications", stub, "Apps"},
-    {"games", &run_applications , "Games"},
+    {"Games", &run_applications , "Games"},
     {"Setup", stub, "Setup"},
     {"Clock setup", stub, "Clock"},
     {NULL, NULL, NULL,},
@@ -191,6 +196,11 @@ static void run()
    ecore_main_loop_begin();
 }
 
+static
+void exit_all(void* param __attribute__((unused))) { 
+    ecore_main_loop_quit(); 
+}
+
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 {
    if(!evas_init())
@@ -204,6 +214,7 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
    if(!efreet_init())
       die("Unable to initialize Efreet\n");
 
+   ecore_x_io_error_handler_set(exit_all, NULL);
    run();
 
    efreet_shutdown();
