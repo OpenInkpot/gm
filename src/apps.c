@@ -87,6 +87,8 @@ static void apps_handler(Evas_Object* choicebox,
     efreet_desktop_exec(desktop, NULL, NULL);
     evas_object_focus_set(main_choicebox, true);
     edje_object_part_swallow(main_canvas_edje, "contents", main_choicebox);
+    edje_object_part_text_set(main_canvas_edje, "footer", "");
+    edje_object_part_text_set(main_canvas_edje, "path", "");
     evas_object_show(main_choicebox);
     evas_object_del(choicebox);
 }
@@ -105,6 +107,8 @@ static void apps_choicebox_keys_callback(void* param __attribute__((unused)),
         Evas_Object * main_canvas_edje = evas_object_name_find(e,
                 "main_canvas_edje");
         evas_object_del(obj);
+        edje_object_part_text_set(main_canvas_edje, "footer", "");
+        edje_object_part_text_set(main_canvas_edje, "path", "");
         evas_object_focus_set(main_choicebox, true);
         evas_object_show(main_choicebox);
         edje_object_part_swallow(main_canvas_edje, "contents", main_choicebox);
