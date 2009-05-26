@@ -83,16 +83,16 @@ static void draw_handler(Evas_Object* choicebox,
     if((item_num == 0) && main_menu[item_num].title ) {
         snprintf(buf, 256, main_menu[item_num].title , 
         "Unknown");
-        edje_object_part_text_set(item, "choicebox/item/title", buf);
+        edje_object_part_text_set(item, "text", buf);
     } else
     if ((item_num == 9) && main_menu[item_num].title) {
         curtime = time (NULL);
         loctime = localtime (&curtime);
         strftime(buf, 256, main_menu[item_num].title, loctime);
-        edje_object_part_text_set(item, "choicebox/item/title", buf);
+        edje_object_part_text_set(item, "text", buf);
     } else
     if (main_menu[item_num].title) {
-        edje_object_part_text_set(item, "choicebox/item/title", 
+        edje_object_part_text_set(item, "text", 
         main_menu[item_num].title);
     }
 
@@ -135,6 +135,7 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
    evas_object_move(choicebox, 0, 0);
 }
 
+
 static void main_win_signal_handler(void* param,
         Evas_Object* o __attribute__((unused)),
         const char* emission, const char* source)
@@ -170,18 +171,22 @@ static void run()
 
    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
-   edje_object_file_set(main_canvas_edje, "/home/dottedmag/openinkpot/gm/themes/gm.edj", "main_window");
+   edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
    evas_object_show(main_canvas_edje);
 
 
-   Evas_Object* choicebox = choicebox_new(main_canvas, THEME_DIR "/gm.edj",
-        "choicebox/item", handler, draw_handler, page_handler, main_canvas);
-   choicebox_set_size(choicebox, 16);
+   Evas_Object* choicebox = choicebox_new(main_canvas, 
+        // THEME_DIR "/gm.edj",
+        "/usr/share/echoicebox/echoicebox.edj",
+        "full", handler, draw_handler, page_handler, main_canvas);
+   if(!choicebox) {
+        printf("no echoicebox\n");
+        return;
+   }
+   choicebox_set_size(choicebox, 9);
    evas_object_name_set(choicebox, "choicebox");
-   evas_object_resize(choicebox, 600, 800);
-   evas_object_move(choicebox, 0, 0);
-   evas_object_show(choicebox);
+   edje_object_part_swallow(main_canvas_edje, "contents", choicebox);
 
    evas_object_focus_set(choicebox, true);
    evas_object_event_callback_add(choicebox,
