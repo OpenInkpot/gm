@@ -169,6 +169,8 @@ static void run()
    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
+   edje_object_part_text_set(main_canvas_edje, "footer", "");
+   edje_object_part_text_set(main_canvas_edje, "path", "");
    evas_object_show(main_canvas_edje);
 
 

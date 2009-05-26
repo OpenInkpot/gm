@@ -61,12 +61,16 @@ static void apps_draw_handler(Evas_Object* choicebox __attribute__((unused)),
     edje_object_part_text_set(item, "text", desktop->name); 
 }
 
-static void apps_page_handler(Evas_Object* choicebox __attribute__((unused)),
-                                int a,
+static void apps_page_handler(Evas_Object* self,
+                                int a __attribute__((unused)),
                                 int b,
-                                void* param __attribute__((unused)))
+                                void* param)
 {
-    printf("page: %d/%d\n", a, b);
+    Evas *canvas = evas_object_evas_get(self);
+    Ecore_List *desktops = (Ecore_List *) param;
+    Evas_Object *main_edje = evas_object_name_find(canvas, "main_window_edje");
+    int count =  ecore_list_count(desktops);
+    choicebox_aux_edje_footer_handler(main_edje, "footer", b, count); 
 }
 
 
@@ -84,7 +88,8 @@ static void apps_handler(Evas_Object* choicebox,
         return;
     efreet_desktop_exec(desktop, NULL, NULL);
     evas_object_focus_set(main_choicebox, true);
-    edje_object_part_swallow(main_canvas_edje, "contents", choicebox);
+    edje_object_part_swallow(main_canvas_edje, "contents", main_choicebox);
+    evas_object_show(main_choicebox);
     evas_object_del(choicebox);
 }
 
@@ -128,6 +133,7 @@ void run_desktop_files(Evas *canvas, const char * path, const char * category) {
     choicebox_set_size(choicebox, count);
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
     evas_object_hide(evas_object_name_find(canvas, "choicebox"));
+    edje_object_part_text_set(main_canvas_edje, "path", category);
 
     evas_object_focus_set(choicebox, true);
     evas_object_event_callback_add(choicebox,
