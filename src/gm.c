@@ -36,7 +36,7 @@ struct main_menu_item main_menu[] = {
     {"Audio", stub, "Audio"},
     {"", stub, ""},
     {"Applications", stub, "Apps"},
-    {"games", &run_applications , "Games"},
+    {"Games", &run_applications , "Games"},
     {"Setup", stub, "Setup"},
     {"Clock setup", stub, "Clock"},
     {NULL, NULL, NULL,},
