@@ -129,10 +129,6 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 
    Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
    evas_object_resize(main_canvas_edje, w, h);
-
-   Evas_Object* choicebox = evas_object_name_find(canvas, "choicebox");
-   evas_object_resize(choicebox, w, h);
-   evas_object_move(choicebox, 0, 0);
 }
 
 
