@@ -101,12 +101,15 @@ static void draw_handler(Evas_Object* choicebox,
 }
 
 
-static void page_handler(Evas_Object* choicebox __attribute__((unused)),
+static void page_handler(Evas_Object* self,
                                 int a,
                                 int b,
                                 void* param __attribute__((unused)))
 {
    printf("page: %d/%d\n", a, b);
+   Evas *canvas = evas_object_evas_get(self);
+   Evas_Object *main_edje = evas_object_name_find(canvas, "main_window_edje");
+   choicebox_aux_edje_footer_handler(main_edje, "footer", a, b);
 }
 
 
@@ -171,6 +174,8 @@ static void run()
    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
    edje_object_part_text_set(main_canvas_edje, "footer", "");
    edje_object_part_text_set(main_canvas_edje, "path", "");
+   evas_object_move(main_canvas_edje, 0, 0);
+   evas_object_resize(main_canvas_edje, 600, 800);
    evas_object_show(main_canvas_edje);
 
 
