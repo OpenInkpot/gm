@@ -1,3 +1,10 @@
+gm (0.1+20090518-2) asimov; urgency=low
+
+  * Patch for handle closed X connections
+  * run madshelf
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 26 May 2009 05:50:45 +0300
+
 gm (0.1+20090518-1) asimov; urgency=low
 
   * Inirial version
