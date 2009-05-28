@@ -38,7 +38,8 @@ _load_desktops(const char * path, const char * category) {
             continue;
         }
         if (current->categories && ecore_list_find(current->categories, 
-            ECORE_COMPARE_CB(strcmp), category)) {
+            ECORE_COMPARE_CB(strcmp), category) 
+            && !current->no_display) {
                 ecore_list_append(desktops, current);
                 continue;
         };
