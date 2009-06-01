@@ -14,6 +14,7 @@
 #include <echoicebox.h>
 #include "apps.h"
 #include "sock.h"
+#include "choices.h"
 
 struct main_menu_item {
     const char *title;
@@ -103,17 +104,6 @@ static void draw_handler(Evas_Object* choicebox,
 }
 
 
-static void page_handler(Evas_Object* self,
-                                int a,
-                                int b,
-                                void* param __attribute__((unused)))
-{
-   printf("page: %d/%d\n", a, b);
-   Evas *canvas = evas_object_evas_get(self);
-   Evas_Object *main_edje = evas_object_name_find(canvas, "main_window_edje");
-   choicebox_aux_edje_footer_handler(main_edje, "footer", a, b);
-}
-
 
 static void handler(Evas_Object* choicebox,
                     int item_num,
@@ -179,19 +169,13 @@ static void run()
    evas_object_show(main_canvas_edje);
 
 
-   Evas_Object* choicebox = choicebox_new(main_canvas, 
-        // THEME_DIR "/gm.edj",
-        "/usr/share/echoicebox/echoicebox.edj",
-        "full", handler, draw_handler, page_handler, main_canvas);
+   Evas_Object* choicebox = choicebox_push(NULL, main_canvas, 
+        handler, draw_handler, "choicebox", 9, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
         return;
    }
-   choicebox_set_size(choicebox, 9);
-   evas_object_name_set(choicebox, "choicebox");
-   edje_object_part_swallow(main_canvas_edje, "contents", choicebox);
 
-   evas_object_focus_set(choicebox, true);
    evas_object_event_callback_add(choicebox,
                                   EVAS_CALLBACK_KEY_DOWN,
                                   &main_win_key_handler,
