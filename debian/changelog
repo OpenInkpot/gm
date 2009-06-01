@@ -1,3 +1,9 @@
+gm (0.1+20090518-3) asimov; urgency=low
+
+  * Raise by socket
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Wed, 27 May 2009 00:56:36 +0300
+
 gm (0.1+20090518-2) asimov; urgency=low
 
   * Patch for handle closed X connections
