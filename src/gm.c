@@ -14,6 +14,7 @@
 #include <echoicebox.h>
 #include "apps.h"
 #include "setup.h"
+#include "lang.h"
 #include "sock.h"
 #include "choices.h"
 
@@ -194,6 +195,8 @@ void exit_all(void* param __attribute__((unused))) {
 
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 {
+   if(!init_langs())
+      die("Unable to init langs\n");
    if(!evas_init())
       die("Unable to initialize Evas\n");
    if(!ecore_init())
@@ -219,5 +222,6 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
    ecore_evas_shutdown();
    ecore_shutdown();
    evas_shutdown();
+   shutdown_langs();
    return 0;
 }

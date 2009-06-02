@@ -1,7 +1,10 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <Evas.h>
 #include <Edje.h>
 #include <echoicebox.h>
+#include "setup.h"
+#include "lang.h"
 #include "choices.h"
 
 
@@ -36,11 +39,15 @@ sound_set(Evas_Object * self __attribute__((unused))) {
 static void
 language_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "text", "Language :");
+    char *buf;
+    asprintf(&buf, "Language : %s", current_lang());
+    edje_object_part_text_set(item, "text", buf);
+    free(buf);
 }
 
 static void
-language_set(Evas_Object * self __attribute__((unused))) {
+language_set(Evas_Object * self) {
+   lang_menu(self);
 }
 
 
