@@ -34,7 +34,7 @@ current_lang() {
                 return languages->langs[i].name;
         }
     }
-    return languages->current;
+    return "Unknown";
 }
 
 static void lang_draw(Evas_Object* choicebox __attribute__((unused)),
