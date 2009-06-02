@@ -38,8 +38,8 @@ _load_desktops(const char * path, const char * category) {
             printf("Cam't load: %s\n", fullname);
             continue;
         }
-        if (current->categories && ecore_list_find(current->categories, 
-            ECORE_COMPARE_CB(strcmp), category) 
+        if (current->categories && ecore_list_find(current->categories,
+            ECORE_COMPARE_CB(strcmp), category)
             && !current->no_display) {
                 ecore_list_append(desktops, current);
                 continue;
@@ -60,7 +60,7 @@ static void apps_draw_handler(Evas_Object* choicebox __attribute__((unused)),
     desktop = ecore_list_index_goto((Ecore_List *) param, item_num);
     if (!desktop)
         return;
-    edje_object_part_text_set(item, "text", desktop->name); 
+    edje_object_part_text_set(item, "text", desktop->name);
 }
 
 static void apps_handler(Evas_Object* choicebox,
@@ -87,8 +87,8 @@ void run_desktop_files(Evas *canvas, const char * path, const char * category) {
     Evas_Object * main_choicebox = evas_object_name_find(canvas, "choicebox");
     count =  ecore_list_count(desktops);
     printf("%d desktops loaded\n", count);
-    choicebox = choicebox_push(main_choicebox, canvas, 
-               apps_handler, 
+    choicebox = choicebox_push(main_choicebox, canvas,
+               apps_handler,
                apps_draw_handler,
                "desktop-choicebox",
                count,
@@ -99,7 +99,7 @@ void run_desktop_files(Evas *canvas, const char * path, const char * category) {
     edje_object_part_text_set(main_canvas_edje, "path", category);
 }
 
-void run_applications(void *canvas, void *category) {
-    run_desktop_files((Evas *) canvas, "/usr/share/applications",
+void run_applications(Evas *canvas, void *category) {
+    run_desktop_files(canvas, "/usr/share/applications",
         (const char *) category);
 }

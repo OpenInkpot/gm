@@ -13,16 +13,17 @@
 
 #include <echoicebox.h>
 #include "apps.h"
+#include "setup.h"
 #include "sock.h"
 #include "choices.h"
 
 struct main_menu_item {
     const char *title;
-    void (*execute)(void *evas_ptr, void *arg);
+    void (*execute)(Evas *evas_ptr, void *arg);
     void *argument;
 };
 
-void run_subshell(void * e __attribute__((unused)),
+void run_subshell(Evas * e __attribute__((unused)),
                   void * arg) {
     Ecore_Exe *exe;
     printf("Run subshell\n");
@@ -31,7 +32,7 @@ void run_subshell(void * e __attribute__((unused)),
         ecore_exe_free(exe);
 };
 
-void stub(void * e __attribute__((unused)), void * arg) {
+void stub(Evas * e __attribute__((unused)), void * arg) {
     if(!arg)
         arg="<none>";
     printf("Stub %s\n", (char *)arg);
@@ -45,7 +46,7 @@ struct main_menu_item main_menu[] = {
     {"", stub, ""},
     {"Applications", stub, "Apps"},
     {"Games", &run_applications , "Games"},
-    {"Setup", stub, "Setup"},
+    {"Setup", &settings_menu, "Setup"},
     {"Clock setup", stub, "Clock"},
     {NULL, NULL, NULL,},
 };
