@@ -9,7 +9,7 @@ sound_t detect_sound()
 }
 
 /* FIXME */
-int set_sound(sound_t sound)
+int set_sound(sound_t sound __attribute__((unused)))
 {
     errno = ENOSYS;
     return -1;
