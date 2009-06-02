@@ -22,7 +22,7 @@ struct main_menu_item {
     void *argument;
 };
 
-void run_subshell(void * e __attribute__((unused)), 
+void run_subshell(void * e __attribute__((unused)),
                   void * arg) {
     Ecore_Exe *exe;
     printf("Run subshell\n");
@@ -84,7 +84,7 @@ static void draw_handler(Evas_Object* choicebox,
     struct tm *loctime;
 
     if((item_num == 0) && main_menu[item_num].title ) {
-        snprintf(buf, 256, main_menu[item_num].title , 
+        snprintf(buf, 256, main_menu[item_num].title ,
         "Unknown");
         edje_object_part_text_set(item, "text", buf);
     } else
@@ -95,7 +95,7 @@ static void draw_handler(Evas_Object* choicebox,
         edje_object_part_text_set(item, "text", buf);
     } else
     if (main_menu[item_num].title) {
-        edje_object_part_text_set(item, "text", 
+        edje_object_part_text_set(item, "text",
         main_menu[item_num].title);
     }
 
@@ -136,14 +136,12 @@ static void main_win_signal_handler(void* param,
     printf("%s -> %s\n", source, emission);
 }
 
-static void main_win_key_handler(void* param __attribute__((unused)), 
-        Evas* e __attribute__((unused)), Evas_Object *r, void* event_info)
+static void main_win_key_handler(void* param __attribute__((unused)),
+        Evas* e __attribute__((unused)),
+        Evas_Object *r __attribute__((unused)), void* event_info)
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
-
-    choicebox_aux_key_down_handler(r, ev);
-
     if(!strcmp(ev->keyname, "Escape"))
        ecore_main_loop_quit();
 }
@@ -169,7 +167,7 @@ static void run()
    evas_object_show(main_canvas_edje);
 
 
-   Evas_Object* choicebox = choicebox_push(NULL, main_canvas, 
+   Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
         handler, draw_handler, "choicebox", 9, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
@@ -189,8 +187,8 @@ static void run()
 }
 
 static
-void exit_all(void* param __attribute__((unused))) { 
-    ecore_main_loop_quit(); 
+void exit_all(void* param __attribute__((unused))) {
+    ecore_main_loop_quit();
 }
 
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
