@@ -1,5 +1,6 @@
 bin_PROGRAMS = gm
-gm_SOURCES = gm.c apps.c choices.c sock.c setup.c lang.c
+gm_SOURCES = gm.c apps.c choices.c sock.c setup.c lang.c sound_control.c \
+    screen_update_control.c
 
 AM_CFLAGS = -W -Wall -Werror \
     -DTHEME_DIR='"$(pkgdatadir)/themes/"'
