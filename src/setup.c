@@ -11,7 +11,6 @@
 
 
 struct setup_menu_item_t {
-    const char *format;
     void (*draw)(Evas_Object *self);
     void (*select) (Evas_Object *self);
     void *arg;
@@ -19,7 +18,7 @@ struct setup_menu_item_t {
 
 
 const char * screen_states[] = {
-    "N/A",
+    "<inactive>N/A</inactive>",
     "Full",
     "Adaptive",
     "Partial"
@@ -28,11 +27,9 @@ const char * screen_states[] = {
 static void
 screen_draw(Evas_Object *item)
 {
-    char *buf;
     screen_update_t scr = detect_screen_update_type();
-    asprintf(&buf, "Screen update : %s", screen_states[scr+1]);
-    edje_object_part_text_set(item, "text", buf);
-    free(buf);
+    edje_object_part_text_set(item, "title", "Screen update : ");
+    edje_object_part_text_set(item, "value", screen_states[scr+1]);
 }
 
 static void
@@ -51,7 +48,7 @@ screen_set(Evas_Object * self) {
 
 
 const char * sound_states[] = {
-    "N/A",
+    "<invisible>N/A</invisible>",
     "OFF",
     "ON"
 };
@@ -59,11 +56,9 @@ const char * sound_states[] = {
 static void
 sound_draw(Evas_Object *item)
 {
-    char *buf;
     sound_t snd = detect_sound();
-    asprintf(&buf, "Sound : %s", sound_states[snd+1]);
-    edje_object_part_text_set(item, "text", buf);
-    free(buf);
+    edje_object_part_text_set(item, "title", "Sound :");
+    edje_object_part_text_set(item, "value", sound_states[snd+1]);
 }
 
 static void
@@ -79,18 +74,16 @@ sound_set(Evas_Object * self) {
 static void
 language_draw(Evas_Object *item)
 {
-    char *buf;
-    asprintf(&buf, "Language : %s", current_lang());
-    edje_object_part_text_set(item, "text", buf);
-    free(buf);
+    edje_object_part_text_set(item, "title", "Language :");
+    edje_object_part_text_set(item, "value", current_lang());
 }
 
 #define MENU_ITEMS_NUM 3
 struct setup_menu_item_t setup_menu_items[] = {
-    {"Screen update: %s", &screen_draw, &screen_set, 0},
-    {"Sound: %s",  &sound_draw, &sound_set, 0},
-    {"Language: %s", &language_draw, &lang_menu, 0},
-    {NULL, NULL, NULL, NULL},
+    {&screen_draw, &screen_set, 0},
+    {&sound_draw, &sound_set, 0},
+    {&language_draw, &lang_menu, 0},
+    {NULL, NULL, NULL},
 };
 
 static void settings_draw(Evas_Object* choicebox __attribute__((unused)),
