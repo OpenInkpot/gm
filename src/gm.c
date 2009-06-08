@@ -17,6 +17,7 @@
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
+#include "raise.h"
 
 struct main_menu_item {
     const char *title;
@@ -40,7 +41,7 @@ void stub(Evas * e __attribute__((unused)), void * arg) {
 };
 
 struct main_menu_item main_menu[] = {
-    {"Current book: %s", stub, NULL }, // Special
+    {"Current book: %s", raise_fbreader, NULL }, // Special
     {"Library", run_subshell, "/usr/bin/madshelf" },
     {"Images", stub, "Images"},
     {"Audio", stub, "Audio"},
