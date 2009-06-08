@@ -85,11 +85,16 @@ static void draw_handler(Evas_Object* choicebox,
     char buf[256];
     time_t curtime;
     struct tm *loctime;
+    const char *title= "<inactive>Unknown</inactive>";
+    struct bookinfo_t *bookinfo;
 
     if((item_num == 0) && main_menu[item_num].title ) {
-        snprintf(buf, 256, main_menu[item_num].title ,
-        "Unknown");
-        edje_object_part_text_set(item, "text", buf);
+        bookinfo = gm_get_titles();
+        if(bookinfo->title)
+            title = bookinfo->title;
+        edje_object_part_text_set(item, "title", "Current book");
+        edje_object_part_text_set(item, "value", title);
+        gm_free_titles(bookinfo);
     } else
     if ((item_num == 9) && main_menu[item_num].title) {
         curtime = time (NULL);
