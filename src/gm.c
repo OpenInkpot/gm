@@ -75,6 +75,17 @@ static void main_win_close_handler(Ecore_Evas* main_win __attribute__((unused)))
    ecore_main_loop_quit();
 }
 
+static void main_win_focus_in_handler(Ecore_Evas* main_win)
+{
+    Evas *canvas = ecore_evas_get(main_win);
+    Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
+    if(choicebox)
+    {
+        printf("Invalidate\n");
+        choicebox_invalidate_item(choicebox, 0);
+    }
+}
+
 static void draw_handler(Evas_Object* choicebox,
                          Evas_Object* item,
                          int item_num,
@@ -188,6 +199,7 @@ static void run()
                                   main_canvas);
 
    ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
+   ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
 
    ecore_evas_show(main_win);
 
