@@ -28,7 +28,7 @@ static void
 screen_draw(Evas_Object *item)
 {
     screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "title", "Screen update : ");
+    edje_object_part_text_set(item, "title", "Screen update");
     edje_object_part_text_set(item, "value", screen_states[scr+1]);
 }
 
@@ -57,7 +57,7 @@ static void
 sound_draw(Evas_Object *item)
 {
     sound_t snd = detect_sound();
-    edje_object_part_text_set(item, "title", "Sound :");
+    edje_object_part_text_set(item, "title", "Sound");
     edje_object_part_text_set(item, "value", sound_states[snd+1]);
 }
 
@@ -74,7 +74,7 @@ sound_set(Evas_Object * self) {
 static void
 language_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", "Language :");
+    edje_object_part_text_set(item, "title", "Language");
     edje_object_part_text_set(item, "value", current_lang());
 }
 
