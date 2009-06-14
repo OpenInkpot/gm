@@ -27,13 +27,17 @@ current_lang() {
     int i;
     for(i = 0; i < languages->n; ++i)
     {
+        printf("lang.c: Compare %s and %s\n", languages->current,
+            languages->langs[i].internal_name);
         if(!strcmp(languages->current, languages->langs[i].internal_name)){
             if(languages->langs[i].native_name)
                 return languages->langs[i].native_name;
             if(languages->langs[i].name)
                 return languages->langs[i].name;
+            printf("Found lang with matching internal name\n");
         }
     }
+    printf("lang.c: unknown language: %s\n", languages->current);
     return "Unknown";
 }
 
