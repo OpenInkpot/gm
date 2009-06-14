@@ -112,5 +112,5 @@ void settings_menu(Evas *canvas, void * arg __attribute__((unused))) {
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
-    edje_object_part_text_set(main_canvas_edje, "contents", "Settings");
+    edje_object_part_text_set(main_canvas_edje, "path", "Settings");
 }
