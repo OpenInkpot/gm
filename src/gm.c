@@ -202,7 +202,7 @@ static void run()
    }
 
    evas_object_event_callback_add(choicebox,
-                                  EVAS_CALLBACK_KEY_DOWN,
+                                  EVAS_CALLBACK_KEY_UP,
                                   &main_win_key_handler,
                                   main_canvas);
 
