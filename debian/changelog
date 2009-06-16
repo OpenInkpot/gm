@@ -1,3 +1,9 @@
+gm (0.1+20090518-6) asimov; urgency=low
+
+  * Fix page counter
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Wed, 17 Jun 2009 02:55:52 +0300
+
 gm (0.1+20090518-5) asimov; urgency=low
 
   * Added translations
