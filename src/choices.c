@@ -42,12 +42,13 @@ static void default_key_handler(void* param __attribute__((unused)),
 
 static
 void page_handler(Evas_Object* self,
-                                int a __attribute__((unused)),
+                                int a,
                                 int b,
                                 void* param __attribute__((unused)))
 {
     Evas *canvas = evas_object_evas_get(self);
-    Evas_Object *main_edje = evas_object_name_find(canvas, "main_window_edje");
+    Evas_Object *main_edje = evas_object_name_find(canvas, "main_canvas_edje");
+    printf("In page handler %d / %d\n", a, b);
     choicebox_aux_edje_footer_handler(main_edje, "footer", a, b);
 }
 
