@@ -48,7 +48,7 @@ struct main_menu_item main_menu[] = {
         {_("Images"), stub, "Images"},
         {_("Audio"), stub, "Audio"},
         {"", stub, ""},
-        {_("Applications"), stub, "Apps"},
+        {_("Applications"), &run_applications, "Applications"},
         {_("Games"), &run_applications , "Games"},
         {_("Setup"), &settings_menu, "Setup"},
         {_("Clock setup"), &run_subshell , "/usr/bin/etimetool"},
