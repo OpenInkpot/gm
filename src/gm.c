@@ -47,7 +47,7 @@ struct main_menu_item main_menu[] = {
         {_("Library"), run_subshell, "/usr/bin/madshelf" },
         {_("Images"), stub, "Images"},
         {_("Audio"), stub, "Audio"},
-        {"", stub, ""},
+        {" ", stub, ""},
         {_("Applications"), &run_applications, "Applications"},
         {_("Games"), &run_applications , "Games"},
         {_("Setup"), &settings_menu, "Setup"},
