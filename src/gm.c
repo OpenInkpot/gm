@@ -100,16 +100,16 @@ static void draw_handler(Evas_Object* choicebox,
     struct tm *loctime;
     struct bookinfo_t *bookinfo;
 
+    edje_object_part_text_set(item, "text","");
+    edje_object_part_text_set(item, "title","");
+    edje_object_part_text_set(item, "value","");
     if((item_num == 0) && main_menu[item_num].title ) {
         bookinfo = gm_get_titles();
         if(bookinfo && bookinfo->title) {
-            edje_object_part_text_set(item, "text","");
             edje_object_part_text_set(item,
                 "title", gettext("Current book"));
             edje_object_part_text_set(item, "value", bookinfo->title);
         } else {
-            edje_object_part_text_set(item, "title","");
-            edje_object_part_text_set(item, "value","");
             edje_object_part_text_set(item, "text",
                 gettext("No book is open"));
         }
