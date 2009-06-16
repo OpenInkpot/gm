@@ -100,16 +100,16 @@ static void draw_handler(Evas_Object* choicebox,
     struct tm *loctime;
     struct bookinfo_t *bookinfo;
 
+    edje_object_part_text_set(item, "text","");
+    edje_object_part_text_set(item, "title","");
+    edje_object_part_text_set(item, "value","");
     if((item_num == 0) && main_menu[item_num].title ) {
         bookinfo = gm_get_titles();
         if(bookinfo && bookinfo->title) {
-            edje_object_part_text_set(item, "text","");
             edje_object_part_text_set(item,
                 "title", gettext("Current book"));
             edje_object_part_text_set(item, "value", bookinfo->title);
         } else {
-            edje_object_part_text_set(item, "title","");
-            edje_object_part_text_set(item, "value","");
             edje_object_part_text_set(item, "text",
                 gettext("No book is open"));
         }
@@ -191,7 +191,6 @@ static void run()
    edje_object_part_text_set(main_canvas_edje, "path", "");
    evas_object_move(main_canvas_edje, 0, 0);
    evas_object_resize(main_canvas_edje, 600, 800);
-   evas_object_show(main_canvas_edje);
 
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
@@ -209,6 +208,7 @@ static void run()
    ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
    ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
 
+   evas_object_show(main_canvas_edje);
    ecore_evas_show(main_win);
 
    ecore_main_loop_begin();
