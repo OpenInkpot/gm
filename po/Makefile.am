@@ -17,8 +17,8 @@ update-po:
 		-f POTFILES -D $(top_srcdir) -o $(PACKAGE).pot
 	for cat in "" $(POFILES); do \
 	  if test -z "$$cat"; then continue; fi; \
-	  msgmerge -o tmp-$$cat.po $$cat $(PACKAGE).pot && \
-		mv -f tmp-$$cat.po $$cat.po; \
+	  msgmerge -o tmp-$$cat $$cat $(PACKAGE).pot && \
+		mv -f tmp-$$cat $$cat; \
 	done
 	
 
