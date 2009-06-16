@@ -1,0 +1,53 @@
+# vim: set fileencoding=utf-8 
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# Alexander V. Nikolaev <avn@openinkpot.org>, 2009.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gm 0.1\n"
+"Report-Msgid-Bugs-To: avn@openinkpot.org\n"
+"POT-Creation-Date: 2009-06-16 14:49+0000\n"
+"PO-Revision-Date: 2009-06-16 14:50+0000\n"
+"Last-Translator: Alexander V. Nikolaev <avn@openinkpot.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gm.c:46 src/gm.c:108
+msgid "Current book"
+msgstr "Текущая книга"
+
+#: src/gm.c:47
+msgid "Library"
+msgstr "Библиотека"
+
+#: src/gm.c:48
+msgid "Images"
+msgstr "Фототека"
+
+#: src/gm.c:49
+msgid "Audio"
+msgstr "Аудиотека"
+
+#: src/gm.c:51
+msgid "Applications"
+msgstr "Приложения"
+
+#: src/gm.c:52
+msgid "Games"
+msgstr "Игры"
+
+#: src/gm.c:53
+msgid "Setup"
+msgstr "Настройки"
+
+#: src/gm.c:54
+msgid "Clock setup"
+msgstr "Настройки часов"
+
+#: src/gm.c:114
+msgid "No book is open"
+msgstr "Нет открытой книги"
