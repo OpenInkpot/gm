@@ -1,0 +1,9 @@
+src/gm.c
+src/apps.c
+src/choices.c
+src/lang.c
+src/raise.c
+src/screen_update_control.c
+src/setup.c
+src/sock.c
+src/sound_control.c

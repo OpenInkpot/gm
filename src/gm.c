@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <libintl.h>
+#define _(x) x
 
 #include <Ecore.h>
 #include <Ecore_X.h>
@@ -20,7 +22,7 @@
 #include "raise.h"
 
 struct main_menu_item {
-    const char *title;
+    char *title;
     void (*execute)(Evas *evas_ptr, void *arg);
     void *argument;
 };
@@ -41,16 +43,16 @@ void stub(Evas * e __attribute__((unused)), void * arg) {
 };
 
 struct main_menu_item main_menu[] = {
-    {"Current book: %s", raise_fbreader, NULL }, // Special
-    {"Library", run_subshell, "/usr/bin/madshelf" },
-    {"Images", stub, "Images"},
-    {"Audio", stub, "Audio"},
-    {"", stub, ""},
-    {"Applications", stub, "Apps"},
-    {"Games", &run_applications , "Games"},
-    {"Setup", &settings_menu, "Setup"},
-    {"Clock setup", stub, "Clock"},
-    {NULL, NULL, NULL,},
+        {_("Current book"), raise_fbreader, NULL }, // Special
+        {_("Library"), run_subshell, "/usr/bin/madshelf" },
+        {_("Images"), stub, "Images"},
+        {_("Audio"), stub, "Audio"},
+        {" ", stub, ""},
+        {_("Applications"), &run_applications, "Applications"},
+        {_("Games"), &run_applications , "Games"},
+        {_("Setup"), &settings_menu, "Setup"},
+        {_("Clock setup"), &run_subshell , "/usr/bin/etimetool"},
+        {NULL, NULL, NULL,},
 };
 
 static void die(const char* fmt, ...)
@@ -96,26 +98,32 @@ static void draw_handler(Evas_Object* choicebox,
     char buf[256];
     time_t curtime;
     struct tm *loctime;
-    const char *title= "<inactive>Unknown</inactive>";
     struct bookinfo_t *bookinfo;
 
     if((item_num == 0) && main_menu[item_num].title ) {
         bookinfo = gm_get_titles();
-        if(bookinfo->title)
-            title = bookinfo->title;
-        edje_object_part_text_set(item, "title", "Current book");
-        edje_object_part_text_set(item, "value", title);
+        if(bookinfo && bookinfo->title) {
+            edje_object_part_text_set(item, "text","");
+            edje_object_part_text_set(item,
+                "title", gettext("Current book"));
+            edje_object_part_text_set(item, "value", bookinfo->title);
+        } else {
+            edje_object_part_text_set(item, "title","");
+            edje_object_part_text_set(item, "value","");
+            edje_object_part_text_set(item, "text",
+                gettext("No book is open"));
+        }
         gm_free_titles(bookinfo);
     } else
-    if ((item_num == 9) && main_menu[item_num].title) {
+    if ((item_num == 8) && main_menu[item_num].title) {
         curtime = time (NULL);
         loctime = localtime (&curtime);
-        strftime(buf, 256, main_menu[item_num].title, loctime);
+        strftime(buf, 256, gettext(main_menu[item_num].title), loctime);
         edje_object_part_text_set(item, "text", buf);
     } else
     if (main_menu[item_num].title) {
         edje_object_part_text_set(item, "text",
-        main_menu[item_num].title);
+        gettext(main_menu[item_num].title));
     }
 
    fprintf(stderr, "handle: choicebox: %p, item: %p, item_num: %d, page_position: %d, param: %p\n",
@@ -194,7 +202,7 @@ static void run()
    }
 
    evas_object_event_callback_add(choicebox,
-                                  EVAS_CALLBACK_KEY_DOWN,
+                                  EVAS_CALLBACK_KEY_UP,
                                   &main_win_key_handler,
                                   main_canvas);
 
@@ -213,6 +221,8 @@ void exit_all(void* param __attribute__((unused))) {
 
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 {
+   setlocale(LC_ALL, "");
+   textdomain("gm");
    if(!init_langs())
       die("Unable to init langs\n");
    if(!evas_init())

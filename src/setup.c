@@ -1,5 +1,7 @@
 #define _GNU_SOURCE
 #include <stdio.h>
+#include <libintl.h>
+#define _(x) x
 #include <Evas.h>
 #include <Edje.h>
 #include <echoicebox.h>
@@ -18,17 +20,17 @@ struct setup_menu_item_t {
 
 
 const char * screen_states[] = {
-    "<inactive>N/A</inactive>",
-    "Full",
-    "Adaptive",
-    "Partial"
+    _("<inactive>N/A</inactive>"),
+    _("Full"),
+    _("Adaptive"),
+    _("Partial")
 };
 
 static void
 screen_draw(Evas_Object *item)
 {
     screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "title", "Screen update : ");
+    edje_object_part_text_set(item, "title", "Screen update");
     edje_object_part_text_set(item, "value", screen_states[scr+1]);
 }
 
@@ -43,22 +45,22 @@ screen_set(Evas_Object * self) {
         scr = SCREEN_UPDATE_FULL;
     printf("screen: %d\n", scr);
         set_screen_update_type(scr);
-        choicebox_invalidate_item(self, 1);
+        choicebox_invalidate_item(self, 0);
 }
 
 
 const char * sound_states[] = {
-    "<invisible>N/A</invisible>",
-    "OFF",
-    "ON"
+    _("<invisible>N/A</invisible>"),
+    _("OFF"),
+    _("ON")
 };
 
 static void
 sound_draw(Evas_Object *item)
 {
     sound_t snd = detect_sound();
-    edje_object_part_text_set(item, "title", "Sound :");
-    edje_object_part_text_set(item, "value", sound_states[snd+1]);
+    edje_object_part_text_set(item, "title", _("Sound"));
+    edje_object_part_text_set(item, "value", gettext(sound_states[snd+1]));
 }
 
 static void
@@ -68,13 +70,13 @@ sound_set(Evas_Object * self) {
        set_sound(SOUND_OFF);
     else if (snd == SOUND_OFF)
        set_sound(SOUND_OFF);
-    choicebox_invalidate_item(self, 2);
+    choicebox_invalidate_item(self, 1);
 }
 
 static void
 language_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", "Language :");
+    edje_object_part_text_set(item, "title", _("Language"));
     edje_object_part_text_set(item, "value", current_lang());
 }
 
@@ -112,5 +114,5 @@ void settings_menu(Evas *canvas, void * arg __attribute__((unused))) {
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
-    edje_object_part_text_set(main_canvas_edje, "contents", "Settings");
+    edje_object_part_text_set(main_canvas_edje, "path", _("Settings"));
 }

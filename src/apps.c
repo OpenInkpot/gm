@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <libintl.h>
 #include <Ecore_Data.h>
 #include <Evas.h>
 #include <Ecore_File.h>
@@ -100,6 +101,7 @@ void run_desktop_files(Evas *canvas, const char * path, const char * category) {
 }
 
 void run_applications(Evas *canvas, void *category) {
+    category = gettext(category);
     run_desktop_files(canvas, "/usr/share/applications",
         (const char *) category);
 }

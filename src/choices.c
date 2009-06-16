@@ -34,7 +34,7 @@ static void default_key_handler(void* param __attribute__((unused)),
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
     choicebox_aux_key_down_handler(r, ev);
 
-    if(!strcmp(ev->keyname, "Escape")) 
+    if(!strcmp(ev->keyname, "Escape"))
     {
         choicebox_pop(r);
     }
@@ -55,7 +55,7 @@ Evas_Object *
 choicebox_push(Evas_Object *parent, Evas *canvas,
     choicebox_handler_t handler,
     choicebox_draw_handler_t draw_handler,
-    const char *name, int size, void *data) 
+    const char *name, int size, void *data)
 {
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
     Evas_Object* choicebox = choicebox_new(canvas,
@@ -67,7 +67,7 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
     }
     choicebox_set_size(choicebox, size);
     evas_object_name_set(choicebox, name);
-    if(parent) 
+    if(parent)
     {
         edje_object_part_unswallow(main_canvas_edje, parent);
         evas_object_hide(parent);
@@ -77,7 +77,7 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
 
     evas_object_focus_set(choicebox, true);
     evas_object_event_callback_add(choicebox,
-                                  EVAS_CALLBACK_KEY_DOWN,
+                                  EVAS_CALLBACK_KEY_UP,
                                   &default_key_handler,
                                   data);
     evas_object_show(choicebox);
