@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-06-16 14:49+0000\n"
+"POT-Creation-Date: 2009-06-16 17:12+0000\n"
 "PO-Revision-Date: 2009-06-16 14:50+0000\n"
 "Last-Translator: Alexander V. Nikolaev <avn@openinkpot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,3 +51,43 @@ msgstr "Настройки часов"
 #: src/gm.c:114
 msgid "No book is open"
 msgstr "Нет открытой книги"
+
+#: src/setup.c:23
+msgid "<inactive>N/A</inactive>"
+msgstr ""
+
+#: src/setup.c:24
+msgid "Full"
+msgstr ""
+
+#: src/setup.c:25
+msgid "Adaptive"
+msgstr ""
+
+#: src/setup.c:26
+msgid "Partial"
+msgstr ""
+
+#: src/setup.c:53
+msgid "<invisible>N/A</invisible>"
+msgstr ""
+
+#: src/setup.c:54
+msgid "OFF"
+msgstr ""
+
+#: src/setup.c:55
+msgid "ON"
+msgstr ""
+
+#: src/setup.c:62
+msgid "Sound"
+msgstr ""
+
+#: src/setup.c:79
+msgid "Language"
+msgstr ""
+
+#: src/setup.c:117
+msgid "Settings"
+msgstr ""
