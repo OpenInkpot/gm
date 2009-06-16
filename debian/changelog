@@ -1,3 +1,9 @@
+gm (0.1+20090518-5) asimov; urgency=low
+
+  * Added translations
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 16 Jun 2009 20:15:53 +0300
+
 gm (0.1+20090518-4) asimov; urgency=low
 
   * Raising, and reading FBReader attributes
