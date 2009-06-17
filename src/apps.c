@@ -97,11 +97,10 @@ void run_desktop_files(Evas *canvas, const char * path, const char * category) {
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
-    edje_object_part_text_set(main_canvas_edje, "path", category);
+    edje_object_part_text_set(main_canvas_edje, "path", gettext(category));
 }
 
 void run_applications(Evas *canvas, void *category) {
-    category = gettext(category);
     run_desktop_files(canvas, "/usr/share/applications",
         (const char *) category);
 }
