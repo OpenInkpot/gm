@@ -1,3 +1,9 @@
+gm (0.1+20090518-7) asimov; urgency=low
+
+  * Fix games lost-in-gettext
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Wed, 17 Jun 2009 03:06:31 +0300
+
 gm (0.1+20090518-6) asimov; urgency=low
 
   * Fix page counter
