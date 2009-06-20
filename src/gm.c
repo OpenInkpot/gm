@@ -25,6 +25,7 @@ struct main_menu_item {
     char *title;
     void (*execute)(Evas *evas_ptr, void *arg);
     void *argument;
+    char * icon_signal;
 };
 
 void run_subshell(Evas * e __attribute__((unused)),
@@ -43,16 +44,16 @@ void stub(Evas * e __attribute__((unused)), void * arg) {
 };
 
 struct main_menu_item main_menu[] = {
-        {_("Current book"), raise_fbreader, NULL }, // Special
-        {_("Library"), run_subshell, "/usr/bin/madshelf" },
-        {_("Images"), stub, "Images"},
-        {_("Audio"), stub, "Audio"},
-        {" ", stub, ""},
-        {_("Applications"), &run_applications, "Applications"},
-        {_("Games"), &run_applications , "Games"},
-        {_("Setup"), &settings_menu, "Setup"},
-        {_("Clock setup"), &run_subshell , "/usr/bin/etimetool"},
-        {NULL, NULL, NULL,},
+        {_("Current book"), raise_fbreader, NULL, "set-icon-book" }, // Special
+        {_("Library"), run_subshell, "/usr/bin/madshelf", "set-icon-lib" },
+        {_("Images"), stub, "Images", "set-icon-photo"},
+        {_("Audio"), stub, "Audio", "set-icon-phono"},
+        {" ", stub, "", NULL},
+        {_("Applications"), &run_applications, "Applications", "set-icon-apps"},
+        {_("Games"), &run_applications , "Games", "set-icon-games"},
+        {_("Setup"), &settings_menu, "Setup", "set-icon-setup"},
+        {_("Clock setup"), &run_subshell , "/usr/bin/etimetool", "set-icon-clock"},
+        {NULL, NULL, NULL, NULL},
 };
 
 static void die(const char* fmt, ...)
@@ -100,15 +101,25 @@ static void draw_handler(Evas_Object* choicebox,
     struct tm *loctime;
     struct bookinfo_t *bookinfo;
 
+    if(main_menu[item_num].icon_signal)
+        edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
+    else
+        edje_object_signal_emit(item, "set-icon-none", "");
+
     edje_object_part_text_set(item, "text","");
     edje_object_part_text_set(item, "title","");
     edje_object_part_text_set(item, "value","");
+    edje_object_part_text_set(item, "author","");
+    edje_object_part_text_set(item, "value","");
+
     if((item_num == 0) && main_menu[item_num].title ) {
         bookinfo = gm_get_titles();
         if(bookinfo && bookinfo->title) {
             edje_object_part_text_set(item,
                 "title", gettext("Current book"));
             edje_object_part_text_set(item, "value", bookinfo->title);
+            edje_object_part_text_set(item, "author",bookinfo->author);
+            edje_object_part_text_set(item, "series",bookinfo->series);
         } else {
             edje_object_part_text_set(item, "text",
                 gettext("No book is open"));

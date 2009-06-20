@@ -1,7 +1,7 @@
 #include <echoicebox.edci>
 
 images {
-    image: "icon-none.png" COMP;
+//    image: "icon-none.png" COMP;
     image: "icon-book.png" COMP;
     image: "icon-lib.png" COMP;
     image: "icon-photo.png" COMP;
@@ -10,10 +10,30 @@ images {
     image: "icon-games.png" COMP;
     image: "icon-setup.png" COMP;
     image: "icon-clock.png" COMP;
+
+    /* FIXME: must be declared in echoicebox.edci */
+    image, "grid1-side-right.png" COMP;
+    image, "grid1-body.png" COMP;
+    image, "grid1-side-left.png" COMP;
+    image, "grid2-side-right.png" COMP;
+    image, "grid2-body.png" COMP;
+    image, "grid2-side-left.png" COMP;
+    image, "sel-side.png" COMP;
 }
 
+styles {
+    style {
+        name, "values";
+        base, "font=serif font_size=24 color=#000 align=right valign=bottom";
+        tag, "inactive" "+color=#888";
+        tag, "/inactive" "-";
+    }
+}
+
+
+
 collections {
-    START_FULL_SIZE_ITEM_GROUP("fileitem")
+    START_FULL_SIZE_ITEM_GROUP("full")
          part {
             name, "title";
             type, TEXT;
@@ -30,6 +50,40 @@ collections {
                   text_class, "chrome";
                }
                rel1 { relative, 0.0 0.0; offset, 17 0; }
+               rel2 { relative, 1.0 1.0; offset, -18 -1; }
+            }
+         }
+         part {
+            name, "text";
+            type, TEXT;
+            mouse_events, 0;
+            clip_to, "clipper";
+            description {
+               state, "default" 0.0;
+               color, 0 0 0 255;
+               text {
+                  align, 0.0 0.4;
+                  text, "";
+                  font, "serif";
+                  size, "28";
+                  text_class, "chrome";
+               }
+               rel1 { relative, 0.0 0.0; offset, 17 0; }
+               rel2 { relative, 1.0 1.0; offset, -18 -1; }
+            }
+         }
+         part {
+            name, "value";
+            type, TEXTBLOCK;
+            mouse_events, 0;
+            clip_to, "clipper";
+            description {
+               state, "default" 0.0;
+               text {
+                  style, "values";
+                  text, "";
+               }
+               rel1 { relative, 0.0 0.0; offset, 17 35; }
                rel2 { relative, 1.0 1.0; offset, -18 -1; }
             }
          }
@@ -117,7 +171,7 @@ collections {
                  state, "default" 0.0;
                  rel1 { relative, 1.0 1.0; offset, -56 -39; }
                  rel2 { relative, 1.0 1.0; offset, -24 -7; }
-                 image { normal, "icon-none.png"; }
+//                 image { normal, "icon-none.png"; }
              }
              description {
                  state, "icon-book" 0.0;
@@ -158,10 +212,9 @@ collections {
              description {
                  state, "icon-clock" 0.0;
                  inherit, "default" 0.0;
-                 image { normal, "ICON-ONE.png"; }
+                 image { normal, "icon-clock.png"; }
              }
          }
-    END_FULL_SIZE_ITEM_GROUP
     programs {
             program {
                 name, "set-icon-none";
@@ -169,53 +222,63 @@ collections {
                 script {
                     set_state(PART:"icon", "default", 0.0);
                 }
+            }
             program {
                 name, "set-icon-book";
                 signal, "set-icon-book";
                 script {
                     set_state(PART:"icon", "icon-book", 0.0);
                 }
+            }
             program {
                 name, "set-icon-lib";
                 signal, "set-icon-lib";
                 script {
                     set_state(PART:"icon", "icon-lib", 0.0);
                 }
+            }
             program {
                 name, "set-icon-photo";
                 signal, "set-icon-photo";
                 script {
                     set_state(PART:"icon", "icon-photo", 0.0);
                 }
+            }
             program {
                 name, "set-icon-phono";
                 signal, "set-icon-phono";
                 script {
                     set_state(PART:"icon", "icon-phono", 0.0);
                 }
+            }
             program {
                 name, "set-icon-apps";
                 signal, "set-icon-apps";
                 script {
                     set_state(PART:"icon", "icon-apps", 0.0);
                 }
+            }
             program {
                 name, "set-icon-games";
                 signal, "set-icon-games";
                 script {
                     set_state(PART:"icon", "icon-games", 0.0);
                 }
+            }
             program {
                 name, "set-icon-setup";
                 signal, "set-icon-setup";
                 script {
                     set_state(PART:"icon", "icon-setup", 0.0);
                 }
+            }
             program {
                 name, "set-icon-clock";
                 signal, "set-icon-clock";
                 script {
                     set_state(PART:"icon", "icon-clock", 0.0);
                 }
-    }
+            }
+        }
+    END_FULL_SIZE_ITEM_GROUP
 }

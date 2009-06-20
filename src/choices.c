@@ -60,7 +60,8 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
 {
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
     Evas_Object* choicebox = choicebox_new(canvas,
-        "/usr/share/echoicebox/echoicebox.edj",
+    //    "/usr/share/echoicebox/echoicebox.edj",
+        THEME_DIR "/items.edj",
         "full", handler, draw_handler, page_handler, data);
     if(!choicebox) {
          printf("no echoicebox\n");
