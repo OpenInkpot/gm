@@ -31,8 +31,8 @@ static void
 screen_draw(Evas_Object *item)
 {
     screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "title", "Screen update");
-    edje_object_part_text_set(item, "value", screen_states[scr+1]);
+    edje_object_part_text_set(item, "title", gettext("Screen update"));
+    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
 }
 
 static void
@@ -52,7 +52,7 @@ screen_set(Evas_Object * self) {
 static void
 rotation_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", _("Screen rotation type"));
+    edje_object_part_text_set(item, "title", gettext("Screen rotation type"));
     edje_object_part_text_set(item, "value", current_rotation());
 }
 
@@ -66,7 +66,7 @@ static void
 sound_draw(Evas_Object *item)
 {
     sound_t snd = detect_sound();
-    edje_object_part_text_set(item, "title", _("Sound"));
+    edje_object_part_text_set(item, "title", gettext("Sound"));
     edje_object_part_text_set(item, "value", gettext(sound_states[snd+1]));
 }
 
@@ -83,7 +83,7 @@ sound_set(Evas_Object * self) {
 static void
 language_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", _("Language"));
+    edje_object_part_text_set(item, "title", gettext("Language"));
     edje_object_part_text_set(item, "value", current_lang());
 }
 
@@ -122,5 +122,5 @@ void settings_menu(Evas *canvas, void * arg __attribute__((unused))) {
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
-    edje_object_part_text_set(main_canvas_edje, "path", _("Settings"));
+    edje_object_part_text_set(main_canvas_edje, "path", gettext("Settings"));
 }
