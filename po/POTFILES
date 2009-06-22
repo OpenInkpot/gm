@@ -7,3 +7,4 @@ src/screen_update_control.c
 src/setup.c
 src/sock.c
 src/sound_control.c
+src/rotation.c
