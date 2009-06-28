@@ -42,28 +42,28 @@ collections {
                   rel1 { relative, 0.0 0.0; offset, 0 49; }
                   rel2 { relative, 1.0 1.0; offset, -1 -50; }
                }
-            } /*
+            } 
             part {
-               name, "info_icon";
+               name, "clock";
                type, TEXT;
                description {
                   state, "default" 0.0;
                   color, 255 255 255 255;
                   text {
-                     text, "info icon";
+                     text, "clock";
                      font, "serif";
                      size, 20;
                   }
                   rel1 {
-                     relative, 0.0 0.0;
-                     offset, 5 5;
+                     relative, 1.0 0.0;
+                     offset, -90 20;
                   }
                   rel2 {
-                     relative, 0.0 0.0;
-                     offset, 60 20;
+                     relative, 1.0 0.0;
+                     offset, -1 40;
                   }
                }
-            } */
+            }
             part {
                name, "path";
                type, TEXT;

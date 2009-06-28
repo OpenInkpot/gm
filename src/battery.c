@@ -3,7 +3,7 @@
 
 #include <Edje.h>
 
-#include "battery.h"
+#include "clock.h"
 
 typedef struct
 {
@@ -28,7 +28,7 @@ static battery_info_t batteries[] =
 
 static int _find_battery()
 {
-    int i;
+    unsigned int i;
     for(i = 0; i < sizeof(batteries)/sizeof(batteries[0]); ++i)
     {
         if(!access(batteries[i].now, R_OK))

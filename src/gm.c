@@ -20,6 +20,7 @@
 #include "sock.h"
 #include "choices.h"
 #include "raise.h"
+#include "clock.h"
 
 struct main_menu_item {
     char *title;
@@ -96,9 +97,9 @@ static void draw_handler(Evas_Object* choicebox,
                          void* param)
 {
     /* All time formatting taken from libc manual, don't hurt me */
-    char buf[256];
+/**    char buf[256];
     time_t curtime;
-    struct tm *loctime;
+    struct tm *loctime; */
     struct bookinfo_t *bookinfo;
 
     if(main_menu[item_num].icon_signal)
@@ -126,12 +127,12 @@ static void draw_handler(Evas_Object* choicebox,
         }
         gm_free_titles(bookinfo);
     } else
-    if ((item_num == 8) && main_menu[item_num].title) {
+/*    if ((item_num == 8) && main_menu[item_num].title) {
         curtime = time (NULL);
         loctime = localtime (&curtime);
         strftime(buf, 256, gettext(main_menu[item_num].title), loctime);
         edje_object_part_text_set(item, "text", buf);
-    } else
+    } else */
     if (main_menu[item_num].title) {
         edje_object_part_text_set(item, "text",
         gettext(main_menu[item_num].title));
@@ -197,6 +198,7 @@ static void run()
    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
+   gm_init_clock_and_battery(main_canvas_edje);
    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
    edje_object_part_text_set(main_canvas_edje, "footer", "");
    edje_object_part_text_set(main_canvas_edje, "path", "");
