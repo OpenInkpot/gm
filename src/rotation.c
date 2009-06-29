@@ -26,10 +26,10 @@ typedef struct {
 #define ROTATION_COUNT 5
 rotation_t rotation_states[] = {
     { DISABLED, _("Disabled") },
-    { _270, _("90 Degrees Clockwise") },
-    { _180, _("180 Degrees") },
-    { _90, _("90 Degrees Counterclockwise") },
-    { CYCLE, _("Cycle Through All 4 Directions") }
+    { _270, _("0 <-> 90 Degrees Clockwise") },
+    { _180, _("0 <-> 180 Degrees") },
+    { _90, _("0 <-> 90 Degrees Counterclockwise") },
+    { CYCLE, _("0 -> 90 -> 180 -> 270 -> 0") }
 };
 
 const char *current_rotation()
