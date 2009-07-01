@@ -15,79 +15,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: src/gm.c:46 src/gm.c:108
+#: src/gm.c:48 src/gm.c:122
 msgid "Current book"
 msgstr "Livre actuel"
 
-#: src/gm.c:47
+#: src/gm.c:49
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: src/gm.c:48
+#: src/gm.c:50
 msgid "Images"
 msgstr "Images"
 
-#: src/gm.c:49
-msgid "Audio"
-msgstr "Audio"
-
-#: src/gm.c:51
+#: src/gm.c:55
 msgid "Applications"
 msgstr "Utilitaires"
 
-#: src/gm.c:52
+#: src/gm.c:56
 msgid "Games"
 msgstr "Jeux"
 
-#: src/gm.c:53
+#: src/gm.c:57
 msgid "Setup"
 msgstr "Configurer"
 
-#: src/gm.c:54
+#: src/gm.c:58
 msgid "Clock setup"
 msgstr "Configurer l'horloge"
 
-#: src/gm.c:114
-msgid "No book is open"
-msgstr "Aucun livre n'est ouvert"
-
-#: src/setup.c:23
-msgid "<inactive>N/A</inactive>"
+#: src/gm.c:128
+#, fuzzy
+msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>N/A</inactive>"
 
 #: src/setup.c:24
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>N/A</inactive>"
+
+#: src/setup.c:25
 msgid "Full"
 msgstr "Plein"
 
-#: src/setup.c:25
+#: src/setup.c:26
 msgid "Adaptive"
 msgstr "Adaptatif"
 
-#: src/setup.c:26
+#: src/setup.c:27
 msgid "Partial"
 msgstr "Partiel"
 
-#: src/setup.c:53
+#: src/setup.c:34
+msgid "Screen update"
+msgstr ""
+
+#: src/setup.c:55
+msgid "Screen rotation type"
+msgstr ""
+
+#: src/setup.c:60
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>N/A</invisible>"
 
-#: src/setup.c:54
+#: src/setup.c:61
 msgid "OFF"
 msgstr "OFF"
 
-#: src/setup.c:55
+#: src/setup.c:62
 msgid "ON"
 msgstr "ON"
 
-#: src/setup.c:62
+#: src/setup.c:69
 msgid "Sound"
 msgstr "Son"
 
-#: src/setup.c:79
+#: src/setup.c:86
 msgid "Language"
 msgstr "Langue"
 
-#: src/setup.c:117
+#: src/setup.c:125
 msgid "Settings"
 msgstr "Réglages"
 
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr ""
+
+#: src/rotation.c:29
+msgid "90 Degrees Clockwise"
+msgstr ""
+
+#: src/rotation.c:30
+msgid "180 Degrees"
+msgstr ""
+
+#: src/rotation.c:31
+msgid "90 Degrees Counterclockwise"
+msgstr ""
+
+#: src/rotation.c:32
+msgid "Cycle Through All 4 Directions"
+msgstr ""
+
+#: src/rotation.c:93
+msgid "Select screen rotation type"
+msgstr ""
+
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgid "No book is open"
+#~ msgstr "Aucun livre n'est ouvert"

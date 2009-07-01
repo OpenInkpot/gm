@@ -124,8 +124,8 @@ static void draw_handler(Evas_Object* choicebox,
             edje_object_part_text_set(item, "author",bookinfo->author);
             edje_object_part_text_set(item, "series",bookinfo->series);
         } else {
-            edje_object_part_text_set(item, "text",
-                gettext("No book is open"));
+            edje_object_part_text_set(item, "title",
+                gettext("<inactive>No book is open</inactive>"));
         }
         gm_free_titles(bookinfo);
     } else
