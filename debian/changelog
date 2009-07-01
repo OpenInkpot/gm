@@ -1,3 +1,10 @@
+gm (0.1+20090518-8) asimov; urgency=low
+
+  * Add more translations
+  * Fix bug in styling
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Thu, 02 Jul 2009 02:15:54 +0300
+
 gm (0.1+20090518-7) asimov; urgency=low
 
   * Fix games lost-in-gettext
