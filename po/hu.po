@@ -1,0 +1,93 @@
+﻿# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gm 0.1\n"
+"Report-Msgid-Bugs-To: avn@openinkpot.org\n"
+"POT-Creation-Date: 2009-06-16 17:12+0000\n"
+"PO-Revision-Date: 2009-06-26 10:32+0200\n"
+"Last-Translator: Anrdás Csehi <acsehi@gmail.com>\n"
+"Language-Team: Hungarian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/gm.c:46 src/gm.c:108
+msgid "Current book"
+msgstr "Aktiális könyv"
+
+#: src/gm.c:47
+msgid "Library"
+msgstr "Könyvtár"
+
+#: src/gm.c:48
+msgid "Images"
+msgstr "Képek"
+
+#: src/gm.c:49
+msgid "Audio"
+msgstr "Audio"
+
+#: src/gm.c:51
+msgid "Applications"
+msgstr "Alkalmazások"
+
+#: src/gm.c:52
+msgid "Games"
+msgstr "Játékok"
+
+#: src/gm.c:53
+msgid "Setup"
+msgstr "Beállítás"
+
+#: src/gm.c:54
+msgid "Clock setup"
+msgstr "Óra beállítása"
+
+#: src/gm.c:114
+msgid "No book is open"
+msgstr "Nincs könyv megnyitva"
+
+#: src/setup.c:23
+msgid "<inactive>N/A</inactive>"
+msgstr ""
+
+#: src/setup.c:24
+msgid "Full"
+msgstr "Teljes"
+
+#: src/setup.c:25
+msgid "Adaptive"
+msgstr "Adaptív"
+
+#: src/setup.c:26
+msgid "Partial"
+msgstr "Részleges"
+
+#: src/setup.c:53
+msgid "<invisible>N/A</invisible>"
+msgstr ""
+
+#: src/setup.c:54
+msgid "OFF"
+msgstr "Kikapcsolás"
+
+#: src/setup.c:55
+msgid "ON"
+msgstr "Bekapcsolás"
+
+#: src/setup.c:62
+msgid "Sound"
+msgstr "Hangok"
+
+#: src/setup.c:79
+msgid "Language"
+msgstr "Nyelv"
+
+#: src/setup.c:117
+msgid "Settings"
+msgstr "Beállítások"
