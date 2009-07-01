@@ -28,6 +28,12 @@ styles {
         tag, "inactive" "+color=#888";
         tag, "/inactive" "-";
     }
+    style {
+        name, "text";
+        base, "font=serif font_size=28 color=#000 align=left valign=top";
+        tag, "inactive" "+color=#888";
+        tag, "/inactive" "-";
+    }
 }
 
 
@@ -36,18 +42,19 @@ collections {
     START_FULL_SIZE_ITEM_GROUP("full")
          part {
             name, "title";
-            type, TEXT;
+            type, TEXTBLOCK;
             mouse_events, 0;
             clip_to, "clipper";
             description {
                state, "default" 0.0;
                color, 0 0 0 255;
                text {
-                  align, 0.0 0.5;
+                  style, "text";
                   text, "";
+               /* align, 0.0 0.5;
                   font, "serif";
                   size, "28";
-                  text_class, "chrome";
+                  text_class, "chrome"; */
                }
                rel1 { relative, 0.0 0.0; offset, 17 0; }
                rel2 { relative, 1.0 1.0; offset, -18 -1; }
@@ -62,11 +69,11 @@ collections {
                state, "default" 0.0;
                color, 0 0 0 255;
                text {
-                  align, 0.0 0.4;
                   text, "";
+                  align, 0.0 0.4;
                   font, "serif";
                   size, "28";
-                  text_class, "chrome";
+                  text_class, "chrome"; 
                }
                rel1 { relative, 0.0 0.0; offset, 17 0; }
                rel2 { relative, 1.0 1.0; offset, -18 -1; }

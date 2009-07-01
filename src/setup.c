@@ -56,6 +56,7 @@ rotation_draw(Evas_Object *item)
     edje_object_part_text_set(item, "value", current_rotation());
 }
 
+#if 0
 const char * sound_states[] = {
     _("<invisible>N/A</invisible>"),
     _("OFF"),
@@ -80,6 +81,8 @@ sound_set(Evas_Object * self) {
     choicebox_invalidate_item(self, 2);
 }
 
+#endif
+
 static void
 language_draw(Evas_Object *item)
 {
@@ -87,11 +90,11 @@ language_draw(Evas_Object *item)
     edje_object_part_text_set(item, "value", current_lang());
 }
 
-#define MENU_ITEMS_NUM 4
+#define MENU_ITEMS_NUM 3
 struct setup_menu_item_t setup_menu_items[] = {
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &rotation_menu, 0},
-    {&sound_draw, &sound_set, 0},
+//    {&sound_draw, &sound_set, 0},
     {&language_draw, &lang_menu, 0},
     {NULL, NULL, NULL},
 };

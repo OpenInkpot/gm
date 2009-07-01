@@ -45,7 +45,7 @@ void stub(Evas * e __attribute__((unused)), void * arg) {
 };
 
 struct main_menu_item main_menu[] = {
-        {_("Current book"), raise_fbreader, NULL, "set-icon-book" }, // Special
+        {_("Current book"), raise_fbreader, NULL, "set-icon-none" }, // Special
         {_("Library"), run_subshell, "/usr/bin/madshelf", "set-icon-lib" },
         {_("Images"), run_subshell, "/usr/bin/madshelf --filter=images",
                     "set-icon-photo"},
