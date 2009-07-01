@@ -50,17 +50,18 @@ collections {
                   state, "default" 0.0;
                   color, 255 255 255 255;
                   text {
-                     text, "clock";
+                     text, "";
                      font, "serif";
-                     size, 20;
+                     size, 28;
+                     align, 1.0 0.5;
                   }
                   rel1 {
                      relative, 1.0 0.0;
-                     offset, -90 20;
+                     offset, -200 0;
                   }
                   rel2 {
                      relative, 1.0 0.0;
-                     offset, -1 40;
+                     offset, -10 43;
                   }
                }
             }
