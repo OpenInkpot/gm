@@ -75,10 +75,11 @@ collections {
                      text, "path";
                      font, "serif";
                      size, 28;
+                     align, 0.0 0.5;
                   }
                   rel1 {
                      relative, 0.0 0.0;
-                     offset, 0.0 5.0;
+                     offset, 5 0;
                   }
                   rel2 {
                      relative, 1.0 0.0;
