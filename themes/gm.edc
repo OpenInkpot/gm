@@ -51,7 +51,7 @@ collections {
                   color, 255 255 255 255;
                   text {
                      text, "";
-                     font, "serif";
+                     font, "sans-serif";
                      size, 28;
                      align, 1.0 0.5;
                   }
@@ -72,8 +72,7 @@ collections {
                   state, "default" 0.0;
                   color, 255 255 255 255;
                   text {
-                     text, "path";
-                     font, "serif";
+                     font, "sans-serif";
                      size, 28;
                      align, 0.0 0.5;
                   }
@@ -95,7 +94,7 @@ collections {
                   color, 255 255 255 255;
                   text {
                      text, "footer";
-                     font, "serif";
+                     font, "sans-serif";
                      size, 28;
                   }
                   rel1 {
