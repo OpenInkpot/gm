@@ -1,3 +1,10 @@
+gm (0.1+20090518-10) asimov; urgency=low
+
+  * Strip the BOM from hu.po
+  * Re-enable translations.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 02 Jul 2009 08:18:23 +0700
+
 gm (0.1+20090518-9) asimov; urgency=low
 
   * Rework the theme to match rest of system
