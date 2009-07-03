@@ -46,7 +46,7 @@ void stub(Evas * e __attribute__((unused)), void * arg) {
 
 struct main_menu_item main_menu[] = {
         {_("Current book"), raise_fbreader, NULL, "set-icon-none" }, // Special
-        {_("Library"), run_subshell, "/usr/bin/madshelf", "set-icon-lib" },
+        {_("Library"), run_subshell, "/usr/bin/madshelf --filter=books", "set-icon-lib" },
         {_("Images"), run_subshell, "/usr/bin/madshelf --filter=images",
                     "set-icon-photo"},
         /* {_("Audio"), stub, "Audio", "set-icon-phono"}, */
