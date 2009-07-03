@@ -1,3 +1,10 @@
+gm (0.1+20090518-11) asimov; urgency=low
+
+  * Update ru and ua translations
+  * Apply various patches from Mikhail Gusarov <dottedmag@dottedmag.net>
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Sat, 04 Jul 2009 01:35:23 +0300
+
 gm (0.1+20090518-10) asimov; urgency=low
 
   * Strip the BOM from hu.po
