@@ -110,21 +110,18 @@ static void draw_handler(Evas_Object* choicebox,
         edje_object_signal_emit(item, "set-icon-none", "");
 
     edje_object_part_text_set(item, "text","");
-    edje_object_part_text_set(item, "title","");
-    edje_object_part_text_set(item, "value","");
-    edje_object_part_text_set(item, "author","");
-    edje_object_part_text_set(item, "value","");
+    edje_object_part_text_set(item, "lefttop","");
+    edje_object_part_text_set(item, "leftbottom","");
+    edje_object_part_text_set(item, "rightbottom","");
 
     if((item_num == 0) && main_menu[item_num].title ) {
         bookinfo = gm_get_titles();
         if(bookinfo && bookinfo->title) {
-            edje_object_part_text_set(item,
-                "title", gettext("Current book"));
-            edje_object_part_text_set(item, "value", bookinfo->title);
-            edje_object_part_text_set(item, "author",bookinfo->author);
-            edje_object_part_text_set(item, "series",bookinfo->series);
+            edje_object_part_text_set(item, "text", bookinfo->title);
+            edje_object_part_text_set(item, "lefttop",bookinfo->author);
+            edje_object_part_text_set(item, "leftbottom",bookinfo->series);
         } else {
-            edje_object_part_text_set(item, "title",
+            edje_object_part_text_set(item, "text",
                 gettext("<inactive>No book is open</inactive>"));
         }
         gm_free_titles(bookinfo);
