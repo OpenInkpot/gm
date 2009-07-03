@@ -180,8 +180,8 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
-    if(!strcmp(ev->keyname, "Escape"))
-       ecore_main_loop_quit();
+//    if(!strcmp(ev->keyname, "Escape"))
+//       ecore_main_loop_quit();
 }
 
 static void run()

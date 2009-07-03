@@ -64,7 +64,7 @@ static void apps_draw_handler(Evas_Object* choicebox __attribute__((unused)),
     edje_object_part_text_set(item, "text", desktop->name);
 }
 
-static void apps_handler(Evas_Object* choicebox,
+static void apps_handler(Evas_Object* choicebox __attribute__((unused)),
                     int item_num,
                     bool is_alt __attribute__((unused)),
                     void* param)
