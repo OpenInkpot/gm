@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
 "POT-Creation-Date: 2009-06-16 17:12+0000\n"
-"PO-Revision-Date: 2009-07-02 18:56+0700\n"
+"PO-Revision-Date: 2009-07-02 18:57+0700\n"
 "Last-Translator: Vladimir <v@v>\n"
-"Language-Team: Russian <openinkpot-l10n@googlegroups.com>\n"
+"Language-Team: Ukrainian <openinkpot-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,11 +18,11 @@ msgstr ""
 #: src/gm.c:48
 #: src/gm.c:122
 msgid "Current book"
-msgstr "Текущая книга"
+msgstr "Поточна книга"
 
 #: src/gm.c:49
 msgid "Library"
-msgstr "Библиотека"
+msgstr "Бібліотека"
 
 #: src/gm.c:50
 msgid "Images"
@@ -30,23 +30,23 @@ msgstr "Фототека"
 
 #: src/gm.c:55
 msgid "Applications"
-msgstr "Приложения"
+msgstr "Програми & утиліти"
 
 #: src/gm.c:56
 msgid "Games"
-msgstr "Игры"
+msgstr "Ігри"
 
 #: src/gm.c:57
 msgid "Setup"
-msgstr "Настройки"
+msgstr "Налаштування"
 
 #: src/gm.c:58
 msgid "Clock setup"
-msgstr "Настройки часов"
+msgstr "Налаштування годинника"
 
 #: src/gm.c:128
 msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Нет открытой книги</inactive>"
+msgstr "<inactive>Немає відкритої книги</inactive>"
 
 #: src/setup.c:24
 msgid "<inactive>N/A</inactive>"
@@ -54,23 +54,23 @@ msgstr "<inactive>Не доступно</inactive>"
 
 #: src/setup.c:25
 msgid "Full"
-msgstr "Полное"
+msgstr "Повне"
 
 #: src/setup.c:26
 msgid "Adaptive"
-msgstr "Адаптивное"
+msgstr "Адаптивне"
 
 #: src/setup.c:27
 msgid "Partial"
-msgstr "Зональное"
+msgstr "Зональне"
 
 #: src/setup.c:34
 msgid "Screen update"
-msgstr "Обновление экрана"
+msgstr "Оновлення екрана"
 
 #: src/setup.c:55
 msgid "Screen rotation type"
-msgstr "Тип поворта экрана"
+msgstr "Тип повороту екрана"
 
 #: src/setup.c:60
 msgid "<invisible>N/A</invisible>"
@@ -78,7 +78,7 @@ msgstr "<invisible>Не доступно</invisible>"
 
 #: src/setup.c:61
 msgid "OFF"
-msgstr "Выкл."
+msgstr "Викл."
 
 #: src/setup.c:62
 msgid "ON"
@@ -90,35 +90,35 @@ msgstr "Звук"
 
 #: src/setup.c:86
 msgid "Language"
-msgstr "Язык"
+msgstr "Мова"
 
 #: src/setup.c:125
 msgid "Settings"
-msgstr "Параметры"
+msgstr "Параметри"
 
 #: src/rotation.c:28
 msgid "Disabled"
-msgstr "Отключено"
+msgstr "Відключено"
 
 #: src/rotation.c:29
 msgid "90 Degrees Clockwise"
-msgstr "По часовой"
+msgstr "По часовій стрілці"
 
 #: src/rotation.c:30
 msgid "180 Degrees"
-msgstr "На 180 градусов"
+msgstr "На 180 градусів"
 
 #: src/rotation.c:31
 msgid "90 Degrees Counterclockwise"
-msgstr "Против часовой"
+msgstr "Проти часової стрілки"
 
 #: src/rotation.c:32
 msgid "Cycle Through All 4 Directions"
-msgstr "По кругу"
+msgstr "По колу"
 
 #: src/rotation.c:93
 msgid "Select screen rotation type"
-msgstr "Выбрать тип поворота экрана"
+msgstr "Выбрати тип повороту екрана "
 
 #~ msgid "Audio"
 #~ msgstr "Аудиотека"
