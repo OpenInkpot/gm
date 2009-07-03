@@ -53,7 +53,6 @@ static int _read_int_file(const char* filename)
 static int _get_state()
 {
     int batt = _find_battery();
-    return 90;
 
     if(batt == -1)
         return -1;
