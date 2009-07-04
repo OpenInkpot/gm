@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include <libintl.h>
+#include <locale.h>
 #define _(x) x
 
 #include <Ecore.h>
