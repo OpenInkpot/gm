@@ -99,8 +99,8 @@ static void draw_handler(Evas_Object* choicebox,
                          void* param)
 {
     /* All time formatting taken from libc manual, don't hurt me */
-/**    char buf[256];
-    time_t curtime;
+    char buf[256];
+/*    time_t curtime;
     struct tm *loctime; */
     struct bookinfo_t *bookinfo;
 
@@ -119,7 +119,13 @@ static void draw_handler(Evas_Object* choicebox,
         if(bookinfo && bookinfo->title) {
             edje_object_part_text_set(item, "text", bookinfo->title);
             edje_object_part_text_set(item, "lefttop",bookinfo->author);
-            edje_object_part_text_set(item, "leftbottom",bookinfo->series);
+            if(bookinfo->series_number) {
+                snprintf(buf, 256, "%s: #%d", bookinfo->series,
+                    bookinfo->series_number);
+                edje_object_part_text_set(item, "leftbottom", buf);
+            }
+            else
+                edje_object_part_text_set(item, "leftbottom",bookinfo->series);
         } else {
             edje_object_part_text_set(item, "text",
                 gettext("<inactive>No book is open</inactive>"));

@@ -10,7 +10,7 @@ struct bookinfo_t {
     char *filename;
     char *filepath;
     char *series;
-    char *series_number;
+    int series_number;
     char *type;
     char *size;
     int current_position;
