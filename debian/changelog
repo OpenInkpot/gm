@@ -1,3 +1,9 @@
+gm (0.1+20090518-13) asimov; urgency=low
+
+  * Apply various patches from other OI developers
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Mon, 06 Jul 2009 02:28:33 +0300
+
 gm (0.1+20090518-12) asimov; urgency=low
 
   * Fix "image" filter
