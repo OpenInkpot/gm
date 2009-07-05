@@ -125,7 +125,7 @@ collections {
              mouse_events, 0;
              description {
                  state, "default" 0.0;
-                 rel1 { relative, 1.0 1.0; offset, -89 -61; }
+                 rel1 { relative, 1.0 1.0; offset, -88 -62; }
                  rel2 { relative, 1.0 1.0; offset, -24 -7; }
 //                 image { normal, "icon-none.png"; }
              }
