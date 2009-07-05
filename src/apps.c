@@ -115,6 +115,7 @@ void run_desktop_files(Evas *canvas, const char * path, const char * category) {
                apps_draw_handler,
                "desktop-choicebox",
                count,
+               1,
                (void *) desktops);
     if(!choicebox)
         printf("We all dead\n");

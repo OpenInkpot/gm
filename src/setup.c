@@ -31,8 +31,8 @@ static void
 screen_draw(Evas_Object *item)
 {
     screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "lefttop", gettext("Screen update"));
-    edje_object_part_text_set(item, "rightbottom", gettext(screen_states[scr+1]));
+    edje_object_part_text_set(item, "title", gettext("Screen update"));
+    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
 }
 
 static void
@@ -52,8 +52,8 @@ screen_set(Evas_Object * self) {
 static void
 rotation_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "lefttop", gettext("Screen rotation type"));
-    edje_object_part_text_set(item, "rightbottom", current_rotation());
+    edje_object_part_text_set(item, "title", gettext("Screen rotation type"));
+    edje_object_part_text_set(item, "value", current_rotation());
 }
 
 #if 0
@@ -86,8 +86,8 @@ sound_set(Evas_Object * self) {
 static void
 language_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "lefttop", gettext("Language"));
-    edje_object_part_text_set(item, "rightbottom", current_lang());
+    edje_object_part_text_set(item, "title", gettext("Language"));
+    edje_object_part_text_set(item, "value", current_lang());
 }
 
 #define MENU_ITEMS_NUM 3
@@ -121,7 +121,7 @@ void settings_menu(Evas *canvas) {
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
                settings_draw,
-               "settings-choicebox", MENU_ITEMS_NUM, NULL);
+               "settings-choicebox", MENU_ITEMS_NUM, 0, NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");

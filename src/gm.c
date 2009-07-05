@@ -210,7 +210,7 @@ static void run()
    gm_graphics_init(main_canvas);
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
-        main_menu_handler, draw_handler, "choicebox", 9, main_canvas);
+        main_menu_handler, draw_handler, "choicebox", 9, 1, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
         return;

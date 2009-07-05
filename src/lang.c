@@ -53,7 +53,7 @@ static void lang_draw(Evas_Object* choicebox __attribute__((unused)),
         asprintf(&buf, "%s / %s", lang->native_name, lang->name);
     else
         buf = strdup(lang->name);
-    edje_object_part_text_set(item, "text", buf);
+    edje_object_part_text_set(item, "title", buf);
     free(buf);
 }
 
@@ -73,7 +73,7 @@ void lang_menu(Evas_Object *parent) {
     choicebox = choicebox_push(parent, canvas,
                lang_handler,
                lang_draw,
-               "lang-choicebox", languages->n , NULL);
+               "lang-choicebox", languages->n , 0, NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");

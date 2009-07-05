@@ -56,12 +56,16 @@ Evas_Object *
 choicebox_push(Evas_Object *parent, Evas *canvas,
     choicebox_handler_t handler,
     choicebox_draw_handler_t draw_handler,
-    const char *name, int size, void *data)
+    const char *name, int size, int own_edje, void *data)
 {
+    char *edje_file;
+    if(own_edje)
+        edje_file =  THEME_DIR "/items.edj";
+    else
+        edje_file = "/usr/share/echoicebox/echoicebox.edj";
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
     Evas_Object* choicebox = choicebox_new(canvas,
-    //    "/usr/share/echoicebox/echoicebox.edj",
-        THEME_DIR "/items.edj",
+        edje_file,
         "full", handler, draw_handler, page_handler, data);
     if(!choicebox) {
          printf("no echoicebox\n");
