@@ -22,6 +22,7 @@
 #include "choices.h"
 #include "raise.h"
 #include "clock.h"
+#include "graph.h"
 
 struct main_menu_item {
     char *title;
@@ -187,8 +188,8 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
-//    if(!strcmp(ev->keyname, "Escape"))
-//       ecore_main_loop_quit();
+    if(!strcmp(ev->keyname, "Escape"))
+        gm_graphics_show(e);
 }
 
 static void run()
@@ -211,6 +212,7 @@ static void run()
    evas_object_move(main_canvas_edje, 0, 0);
    evas_object_resize(main_canvas_edje, 600, 800);
 
+   gm_graphics_init(main_canvas);
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
         handler, draw_handler, "choicebox", 9, main_canvas);
