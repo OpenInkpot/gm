@@ -5,6 +5,7 @@ images {
     image: "icon-battery-060.png" COMP;
     image: "icon-battery-080.png" COMP;
     image: "icon-battery-100.png" COMP;
+    image: "start_menu.png" COMP;
 }
 
 
@@ -188,6 +189,20 @@ collections {
                 }
             }
         }
-
+    }
+    group {
+        name, "vertical_graphics";
+        parts {
+            part  {
+                name,  "background";
+                type, IMAGE;
+                description {
+                    state, "default" 0.0;
+                    rel1 { relative, 0.0 0.0; offset, 0 0; }
+                    rel2 { relative, 1.1 1.1; offset, 0 0; }
+                    image { normal, "start_menu.png"; }
+                }
+            }
+        }
     }
 }

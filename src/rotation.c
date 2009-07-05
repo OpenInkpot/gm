@@ -26,10 +26,10 @@ typedef struct {
 #define ROTATION_COUNT 5
 rotation_t rotation_states[] = {
     { DISABLED, _("Disabled") },
-    { _270, _("90 Degrees Clockwise") },
-    { _180, _("180 Degrees") },
-    { _90, _("90 Degrees Counterclockwise") },
-    { CYCLE, _("Cycle Through All 4 Directions") }
+    { _270, _("0 <-> 90 Degrees Clockwise") },
+    { _180, _("0 <-> 180 Degrees") },
+    { _90, _("0 <-> 90 Degrees Counterclockwise") },
+    { CYCLE, _("0 -> 90 -> 180 -> 270 -> 0") }
 };
 
 const char *current_rotation()
@@ -65,7 +65,7 @@ static void rotation_draw(Evas_Object* choicebox __attribute__((unused)),
                       int page_position __attribute__((unused)),
                       void* param __attribute__((unused)))
 {
-    edje_object_part_text_set(item, "text", gettext(rotation_states[item_num].text));
+    edje_object_part_text_set(item, "title", gettext(rotation_states[item_num].text));
 }
 
 static void rotation_handler(Evas_Object* choicebox __attribute__((unused)),
@@ -86,7 +86,7 @@ void rotation_menu(Evas_Object *parent) {
     choicebox = choicebox_push(parent, canvas,
                rotation_handler,
                rotation_draw,
-               "rotation-choicebox", ROTATION_COUNT , parent);
+               "rotation-choicebox", ROTATION_COUNT , 0, parent);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");

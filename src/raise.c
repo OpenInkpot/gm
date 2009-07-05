@@ -97,7 +97,7 @@ bad:
 }
 
 void
-raise_fbreader(Evas * e __attribute__((unused)), void * arg __attribute__((unused)))
+raise_fbreader(Evas * e __attribute__((unused)))
 {
     Ecore_X_Window fbreader = gm_get_fbreader();
     if (fbreader)
@@ -159,6 +159,49 @@ bad:
     return NULL;
 }
 
+int
+gm_get_fb_int(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
+{
+    int result = 0;
+    xcb_atom_t atom = gm_get_atom(prop);
+    if(!atom)
+    {
+        printf("Can't get atom %s\n", prop);
+        return 0;
+    }
+    xcb_atom_t integer_atom = gm_get_atom("INTEGER");
+    if(!atom)
+    {
+        printf("Can't get atom INTEGER\n");
+        return 0;
+    }
+    xcb_get_property_cookie_t cookie;
+    cookie =  xcb_get_property_unchecked(conn, 0,
+                win,
+                atom,
+                integer_atom,
+                0L,
+                LONG_MAX);
+    xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, cookie, NULL);
+    if (!reply)
+    {
+        printf("Not reply: %s\n", prop);
+        return 0;
+    }
+    if (reply->type == XCB_NONE)
+    {
+        printf("XCB_NONE\n");
+        goto bad;
+    }
+    printf("reply->type = %d, reply->format = %d\n", reply->type, reply->format);
+    int len = xcb_get_property_value_length(reply);
+    result = *(int *) xcb_get_property_value(reply);
+    printf("Got: %s = %d %d\n", prop, result, len);
+bad:
+    free(reply);
+    return result;
+}
+
 struct bookinfo_t *
 gm_get_titles()
 {
@@ -172,6 +215,7 @@ gm_get_titles()
     titles->filepath = gm_get_fb_string(fbreader, conn, "ACTIVE_DOC_FILEPATH");
     titles->series = gm_get_fb_string(fbreader, conn, "ACTIVE_DOC_SERIES");
     titles->title = gm_get_fb_string(fbreader, conn, "ACTIVE_DOC_TITLE");
+    titles->series_number = gm_get_fb_int(fbreader, conn, "ACTIVE_DOC_SERIES_NUMBER");
     return titles;
 }
 

@@ -4,6 +4,7 @@
 #include <string.h>
 #include <time.h>
 #include <libintl.h>
+#include <locale.h>
 #define _(x) x
 
 #include <Ecore.h>
@@ -14,49 +15,38 @@
 #include <Ecore_Con.h>
 
 #include <echoicebox.h>
-#include "apps.h"
-#include "setup.h"
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
-#include "raise.h"
 #include "clock.h"
+#include "gm.h"
+#include "graph.h"
+#include "raise.h"
+#include "run.h"
+#include "setup.h"
 
 struct main_menu_item {
     char *title;
-    void (*execute)(Evas *evas_ptr, void *arg);
-    void *argument;
+    void (*execute)(Evas *evas_ptr);
     char * icon_signal;
 };
 
-void run_subshell(Evas * e __attribute__((unused)),
-                  void * arg) {
-    Ecore_Exe *exe;
-    printf("Run subshell\n");
-    exe = ecore_exe_run((const char *) arg, NULL);
-    if(exe)
-        ecore_exe_free(exe);
-};
-
-void stub(Evas * e __attribute__((unused)), void * arg) {
-    if(!arg)
-        arg="<none>";
-    printf("Stub %s\n", (char *)arg);
+void stub(Evas * e __attribute__((unused))) {
+    printf("Stub\n");
 };
 
 struct main_menu_item main_menu[] = {
-        {_("Current book"), raise_fbreader, NULL, "set-icon-none" }, // Special
-        {_("Library"), run_subshell, "/usr/bin/madshelf --filter=books", "set-icon-lib" },
-        {_("Images"), run_subshell, "/usr/bin/madshelf --filter=image",
-                    "set-icon-photo"},
-        /* {_("Audio"), stub, "Audio", "set-icon-phono"}, */
-        {" ", stub, "", NULL},
-        {" ", stub, "", NULL},
-        {_("Applications"), &run_applications, "Applications", "set-icon-apps"},
-        {_("Games"), &run_applications , "Games", "set-icon-games"},
-        {_("Setup"), &settings_menu, "Setup", "set-icon-setup"},
-        {_("Clock setup"), &run_subshell , "/usr/bin/etimetool", "set-icon-clock"},
-        {NULL, NULL, NULL, NULL},
+        {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special
+        {_("Library"), &gm_run_madshelf_books,  "set-icon-lib" },
+        {_("Images"), &gm_run_madshelf_images,  "set-icon-photo"},
+        /* {_("Audio"), stub, "set-icon-phono"}, */
+        {" ", stub,  NULL},
+        {" ", stub,  NULL},
+        {_("Applications"), &gm_run_applications, "set-icon-apps"},
+        {_("Games"), &gm_run_games , "set-icon-games"},
+        {_("Setup"), &settings_menu, "set-icon-setup"},
+        {_("Clock setup"), &gm_run_etimetool, "set-icon-clock"},
+        {NULL, NULL, NULL},
 };
 
 static void die(const char* fmt, ...)
@@ -99,8 +89,8 @@ static void draw_handler(Evas_Object* choicebox,
                          void* param)
 {
     /* All time formatting taken from libc manual, don't hurt me */
-/**    char buf[256];
-    time_t curtime;
+    char buf[256];
+/*    time_t curtime;
     struct tm *loctime; */
     struct bookinfo_t *bookinfo;
 
@@ -119,7 +109,13 @@ static void draw_handler(Evas_Object* choicebox,
         if(bookinfo && bookinfo->title) {
             edje_object_part_text_set(item, "text", bookinfo->title);
             edje_object_part_text_set(item, "lefttop",bookinfo->author);
-            edje_object_part_text_set(item, "leftbottom",bookinfo->series);
+            if(bookinfo->series_number) {
+                snprintf(buf, 256, "%s: #%d", bookinfo->series,
+                    bookinfo->series_number);
+                edje_object_part_text_set(item, "leftbottom", buf);
+            }
+            else
+                edje_object_part_text_set(item, "leftbottom",bookinfo->series);
         } else {
             edje_object_part_text_set(item, "text",
                 gettext("<inactive>No book is open</inactive>"));
@@ -142,17 +138,23 @@ static void draw_handler(Evas_Object* choicebox,
 }
 
 
-
-static void handler(Evas_Object* choicebox,
+static
+void main_menu_handler(Evas_Object* choicebox,
                     int item_num,
                     bool is_alt,
                     void* param)
 {
    printf("handle: choicebox: %p, item_num: %d, is_alt: %d, param: %p\n",
           choicebox, item_num, is_alt, param);
-   main_menu[item_num].execute(param, main_menu[item_num].argument);
+   main_menu[item_num].execute(param);
 }
 
+void
+fake_main_menu_handler(Evas *evas, int no)
+{
+    Evas_Object *choicebox = evas_object_name_find(evas, "choicebox");
+    main_menu_handler(choicebox, no, 0, (void *)evas);
+}
 
 static void main_win_resize_handler(Ecore_Evas* main_win)
 {
@@ -162,6 +164,7 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 
    Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
    evas_object_resize(main_canvas_edje, w, h);
+   gm_graphics_resize(canvas, w, h);
 }
 
 
@@ -181,7 +184,7 @@ static void main_win_key_handler(void* param __attribute__((unused)),
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
 //    if(!strcmp(ev->keyname, "Escape"))
-//       ecore_main_loop_quit();
+//        gm_graphics_activate(e);
 }
 
 static void run()
@@ -204,9 +207,10 @@ static void run()
    evas_object_move(main_canvas_edje, 0, 0);
    evas_object_resize(main_canvas_edje, 600, 800);
 
+   gm_graphics_init(main_canvas);
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
-        handler, draw_handler, "choicebox", 9, main_canvas);
+        main_menu_handler, draw_handler, "choicebox", 9, 1, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
         return;

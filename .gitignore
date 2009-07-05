@@ -17,3 +17,4 @@ missing
 src/gm
 *.o
 stamp-h1
+po/*.mo

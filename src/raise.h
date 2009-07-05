@@ -10,7 +10,7 @@ struct bookinfo_t {
     char *filename;
     char *filepath;
     char *series;
-    char *series_number;
+    int series_number;
     char *type;
     char *size;
     int current_position;
@@ -24,6 +24,6 @@ extern void
 gm_free_titles(struct bookinfo_t *titles);
 
 extern void
-raise_fbreader(Evas * e, void * arg);
+raise_fbreader(Evas * e);
 
 #endif
