@@ -97,7 +97,7 @@ bad:
 }
 
 void
-raise_fbreader(Evas * e __attribute__((unused)), void * arg __attribute__((unused)))
+raise_fbreader(Evas * e __attribute__((unused)))
 {
     Ecore_X_Window fbreader = gm_get_fbreader();
     if (fbreader)

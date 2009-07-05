@@ -24,6 +24,6 @@ extern void
 gm_free_titles(struct bookinfo_t *titles);
 
 extern void
-raise_fbreader(Evas * e, void * arg);
+raise_fbreader(Evas * e);
 
 #endif

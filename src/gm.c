@@ -15,8 +15,6 @@
 #include <Ecore_Con.h>
 
 #include <echoicebox.h>
-#include "apps.h"
-#include "setup.h"
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
@@ -24,42 +22,30 @@
 #include "clock.h"
 #include "graph.h"
 #include "gm.h"
+#include "run.h"
 
 struct main_menu_item {
     char *title;
-    void (*execute)(Evas *evas_ptr, void *arg);
-    void *argument;
+    void (*execute)(Evas *evas_ptr);
     char * icon_signal;
 };
 
-void run_subshell(Evas * e __attribute__((unused)),
-                  void * arg) {
-    Ecore_Exe *exe;
-    printf("Run subshell\n");
-    exe = ecore_exe_run((const char *) arg, NULL);
-    if(exe)
-        ecore_exe_free(exe);
-};
-
-void stub(Evas * e __attribute__((unused)), void * arg) {
-    if(!arg)
-        arg="<none>";
-    printf("Stub %s\n", (char *)arg);
+void stub(Evas * e __attribute__((unused))) {
+    printf("Stub\n");
 };
 
 struct main_menu_item main_menu[] = {
-        {_("Current book"), raise_fbreader, NULL, "set-icon-none" }, // Special
-        {_("Library"), run_subshell, "/usr/bin/madshelf --filter=books", "set-icon-lib" },
-        {_("Images"), run_subshell, "/usr/bin/madshelf --filter=image",
-                    "set-icon-photo"},
-        /* {_("Audio"), stub, "Audio", "set-icon-phono"}, */
-        {" ", stub, "", NULL},
-        {" ", stub, "", NULL},
-        {_("Applications"), &run_applications, "Applications", "set-icon-apps"},
-        {_("Games"), &run_applications , "Games", "set-icon-games"},
-        {_("Setup"), &settings_menu, "Setup", "set-icon-setup"},
-        {_("Clock setup"), &run_subshell , "/usr/bin/etimetool", "set-icon-clock"},
-        {NULL, NULL, NULL, NULL},
+        {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special
+        {_("Library"), &gm_run_madshelf_books,  "set-icon-lib" },
+        {_("Images"), &gm_run_madshelf_images,  "set-icon-photo"},
+        /* {_("Audio"), stub, "set-icon-phono"}, */
+        {" ", stub,  NULL},
+        {" ", stub,  NULL},
+        {_("Applications"), &gm_run_applications, "set-icon-apps"},
+        {_("Games"), &gm_run_games , "set-icon-games"},
+        {_("Setup"), &gm_run_setup, "set-icon-setup"},
+        {_("Clock setup"), &gm_run_etimetool, "set-icon-clock"},
+        {NULL, NULL, NULL},
 };
 
 static void die(const char* fmt, ...)
@@ -159,7 +145,7 @@ void main_menu_handler(Evas_Object* choicebox,
 {
    printf("handle: choicebox: %p, item_num: %d, is_alt: %d, param: %p\n",
           choicebox, item_num, is_alt, param);
-   main_menu[item_num].execute(param, main_menu[item_num].argument);
+   main_menu[item_num].execute(param);
 }
 
 void
