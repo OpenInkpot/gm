@@ -153,7 +153,7 @@ void
 fake_main_menu_handler(Evas *evas, int no)
 {
     Evas_Object *choicebox = evas_object_name_find(evas, "choicebox");
-    main_menu_handler(choicebox, no, 0, NULL);
+    main_menu_handler(choicebox, no, 0, (void *)evas);
 }
 
 static void main_win_resize_handler(Ecore_Evas* main_win)

@@ -53,7 +53,7 @@ gm_graphics_conditional(Evas *evas) {
 static void
 gm_graphics_run(Evas *evas, int no) {
     gm_graphics_hide(evas);
-    fake_main_menu_handler(evas, no);
+    fake_main_menu_handler(evas, no - 1);
 }
 
 void
