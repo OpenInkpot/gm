@@ -5,6 +5,8 @@
 #include <Edje.h>
 #include "graph.h"
 #include "gm.h"
+#include "run.h"
+#include "raise.h"
 
 static void
 gm_graphics_show(Evas *evas) {
@@ -65,15 +67,13 @@ static void
 kp_activate(Evas *e, char k) {
     int kn = k - '0';
     switch(kn) {
-        case 2:  gm_graphics_run(e, 9); break;
-        case 3:
-        case 4:
-        case 5:
-                 gm_graphics_run(e, kn - 1); break;
-        case 6:
-                 gm_graphics_run(e, 7); break;
-        case 1:
-        case 8:  gm_graphics_run(e, kn); break;
+        case 1:  raise_fbreader(e); break ;
+        case 2:  gm_run_etimetool(e); break;
+        case 3:  gm_run_madshelf_books(e); break;
+        case 4:  gm_run_madshelf_images(e); break;
+        case 6:  gm_graphics_run(e, 7); break;
+        case 7:  gm_graphics_run(e, 6); break;
+        case 8:  gm_graphics_run(e, 8); break;
     default:
         printf("Don't know how to handle %d\n", kn);
     }
