@@ -1,20 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <Evas.h>
 #include <Edje.h>
 #include "graph.h"
+#include "gm.h"
 
-static void _keys_handler(void* param __attribute__((unused)),
-        Evas* e,
-        Evas_Object *r __attribute__((unused)), void* event_info)
-{
-    Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
-    if(!strcmp(ev->keyname, "Escape"))
-       gm_graphics_hide(e);
-}
-
-void
+static void
 gm_graphics_show(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
@@ -25,7 +17,7 @@ gm_graphics_show(Evas *evas) {
     evas_object_focus_set(edje, 1);
 }
 
-void
+static void
 gm_graphics_hide(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
@@ -36,12 +28,71 @@ gm_graphics_hide(Evas *evas) {
     evas_object_focus_set(choicebox, 1);
 }
 
+static int _active = 0;
+
+void
+gm_graphics_activate(Evas *evas) {
+    _active = 1;
+    gm_graphics_show(evas);
+}
+
+static void
+gm_graphics_deactivate(Evas *evas) {
+    _active = 0;
+    gm_graphics_hide(evas);
+}
+
+void
+gm_graphics_conditional(Evas *evas) {
+    if(_active)
+        gm_graphics_show(evas);
+}
+
+static void
+gm_graphics_run(Evas *evas, int no) {
+    gm_graphics_hide(evas);
+    fake_main_menu_handler(evas, no);
+}
+
 void
 gm_graphics_resize(Evas *evas, int x, int y) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     evas_object_move(edje, 0, 0);
     evas_object_resize(edje, x, y);
 }
+
+static void
+kp_activate(Evas *e, char k) {
+    int kn = k - '0';
+    switch(kn) {
+        case 2:  gm_graphics_run(e, 9); break;
+        case 3:
+        case 4:
+        case 5:
+                 gm_graphics_run(e, kn - 1); break;
+        case 6:
+                 gm_graphics_run(e, 7); break;
+        case 1:
+        case 8:  gm_graphics_run(e, kn); break;
+    default:
+        printf("Don't know how to handle %d\n", kn);
+    }
+}
+
+static void _keys_handler(void* param __attribute__((unused)),
+        Evas* e,
+        Evas_Object *r __attribute__((unused)),
+        void* event_info) {
+
+    Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
+    fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
+    char *k = ev->keyname;
+    if(!strcmp(k, "Escape"))
+       gm_graphics_deactivate(e);
+    if(!strncmp(k, "KP_", 3) && (isdigit(k[3])) && !k[4])
+       kp_activate(e, k[3]);
+}
+
 
 void
 gm_graphics_init(Evas *evas) {

@@ -23,6 +23,7 @@
 #include "raise.h"
 #include "clock.h"
 #include "graph.h"
+#include "gm.h"
 
 struct main_menu_item {
     char *title;
@@ -150,8 +151,8 @@ static void draw_handler(Evas_Object* choicebox,
 }
 
 
-
-static void handler(Evas_Object* choicebox,
+static
+void main_menu_handler(Evas_Object* choicebox,
                     int item_num,
                     bool is_alt,
                     void* param)
@@ -161,6 +162,12 @@ static void handler(Evas_Object* choicebox,
    main_menu[item_num].execute(param, main_menu[item_num].argument);
 }
 
+void
+fake_main_menu_handler(Evas *evas, int no)
+{
+    Evas_Object *choicebox = evas_object_name_find(evas, "choicebox");
+    main_menu_handler(choicebox, no, 0, NULL);
+}
 
 static void main_win_resize_handler(Ecore_Evas* main_win)
 {
@@ -190,7 +197,7 @@ static void main_win_key_handler(void* param __attribute__((unused)),
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
     if(!strcmp(ev->keyname, "Escape"))
-        gm_graphics_show(e);
+        gm_graphics_activate(e);
 }
 
 static void run()
@@ -216,7 +223,7 @@ static void run()
    gm_graphics_init(main_canvas);
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
-        handler, draw_handler, "choicebox", 9, main_canvas);
+        main_menu_handler, draw_handler, "choicebox", 9, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
         return;
