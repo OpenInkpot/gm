@@ -41,8 +41,4 @@ gm_run_games(Evas *e) {
     run_applications(e, "Games");
 };
 
-void
-gm_run_setup(Evas *e) {
-    settings_menu(e, "Setup");
-};
 

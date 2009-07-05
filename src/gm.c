@@ -18,11 +18,12 @@
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
-#include "raise.h"
 #include "clock.h"
-#include "graph.h"
 #include "gm.h"
+#include "graph.h"
+#include "raise.h"
 #include "run.h"
+#include "setup.h"
 
 struct main_menu_item {
     char *title;
@@ -43,7 +44,7 @@ struct main_menu_item main_menu[] = {
         {" ", stub,  NULL},
         {_("Applications"), &gm_run_applications, "set-icon-apps"},
         {_("Games"), &gm_run_games , "set-icon-games"},
-        {_("Setup"), &gm_run_setup, "set-icon-setup"},
+        {_("Setup"), &settings_menu, "set-icon-setup"},
         {_("Clock setup"), &gm_run_etimetool, "set-icon-clock"},
         {NULL, NULL, NULL},
 };

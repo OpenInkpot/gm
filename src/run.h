@@ -16,7 +16,4 @@ gm_run_applications(Evas *e);
 void
 gm_run_games(Evas *e);
 
-void
-gm_run_setup(Evas *e);
-
 #endif

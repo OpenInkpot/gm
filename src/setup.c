@@ -116,7 +116,7 @@ static void settings_handler(Evas_Object* choicebox,
     setup_menu_items[item_num].select(choicebox);
 }
 
-void settings_menu(Evas *canvas, void * arg __attribute__((unused))) {
+void settings_menu(Evas *canvas) {
     Evas_Object * choicebox = evas_object_name_find(canvas, "choicebox");
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
