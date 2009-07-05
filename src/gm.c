@@ -170,6 +170,7 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 
    Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
    evas_object_resize(main_canvas_edje, w, h);
+   gm_graphics_resize(canvas, w, h);
 }
 
 
