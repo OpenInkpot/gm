@@ -5,6 +5,6 @@ extern void
 update_battery(Evas_Object* top);
 
 extern void
-gm_init_clock_and_battery(Evas_Object *main_edje);
+gm_init_clock_and_battery(Evas_Object *main_edje, Evas *evas);
 
 #endif

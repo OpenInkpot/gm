@@ -4,6 +4,7 @@
 #include <Edje.h>
 #include <echoicebox.h>
 #include "choices.h"
+#include "graph.h"
 
 void
 choicebox_pop(Evas_Object *choicebox)
@@ -25,6 +26,9 @@ choicebox_pop(Evas_Object *choicebox)
     edje_object_part_swallow(main_canvas_edje, "contents", parent);
     evas_object_focus_set(parent , true);
     evas_object_show(parent);
+    Evas_Object *root = evas_object_name_find(canvas, "choicebox");
+    if(root == parent)
+        gm_graphics_conditional(canvas);
 }
 
 static void default_key_handler(void* param __attribute__((unused)),
