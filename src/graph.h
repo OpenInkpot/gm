@@ -7,10 +7,16 @@ gm_graphics_activate(Evas *evas);
 extern void
 gm_graphics_conditional(Evas *evas);
 
-void
+extern void
 gm_graphics_resize(Evas *evas, int x, int y);
 
-void
+extern void
+gm_graphics_show_book(Evas *evas);
+
+extern void
+gm_graphics_show_clock(Evas *evas);
+
+extern void
 gm_graphics_init(Evas *evas);
 
 #endif

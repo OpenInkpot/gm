@@ -80,6 +80,7 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
         printf("Invalidate\n");
         choicebox_invalidate_item(choicebox, 0);
     }
+    gm_graphics_show_book(canvas);
 }
 
 static void draw_handler(Evas_Object* choicebox,
@@ -183,8 +184,8 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
     fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
-//    if(!strcmp(ev->keyname, "Escape"))
-//        gm_graphics_activate(e);
+    if(!strcmp(ev->keyname, "Escape"))
+        gm_graphics_activate(e);
 }
 
 static void run()
@@ -200,7 +201,7 @@ static void run()
    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
-   gm_init_clock_and_battery(main_canvas_edje);
+   gm_init_clock_and_battery(main_canvas_edje, main_canvas);
    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
    edje_object_part_text_set(main_canvas_edje, "footer", "");
    edje_object_part_text_set(main_canvas_edje, "path", "");
