@@ -1,3 +1,17 @@
+gm (0.1+20090518-14) asimov; urgency=low
+
+  [ Alexander V. Nikolaev ]
+
+  * Fix off-by-one in X property getting
+  
+  [ Mikhail Gusarov ]
+  
+  * Clip 'valid' dates to 2008.
+  * Update echoicebox data and images (speedups)
+  * Graphical menu revamped
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Tue, 14 Jul 2009 04:05:53 +0700
+
 gm (0.1+20090518-13) asimov; urgency=low
 
   * Apply various patches from other OI developers
