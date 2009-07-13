@@ -125,11 +125,21 @@ gm_graphics_show_clock(Evas *evas) {
        struct tm * loctime;
        curtime = time (NULL);
        loctime = localtime (&curtime);
-        Evas_Object *edje = evas_object_name_find(evas, "graphics");
-        _set_strftime(edje, "caption_day", "%d", loctime);
-        _set_strftime(edje, "caption_dayofweek", "%A", loctime);
-        _set_strftime(edje, "caption_month", "%B", loctime);
-        _set_strftime(edje, "caption_clock", "%H : %M", loctime);
+       Evas_Object *edje = evas_object_name_find(evas, "graphics");
+       if(loctime->tm_year < 108) /* 2008 */
+       {
+           edje_object_part_text_set(edje, "caption_day", "--");
+           edje_object_part_text_set(edje, "caption_dayofweek", "");
+           edje_object_part_text_set(edje, "caption_month", "");
+           edje_object_part_text_set(edje, "caption_clock", "-- : --");
+       }
+       else
+       {
+           _set_strftime(edje, "caption_day", "%d", loctime);
+           _set_strftime(edje, "caption_dayofweek", "%A", loctime);
+           _set_strftime(edje, "caption_month", "%B %Y", loctime);
+           _set_strftime(edje, "caption_clock", "%H : %M", loctime);
+       }
     }
 }
 

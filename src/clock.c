@@ -15,8 +15,13 @@ update_clock(void *ptr) {
     struct tm * loctime;
     curtime = time (NULL);
     loctime = localtime (&curtime);
-    strftime(buf, 256, "%H:%M", loctime);
-    edje_object_part_text_set(top, "clock", buf);
+    if(loctime->tm_year < 108) /* 2008 */
+        edje_object_part_text_set(top, "clock", "--:--");
+    else
+    {
+        strftime(buf, 256, "%H:%M", loctime);
+        edje_object_part_text_set(top, "clock", buf);
+    }
     update_battery(top);
     return 1;
 }
