@@ -11,23 +11,27 @@ images {
 styles {
     style {
         name, "caption";
-        base, "font=sans-serif font_size=28 color=#000 align=center valign=middle";
-        tag, "inactive" "+color=#888";
+        base, "font=sans-serif font_size=28 color=#000 align=middle";
+        tag, "inactive" "+color=#bbb";
         tag, "/inactive" "-";
     }
     style {
         name, "title";
-        base, "font=sans-serif font_size=15 color=#fff align=left valign=top";
+        base, "font=sans-serif font_size=24 color=#fff align=middle wrap=word";
         tag, "inactive" "+color=#000";
         tag, "/inactive" "-";
     }
     style {
+        name, "book-info";
+        base, "font=sans-serif font_size=24 color=#fff align=middle";
+    }
+    style {
         name, "day";
-        base, "font=sans-serif font_size=60 color=#000 align=center valugn=middle";
+        base, "font=sans-serif font_size=60 color=#000 align=middle";
     }
     style {
         name, "clock";
-        base, "font=sans-serif font_size=40 color=#000 align=center valugn=middle";
+        base, "font=sans-serif font_size=40 color=#000 align=middle";
     }
 }
 
@@ -65,7 +69,7 @@ collections {
                   rel1 { relative, 0.0 0.0; offset, 0 49; }
                   rel2 { relative, 1.0 1.0; offset, -1 -50; }
                }
-            } 
+            }
             part {
                name, "clock";
                type, TEXT;
@@ -227,31 +231,21 @@ collections {
             }
 
 #define DAY_X1   300
-#define DAY_Y1   132
+#define DAY_Y1   116
 #define DAY_X2   582
-#define DAY_Y2   190
+#define DAY_Y2   210
 
 #define ROW1_Y1  527
 #define ROW1_Y2  564
-#define ROW2_Y1  740
-#define ROW2_Y2  765
+#define ROW2_Y1  739
+#define ROW2_Y2  776
 
 #define COL1_X1  16
-#define COL1_X2  192
-#define COL2_X1  210
+#define COL1_X2  194
+#define COL2_X1  211
 #define COL2_X2  388
-#define COL3_X1  402
+#define COL3_X1  404
 #define COL3_X2  582
-
-#define TITLE_X1 25
-#define TITLE_Y1 293
-#define TITLE_X2 250
-#define TITLE_Y2 308
-
-#define AUTHOR_Y1 270
-#define AUTHOR_Y2 286
-#define SERIES_Y1 318
-#define SERIES_Y2 335
 
 #define CAPTION(t, x1, y1, x2, y2) \
             part { \
@@ -289,24 +283,6 @@ collections {
                 } \
             }
 
-#define TITLE(t, x1, y1, x2, y2) \
-            part { \
-                name, t; \
-                type, TEXTBLOCK; \
-                mouse_events, 0; \
-                description { \
-                    state, "default" 0.0; \
-                    color, 255 255 255 255; \
-                    text {  \
-                        style, "title"; \
-                        max, 0 1; \
-                    } \
-                    align, 0.5 0.5; \
-                    rel1 { relative, 0.0 0.0; offset, x1 y1; } \
-                    rel2 { relative, 0.0 0.0; offset, x2 y2; } \
-                } \
-            }
-
             CAPTION("caption_library", COL1_X1, ROW1_Y1, COL1_X2, ROW1_Y2)
             CAPTION("caption_photo", COL2_X1, ROW1_Y1, COL2_X2, ROW1_Y2)
             CAPTION("caption_audio", COL3_X1, ROW1_Y1, COL3_X2, ROW1_Y2)
@@ -314,11 +290,44 @@ collections {
             CAPTION("caption_apps", COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2)
             CAPTION("caption_setup", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
             CAPTION("caption_month", DAY_X1, 75, DAY_X2, 110)
-            TITLE("caption_title", TITLE_X1, TITLE_Y1, TITLE_X2, TITLE_Y2)
-            TITLE("caption_series", TITLE_X1, SERIES_Y1, TITLE_X2, SERIES_Y2)
-            TITLE("caption_author", TITLE_X1, AUTHOR_Y1, TITLE_X2, AUTHOR_Y2)
+
+            part {
+                name, "caption_author";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "book-info"; }
+                    rel1 { relative, 0.0 0.0; offset, 28 280; }
+                    rel2 { relative, 0.0 0.0; offset, 276 361; }
+                }
+            }
+
+            part {
+                name, "caption_series";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "book-info"; max, 0 1; }
+                    align, 0.0 1.0;
+                    rel1 { relative, 0.0 0.0; offset, 28 272; }
+                    rel2 { relative, 0.0 0.0; offset, 276 349; }
+                }
+            }
+
+            part {
+                name, "caption_title";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "title"; max, 0 1; }
+                    align, 0.5 0.5;
+                    rel1 { relative, 0.0 0.0; offset, 24 45; }
+                    rel2 { relative, 0.0 0.0; offset, 276 261; }
+                }
+            }
+
             STYLED("caption_day", "day", DAY_X1, DAY_Y1, DAY_X2, DAY_Y2)
-            STYLED("caption_clock", "clock", 337, 291, 538, 331 )
+            STYLED("caption_clock", "clock", 337, 274, 538, 351)
             CAPTION("caption_dayofweek", DAY_X1, 215, DAY_X2, 248)
         }
     }

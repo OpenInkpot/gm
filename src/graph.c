@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -103,8 +105,11 @@ static void _keys_handler(void* param __attribute__((unused)),
 static void
 gm_graphics_show_captions(Evas_Object *edje) {
     edje_object_part_text_set(edje, "caption_library", gettext("Library"));
-    edje_object_part_text_set(edje, "caption_photo", gettext("Photo"));
-    edje_object_part_text_set(edje, "caption_audio", gettext("Audio"));
+    edje_object_part_text_set(edje, "caption_photo", gettext("Images"));
+    char* s;
+    asprintf(&s, "<inactive>%s</inactive>", gettext("Audio"));
+    edje_object_part_text_set(edje, "caption_audio", s);
+    free(s);
     edje_object_part_text_set(edje, "caption_games", gettext("Games"));
     edje_object_part_text_set(edje, "caption_apps", gettext("Applications"));
     edje_object_part_text_set(edje, "caption_setup", gettext("Setup"));
@@ -162,7 +167,7 @@ gm_graphics_show_book(Evas *evas) {
                     bookinfo->series);
         } else {
             edje_object_part_text_set(edje, "caption_title",
-                gettext("<inactive>No book is open</inactive>"));
+                                      gettext("<inactive>No book is open</inactive>"));
         }
     }
 }
