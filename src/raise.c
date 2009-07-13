@@ -143,13 +143,19 @@ gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
         printf("XCB_NONE\n");
         goto bad;
     }
-    int len = xcb_get_property_value_length(reply);
-    result = calloc(len, 1);
+    if (reply->type != utf8_string)
+    {
+        printf("BAD TYPE\n");
+        goto bad;
+    }
+    int len = reply->value_len; // xcb_get_property_value_length(reply);
+    result = malloc(len+1);
     if(result)
     {
         memcpy(result, xcb_get_property_value(reply), len);
+        result[len]='\0';
         free(reply);
-        printf("Got: %s = %s\n", prop, result);
+        printf("Got: %s = %s (%d)\n", prop, result, len);
         return result;
     }
 bad:
