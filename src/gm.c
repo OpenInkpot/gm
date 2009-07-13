@@ -111,7 +111,7 @@ static void draw_handler(Evas_Object* choicebox,
             edje_object_part_text_set(item, "text", bookinfo->title);
             edje_object_part_text_set(item, "lefttop",bookinfo->author);
             if(bookinfo->series_number) {
-                snprintf(buf, 256, "%s: #%d", bookinfo->series,
+                snprintf(buf, 256, "%s #%d", bookinfo->series,
                     bookinfo->series_number);
                 edje_object_part_text_set(item, "leftbottom", buf);
             }

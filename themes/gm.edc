@@ -18,7 +18,7 @@ styles {
     style {
         name, "title";
         base, "font=sans-serif font_size=15 color=#fff align=left valign=top";
-        tag, "inactive" "+color=#888";
+        tag, "inactive" "+color=#000";
         tag, "/inactive" "-";
     }
     style {
@@ -226,26 +226,26 @@ collections {
                 }
             }
 
-#define DAY_X1   280
+#define DAY_X1   300
 #define DAY_Y1   132
-#define DAY_X2   563
+#define DAY_X2   582
 #define DAY_Y2   190
 
 #define ROW1_Y1  527
 #define ROW1_Y2  564
-#define ROW2_Y1  760
-#define ROW2_Y2  780
+#define ROW2_Y1  740
+#define ROW2_Y2  765
 
-#define COL1_X1  18
+#define COL1_X1  16
 #define COL1_X2  192
 #define COL2_X1  210
-#define COL2_X2  389
-#define COL3_X1  405
-#define COL3_X2  581
+#define COL2_X2  388
+#define COL3_X1  402
+#define COL3_X2  582
 
-#define TITLE_X1 7
+#define TITLE_X1 25
 #define TITLE_Y1 293
-#define TITLE_X2 185
+#define TITLE_X2 250
 #define TITLE_Y2 308
 
 #define AUTHOR_Y1 270
@@ -263,7 +263,9 @@ collections {
                     color, 0 0 0 255; \
                     text { \
                         style, "caption"; \
+                        max, 0 1; \
                     } \
+                    align, 0.5 0.5; \
                     rel1 { relative, 0.0 0.0; offset, x1 y1; } \
                     rel2 { relative, 0.0 0.0; offset, x2 y2; } \
                 } \
@@ -279,7 +281,9 @@ collections {
                     color, 0 0 0 255; \
                     text { \
                         style, s; \
+                        max, 0 1; \
                     } \
+                    align, 0.5 0.5; \
                     rel1 { relative, 0.0 0.0; offset, x1 y1; } \
                     rel2 { relative, 0.0 0.0; offset, x2 y2; } \
                 } \
@@ -295,7 +299,9 @@ collections {
                     color, 255 255 255 255; \
                     text {  \
                         style, "title"; \
+                        max, 0 1; \
                     } \
+                    align, 0.5 0.5; \
                     rel1 { relative, 0.0 0.0; offset, x1 y1; } \
                     rel2 { relative, 0.0 0.0; offset, x2 y2; } \
                 } \
@@ -307,13 +313,13 @@ collections {
             CAPTION("caption_games", COL1_X1, ROW2_Y1, COL1_X2, ROW2_Y2)
             CAPTION("caption_apps", COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2)
             CAPTION("caption_setup", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
-            CAPTION("caption_month", DAY_X1, 75, DAY_X2, 105)
+            CAPTION("caption_month", DAY_X1, 75, DAY_X2, 110)
             TITLE("caption_title", TITLE_X1, TITLE_Y1, TITLE_X2, TITLE_Y2)
             TITLE("caption_series", TITLE_X1, SERIES_Y1, TITLE_X2, SERIES_Y2)
             TITLE("caption_author", TITLE_X1, AUTHOR_Y1, TITLE_X2, AUTHOR_Y2)
             STYLED("caption_day", "day", DAY_X1, DAY_Y1, DAY_X2, DAY_Y2)
-            STYLED("caption_clock","clock", 337, 291, 538, 331 )
-            CAPTION("caption_dayofweek", DAY_X1, 220, DAY_X2, 248)
+            STYLED("caption_clock", "clock", 337, 291, 538, 331 )
+            CAPTION("caption_dayofweek", DAY_X1, 215, DAY_X2, 248)
         }
     }
 }
