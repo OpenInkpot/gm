@@ -143,7 +143,7 @@ gm_graphics_show_book(Evas *evas) {
             edje_object_part_text_set(edje, "caption_title", bookinfo->title);
             edje_object_part_text_set(edje, "caption_author",bookinfo->author);
             if(bookinfo->series_number) {
-                snprintf(buf, 256, "%s: #%d", bookinfo->series,
+                snprintf(buf, 256, "%s #%d", bookinfo->series,
                     bookinfo->series_number);
                 edje_object_part_text_set(edje, "caption_series", buf);
             }
