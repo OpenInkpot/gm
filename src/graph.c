@@ -33,7 +33,7 @@ gm_graphics_hide(Evas *evas) {
     Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
     evas_object_hide(edje);
-    edje_object_part_unswallow(main_edje,  choicebox);
+    edje_object_part_swallow(main_edje,  choicebox);
     evas_object_show(main_edje);
     evas_object_show(choicebox);
     evas_object_focus_set(choicebox, 1);
