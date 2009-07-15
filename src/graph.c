@@ -14,6 +14,15 @@
 #include "raise.h"
 
 static void
+gm_graphics_show_captions(Evas_Object *edje);
+
+void
+gm_graphics_show_clock(Evas *evas);
+
+void
+gm_graphics_show_book(Evas *evas);
+
+static void
 gm_graphics_show(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
@@ -63,8 +72,18 @@ gm_graphics_run(Evas *evas, int no) {
 void
 gm_graphics_resize(Evas *evas, int x, int y) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
+
+    if(y > 600)
+        edje_object_file_set(edje, THEME_DIR "/gm.edj", "vertical_graphics");
+    else
+        edje_object_file_set(edje, THEME_DIR "/gm.edj", "horizontal_graphics");
+
     evas_object_move(edje, 0, 0);
     evas_object_resize(edje, x, y);
+
+    gm_graphics_show_captions(edje);
+    gm_graphics_show_book(evas);
+    gm_graphics_show_clock(evas);
 }
 
 static void
@@ -139,6 +158,7 @@ gm_graphics_show_clock(Evas *evas) {
            _set_strftime(edje, "caption_dayofweek", "%A", loctime);
            _set_strftime(edje, "caption_month", "%B %Y", loctime);
            _set_strftime(edje, "caption_clock", "%H : %M", loctime);
+           _set_strftime(edje, "caption_date", "%d.%m.%y", loctime);
        }
     }
 }
@@ -172,9 +192,18 @@ gm_graphics_init(Evas *evas) {
     Evas_Object *edje;
     edje = edje_object_add(evas);
     evas_object_name_set(edje, "graphics");
-    edje_object_file_set(edje, THEME_DIR "/gm.edj", "vertical_graphics");
+
+    int w, h;
+    evas_output_size_get(evas, &w, &h);
+ 
+    if(h > 600)
+        edje_object_file_set(edje, THEME_DIR "/gm.edj", "vertical_graphics");
+    else
+        edje_object_file_set(edje, THEME_DIR "/gm.edj", "horizontal_graphics");
+
     evas_object_move(edje, 0, 0);
-    evas_object_resize(edje, 600, 800);
+    evas_object_resize(edje, w, h);
+
     evas_object_event_callback_add(edje,
                                   EVAS_CALLBACK_KEY_UP,
                                   &_keys_handler,
