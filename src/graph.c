@@ -17,7 +17,6 @@ static void
 gm_graphics_show(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
-    Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
     evas_object_hide(main_edje);
     gm_graphics_show_clock(evas);
     gm_graphics_show_book(evas);
