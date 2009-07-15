@@ -470,7 +470,7 @@ collections {
                 description {
                     state, "default" 0.0;
                     text { style, "caption"; max, 0 1; }
-                    align, 0.0 1.0;
+                    align, 0.0 0.9;
                     rel1 { relative, 0.0 0.0; offset, 408 72; }
                     rel2 { relative, 0.0 0.0; offset, 600 155; }
                 }
