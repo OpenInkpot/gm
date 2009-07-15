@@ -1,7 +1,13 @@
 #define _GNU_SOURCE
-#include <stdio.h>
+#include <fcntl.h>
 #include <libintl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 #define _(x) x
+#include <lops.h>
 #include <Evas.h>
 #include <Edje.h>
 #include <echoicebox.h>
@@ -18,6 +24,32 @@ struct setup_menu_item_t {
     void (*select) (Evas_Object *self);
     void *arg;
 };
+
+#define VERSION_SIZE 1024
+
+static void
+version_draw(Evas_Object *item)
+{
+    edje_object_part_text_set(item, "title", gettext("Version"));
+    char version_str[VERSION_SIZE]="N/A";
+    int fd = open("/etc/openinkpot-version", O_RDONLY);
+    if (fd != -1) {
+        int r = lread(fd, version_str, VERSION_SIZE-1);
+        if( r > 0) {
+            version_str[r-1]='\0';
+            char *c = strchr(version_str,'\n');
+            if(c)
+                *c = '\0';
+        }
+        close(fd);
+    }
+    edje_object_part_text_set(item, "value", version_str);
+}
+
+static void
+version_set(Evas_Object *item __attribute__((unused)))
+{
+}
 
 
 const char * screen_states[] = {
@@ -90,8 +122,9 @@ language_draw(Evas_Object *item)
     edje_object_part_text_set(item, "value", current_lang());
 }
 
-#define MENU_ITEMS_NUM 3
+#define MENU_ITEMS_NUM 4
 struct setup_menu_item_t setup_menu_items[] = {
+    {&version_draw, &version_set, 0},
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &rotation_menu, 0},
 //    {&sound_draw, &sound_set, 0},
