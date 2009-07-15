@@ -18,9 +18,7 @@ gm_graphics_show(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
     Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
-    edje_object_part_unswallow(main_edje,  choicebox);
     evas_object_hide(main_edje);
-    evas_object_hide(choicebox);
     gm_graphics_show_clock(evas);
     gm_graphics_show_book(evas);
     evas_object_show(edje);
@@ -33,9 +31,7 @@ gm_graphics_hide(Evas *evas) {
     Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
     evas_object_hide(edje);
-    edje_object_part_swallow(main_edje,  "contents", choicebox);
     evas_object_show(main_edje);
-    evas_object_show(choicebox);
     evas_object_focus_set(choicebox, 1);
 }
 
