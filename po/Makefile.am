@@ -14,6 +14,7 @@ update-pot:
 		--foreign-user \
 		--package-name="$(PACKAGE)" --package-version="@VERSION@" \
 		--msgid-bugs-address="@PACKAGE_BUGREPORT@" \
+		--from-code=UTF-8 \
 		-f POTFILES -D $(top_srcdir) -o $(PACKAGE).pot
 
 update-po:
