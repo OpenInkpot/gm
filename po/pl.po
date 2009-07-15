@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-06-16 17:12+0000\n"
+"POT-Creation-Date: 2009-07-16 00:13+0200\n"
 "PO-Revision-Date: 2009-06-25 14:12+0200\n"
 "Last-Translator: Tomasz Długosz <tomek3d@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -16,84 +16,88 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: src/gm.c:48 src/gm.c:122
+#: src/gm.c:39
 msgid "Current book"
 msgstr "Bieżąca książka"
 
-#: src/gm.c:49
+#: src/gm.c:40
 msgid "Library"
 msgstr "Biblioteka"
 
-#: src/gm.c:50
+#: src/gm.c:41
 msgid "Images"
 msgstr "Obrazy"
 
-#: src/gm.c:55
+#: src/gm.c:45
 msgid "Applications"
 msgstr "Programy"
 
-#: src/gm.c:56
+#: src/gm.c:46
 msgid "Games"
 msgstr "Gry"
 
-#: src/gm.c:57
+#: src/gm.c:47
 msgid "Setup"
 msgstr "Ustawienia"
 
-#: src/gm.c:58
+#: src/gm.c:48
 msgid "Clock setup"
 msgstr "Ustawienia zegara"
 
-#: src/gm.c:128
+#: src/gm.c:122
 #, fuzzy
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>n/d</inactive>"
 
-#: src/setup.c:24
+#: src/setup.c:33
+msgid "Version"
+msgstr ""
+
+#: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>n/d</inactive>"
 
-#: src/setup.c:25
+#: src/setup.c:57
 msgid "Full"
 msgstr "Pełne"
 
-#: src/setup.c:26
+#: src/setup.c:58
 msgid "Adaptive"
 msgstr "Dopasowane"
 
-#: src/setup.c:27
+#: src/setup.c:59
 msgid "Partial"
 msgstr "Częściowe"
 
-#: src/setup.c:34
+#: src/setup.c:66
 msgid "Screen update"
 msgstr ""
 
-#: src/setup.c:55
+#: src/setup.c:87
 msgid "Screen rotation type"
 msgstr ""
 
-#: src/setup.c:60
+#: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>n/d</invisible>"
 
-#: src/setup.c:61
+#: src/setup.c:94
 msgid "OFF"
 msgstr "Wyłącz"
 
-#: src/setup.c:62
+#: src/setup.c:95
 msgid "ON"
 msgstr "Włącz"
 
-#: src/setup.c:69
+#: src/setup.c:102
 msgid "Sound"
 msgstr "Dźwięk"
 
-#: src/setup.c:86
+#: src/setup.c:121
 msgid "Language"
 msgstr "Język"
 
-#: src/setup.c:125
+#: src/setup.c:161
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -102,19 +106,19 @@ msgid "Disabled"
 msgstr ""
 
 #: src/rotation.c:29
-msgid "90 Degrees Clockwise"
+msgid "0 ↔ 90 Degrees Clockwise"
 msgstr ""
 
 #: src/rotation.c:30
-msgid "180 Degrees"
+msgid "0 ↔ 180 Degrees"
 msgstr ""
 
 #: src/rotation.c:31
-msgid "90 Degrees Counterclockwise"
+msgid "0 ↔ 90 Degrees Counterclockwise"
 msgstr ""
 
 #: src/rotation.c:32
-msgid "Cycle Through All 4 Directions"
+msgid "0 → 90 → 180 → 270 → 0"
 msgstr ""
 
 #: src/rotation.c:93

@@ -1,93 +1,131 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-06-16 17:12+0000\n"
+"POT-Creation-Date: 2009-07-16 00:13+0200\n"
 "PO-Revision-Date: 2009-06-26 10:32+0200\n"
 "Last-Translator: Anrdás Csehi <acsehi@gmail.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/gm.c:46 src/gm.c:108
+#: src/gm.c:39
 msgid "Current book"
 msgstr "Aktiális könyv"
 
-#: src/gm.c:47
+#: src/gm.c:40
 msgid "Library"
 msgstr "Könyvtár"
 
-#: src/gm.c:48
+#: src/gm.c:41
 msgid "Images"
 msgstr "Képek"
 
-#: src/gm.c:49
-msgid "Audio"
-msgstr "Audio"
-
-#: src/gm.c:51
+#: src/gm.c:45
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: src/gm.c:52
+#: src/gm.c:46
 msgid "Games"
 msgstr "Játékok"
 
-#: src/gm.c:53
+#: src/gm.c:47
 msgid "Setup"
 msgstr "Beállítás"
 
-#: src/gm.c:54
+#: src/gm.c:48
 msgid "Clock setup"
 msgstr "Óra beállítása"
 
-#: src/gm.c:114
-msgid "No book is open"
-msgstr "Nincs könyv megnyitva"
+#: src/gm.c:122
+msgid "<inactive>No book is open</inactive>"
+msgstr ""
 
-#: src/setup.c:23
+#: src/setup.c:33
+msgid "Version"
+msgstr ""
+
+#: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
 msgstr ""
 
-#: src/setup.c:24
+#: src/setup.c:57
 msgid "Full"
 msgstr "Teljes"
 
-#: src/setup.c:25
+#: src/setup.c:58
 msgid "Adaptive"
 msgstr "Adaptív"
 
-#: src/setup.c:26
+#: src/setup.c:59
 msgid "Partial"
 msgstr "Részleges"
 
-#: src/setup.c:53
+#: src/setup.c:66
+msgid "Screen update"
+msgstr ""
+
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr ""
+
+#: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
 msgstr ""
 
-#: src/setup.c:54
+#: src/setup.c:94
 msgid "OFF"
 msgstr "Kikapcsolás"
 
-#: src/setup.c:55
+#: src/setup.c:95
 msgid "ON"
 msgstr "Bekapcsolás"
 
-#: src/setup.c:62
+#: src/setup.c:102
 msgid "Sound"
 msgstr "Hangok"
 
-#: src/setup.c:79
+#: src/setup.c:121
 msgid "Language"
 msgstr "Nyelv"
 
-#: src/setup.c:117
+#: src/setup.c:161
 msgid "Settings"
 msgstr "Beállítások"
+
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr ""
+
+#: src/rotation.c:29
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr ""
+
+#: src/rotation.c:30
+msgid "0 ↔ 180 Degrees"
+msgstr ""
+
+#: src/rotation.c:31
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr ""
+
+#: src/rotation.c:32
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr ""
+
+#: src/rotation.c:93
+msgid "Select screen rotation type"
+msgstr ""
+
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgid "No book is open"
+#~ msgstr "Nincs könyv megnyitva"
