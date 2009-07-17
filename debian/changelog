@@ -1,3 +1,10 @@
+gm (0.1+20090518-17) asimov; urgency=low
+
+  * Update transaltions
+  * Fix arrows in rotation menu
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Fri, 17 Jul 2009 12:59:36 +0300
+
 gm (0.1+20090518-16) asimov; urgency=low
 
   * Show version in "setup"
