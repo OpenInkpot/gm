@@ -124,11 +124,11 @@ language_draw(Evas_Object *item)
 
 #define MENU_ITEMS_NUM 4
 struct setup_menu_item_t setup_menu_items[] = {
-    {&version_draw, &version_set, 0},
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &rotation_menu, 0},
 //    {&sound_draw, &sound_set, 0},
     {&language_draw, &lang_menu, 0},
+    {&version_draw, &version_set, 0},
     {NULL, NULL, NULL},
 };
 
