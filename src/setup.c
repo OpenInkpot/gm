@@ -147,6 +147,7 @@ static void settings_handler(Evas_Object* choicebox,
                     void* param __attribute__((unused)))
 {
     setup_menu_items[item_num].select(choicebox);
+    choicebox_invalidate_item(choicebox, item_num);
 }
 
 void settings_menu(Evas *canvas) {
