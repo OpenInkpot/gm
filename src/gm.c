@@ -95,7 +95,7 @@ static void draw_handler(Evas_Object* choicebox,
     struct tm *loctime; */
     struct bookinfo_t *bookinfo;
 
-    if(main_menu[item_num].icon_signal)
+    if(item_num <= 9 && main_menu[item_num].icon_signal)
         edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
     else
         edje_object_signal_emit(item, "set-icon-none", "");
