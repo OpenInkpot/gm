@@ -77,22 +77,19 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
     Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
     if(choicebox)
     {
-        printf("Invalidate\n");
         choicebox_invalidate_item(choicebox, 0);
     }
     gm_graphics_show_book(canvas);
 }
 
-static void draw_handler(Evas_Object* choicebox,
+static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
                          Evas_Object* item,
                          int item_num,
-                         int page_position,
-                         void* param)
+                         int page_position __attribute__((unused)),
+                         void* param __attribute__((unused)))
 {
     /* All time formatting taken from libc manual, don't hurt me */
     char buf[256];
-/*    time_t curtime;
-    struct tm *loctime; */
     struct bookinfo_t *bookinfo;
 
     if(item_num <= 9 && main_menu[item_num].icon_signal)
@@ -123,30 +120,20 @@ static void draw_handler(Evas_Object* choicebox,
         }
         gm_free_titles(bookinfo);
     } else
-/*    if ((item_num == 8) && main_menu[item_num].title) {
-        curtime = time (NULL);
-        loctime = localtime (&curtime);
-        strftime(buf, 256, gettext(main_menu[item_num].title), loctime);
-        edje_object_part_text_set(item, "text", buf);
-    } else */
     if (main_menu[item_num].title) {
         edje_object_part_text_set(item, "text",
         gettext(main_menu[item_num].title));
     }
 
-   fprintf(stderr, "handle: choicebox: %p, item: %p, item_num: %d, page_position: %d, param: %p\n",
-          choicebox, item, item_num, page_position, param);
 }
 
 
 static
-void main_menu_handler(Evas_Object* choicebox,
+void main_menu_handler(Evas_Object* choicebox __attribute__((unused)),
                     int item_num,
-                    bool is_alt,
+                    bool is_alt __attribute__((unused)),
                     void* param)
 {
-   printf("handle: choicebox: %p, item_num: %d, is_alt: %d, param: %p\n",
-          choicebox, item_num, is_alt, param);
    main_menu[item_num].execute(param);
 }
 
@@ -171,11 +158,11 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 
 static void main_win_signal_handler(void* param,
         Evas_Object* o __attribute__((unused)),
-        const char* emission, const char* source)
+        const char* emission __attribute__((unused)),
+        const char* source __attribute__((unused)))
 {
     Evas_Object* r = evas_object_name_find((Evas *) param, "choicebox");
     evas_object_del(r);
-    printf("%s -> %s\n", source, emission);
 }
 
 static void main_win_key_handler(void* param __attribute__((unused)),
@@ -183,7 +170,6 @@ static void main_win_key_handler(void* param __attribute__((unused)),
         Evas_Object *r __attribute__((unused)), void* event_info)
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
     if(!strcmp(ev->keyname, "Escape"))
         gm_graphics_activate(e);
 }
