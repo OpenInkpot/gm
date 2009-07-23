@@ -108,7 +108,6 @@ static void _keys_handler(void* param __attribute__((unused)),
         void* event_info) {
 
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
     char *k = ev->keyname;
     if(!strcmp(k, "Escape"))
        gm_graphics_deactivate(e);
@@ -195,7 +194,7 @@ gm_graphics_init(Evas *evas) {
 
     int w, h;
     evas_output_size_get(evas, &w, &h);
- 
+
     if(h > 600)
         edje_object_file_set(edje, THEME_DIR "/gm.edj", "vertical_graphics");
     else

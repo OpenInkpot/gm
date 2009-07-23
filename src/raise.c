@@ -57,7 +57,7 @@ gm_get_fbreader()
         printf("No atom\n");
         return 0;
     }
-    printf("Atom: %d\n", active_doc_window_id);
+    //printf("Atom: %d\n", active_doc_window_id);
     Ecore_X_Window root = gm_root_get();
     Ecore_X_Window value = 0;
     xcb_connection_t *conn = gm_connection_get();
@@ -70,12 +70,12 @@ gm_get_fbreader()
     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, cookie, NULL);
     if (!reply)
     {
-        printf("Not reply\n");
+        //printf("Not reply\n");
         return 0;
     }
     if (reply->type == XCB_NONE)
     {
-        printf("XCB_NONE\n");
+        //printf("XCB_NONE\n");
         goto bad;
     }
     if (reply->format != 32)
@@ -92,7 +92,7 @@ gm_get_fbreader()
     value = *(Ecore_X_Window *)xcb_get_property_value(reply);
 bad:
     free(reply);
-    printf("Got: %x", value);
+    //printf("Got: %x", value);
     return value;
 }
 
@@ -135,12 +135,12 @@ gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, cookie, NULL);
     if (!reply)
     {
-        printf("Not reply\n");
+//        printf("Not reply\n");
         return 0;
     }
     if (reply->type == XCB_NONE)
     {
-        printf("XCB_NONE\n");
+//       printf("XCB_NONE\n");
         goto bad;
     }
     if (reply->type != utf8_string)
@@ -155,7 +155,7 @@ gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
         memcpy(result, xcb_get_property_value(reply), len);
         result[len]='\0';
         free(reply);
-        printf("Got: %s = %s (%d)\n", prop, result, len);
+//        printf("Got: %s = %s (%d)\n", prop, result, len);
         return result;
     }
 bad:
@@ -172,7 +172,7 @@ gm_get_fb_int(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
     xcb_atom_t atom = gm_get_atom(prop);
     if(!atom)
     {
-        printf("Can't get atom %s\n", prop);
+//        printf("Can't get atom %s\n", prop);
         return 0;
     }
     xcb_atom_t integer_atom = gm_get_atom("INTEGER");
@@ -191,18 +191,18 @@ gm_get_fb_int(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, cookie, NULL);
     if (!reply)
     {
-        printf("Not reply: %s\n", prop);
+//        printf("Not reply: %s\n", prop);
         return 0;
     }
     if (reply->type == XCB_NONE)
     {
-        printf("XCB_NONE\n");
+//        printf("XCB_NONE\n");
         goto bad;
     }
-    printf("reply->type = %d, reply->format = %d\n", reply->type, reply->format);
-    int len = xcb_get_property_value_length(reply);
+//    printf("reply->type = %d, reply->format = %d\n", reply->type, reply->format);
+    //int len = xcb_get_property_value_length(reply);
     result = *(int *) xcb_get_property_value(reply);
-    printf("Got: %s = %d %d\n", prop, result, len);
+//    printf("Got: %s = %d %d\n", prop, result, len);
 bad:
     free(reply);
     return result;
@@ -230,11 +230,10 @@ gm_free_titles(struct bookinfo_t *titles)
 {
     if(!titles)
         return;
-#define FREE(x)  if(x) free(x)
-    FREE(titles->author);
-    FREE(titles->filename);
-    FREE(titles->filepath);
-    FREE(titles->series);
-    FREE(titles->title);
+    free(titles->author);
+    free(titles->filename);
+    free(titles->filepath);
+    free(titles->series);
+    free(titles->title);
     free(titles);
 }

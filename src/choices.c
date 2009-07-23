@@ -10,7 +10,6 @@ void
 choicebox_pop(Evas_Object *choicebox)
 {
     Evas_Object *parent;
-    printf("Pop\n");
     Evas *canvas = evas_object_evas_get(choicebox);
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
     parent = evas_object_data_get(choicebox, "parent");
@@ -35,7 +34,6 @@ static void default_key_handler(void* param __attribute__((unused)),
         Evas* e __attribute__((unused)), Evas_Object *r, void* event_info)
 {
     Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    fprintf(stderr, "kn: %s, k: %s, s: %s, c: %s\n", ev->keyname, ev->key, ev->string, ev->compose);
     choicebox_aux_key_down_handler(r, ev);
 
     if(!strcmp(ev->keyname, "Escape"))
@@ -52,7 +50,6 @@ void page_handler(Evas_Object* self,
 {
     Evas *canvas = evas_object_evas_get(self);
     Evas_Object *main_edje = evas_object_name_find(canvas, "main_canvas_edje");
-    printf("In page handler %d / %d\n", a, b);
     choicebox_aux_edje_footer_handler(main_edje, "footer", a, b);
 }
 
