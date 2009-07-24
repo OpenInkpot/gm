@@ -1,3 +1,9 @@
+gm (0.1+20090518-20) asimov; urgency=low
+
+  * Rename ua.po to (correct) uk.po
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sat, 25 Jul 2009 01:57:47 +0700
+
 gm (0.1+20090518-19) asimov; urgency=low
 
   * Left-align author and series in graphical menu.
