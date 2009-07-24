@@ -1,3 +1,9 @@
+gm (0.1+20090518-19) asimov; urgency=low
+
+  * Left-align author and series in graphical menu.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Fri, 24 Jul 2009 23:03:09 +0700
+
 gm (0.1+20090518-18) asimov; urgency=low
 
   * Reduce debug output
