@@ -24,7 +24,7 @@ styles {
     }
     style {
         name, "book-info";
-        base, "font=sans-serif font_size=24 color=#fff align=middle";
+        base, "font=sans-serif font_size=24 color=#fff align=left";
     }
     style {
         name, "day";
