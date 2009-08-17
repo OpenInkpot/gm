@@ -10,4 +10,4 @@ include /usr/share/cdbs/1/class/autotools.mk
 DEB_CONFIGURE_EXTRA_FLAGS := --disable-rpath
 DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/autogen.sh
 
-
+CFLAGS += -DECORE_NEW

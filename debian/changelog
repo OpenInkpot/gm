@@ -1,3 +1,10 @@
+gm (0.1+20090518-21) asimov; urgency=low
+
+  * Rebuild due to EFL update.
+  * Use newer Ecore compatibility
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Tue, 18 Aug 2009 03:57:52 +0700
+
 gm (0.1+20090518-20) asimov; urgency=low
 
   * Rename ua.po to (correct) uk.po
