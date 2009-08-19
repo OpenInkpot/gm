@@ -14,34 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/setup.c:161
-msgid "Settings"
-msgstr ""
-
-#: src/rotation.c:28
-msgid "Disabled"
-msgstr ""
-
-#: src/rotation.c:29
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr ""
-
-#: src/rotation.c:30
-msgid "0 ↔ 180 Degrees"
-msgstr ""
-
-#: src/rotation.c:31
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr ""
-
-#: src/rotation.c:32
-msgid "0 → 90 → 180 → 270 → 0"
-msgstr ""
-
-#: src/rotation.c:93
-msgid "Select screen rotation type"
-msgstr ""
-
 #: src/setup.c:121
 msgid "Language"
 msgstr "语言"
@@ -121,3 +93,31 @@ msgstr "关闭"
 #: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>不可用</invisible>"
+
+#: src/setup.c:161
+msgid "Settings"
+msgstr "配置"
+
+#: src/rotation.c:29
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "顺时针旋转90度"
+
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr "禁用"
+
+#: src/rotation.c:31
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "逆时针旋转90度"
+
+#: src/rotation.c:30
+msgid "0 ↔ 180 Degrees"
+msgstr "180度翻转"
+
+#: src/rotation.c:93
+msgid "Select screen rotation type"
+msgstr "选择屏幕旋转类型"
+
+#: src/rotation.c:32
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr "旋转一周"
