@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/gm.c:39
-msgid "Current book"
-msgstr "Aktiális könyv"
-
 #: src/gm.c:40
 msgid "Library"
 msgstr "Könyvtár"
@@ -126,6 +122,10 @@ msgstr "Letiltva"
 #, fuzzy
 msgid "0 ↔ 90 Degrees Clockwise"
 msgstr "0 ↔ 90 fok órajárással egyező irányban"
+
+#: src/gm.c:39
+msgid "Current book"
+msgstr "Aktuális könyv"
 
 #~ msgid "Audio"
 #~ msgstr "Audio"
