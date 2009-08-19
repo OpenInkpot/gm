@@ -1,8 +1,8 @@
-# vim: set fileencoding=utf-8 
+# vim: set fileencoding=utf-8
 # gm
 # This file is put in the public domain.
 # Alexander V. Nikolaev <avn@openinkpot.org>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
@@ -95,10 +95,6 @@ msgstr "Звук"
 msgid "Language"
 msgstr "Язык"
 
-#: src/setup.c:161
-msgid "Settings"
-msgstr "Параметры"
-
 #: src/rotation.c:28
 msgid "Disabled"
 msgstr "Отключено"
@@ -122,3 +118,7 @@ msgstr "0 → 90 → 180 → 270 → 0"
 #: src/rotation.c:93
 msgid "Select screen rotation type"
 msgstr "Выбрать тип поворота экрана"
+
+#: src/setup.c:161
+msgid "Settings"
+msgstr "Настройки"
