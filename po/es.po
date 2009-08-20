@@ -1,0 +1,130 @@
+# translation of gm.po to spanish
+# This file is put in the public domain.
+#
+# miguel <ink@canteras.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: gm\n"
+"Report-Msgid-Bugs-To: avn@openinkpot.org\n"
+"POT-Creation-Date: 2009-07-16 00:13+0200\n"
+"PO-Revision-Date: 2009-06-26 15:22+0200\n"
+"Last-Translator: Miguel <ink@canteras.org>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gm.c:39
+msgid "Current book"
+msgstr "Libro actual"
+
+#: src/gm.c:40
+msgid "Library"
+msgstr "Biblioteca"
+
+#: src/gm.c:41
+msgid "Images"
+msgstr "Imágenes"
+
+#: src/gm.c:45
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: src/gm.c:46
+msgid "Games"
+msgstr "Juegos"
+
+#: src/gm.c:47
+msgid "Setup"
+msgstr "Configurar"
+
+#: src/gm.c:48
+msgid "Clock setup"
+msgstr "Configurar el reloj"
+
+#: src/gm.c:122
+#, fuzzy
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Ningún libro abierto</inactive>"
+
+#: src/setup.c:33
+msgid "Version"
+msgstr "Versión"
+
+#: src/setup.c:56
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>N/A</inactive>"
+
+#: src/setup.c:57
+msgid "Full"
+msgstr "Lleno"
+
+#: src/setup.c:58
+msgid "Adaptive"
+msgstr "Adaptativo"
+
+#: src/setup.c:59
+msgid "Partial"
+msgstr "Parcial"
+
+#: src/setup.c:66
+msgid "Screen update"
+msgstr "Actualización de pantalla"
+
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr "Tipo de rotación de pantalla"
+
+#: src/setup.c:93
+msgid "<invisible>N/A</invisible>"
+msgstr "<invisible>N/A</invisible>"
+
+#: src/setup.c:94
+msgid "OFF"
+msgstr "OFF"
+
+#: src/setup.c:95
+msgid "ON"
+msgstr "ON"
+
+#: src/setup.c:102
+msgid "Sound"
+msgstr "Sonido"
+
+#: src/setup.c:121
+msgid "Language"
+msgstr "Idioma"
+
+#: src/setup.c:161
+msgid "Settings"
+msgstr "Preferencias"
+
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr "Desactivado"
+
+#: src/rotation.c:29
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "0 ↔ 90 grados derecha"
+
+#: src/rotation.c:30
+msgid "0 ↔ 180 Degrees"
+msgstr "0 ↔ 180 grados"
+
+#: src/rotation.c:31
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "0 ↔ 90 grados izquierda"
+
+#: src/rotation.c:32
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr "0 → 90 → 180 → 270 → 0"
+
+#: src/rotation.c:93
+msgid "Select screen rotation type"
+msgstr "Seleccionar tipo de rotación de pantalla"
+
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgid "No book is open"
+#~ msgstr "Ningún libro abierto"
