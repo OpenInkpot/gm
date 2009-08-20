@@ -31,10 +31,6 @@ msgstr "Alkalmazások"
 msgid "Games"
 msgstr "Játékok"
 
-#: src/gm.c:47
-msgid "Setup"
-msgstr "Beállítás"
-
 #: src/gm.c:48
 msgid "Clock setup"
 msgstr "Óra beállítása"
@@ -50,14 +46,6 @@ msgstr "Adaptív"
 #: src/setup.c:59
 msgid "Partial"
 msgstr "Részleges"
-
-#: src/setup.c:94
-msgid "OFF"
-msgstr "Kikapcsolás"
-
-#: src/setup.c:95
-msgid "ON"
-msgstr "Bekapcsolás"
 
 #: src/setup.c:102
 msgid "Sound"
@@ -101,11 +89,6 @@ msgstr "<invisible>Nem elérhető</invisible>"
 msgid "0 ↔ 180 Degrees"
 msgstr "0 ↔ 180 fok"
 
-#: src/rotation.c:31
-#, fuzzy
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "0 ↔ 90 fok órajárással ellenkező irányban"
-
 #: src/rotation.c:32
 msgid "0 → 90 → 180 → 270 → 0"
 msgstr "0 → 90 → 180 → 270 → 0"
@@ -118,14 +101,29 @@ msgstr "Válassza ki a képernyő elforgatásának típusát"
 msgid "Disabled"
 msgstr "Letiltva"
 
-#: src/rotation.c:29
-#, fuzzy
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "0 ↔ 90 fok órajárással egyező irányban"
-
 #: src/gm.c:39
 msgid "Current book"
 msgstr "Aktuális könyv"
+
+#: src/rotation.c:29
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "0 ↔ 90 fok az óra járásával egyező irányban"
+
+#: src/rotation.c:31
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "0 ↔ 90 fok az óra járásával ellenkező irányban"
+
+#: src/gm.c:47
+msgid "Setup"
+msgstr "Beállítások"
+
+#: src/setup.c:95
+msgid "ON"
+msgstr "BE"
+
+#: src/setup.c:94
+msgid "OFF"
+msgstr "KI"
 
 #~ msgid "Audio"
 #~ msgstr "Audio"
