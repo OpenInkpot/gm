@@ -121,6 +121,7 @@ msgid "OFF"
 msgstr "KI"
 
 #: src/setup.c:56
+#, fuzzy
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>Nem elérhető</inactive>"
 
