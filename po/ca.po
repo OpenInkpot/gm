@@ -1,6 +1,6 @@
 # translation of gm.po to catalan
 # This file is put in the public domain.
-#
+# 
 # miguel <ink@canteras.org>, 2009.
 msgid ""
 msgstr ""
@@ -41,11 +41,6 @@ msgstr "Configurar"
 #: src/gm.c:48
 msgid "Clock setup"
 msgstr "Configurar el rellotge"
-
-#: src/gm.c:122
-#, fuzzy
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Cap llibre obert</inactive>"
 
 #: src/setup.c:33
 msgid "Version"
@@ -122,6 +117,10 @@ msgstr "0 → 90 → 180 → 270 → 0"
 #: src/rotation.c:93
 msgid "Select screen rotation type"
 msgstr "Seleccionar tipus de rotació de pantalla"
+
+#: src/gm.c:122
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Cap llibre obert</inactive>"
 
 #~ msgid "Audio"
 #~ msgstr "Àudio"
