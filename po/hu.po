@@ -67,11 +67,6 @@ msgstr "Verzió"
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>Nincs megnyitott könyv</inactive>"
 
-#: src/setup.c:56
-#, fuzzy
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>nem elérhető</inactive>"
-
 #: src/setup.c:87
 msgid "Screen rotation type"
 msgstr "Képernyő elforgatás típusa"
@@ -124,6 +119,10 @@ msgstr "BE"
 #: src/setup.c:94
 msgid "OFF"
 msgstr "KI"
+
+#: src/setup.c:56
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>Nem elérhető</inactive>"
 
 #~ msgid "Audio"
 #~ msgstr "Audio"
