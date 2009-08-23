@@ -145,7 +145,6 @@ struct setup_menu_item_t setup_menu_items[] = {
     {&language_draw, &lang_menu, 0},
     {&datetime_draw, &datetime_set, 0},
     {&version_draw, &version_set, 0},
-    {NULL, NULL, NULL},
 };
 
 static void settings_draw(Evas_Object* choicebox __attribute__((unused)),
