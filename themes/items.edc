@@ -135,7 +135,6 @@ collections {
                  inherit, "default" 0.0;
                  image { normal, "icon-book.png"; }
              }
-             
              description {
                  state, "icon-lib" 0.0;
                  inherit, "default" 0.0;
