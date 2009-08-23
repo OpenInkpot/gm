@@ -15,11 +15,7 @@ _load_desktops(const char * path, const char * category) {
     char fullname[1024];
     char *filename;
     Efreet_Desktop *current;
-#ifdef ECORE_NEW
     Eina_List *ls;
-#else
-    Ecore_List *ls;
-#endif
     Ecore_List * desktops = ecore_list_new();
 
     if(!desktops) {
@@ -33,13 +29,10 @@ _load_desktops(const char * path, const char * category) {
         return desktops;
     };
 
-#ifdef ECORE_NEW
     while(ls) {
         filename = eina_list_data_get(ls);
         ls = eina_list_next(ls);
-#else
-    while ((filename = ecore_list_next(ls))) {
-#endif
+
         snprintf(fullname, 1024, "%s/%s", path, filename);
         if(ecore_file_is_dir(fullname))
             continue;
@@ -50,13 +43,8 @@ _load_desktops(const char * path, const char * category) {
             continue;
         }
         if (current->categories && !current->no_display) {
-#ifdef ECORE_NEW
             if(eina_list_search_unsorted(current->categories,
                                          EINA_COMPARE_CB(strcmp), category))
-#else
-            if(ecore_list_find(current->categories,
-                               ECORE_COMPARE_CB(strcmp), category))
-#endif
             {
                 ecore_list_append(desktops, current);
                 continue;
@@ -65,11 +53,7 @@ _load_desktops(const char * path, const char * category) {
         efreet_desktop_free(current);
     };
 
-#ifdef ECORE_NEW
     eina_list_free(ls);
-#else
-    ecore_list_destroy(ls);
-#endif
     return desktops;
 }
 
