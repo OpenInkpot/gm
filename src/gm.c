@@ -43,7 +43,6 @@ struct main_menu_item main_menu[] = {
         {_("Games"), &gm_run_games , "set-icon-games"},
         {_("Applications"), &gm_run_applications, "set-icon-apps"},
         {_("Setup"), &settings_menu, "set-icon-setup"},
-        {NULL, NULL, NULL},
 };
 
 #define MAIN_MENU_SIZE (sizeof(main_menu)/sizeof(main_menu[0]))
