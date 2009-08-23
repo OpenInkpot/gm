@@ -46,6 +46,8 @@ struct main_menu_item main_menu[] = {
         {NULL, NULL, NULL},
 };
 
+#define MAIN_MENU_SIZE (sizeof(main_menu)/sizeof(main_menu[0]))
+
 static void die(const char* fmt, ...)
 {
    va_list ap;
@@ -89,7 +91,7 @@ static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
     char buf[256];
     struct bookinfo_t *bookinfo;
 
-    if(item_num <= 7 && main_menu[item_num].icon_signal)
+    if(item_num <= MAIN_MENU_SIZE && main_menu[item_num].icon_signal)
         edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
     else
         edje_object_signal_emit(item, "set-icon-none", "");
@@ -194,7 +196,7 @@ static void run()
    gm_graphics_init(main_canvas);
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
-        main_menu_handler, draw_handler, "choicebox", 7, 1, main_canvas);
+        main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, 1, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
         return;
