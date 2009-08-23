@@ -136,8 +136,6 @@ datetime_set(Evas_Object *item)
     gm_run_etimetool(canvas);
 }
 
-
-#define MENU_ITEMS_NUM 5
 struct setup_menu_item_t setup_menu_items[] = {
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &rotation_menu, 0},
@@ -146,6 +144,8 @@ struct setup_menu_item_t setup_menu_items[] = {
     {&datetime_draw, &datetime_set, 0},
     {&version_draw, &version_set, 0},
 };
+
+#define MENU_ITEMS_NUM (sizeof(setup_menu_items)/sizeof(setup_menu_items[0]))
 
 static void settings_draw(Evas_Object* choicebox __attribute__((unused)),
                          Evas_Object* item,
