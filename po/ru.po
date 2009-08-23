@@ -93,22 +93,9 @@ msgstr "Вкл."
 msgid "Sound"
 msgstr "Звук"
 
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
-#. 
-#: src/setup.c:127
-msgid "Language"
-msgstr "Язык"
-
 #: src/setup.c:134
 msgid "Clock setup"
 msgstr "Настройки часов"
-
-#: src/setup.c:183
-msgid "Settings"
-msgstr "Настройки"
 
 #: src/rotation.c:28
 msgid "Disabled"
@@ -137,3 +124,16 @@ msgstr "Выбрать тип поворота экрана"
 #: src/gm.c:42
 msgid "Audio"
 msgstr "Фонотека"
+
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#. 
+#: src/setup.c:127
+msgid "Language"
+msgstr "Language / Язык"
+
+#: src/setup.c:183
+msgid "Settings"
+msgstr "Settings / Настройки"
