@@ -2,7 +2,6 @@
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
@@ -15,10 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: src/gm.c:39
-msgid "Current book"
-msgstr "Aktiális könyv"
 
 #: src/gm.c:40
 msgid "Library"
@@ -36,25 +31,9 @@ msgstr "Alkalmazások"
 msgid "Games"
 msgstr "Játékok"
 
-#: src/gm.c:47
-msgid "Setup"
-msgstr "Beállítás"
-
 #: src/gm.c:48
 msgid "Clock setup"
 msgstr "Óra beállítása"
-
-#: src/gm.c:122
-msgid "<inactive>No book is open</inactive>"
-msgstr ""
-
-#: src/setup.c:33
-msgid "Version"
-msgstr ""
-
-#: src/setup.c:56
-msgid "<inactive>N/A</inactive>"
-msgstr ""
 
 #: src/setup.c:57
 msgid "Full"
@@ -68,26 +47,6 @@ msgstr "Adaptív"
 msgid "Partial"
 msgstr "Részleges"
 
-#: src/setup.c:66
-msgid "Screen update"
-msgstr ""
-
-#: src/setup.c:87
-msgid "Screen rotation type"
-msgstr ""
-
-#: src/setup.c:93
-msgid "<invisible>N/A</invisible>"
-msgstr ""
-
-#: src/setup.c:94
-msgid "OFF"
-msgstr "Kikapcsolás"
-
-#: src/setup.c:95
-msgid "ON"
-msgstr "Bekapcsolás"
-
 #: src/setup.c:102
 msgid "Sound"
 msgstr "Hangok"
@@ -100,29 +59,71 @@ msgstr "Nyelv"
 msgid "Settings"
 msgstr "Beállítások"
 
-#: src/rotation.c:28
-msgid "Disabled"
-msgstr ""
+#: src/setup.c:33
+msgid "Version"
+msgstr "Verzió"
 
-#: src/rotation.c:29
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr ""
+#: src/gm.c:122
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Nincs megnyitott könyv</inactive>"
+
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr "Képernyő elforgatás típusa"
+
+#: src/setup.c:66
+msgid "Screen update"
+msgstr "Képernyő frissítése"
+
+#: src/setup.c:93
+#, fuzzy
+msgid "<invisible>N/A</invisible>"
+msgstr "<invisible>Nem elérhető</invisible>"
 
 #: src/rotation.c:30
 msgid "0 ↔ 180 Degrees"
-msgstr ""
-
-#: src/rotation.c:31
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr ""
+msgstr "0 ↔ 180 fok"
 
 #: src/rotation.c:32
 msgid "0 → 90 → 180 → 270 → 0"
-msgstr ""
+msgstr "0 → 90 → 180 → 270 → 0"
 
 #: src/rotation.c:93
 msgid "Select screen rotation type"
-msgstr ""
+msgstr "Válassza ki a képernyő elforgatásának típusát"
+
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr "Letiltva"
+
+#: src/gm.c:39
+msgid "Current book"
+msgstr "Aktuális könyv"
+
+#: src/rotation.c:29
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "0 ↔ 90 fok az óra járásával egyező irányban"
+
+#: src/rotation.c:31
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "0 ↔ 90 fok az óra járásával ellenkező irányban"
+
+#: src/gm.c:47
+msgid "Setup"
+msgstr "Beállítások"
+
+#: src/setup.c:95
+msgid "ON"
+msgstr "BE"
+
+#: src/setup.c:94
+msgid "OFF"
+msgstr "KI"
+
+#: src/setup.c:56
+#, fuzzy
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>Nem elérhető</inactive>"
 
 #~ msgid "Audio"
 #~ msgstr "Audio"
