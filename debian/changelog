@@ -1,3 +1,14 @@
+gm (0.2-1) asimov; urgency=low
+
+  * Declare a new version to stop yyyymmdd madness.
+
+  * Icons are updated.
+  * Localizations added: Chinese, Catalan, Spanish, Italian
+  * Localizations updated: Czech, Russian, Hungarian, Ukrainian, Polish,
+    Bulgarian.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 24 Aug 2009 02:37:32 +0700
+
 gm (0.1+20090518-21) asimov; urgency=low
 
   * Rebuild due to EFL update.
