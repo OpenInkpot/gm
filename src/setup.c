@@ -17,7 +17,7 @@
 #include "sound_control.h"
 #include "screen_update_control.h"
 #include "rotation.h"
-
+#include "run.h"
 
 struct setup_menu_item_t {
     void (*draw)(Evas_Object *self);
@@ -122,12 +122,28 @@ language_draw(Evas_Object *item)
     edje_object_part_text_set(item, "value", current_lang());
 }
 
-#define MENU_ITEMS_NUM 4
+static void
+datetime_draw(Evas_Object *item)
+{
+    edje_object_part_text_set(item, "title", gettext("Clock setup"));
+    edje_object_part_text_set(item, "value", "");
+}
+
+static void
+datetime_set(Evas_Object *item)
+{
+    Evas* canvas = evas_object_evas_get(item);
+    gm_run_etimetool(canvas);
+}
+
+
+#define MENU_ITEMS_NUM 5
 struct setup_menu_item_t setup_menu_items[] = {
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &rotation_menu, 0},
 //    {&sound_draw, &sound_set, 0},
     {&language_draw, &lang_menu, 0},
+    {&datetime_draw, &datetime_set, 0},
     {&version_draw, &version_set, 0},
     {NULL, NULL, NULL},
 };

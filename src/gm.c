@@ -39,13 +39,10 @@ struct main_menu_item main_menu[] = {
         {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special
         {_("Library"), &gm_run_madshelf_books,  "set-icon-lib" },
         {_("Images"), &gm_run_madshelf_images,  "set-icon-photo"},
-        /* {_("Audio"), stub, "set-icon-phono"}, */
-        {" ", stub,  NULL},
-        {" ", stub,  NULL},
-        {_("Applications"), &gm_run_applications, "set-icon-apps"},
+        {_("Audio"), &gm_run_madshelf_audio, "set-icon-phono"},
         {_("Games"), &gm_run_games , "set-icon-games"},
+        {_("Applications"), &gm_run_applications, "set-icon-apps"},
         {_("Setup"), &settings_menu, "set-icon-setup"},
-        {_("Clock setup"), &gm_run_etimetool, "set-icon-clock"},
         {NULL, NULL, NULL},
 };
 
@@ -92,7 +89,7 @@ static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
     char buf[256];
     struct bookinfo_t *bookinfo;
 
-    if(item_num <= 9 && main_menu[item_num].icon_signal)
+    if(item_num <= 7 && main_menu[item_num].icon_signal)
         edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
     else
         edje_object_signal_emit(item, "set-icon-none", "");
@@ -197,7 +194,7 @@ static void run()
    gm_graphics_init(main_canvas);
 
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
-        main_menu_handler, draw_handler, "choicebox", 9, 1, main_canvas);
+        main_menu_handler, draw_handler, "choicebox", 7, 1, main_canvas);
    if(!choicebox) {
         printf("no echoicebox\n");
         return;

@@ -8,6 +8,9 @@ void
 gm_run_madshelf_images(Evas * e);
 
 void
+gm_run_madshelf_audio(Evas * e);
+
+void
 gm_run_etimetool(Evas *e);
 
 void
