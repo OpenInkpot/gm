@@ -42,6 +42,13 @@ struct main_menu_item main_menu[] = {
         {_("Audio"), &gm_run_madshelf_audio, "set-icon-phono"},
         {_("Games"), &gm_run_games , "set-icon-games"},
         {_("Applications"), &gm_run_applications, "set-icon-apps"},
+
+        /*
+          TRANSLATORS: Please make this menu string two-language: 'Setup(in
+          English) / Setup(localized)'. This will allow users to reset language
+          if current language is unknown to them (or translation is broken due
+          to some reason, like lack of font).
+        */
         {_("Setup"), &settings_menu, "set-icon-setup"},
 };
 

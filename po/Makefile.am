@@ -12,6 +12,7 @@ update-pot:
 	rm -f $(PACKAGE).pot
 	xgettext -k_ -d $(PACKAGE) \
 		--foreign-user \
+		--add-comments \
 		--package-name="$(PACKAGE)" --package-version="@VERSION@" \
 		--msgid-bugs-address="@PACKAGE_BUGREPORT@" \
 		--from-code=UTF-8 \
