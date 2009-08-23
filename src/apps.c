@@ -16,6 +16,9 @@ _load_desktops(const char * path, const char * category) {
     char *filename;
     Efreet_Desktop *current;
     Eina_List *ls;
+    Eina_List *ls_orig;
+    Eina_List *l;
+    char *data;
     Ecore_List * desktops = ecore_list_new();
 
     if(!desktops) {
@@ -24,7 +27,7 @@ _load_desktops(const char * path, const char * category) {
     }
     ecore_list_free_cb_set(desktops, ECORE_FREE_CB(efreet_desktop_free));
 
-    ls = ecore_file_ls(path);
+    ls_orig = ls = ecore_file_ls(path);
     if(!ls) {
         return desktops;
     };
@@ -53,7 +56,9 @@ _load_desktops(const char * path, const char * category) {
         efreet_desktop_free(current);
     };
 
-    eina_list_free(ls);
+    EINA_LIST_FOREACH(ls_orig, l, data)
+        free(data);
+    eina_list_free(ls_orig);
     return desktops;
 }
 
