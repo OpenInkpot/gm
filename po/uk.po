@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-07-16 00:13+0200\n"
+"POT-Creation-Date: 2009-08-24 03:37+0700\n"
 "PO-Revision-Date: 2009-07-02 18:57+0700\n"
 "Last-Translator: Vladimir <v@v>\n"
 "Language-Team: Ukrainian <openinkpot-l10n@googlegroups.com>\n"
@@ -19,33 +19,31 @@ msgstr ""
 msgid "Current book"
 msgstr "Поточна книга"
 
+#. Special
 #: src/gm.c:40
 msgid "Library"
 msgstr "Бібліотека"
 
-#: src/gm.c:41
-msgid "Images"
-msgstr "Фототека"
-
-#: src/gm.c:45
-msgid "Applications"
-msgstr "Програми & утиліти"
-
-#: src/gm.c:46
+#: src/gm.c:43
 msgid "Games"
 msgstr "Ігри"
 
-#: src/gm.c:47
+#. TRANSLATORS: Please make this menu string two-language: 'Setup(in
+#. English) / Setup(localized)'. This will allow users to reset language
+#. if current language is unknown to them (or translation is broken due
+#. to some reason, like lack of font).
+#. 
+#: src/gm.c:52
 msgid "Setup"
 msgstr "Налаштування"
 
-#: src/gm.c:48
-msgid "Clock setup"
-msgstr "Налаштування годинника"
-
-#: src/gm.c:122
+#: src/gm.c:124
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>Немає відкритої книги</inactive>"
+
+#: src/setup.c:33
+msgid "Version"
+msgstr "Версія програмного забезпечення"
 
 #: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
@@ -58,10 +56,6 @@ msgstr "Повне"
 #: src/setup.c:58
 msgid "Adaptive"
 msgstr "Адаптивне"
-
-#: src/setup.c:59
-msgid "Partial"
-msgstr "Зональне"
 
 #: src/setup.c:66
 msgid "Screen update"
@@ -87,11 +81,20 @@ msgstr "Вкл."
 msgid "Sound"
 msgstr "Звук"
 
-#: src/setup.c:121
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#. 
+#: src/setup.c:127
 msgid "Language"
 msgstr "Мова"
 
-#: src/setup.c:161
+#: src/setup.c:134
+msgid "Clock setup"
+msgstr "Налаштування годинника"
+
+#: src/setup.c:183
 msgid "Settings"
 msgstr "Параметри"
 
@@ -119,6 +122,18 @@ msgstr "0 → 90 → 180 → 270 → 0"
 msgid "Select screen rotation type"
 msgstr "Выбрати тип повороту екрана "
 
-#: src/setup.c:33
-msgid "Version"
-msgstr "Версія програмного забезпечення"
+#: src/gm.c:41
+msgid "Images"
+msgstr "Зображення"
+
+#: src/gm.c:42
+msgid "Audio"
+msgstr "Аудіо файли"
+
+#: src/gm.c:44
+msgid "Applications"
+msgstr "Програми та утиліти"
+
+#: src/setup.c:59
+msgid "Partial"
+msgstr "Частинами"

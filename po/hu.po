@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-07-16 00:13+0200\n"
+"POT-Creation-Date: 2009-08-24 03:37+0700\n"
 "PO-Revision-Date: 2009-06-26 10:32+0200\n"
 "Last-Translator: Anrdás Csehi <acsehi@gmail.com>\n"
 "Language-Team: Hungarian\n"
@@ -15,6 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/gm.c:39
+msgid "Current book"
+msgstr "Aktuális könyv"
+
+#. Special
 #: src/gm.c:40
 msgid "Library"
 msgstr "Könyvtár"
@@ -23,17 +28,30 @@ msgstr "Könyvtár"
 msgid "Images"
 msgstr "Képek"
 
-#: src/gm.c:45
-msgid "Applications"
-msgstr "Alkalmazások"
+#: src/gm.c:42
+msgid "Audio"
+msgstr "Audio"
 
-#: src/gm.c:46
+#: src/gm.c:43
 msgid "Games"
 msgstr "Játékok"
 
-#: src/gm.c:48
-msgid "Clock setup"
-msgstr "Óra beállítása"
+#: src/gm.c:44
+msgid "Applications"
+msgstr "Alkalmazások"
+
+#: src/gm.c:124
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Nincs megnyitott könyv</inactive>"
+
+#: src/setup.c:33
+msgid "Version"
+msgstr "Verzió"
+
+#: src/setup.c:56
+#, fuzzy
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>Nem elérhető</inactive>"
 
 #: src/setup.c:57
 msgid "Full"
@@ -47,42 +65,50 @@ msgstr "Adaptív"
 msgid "Partial"
 msgstr "Részleges"
 
-#: src/setup.c:102
-msgid "Sound"
-msgstr "Hangok"
-
-#: src/setup.c:121
-msgid "Language"
-msgstr "Nyelv"
-
-#: src/setup.c:161
-msgid "Settings"
-msgstr "Beállítások"
-
-#: src/setup.c:33
-msgid "Version"
-msgstr "Verzió"
-
-#: src/gm.c:122
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Nincs megnyitott könyv</inactive>"
+#: src/setup.c:66
+msgid "Screen update"
+msgstr "Képernyő frissítése"
 
 #: src/setup.c:87
 msgid "Screen rotation type"
 msgstr "Képernyő elforgatás típusa"
-
-#: src/setup.c:66
-msgid "Screen update"
-msgstr "Képernyő frissítése"
 
 #: src/setup.c:93
 #, fuzzy
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>Nem elérhető</invisible>"
 
+#: src/setup.c:94
+msgid "OFF"
+msgstr "KI"
+
+#: src/setup.c:95
+msgid "ON"
+msgstr "BE"
+
+#: src/setup.c:102
+msgid "Sound"
+msgstr "Hangok"
+
+#: src/setup.c:134
+msgid "Clock setup"
+msgstr "Óra beállítása"
+
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr "Letiltva"
+
+#: src/rotation.c:29
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "0 ↔ 90 fok az óra járásával egyező irányban"
+
 #: src/rotation.c:30
 msgid "0 ↔ 180 Degrees"
 msgstr "0 ↔ 180 fok"
+
+#: src/rotation.c:31
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "0 ↔ 90 fok az óra járásával ellenkező irányban"
 
 #: src/rotation.c:32
 msgid "0 → 90 → 180 → 270 → 0"
@@ -92,41 +118,27 @@ msgstr "0 → 90 → 180 → 270 → 0"
 msgid "Select screen rotation type"
 msgstr "Válassza ki a képernyő elforgatásának típusát"
 
-#: src/rotation.c:28
-msgid "Disabled"
-msgstr "Letiltva"
-
-#: src/gm.c:39
-msgid "Current book"
-msgstr "Aktuális könyv"
-
-#: src/rotation.c:29
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "0 ↔ 90 fok az óra járásával egyező irányban"
-
-#: src/rotation.c:31
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "0 ↔ 90 fok az óra járásával ellenkező irányban"
-
-#: src/gm.c:47
+#. TRANSLATORS: Please make this menu string two-language: 'Setup(in
+#. English) / Setup(localized)'. This will allow users to reset language
+#. if current language is unknown to them (or translation is broken due
+#. to some reason, like lack of font).
+#. 
+#: src/gm.c:52
 msgid "Setup"
+msgstr "Setup / Beállítás"
+
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#. 
+#: src/setup.c:127
+msgid "Language"
+msgstr "Language / Nyelv"
+
+#: src/setup.c:183
+msgid "Settings"
 msgstr "Beállítások"
-
-#: src/setup.c:95
-msgid "ON"
-msgstr "BE"
-
-#: src/setup.c:94
-msgid "OFF"
-msgstr "KI"
-
-#: src/setup.c:56
-#, fuzzy
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>Nem elérhető</inactive>"
-
-#~ msgid "Audio"
-#~ msgstr "Audio"
 
 #~ msgid "No book is open"
 #~ msgstr "Nincs könyv megnyitva"
