@@ -68,10 +68,6 @@ msgstr "Częściowe"
 msgid "Screen update"
 msgstr "Odświeżanie ekranu"
 
-#: src/setup.c:87
-msgid "Screen rotation type"
-msgstr "Rodzaj obrotu ekranu"
-
 #: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>n/d</invisible>"
@@ -137,6 +133,10 @@ msgstr "Setup / Ustawienia"
 #: src/setup.c:127
 msgid "Language"
 msgstr "Language / Język"
+
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr "Dozwolone obroty ekanu"
 
 #~ msgid "No book is open"
 #~ msgstr "Nie otwarto książki"
