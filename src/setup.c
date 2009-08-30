@@ -10,7 +10,7 @@
 #include <lops.h>
 #include <Evas.h>
 #include <Edje.h>
-#include <echoicebox.h>
+#include <libchoicebox.h>
 #include "setup.h"
 #include "lang.h"
 #include "choices.h"

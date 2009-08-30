@@ -6,7 +6,7 @@
 #include <Ecore_File.h>
 #include <Efreet.h>
 #include <Edje.h>
-#include <echoicebox.h>
+#include <libchoicebox.h>
 #include "choices.h"
 #include "apps.h"
 

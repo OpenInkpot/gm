@@ -1,7 +1,4 @@
-#include <echoicebox.edci>
-
 images {
-//    image: "icon-none.png" COMP;
     image: "icon-book.png" COMP;
     image: "icon-lib.png" COMP;
     image: "icon-photo.png" COMP;
@@ -10,15 +7,6 @@ images {
     image: "icon-games.png" COMP;
     image: "icon-setup.png" COMP;
     image: "icon-clock.png" COMP;
-
-    /* FIXME: must be declared in echoicebox.edci */
-    image, "grid1-side-right.png" COMP;
-    image, "grid1-body.png" COMP;
-    image, "grid1-side-left.png" COMP;
-    image, "grid2-side-right.png" COMP;
-    image, "grid2-body.png" COMP;
-    image, "grid2-side-left.png" COMP;
-    image, "sel-side.png" COMP;
 }
 
 styles {
@@ -52,13 +40,13 @@ styles {
 
 
 collections {
-    START_FULL_SIZE_ITEM_GROUP("full")
+   group {
+      name, "item-default";
+      parts {
         /* Big text in the center of item */
         part {
             name, "text";
             type, TEXTBLOCK;
-            mouse_events, 0;
-            clip_to, "clipper";
             description {
                 state, "default" 0.0;
                 text {
@@ -73,8 +61,6 @@ collections {
         part {
             name, "lefttop";
             type, TEXTBLOCK;
-            mouse_events, 0;
-            clip_to, "clipper";
             description {
                 state, "default" 0.0;
                 color, 0 0 0 255;
@@ -88,8 +74,6 @@ collections {
         part {
            name, "leftbottom";
            type, TEXTBLOCK;
-           mouse_events, 0;
-           clip_to, "clipper";
            description {
               state, "default" 0.0;
               color, 0 0 0 255;
@@ -105,8 +89,6 @@ collections {
         part {
            name, "rightbottom";
            type, TEXTBLOCK;
-           mouse_events, 0;
-           clip_to, "clipper";
            description {
               state, "default" 0.0;
               color, 0 0 0 255;
@@ -122,13 +104,10 @@ collections {
          part {
              name, "icon";
              type, IMAGE;
-             mouse_events, 0;
-             clip_to, "clipper";
              description {
                  state, "default" 0.0;
                  rel1 { relative, 1.0 1.0; offset, -88 -62; }
                  rel2 { relative, 1.0 1.0; offset, -24 -7; }
-//                 image { normal, "icon-none.png"; }
              }
              description {
                  state, "icon-book" 0.0;
@@ -235,6 +214,7 @@ collections {
                     set_state(PART:"icon", "icon-clock", 0.0);
                 }
             }
-        }
-    END_FULL_SIZE_ITEM_GROUP
+    }
+      }
+   }
 }

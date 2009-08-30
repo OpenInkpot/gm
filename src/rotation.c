@@ -5,7 +5,7 @@
 #include <Ecore.h>
 #include <Edje.h>
 #include <libintl.h>
-#include <echoicebox.h>
+#include <libchoicebox.h>
 #include "choices.h"
 
 #define _(x) x

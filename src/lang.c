@@ -4,7 +4,7 @@
 #include <Evas.h>
 #include <Ecore.h>
 #include <Edje.h>
-#include <echoicebox.h>
+#include <libchoicebox.h>
 #include <language.h>
 #include "choices.h"
 

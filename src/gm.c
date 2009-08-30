@@ -14,7 +14,7 @@
 #include <Efreet.h>
 #include <Ecore_Con.h>
 
-#include <echoicebox.h>
+#include <libchoicebox.h>
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
@@ -204,7 +204,7 @@ static void run()
    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
         main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, 1, main_canvas);
    if(!choicebox) {
-        printf("no echoicebox\n");
+        printf("no choicebox\n");
         return;
    }
 

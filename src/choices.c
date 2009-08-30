@@ -2,9 +2,11 @@
 #include <string.h>
 #include <Evas.h>
 #include <Edje.h>
-#include <echoicebox.h>
+#include <libchoicebox.h>
 #include "choices.h"
 #include "graph.h"
+
+#define DEFAULT_CHOICEBOX_THEME_FILE "/usr/share/choicebox/choicebox.edj"
 
 void
 choicebox_pop(Evas_Object *choicebox)
@@ -30,18 +32,6 @@ choicebox_pop(Evas_Object *choicebox)
         gm_graphics_conditional(canvas);
 }
 
-static void default_key_handler(void* param __attribute__((unused)),
-        Evas* e __attribute__((unused)), Evas_Object *r, void* event_info)
-{
-    Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    choicebox_aux_key_down_handler(r, ev);
-
-    if(!strcmp(ev->keyname, "Escape"))
-    {
-        choicebox_pop(r);
-    }
-}
-
 static
 void page_handler(Evas_Object* self,
                                 int a,
@@ -53,23 +43,34 @@ void page_handler(Evas_Object* self,
     choicebox_aux_edje_footer_handler(main_edje, "footer", a, b);
 }
 
+static void close_handler(Evas_Object* choicebox __attribute__((unused)),
+                          void *param __attribute__((unused)))
+{
+    choicebox_pop(choicebox);
+}
+
 Evas_Object *
 choicebox_push(Evas_Object *parent, Evas *canvas,
     choicebox_handler_t handler,
     choicebox_draw_handler_t draw_handler,
     const char *name, int size, int own_edje, void *data)
 {
-    char *edje_file;
-    if(own_edje)
-        edje_file =  THEME_DIR "/items.edj";
-    else
-        edje_file = "/usr/share/echoicebox/echoicebox.edj";
+    choicebox_info_t info = {
+        NULL,
+        DEFAULT_CHOICEBOX_THEME_FILE,
+        "full",
+        own_edje ? THEME_DIR "/items.edj" : DEFAULT_CHOICEBOX_THEME_FILE,
+        own_edje ? "item-default" : "item-settings",
+        handler,
+        draw_handler,
+        page_handler,
+        close_handler,
+    };
+
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
-    Evas_Object* choicebox = choicebox_new(canvas,
-        edje_file,
-        "full", handler, draw_handler, page_handler, data);
+    Evas_Object* choicebox = choicebox_new(canvas, &info, data);
     if(!choicebox) {
-         printf("no echoicebox\n");
+         printf("no choicebox\n");
         return NULL;
     }
     choicebox_set_size(choicebox, size);
@@ -82,11 +83,8 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
     evas_object_data_set(choicebox, "parent", parent);
     edje_object_part_swallow(main_canvas_edje, "contents", choicebox);
 
+    choicebox_aux_subscribe_key_up(choicebox);
     evas_object_focus_set(choicebox, true);
-    evas_object_event_callback_add(choicebox,
-                                  EVAS_CALLBACK_KEY_UP,
-                                  &default_key_handler,
-                                  data);
     evas_object_show(choicebox);
     return choicebox;
 }
