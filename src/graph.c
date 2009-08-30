@@ -6,12 +6,15 @@
 #include <libintl.h>
 #include <locale.h>
 #include <time.h>
+
 #include <Evas.h>
 #include <Edje.h>
+
 #include "graph.h"
 #include "gm.h"
 #include "run.h"
 #include "raise.h"
+#include "setup.h"
 
 static void
 gm_graphics_show_captions(Evas_Object *edje);
@@ -63,12 +66,6 @@ gm_graphics_conditional(Evas *evas) {
         gm_graphics_show(evas);
 }
 
-static void
-gm_graphics_run(Evas *evas, int no) {
-    gm_graphics_hide(evas);
-    fake_main_menu_handler(evas, no - 1);
-}
-
 void
 gm_graphics_resize(Evas *evas, int x, int y) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
@@ -86,33 +83,40 @@ gm_graphics_resize(Evas *evas, int x, int y) {
     gm_graphics_show_clock(evas);
 }
 
-static void
-kp_activate(Evas *e, char k) {
-    int kn = k - '0';
-    switch(kn) {
-        case 1:  raise_fbreader(e); break ;
-        case 2:  gm_run_etimetool(e); break;
-        case 3:  gm_run_madshelf_books(e); break;
-        case 4:  gm_run_madshelf_images(e); break;
-        case 6:  gm_graphics_run(e, 7); break;
-        case 7:  gm_graphics_run(e, 6); break;
-        case 8:  gm_graphics_run(e, 8); break;
-    default:
-        printf("Don't know how to handle %d\n", kn);
-    }
-}
-
 static void _keys_handler(void* param __attribute__((unused)),
-        Evas* e,
-        Evas_Object *r __attribute__((unused)),
-        void* event_info) {
+                          Evas* e,
+                          Evas_Object *r __attribute__((unused)),
+                          void* event_info)
+{
+    const char* action = keys_lookup_by_event(gm_keys(), "graphical-menu",
+                                              (Evas_Event_Key_Up*)event_info);
 
-    Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    char *k = ev->keyname;
-    if(!strcmp(k, "Escape"))
-       gm_graphics_deactivate(e);
-    if(!strncmp(k, "KP_", 3) && (isdigit(k[3])) && !k[4])
-       kp_activate(e, k[3]);
+    if(!action)
+        return;
+
+    if(!strcmp(action, "TextMenu")) gm_graphics_deactivate(e);
+    else if(!strcmp(action, "CurrentBook")) raise_fbreader(e);
+    else if(!strcmp(action, "DateTimeSetup")) gm_run_etimetool(e);
+    else if(!strcmp(action, "Books")) gm_run_madshelf_books(e);
+    else if(!strcmp(action, "Images")) gm_run_madshelf_images(e);
+    else if(!strcmp(action, "Audio")) gm_run_madshelf_audio(e);
+    else if(!strcmp(action, "Games"))
+    {
+        gm_graphics_hide(e);
+        gm_run_games(e);
+    }
+    else if(!strcmp(action, "Applications"))
+    {
+        gm_graphics_hide(e);
+        gm_run_applications(e);
+    }
+    else if(!strcmp(action, "Settings"))
+    {
+        gm_graphics_hide(e);
+        settings_menu(e);
+    }
+    else
+        printf("Don't know how to handle action '%s'\n", action);
 }
 
 static void

@@ -25,6 +25,15 @@
 #include "run.h"
 #include "setup.h"
 
+static keys_t* _gm_keys;
+
+keys_t* gm_keys()
+{
+    if(!_gm_keys)
+        _gm_keys = keys_alloc("gm");
+    return _gm_keys;
+}
+
 struct main_menu_item {
     char *title;
     void (*execute)(Evas *evas_ptr);
@@ -142,13 +151,6 @@ void main_menu_handler(Evas_Object* choicebox __attribute__((unused)),
    main_menu[item_num].execute(param);
 }
 
-void
-fake_main_menu_handler(Evas *evas, int no)
-{
-    Evas_Object *choicebox = evas_object_name_find(evas, "choicebox");
-    main_menu_handler(choicebox, no, 0, (void *)evas);
-}
-
 static void main_win_resize_handler(Ecore_Evas* main_win)
 {
    Evas* canvas = ecore_evas_get(main_win);
@@ -174,8 +176,10 @@ static void main_win_key_handler(void* param __attribute__((unused)),
         Evas* e __attribute__((unused)),
         Evas_Object *r __attribute__((unused)), void* event_info)
 {
-    Evas_Event_Key_Down* ev = (Evas_Event_Key_Down*)event_info;
-    if(!strcmp(ev->keyname, "Escape"))
+    const char* action = keys_lookup_by_event(gm_keys(), "text-menu",
+                                              (Evas_Event_Key_Up*)event_info);
+
+    if(action && !strcmp(action, "GraphicalMenu"))
         gm_graphics_activate(e);
 }
 
@@ -250,6 +254,9 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
    ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
    run();
+
+   keys_free(_gm_keys);
+
    gm_socket_server_stop();
 
    ecore_con_shutdown();
