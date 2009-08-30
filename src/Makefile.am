@@ -3,8 +3,8 @@ gm_SOURCES = gm.c apps.c choices.c sock.c setup.c lang.c sound_control.c \
     screen_update_control.c raise.c clock.c battery.c rotation.c \
 	graph.c run.c
 
-AM_CFLAGS = -W -Wall -Werror \
+AM_CFLAGS = --std=gnu99 -W -Wall -Werror \
     -DTHEME_DIR='"$(pkgdatadir)/themes/"'
 
-INCLUDES = @EVAS_CFLAGS@ @ECORE_CFLAGS@ @ECORE_EVAS_CFLAGS@ @EDJE_CFLAGS@ @ECHOICEBOX_CFLAGS@ @ECORE_FILE_CFLAGS@ @EFREET_CFLAGS@ @ECORE_CON_CFLAGS@ @LIBLANGUAGE_CFLAGS@
-gm_LDFLAGS = @EVAS_LIBS@ @ECORE_LIBS@ @ECORE_EVAS_LIBS@ @EDJE_LIBS@ @ECHOICEBOX_LIBS@ @ECORE_FILE_LIBS@ @EFREET_LIBS@ @ECORE_CON_LIBS@ @LIBLANGUAGE_LIBS@
+INCLUDES = @EFL_CFLAGS@ @ECHOICEBOX_CFLAGS@ @LIBLANGUAGE_CFLAGS@
+gm_LDFLAGS = @EFL_LIBS@ @ECHOICEBOX_LIBS@ @LIBLANGUAGE_LIBS@
