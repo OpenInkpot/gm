@@ -1,12 +1,12 @@
 # translation of gm.po to French
 # This file is put in the public domain.
-#
+# 
 # Louvre <diogenedebian@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gm\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-07-16 00:13+0200\n"
+"POT-Creation-Date: 2009-08-24 03:37+0700\n"
 "PO-Revision-Date: 2009-06-26 15:22+0200\n"
 "Last-Translator: Louvre <diogenedebian@gmail.com>\n"
 "Language-Team: French <openinkpot-l10n@googlegroups.com>\n"
@@ -19,6 +19,7 @@ msgstr ""
 msgid "Current book"
 msgstr "Livre actuel"
 
+#. Special
 #: src/gm.c:40
 msgid "Library"
 msgstr "Bibliothèque"
@@ -27,23 +28,19 @@ msgstr "Bibliothèque"
 msgid "Images"
 msgstr "Images"
 
-#: src/gm.c:45
-msgid "Applications"
-msgstr "Utilitaires"
+#: src/gm.c:42
+msgid "Audio"
+msgstr "Audio"
 
-#: src/gm.c:46
+#: src/gm.c:43
 msgid "Games"
 msgstr "Jeux"
 
-#: src/gm.c:47
-msgid "Setup"
-msgstr "Configurer"
+#: src/gm.c:44
+msgid "Applications"
+msgstr "Utilitaires"
 
-#: src/gm.c:48
-msgid "Clock setup"
-msgstr "Configurer l'horloge"
-
-#: src/gm.c:122
+#: src/gm.c:124
 #, fuzzy
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>N/A</inactive>"
@@ -92,11 +89,11 @@ msgstr "ON"
 msgid "Sound"
 msgstr "Son"
 
-#: src/setup.c:121
-msgid "Language"
-msgstr "Langue"
+#: src/setup.c:134
+msgid "Clock setup"
+msgstr "Configurer l'horloge"
 
-#: src/setup.c:161
+#: src/setup.c:183
 msgid "Settings"
 msgstr "Réglages"
 
@@ -124,8 +121,23 @@ msgstr ""
 msgid "Select screen rotation type"
 msgstr ""
 
-#~ msgid "Audio"
-#~ msgstr "Audio"
+#. TRANSLATORS: Please make this menu string two-language: 'Setup(in
+#. English) / Setup(localized)'. This will allow users to reset language
+#. if current language is unknown to them (or translation is broken due
+#. to some reason, like lack of font).
+#. 
+#: src/gm.c:52
+msgid "Setup"
+msgstr "Setup / Configurer"
+
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#. 
+#: src/setup.c:127
+msgid "Language"
+msgstr "Language / Langue"
 
 #~ msgid "No book is open"
 #~ msgstr "Aucun livre n'est ouvert"
