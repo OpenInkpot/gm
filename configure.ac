@@ -7,7 +7,7 @@ AC_PROG_CC
 
 PKG_CHECK_MODULES(EFL, [ecore ecore-file ecore-evas ecore-con evas edje efreet])
 PKG_CHECK_MODULES(LIBCHOICEBOX,[libchoicebox])
-PKG_CHECK_MODULES(LIBLANGUAGE,[language])
+PKG_CHECK_MODULES(LIBLANGUAGE,[liblanguage])
 PKG_CHECK_MODULES(LIBKEYS, [libkeys])
 
 AC_OUTPUT(Makefile src/Makefile themes/Makefile po/Makefile data/Makefile)

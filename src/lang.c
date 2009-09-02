@@ -5,7 +5,7 @@
 #include <Ecore.h>
 #include <Edje.h>
 #include <libchoicebox.h>
-#include <language.h>
+#include <liblanguage.h>
 #include "choices.h"
 
 
@@ -13,13 +13,13 @@ static languages_t* languages;
 
 void*
 init_langs() {
-    languages = get_supported_languages();
+    languages = languages_get_supported();
     return languages; /* return void* only for checking and trhow error */
 }
 
 void
 shutdown_langs() {
-    free_langs(languages);
+    languages_free(languages);
 }
 
 const char *
@@ -63,7 +63,7 @@ static void lang_handler(Evas_Object* choicebox __attribute__((unused)),
                     void* param __attribute__((unused)))
 {
     language_t* lang = languages->langs + item_num;
-    set_language(languages, lang->internal_name);
+    languages_set(languages, lang->internal_name);
     ecore_main_loop_quit();
 }
 
