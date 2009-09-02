@@ -1,7 +1,6 @@
 AC_PREREQ(2.57)
 AC_INIT(gm, 0.1, avn@openinkpot.org)
 AM_INIT_AUTOMAKE(foreign)
-AM_CONFIG_HEADER(config.h)
 
 AC_LANG_C
 AC_PROG_CC
