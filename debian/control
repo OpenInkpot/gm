@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 7), cdbs, automake, pkg-config, libecore-dev, libev
 XCS-Cross-Host-Build-Depends: debhelper (>= 7), cdbs, cdbs-embedded, automake, pkg-config
 XCS-Cross-Build-Depends: libecore-dev, libevas-dev, libedje-dev, libefreet-dev, libchoicebox-dev, liblanguage-dev, libxcb-atom1-dev, liblops-dev, libkeys-dev
 Priority: optional
-Standards-Version: 3.8.0
+Standards-Version: 3.8.3
 
 Package: gm
 Priority: optional
