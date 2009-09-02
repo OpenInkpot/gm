@@ -1,5 +1,5 @@
 #include "screen_update_control.h"
-#include "lops.h"
+#include <liblops.h>
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -22,7 +22,7 @@ static int detect_threshold(const char* control_file)
         return -1;
 
     char val[BUFSIZE+1] = ""; /* +1 for terminating zero */
-    ssize_t size = lread(fd, val, BUFSIZE);
+    ssize_t size = readn(fd, val, BUFSIZE);
     if(size == -1)
     {
         close(fd);
@@ -70,7 +70,7 @@ static int set_threshold(const char* control_file, int threshold)
     char buf[BUFSIZE];
     snprintf(buf, BUFSIZE, "%d", threshold);
 
-    if(-1 == lwrite(fd, buf, strlen(buf)))
+    if(-1 == writen(fd, buf, strlen(buf)))
     {
         close(fd);
         return -1;

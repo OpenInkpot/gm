@@ -7,7 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 #define _(x) x
-#include <lops.h>
+#include <liblops.h>
 #include <Evas.h>
 #include <Edje.h>
 #include <libchoicebox.h>
@@ -34,7 +34,7 @@ version_draw(Evas_Object *item)
     char version_str[VERSION_SIZE]="N/A";
     int fd = open("/etc/openinkpot-version", O_RDONLY);
     if (fd != -1) {
-        int r = lread(fd, version_str, VERSION_SIZE-1);
+        int r = readn(fd, version_str, VERSION_SIZE-1);
         if( r > 0) {
             version_str[r-1]='\0';
             char *c = strchr(version_str,'\n');
