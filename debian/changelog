@@ -1,3 +1,9 @@
+gm (0.2-5) asimov; urgency=low
+
+  * Copy new battery icons from libeoi, as we keep a copy here (sigh).
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 03 Sep 2009 08:05:55 +0700
+
 gm (0.2-4) asimov; urgency=low
 
   * Added avn to AUTHORS file
