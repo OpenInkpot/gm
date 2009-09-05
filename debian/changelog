@@ -1,3 +1,9 @@
+gm (0.2-6) asimov; urgency=low
+
+  * Add number 'hints' to choicebox (OI#343).
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sun, 06 Sep 2009 05:49:02 +0700
+
 gm (0.2-5) asimov; urgency=low
 
   * Copy new battery icons from libeoi, as we keep a copy here (sigh).
