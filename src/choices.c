@@ -3,6 +3,7 @@
 #include <Evas.h>
 #include <Edje.h>
 #include <libchoicebox.h>
+#include <libeoi.h>
 #include "choices.h"
 #include "graph.h"
 
@@ -73,6 +74,7 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
          printf("no choicebox\n");
         return NULL;
     }
+    eoi_register_fullscreen_choicebox(choicebox);
     choicebox_set_size(choicebox, size);
     evas_object_name_set(choicebox, name);
     if(parent)

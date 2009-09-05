@@ -15,6 +15,7 @@
 #include <Ecore_Con.h>
 
 #include <libchoicebox.h>
+#include <libeoi.h>
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
@@ -156,6 +157,8 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
    Evas* canvas = ecore_evas_get(main_win);
    int w, h;
    evas_output_size_get(canvas, &w, &h);
+
+   eoi_process_resize(main_win);
 
    Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
    evas_object_resize(main_canvas_edje, w, h);
