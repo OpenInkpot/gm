@@ -31,10 +31,6 @@ msgstr "Зображення"
 msgid "Audio"
 msgstr "Аудіо файли"
 
-#: src/gm.c:44
-msgid "Applications"
-msgstr "Програми та утиліти"
-
 #: src/gm.c:39
 msgid "Current book"
 msgstr "Відкрита книга"
@@ -120,15 +116,6 @@ msgstr "0° → 90° → 180° → 270° → 0°"
 msgid "Partial"
 msgstr "частинами"
 
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
-#. 
-#: src/setup.c:127
-msgid "Language"
-msgstr "Language / Мова"
-
 #. TRANSLATORS: Please make this menu string two-language: 'Setup(in
 #. English) / Setup(localized)'. This will allow users to reset language
 #. if current language is unknown to them (or translation is broken due
@@ -137,3 +124,16 @@ msgstr "Language / Мова"
 #: src/gm.c:52
 msgid "Setup"
 msgstr "Setup / Налаштувати"
+
+#: src/gm.c:44
+msgid "Applications"
+msgstr "Програми"
+
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#. 
+#: src/setup.c:127
+msgid "Language"
+msgstr "Language / Мова інтерфейсу"
