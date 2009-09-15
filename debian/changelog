@@ -1,6 +1,7 @@
 gm (0.2-7) asimov; urgency=low
 
   * Theme adjusted for new ecore engine.
+  * Translations updated: Ukrainian, Russian.
 
  -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 16 Sep 2009 05:07:20 +0700
 
