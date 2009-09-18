@@ -1,3 +1,10 @@
+gm (0.2-8) asimov; urgency=low
+
+  * De-duplicate 'Setup' and 'Language' strings in order to fix graphical
+    menu.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sat, 19 Sep 2009 04:06:36 +0700
+
 gm (0.2-7) asimov; urgency=low
 
   * Theme adjusted for new ecore engine.
