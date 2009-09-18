@@ -8,3 +8,4 @@ src/setup.c
 src/sock.c
 src/sound_control.c
 src/rotation.c
+src/graph.c

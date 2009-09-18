@@ -1,6 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
+# English translations for gm package.
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# dottedmag <dottedmag@dottedmag.net>, 2009.
 #
 msgid ""
 msgstr ""
@@ -8,24 +8,25 @@ msgstr ""
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
 "POT-Creation-Date: 2009-09-19 03:46+0700\n"
 "PO-Revision-Date: 2009-09-19 03:55+0700\n"
-"Last-Translator: Hanno Zulla <sockpuppet@hanno.de>\n"
-"Language-Team: GERMAN <de@li.org>\n"
+"Last-Translator: Mikhail Gusarov <dottedmag@dottedmag.net>\n"
+"Language-Team: English <openinkpot-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/gm.c:49
 msgid "Current book"
-msgstr "Aktuelles Buch"
+msgstr "Current book"
 
 #. Special
 #: src/gm.c:50 src/graph.c:124
 msgid "Library"
-msgstr "Bibliothek"
+msgstr "Library"
 
 #: src/gm.c:51 src/graph.c:125
 msgid "Images"
-msgstr "Bilder"
+msgstr "Images"
 
 #: src/gm.c:52 src/graph.c:127
 msgid "Audio"
@@ -33,11 +34,11 @@ msgstr "Audio"
 
 #: src/gm.c:53 src/graph.c:130
 msgid "Games"
-msgstr "Spiele"
+msgstr "Games"
 
 #: src/gm.c:54 src/graph.c:131
 msgid "Applications"
-msgstr "Applikationen"
+msgstr "Applications"
 
 #.
 #. TRANSLATORS: Please make this menu string two-language:
@@ -46,13 +47,12 @@ msgstr "Applikationen"
 #. (or translation is broken due to some reason, like lack of font).
 #.
 #: src/gm.c:62
-#, fuzzy
 msgid "Setup <inactive>/ Setup</inactive>"
-msgstr "Einstellungen <inactive>/ Setup</inactive>"
+msgstr "Setup"
 
 #: src/gm.c:134 src/graph.c:188
 msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Es wird kein Buch gelesen</inactive>"
+msgstr "<inactive>No book is open</inactive>"
 
 #: src/setup.c:33
 msgid "Version"
@@ -60,43 +60,43 @@ msgstr "Version"
 
 #: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>-/-</inactive>"
+msgstr "<inactive>N/A</inactive>"
 
 #: src/setup.c:57
 msgid "Full"
-msgstr "Komplett"
+msgstr "Full"
 
 #: src/setup.c:58
 msgid "Adaptive"
-msgstr "Adaptiv"
+msgstr "Adaptive"
 
 #: src/setup.c:59
 msgid "Partial"
-msgstr "Teilweise"
+msgstr "Partial"
 
 #: src/setup.c:66
 msgid "Screen update"
-msgstr "Bildaufbau"
+msgstr "Screen update"
 
 #: src/setup.c:87
 msgid "Screen rotation type"
-msgstr "Bilddrehung"
+msgstr "Screen rotation type"
 
 #: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
-msgstr "<invisible>-/-</invisible>"
+msgstr "<invisible>N/A</invisible>"
 
 #: src/setup.c:94
 msgid "OFF"
-msgstr "AUS"
+msgstr "OFF"
 
 #: src/setup.c:95
 msgid "ON"
-msgstr "EIN"
+msgstr "ON"
 
 #: src/setup.c:102
 msgid "Sound"
-msgstr "Ton"
+msgstr "Sound"
 
 #.
 #. TRANSLATORS: Please make this menu string two-language: 'Language(in
@@ -106,40 +106,40 @@ msgstr "Ton"
 #.
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
-msgstr "Sprache <inactive>/ Language</inactive>"
+msgstr "Language"
 
 #: src/setup.c:134
 msgid "Clock setup"
-msgstr "Uhrzeit stellen"
+msgstr "Clock setup"
 
 #: src/setup.c:183
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Settings"
 
 #: src/rotation.c:28
 msgid "Disabled"
-msgstr "Inaktiv"
+msgstr "Disabled"
 
 #: src/rotation.c:29
 msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "0° ↔ 90° im Uhrzeigersinn"
+msgstr "0 ↔ 90 Degrees Clockwise"
 
 #: src/rotation.c:30
 msgid "0 ↔ 180 Degrees"
-msgstr "0° ↔ 180°"
+msgstr "0 ↔ 180 Degrees"
 
 #: src/rotation.c:31
 msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "0° ↔ 90° gegen den Uhrzeigersinn"
+msgstr "0 ↔ 90 Degrees Counterclockwise"
 
 #: src/rotation.c:32
 msgid "0 → 90 → 180 → 270 → 0"
-msgstr "0° → 90° → 180° → 270° → 0°"
+msgstr "0 → 90 → 180 → 270 → 0"
 
 #: src/rotation.c:93
 msgid "Select screen rotation type"
-msgstr "Bilddrehung auswählen"
+msgstr "Select screen rotation type"
 
 #: src/graph.c:132
 msgid "Setup"
-msgstr "Einstellungen"
+msgstr "Setup"

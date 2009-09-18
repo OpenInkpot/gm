@@ -54,12 +54,12 @@ struct main_menu_item main_menu[] = {
         {_("Applications"), &gm_run_applications, "set-icon-apps"},
 
         /*
-          TRANSLATORS: Please make this menu string two-language: 'Setup(in
-          English) / Setup(localized)'. This will allow users to reset language
-          if current language is unknown to them (or translation is broken due
-          to some reason, like lack of font).
+          TRANSLATORS: Please make this menu string two-language:
+          'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
+          allow users to reset language if current language is unknown to them
+          (or translation is broken due to some reason, like lack of font).
         */
-        {_("Setup"), &settings_menu, "set-icon-setup"},
+        {_("Setup <inactive>/ Setup</inactive>"), &settings_menu, "set-icon-setup"},
 };
 
 #define MAIN_MENU_SIZE (sizeof(main_menu)/sizeof(main_menu[0]))

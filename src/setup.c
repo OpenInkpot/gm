@@ -124,7 +124,7 @@ language_draw(Evas_Object *item)
       if current language is unknown to them translation is broken due to some
       reason, like lack of font).
     */
-    edje_object_part_text_set(item, "title", gettext("Language"));
+    edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
     edje_object_part_text_set(item, "value", current_lang());
 }
 

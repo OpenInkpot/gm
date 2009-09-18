@@ -1,46 +1,57 @@
 # Polish translations for gm package.
 # This file is put in the public domain.
 # Tomasz Długosz <tomek3d@gmail.com>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-08-24 03:37+0700\n"
-"PO-Revision-Date: 2009-06-25 14:12+0200\n"
+"POT-Creation-Date: 2009-09-19 03:46+0700\n"
+"PO-Revision-Date: 2009-09-19 03:58+0700\n"
 "Last-Translator: Tomasz Długosz <tomek3d@gmail.com>\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 
-#: src/gm.c:39
+#: src/gm.c:49
 msgid "Current book"
 msgstr "Bieżąca książka"
 
 #. Special
-#: src/gm.c:40
+#: src/gm.c:50 src/graph.c:124
 msgid "Library"
 msgstr "Biblioteka"
 
-#: src/gm.c:41
+#: src/gm.c:51 src/graph.c:125
 msgid "Images"
 msgstr "Obrazy"
 
-#: src/gm.c:42
+#: src/gm.c:52 src/graph.c:127
 msgid "Audio"
 msgstr "Audioteka"
 
-#: src/gm.c:43
+#: src/gm.c:53 src/graph.c:130
 msgid "Games"
 msgstr "Gry"
 
-#: src/gm.c:44
+#: src/gm.c:54 src/graph.c:131
 msgid "Applications"
 msgstr "Programy"
 
-#: src/gm.c:124
+#.
+#. TRANSLATORS: Please make this menu string two-language:
+#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
+#. allow users to reset language if current language is unknown to them
+#. (or translation is broken due to some reason, like lack of font).
+#.
+#: src/gm.c:62
+msgid "Setup <inactive>/ Setup</inactive>"
+msgstr "Ustawienia <inactive>/ Setup</inactive>"
+
+#: src/gm.c:134 src/graph.c:188
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>Brak otwartej książki</inactive>"
 
@@ -68,6 +79,10 @@ msgstr "Częściowe"
 msgid "Screen update"
 msgstr "Odświeżanie ekranu"
 
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr "Dozwolone obroty ekanu"
+
 #: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>n/d</invisible>"
@@ -83,6 +98,17 @@ msgstr "Włącz"
 #: src/setup.c:102
 msgid "Sound"
 msgstr "Dźwięk"
+
+#.
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#.
+#: src/setup.c:127
+#, fuzzy
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "Język <inactive>/ Language</inactive>"
 
 #: src/setup.c:134
 msgid "Clock setup"
@@ -116,27 +142,6 @@ msgstr "0 → 90 → 180 → 270 → 0"
 msgid "Select screen rotation type"
 msgstr "Wybierz rodzaj obrotu ekranu"
 
-#. TRANSLATORS: Please make this menu string two-language: 'Setup(in
-#. English) / Setup(localized)'. This will allow users to reset language
-#. if current language is unknown to them (or translation is broken due
-#. to some reason, like lack of font).
-#. 
-#: src/gm.c:52
+#: src/graph.c:132
 msgid "Setup"
-msgstr "Setup / Ustawienia"
-
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
-#. 
-#: src/setup.c:127
-msgid "Language"
-msgstr "Language / Język"
-
-#: src/setup.c:87
-msgid "Screen rotation type"
-msgstr "Dozwolone obroty ekanu"
-
-#~ msgid "No book is open"
-#~ msgstr "Nie otwarto książki"
+msgstr "Ustawienia"

@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-08-24 03:37+0700\n"
-"PO-Revision-Date: 2009-06-26 10:32+0200\n"
+"POT-Creation-Date: 2009-09-19 03:46+0700\n"
+"PO-Revision-Date: 2009-09-19 03:57+0700\n"
 "Last-Translator: Anrdás Csehi <acsehi@gmail.com>\n"
 "Language-Team: Hungarian\n"
 "MIME-Version: 1.0\n"
@@ -15,32 +15,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/gm.c:39
+#: src/gm.c:49
 msgid "Current book"
 msgstr "Aktuális könyv"
 
 #. Special
-#: src/gm.c:40
+#: src/gm.c:50 src/graph.c:124
 msgid "Library"
 msgstr "Könyvtár"
 
-#: src/gm.c:41
+#: src/gm.c:51 src/graph.c:125
 msgid "Images"
 msgstr "Képek"
 
-#: src/gm.c:42
+#: src/gm.c:52 src/graph.c:127
 msgid "Audio"
 msgstr "Audio"
 
-#: src/gm.c:43
+#: src/gm.c:53 src/graph.c:130
 msgid "Games"
 msgstr "Játékok"
 
-#: src/gm.c:44
+#: src/gm.c:54 src/graph.c:131
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: src/gm.c:124
+#.
+#. TRANSLATORS: Please make this menu string two-language:
+#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
+#. allow users to reset language if current language is unknown to them
+#. (or translation is broken due to some reason, like lack of font).
+#.
+#: src/gm.c:62
+#, fuzzy
+msgid "Setup <inactive>/ Setup</inactive>"
+msgstr "Beállítás <inactive>/ Setup</inactive>"
+
+#: src/gm.c:134 src/graph.c:188
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>Nincs megnyitott könyv</inactive>"
 
@@ -90,9 +101,23 @@ msgstr "BE"
 msgid "Sound"
 msgstr "Hangok"
 
+#.
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#.
+#: src/setup.c:127
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "Nyelv <inactive>/ Language</inactive>"
+
 #: src/setup.c:134
 msgid "Clock setup"
 msgstr "Óra beállítása"
+
+#: src/setup.c:183
+msgid "Settings"
+msgstr "Beállítások"
 
 #: src/rotation.c:28
 msgid "Disabled"
@@ -118,27 +143,6 @@ msgstr "0 → 90 → 180 → 270 → 0"
 msgid "Select screen rotation type"
 msgstr "Válassza ki a képernyő elforgatásának típusát"
 
-#. TRANSLATORS: Please make this menu string two-language: 'Setup(in
-#. English) / Setup(localized)'. This will allow users to reset language
-#. if current language is unknown to them (or translation is broken due
-#. to some reason, like lack of font).
-#. 
-#: src/gm.c:52
+#: src/graph.c:132
 msgid "Setup"
-msgstr "Setup / Beállítás"
-
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
-#. 
-#: src/setup.c:127
-msgid "Language"
-msgstr "Language / Nyelv"
-
-#: src/setup.c:183
-msgid "Settings"
-msgstr "Beállítások"
-
-#~ msgid "No book is open"
-#~ msgstr "Nincs könyv megnyitva"
+msgstr "Beállítás"

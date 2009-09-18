@@ -1,13 +1,13 @@
 # translation of gm.po to French
 # This file is put in the public domain.
-# 
+#
 # Louvre <diogenedebian@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gm\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-08-24 03:37+0700\n"
-"PO-Revision-Date: 2009-06-26 15:22+0200\n"
+"POT-Creation-Date: 2009-09-19 03:46+0700\n"
+"PO-Revision-Date: 2009-09-19 03:57+0700\n"
 "Last-Translator: Louvre <diogenedebian@gmail.com>\n"
 "Language-Team: French <openinkpot-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -15,32 +15,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: src/gm.c:39
+#: src/gm.c:49
 msgid "Current book"
 msgstr "Livre actuel"
 
 #. Special
-#: src/gm.c:40
+#: src/gm.c:50 src/graph.c:124
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: src/gm.c:41
+#: src/gm.c:51 src/graph.c:125
 msgid "Images"
 msgstr "Images"
 
-#: src/gm.c:42
+#: src/gm.c:52 src/graph.c:127
 msgid "Audio"
 msgstr "Audio"
 
-#: src/gm.c:43
+#: src/gm.c:53 src/graph.c:130
 msgid "Games"
 msgstr "Jeux"
 
-#: src/gm.c:44
+#: src/gm.c:54 src/graph.c:131
 msgid "Applications"
 msgstr "Utilitaires"
 
-#: src/gm.c:124
+#.
+#. TRANSLATORS: Please make this menu string two-language:
+#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
+#. allow users to reset language if current language is unknown to them
+#. (or translation is broken due to some reason, like lack of font).
+#.
+#: src/gm.c:62
+msgid "Setup <inactive>/ Setup</inactive>"
+msgstr "Configurer <inactive>/ Setup</inactive>"
+
+#: src/gm.c:134 src/graph.c:188
 #, fuzzy
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>N/A</inactive>"
@@ -89,6 +99,16 @@ msgstr "ON"
 msgid "Sound"
 msgstr "Son"
 
+#.
+#. TRANSLATORS: Please make this menu string two-language: 'Language(in
+#. English) / Language(localized)'. This will allow users to reset language
+#. if current language is unknown to them translation is broken due to some
+#. reason, like lack of font).
+#.
+#: src/setup.c:127
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "Langue <inactive>/ Language</inactive>"
+
 #: src/setup.c:134
 msgid "Clock setup"
 msgstr "Configurer l'horloge"
@@ -121,23 +141,6 @@ msgstr ""
 msgid "Select screen rotation type"
 msgstr ""
 
-#. TRANSLATORS: Please make this menu string two-language: 'Setup(in
-#. English) / Setup(localized)'. This will allow users to reset language
-#. if current language is unknown to them (or translation is broken due
-#. to some reason, like lack of font).
-#. 
-#: src/gm.c:52
+#: src/graph.c:132
 msgid "Setup"
-msgstr "Setup / Configurer"
-
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
-#. 
-#: src/setup.c:127
-msgid "Language"
-msgstr "Language / Langue"
-
-#~ msgid "No book is open"
-#~ msgstr "Aucun livre n'est ouvert"
+msgstr "Configurer"
