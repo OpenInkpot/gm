@@ -1,3 +1,11 @@
+gm (0.2-9) asimov; urgency=low
+
+  * Fix author/series info remaining in the graphical menu after closing a
+    book (OI#503).
+  * Translations updated: German.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 21 Sep 2009 22:06:38 +0700
+
 gm (0.2-8) asimov; urgency=low
 
   * De-duplicate 'Setup' and 'Language' strings in order to fix graphical
