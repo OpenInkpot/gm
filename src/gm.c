@@ -197,7 +197,8 @@ static void run()
    ecore_evas_name_class_set(main_win, "GM", "GM");
 
    Evas* main_canvas = ecore_evas_get(main_win);
-   ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
+   if(getenv("GM_APPS_CLEANUP_ENABLE"))
+       ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
