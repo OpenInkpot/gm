@@ -85,7 +85,6 @@ static void apps_handler(Evas_Object* choicebox __attribute__((unused)),
     if (!desktop)
         return;
     efreet_desktop_exec(desktop, NULL, NULL);
-//    choicebox_pop(choicebox);
 }
 
 void run_desktop_files(Evas *canvas, const char * path, const char * category) {

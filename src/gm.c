@@ -47,44 +47,44 @@ void stub(Evas * e __attribute__((unused))) {
 };
 
 struct main_menu_item main_menu[] = {
-        {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special
-        {_("Library"), &gm_run_madshelf_books,  "set-icon-lib" },
-        {_("Images"), &gm_run_madshelf_images,  "set-icon-photo"},
-        {_("Audio"), &gm_run_madshelf_audio, "set-icon-phono"},
-        {_("Games"), &gm_run_games , "set-icon-games"},
-        {_("Applications"), &gm_run_applications, "set-icon-apps"},
+    {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special
+    {_("Library"), &gm_run_madshelf_books,  "set-icon-lib" },
+    {_("Images"), &gm_run_madshelf_images,  "set-icon-photo"},
+    {_("Audio"), &gm_run_madshelf_audio, "set-icon-phono"},
+    {_("Games"), &gm_run_games , "set-icon-games"},
+    {_("Applications"), &gm_run_applications, "set-icon-apps"},
 
-        /*
-          TRANSLATORS: Please make this menu string two-language:
-          'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
-          allow users to reset language if current language is unknown to them
-          (or translation is broken due to some reason, like lack of font).
-        */
-        {_("Setup <inactive>/ Setup</inactive>"), &settings_menu, "set-icon-setup"},
+    /*
+      TRANSLATORS: Please make this menu string two-language:
+      'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
+      allow users to reset language if current language is unknown to them
+      (or translation is broken due to some reason, like lack of font).
+    */
+    {_("Setup <inactive>/ Setup</inactive>"), &settings_menu, "set-icon-setup"},
 };
 
 #define MAIN_MENU_SIZE (sizeof(main_menu)/sizeof(main_menu[0]))
 
 static void die(const char* fmt, ...)
 {
-   va_list ap;
-   va_start(ap, fmt);
-   vfprintf(stderr, fmt, ap);
-   va_end(ap);
-   exit(EXIT_FAILURE);
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(stderr, fmt, ap);
+    va_end(ap);
+    exit(EXIT_FAILURE);
 }
 
 static int exit_handler(void* param __attribute__((unused)),
                         int ev_type __attribute__((unused)),
                         void* event __attribute__((unused)))
 {
-   ecore_main_loop_quit();
-   return 1;
+    ecore_main_loop_quit();
+    return 1;
 }
 
 static void main_win_close_handler(Ecore_Evas* main_win __attribute__((unused)))
 {
-   ecore_main_loop_quit();
+    ecore_main_loop_quit();
 }
 
 static void main_win_focus_in_handler(Ecore_Evas* main_win)
@@ -92,9 +92,7 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
     Evas *canvas = ecore_evas_get(main_win);
     Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
     if(choicebox)
-    {
         choicebox_invalidate_item(choicebox, 0);
-    }
     gm_graphics_show_book(canvas);
     gm_apps_cleanup(main_win);
 }
@@ -151,20 +149,20 @@ void main_menu_handler(Evas_Object* choicebox __attribute__((unused)),
                     bool is_alt __attribute__((unused)),
                     void* param)
 {
-   main_menu[item_num].execute(param);
+    main_menu[item_num].execute(param);
 }
 
 static void main_win_resize_handler(Ecore_Evas* main_win)
 {
-   Evas* canvas = ecore_evas_get(main_win);
-   int w, h;
-   evas_output_size_get(canvas, &w, &h);
+    Evas* canvas = ecore_evas_get(main_win);
+    int w, h;
+    evas_output_size_get(canvas, &w, &h);
 
-   eoi_process_resize(main_win);
+    eoi_process_resize(main_win);
 
-   Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
-   evas_object_resize(main_canvas_edje, w, h);
-   gm_graphics_resize(canvas, w, h);
+    Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
+    evas_object_resize(main_canvas_edje, w, h);
+    gm_graphics_resize(canvas, w, h);
 }
 
 
@@ -190,46 +188,45 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 
 static void run()
 {
+    Ecore_Evas* main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+    gm_socket_server_start(main_win, "gm");
+    ecore_evas_title_set(main_win, "GM");
+    ecore_evas_name_class_set(main_win, "GM", "GM");
 
-   Ecore_Evas* main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
-   gm_socket_server_start(main_win, "gm");
-   ecore_evas_title_set(main_win, "GM");
-   ecore_evas_name_class_set(main_win, "GM", "GM");
+    Evas* main_canvas = ecore_evas_get(main_win);
+    if(getenv("GM_APPS_CLEANUP_ENABLE"))
+        ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
+    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
+    evas_object_name_set(main_canvas_edje, "main_canvas_edje");
+    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
+    gm_init_clock_and_battery(main_canvas_edje, main_canvas);
+    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
+    edje_object_part_text_set(main_canvas_edje, "footer", "");
+    edje_object_part_text_set(main_canvas_edje, "path", "");
+    evas_object_move(main_canvas_edje, 0, 0);
+    evas_object_resize(main_canvas_edje, 600, 800);
 
-   Evas* main_canvas = ecore_evas_get(main_win);
-   if(getenv("GM_APPS_CLEANUP_ENABLE"))
-       ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
-   Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
-   evas_object_name_set(main_canvas_edje, "main_canvas_edje");
-   edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
-   gm_init_clock_and_battery(main_canvas_edje, main_canvas);
-   edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
-   edje_object_part_text_set(main_canvas_edje, "footer", "");
-   edje_object_part_text_set(main_canvas_edje, "path", "");
-   evas_object_move(main_canvas_edje, 0, 0);
-   evas_object_resize(main_canvas_edje, 600, 800);
+    gm_graphics_init(main_canvas);
 
-   gm_graphics_init(main_canvas);
-
-   Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
+    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
         main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, 1, main_canvas);
-   if(!choicebox) {
+    if(!choicebox) {
         printf("no choicebox\n");
         return;
-   }
+    }
 
-   evas_object_event_callback_add(choicebox,
-                                  EVAS_CALLBACK_KEY_UP,
-                                  &main_win_key_handler,
-                                  main_canvas);
+    evas_object_event_callback_add(choicebox,
+                                   EVAS_CALLBACK_KEY_UP,
+                                   &main_win_key_handler,
+                                   main_canvas);
 
-   ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
-   ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
+    ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
+    ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
 
-   evas_object_show(main_canvas_edje);
-   ecore_evas_show(main_win);
+    evas_object_show(main_canvas_edje);
+    ecore_evas_show(main_win);
 
-   ecore_main_loop_begin();
+    ecore_main_loop_begin();
 }
 
 static
@@ -239,38 +236,38 @@ void exit_all(void* param __attribute__((unused))) {
 
 int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 {
-   setlocale(LC_ALL, "");
-   textdomain("gm");
-   if(!init_langs())
-      die("Unable to init langs\n");
-   if(!evas_init())
-      die("Unable to initialize Evas\n");
-   if(!ecore_init())
-      die("Unable to initialize Ecore\n");
-   if(!ecore_evas_init())
-      die("Unable to initialize Ecore_Evas\n");
-   if(!edje_init())
-      die("Unable to initialize Edje\n");
-   if(!efreet_init())
-      die("Unable to initialize Efreet\n");
-   if(!ecore_con_init())
-      die("Unable to initialize Ecore_Con\n");
+    setlocale(LC_ALL, "");
+    textdomain("gm");
+    if(!init_langs())
+        die("Unable to init langs\n");
+    if(!evas_init())
+        die("Unable to initialize Evas\n");
+    if(!ecore_init())
+        die("Unable to initialize Ecore\n");
+    if(!ecore_evas_init())
+        die("Unable to initialize Ecore_Evas\n");
+    if(!edje_init())
+        die("Unable to initialize Edje\n");
+    if(!efreet_init())
+        die("Unable to initialize Efreet\n");
+    if(!ecore_con_init())
+        die("Unable to initialize Ecore_Con\n");
 
-   ecore_x_io_error_handler_set(exit_all, NULL);
-   ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
+    ecore_x_io_error_handler_set(exit_all, NULL);
+    ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
-   run();
+    run();
 
-   keys_free(_gm_keys);
+    keys_free(_gm_keys);
 
-   gm_socket_server_stop();
+    gm_socket_server_stop();
 
-   ecore_con_shutdown();
-   efreet_shutdown();
-   edje_shutdown();
-   ecore_evas_shutdown();
-   ecore_shutdown();
-   evas_shutdown();
-   shutdown_langs();
-   return 0;
+    ecore_con_shutdown();
+    efreet_shutdown();
+    edje_shutdown();
+    ecore_evas_shutdown();
+    ecore_shutdown();
+    evas_shutdown();
+    shutdown_langs();
+    return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef _RAISE_H
-#define _RAISE_H 1
+#ifndef RAISE_H
+#define RAISE_H
 
 #include <Evas.h>
 #include <Ecore_X.h>
