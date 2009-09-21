@@ -186,6 +186,8 @@ gm_graphics_show_book(Evas *evas) {
         } else {
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("<inactive>No book is open</inactive>"));
+            edje_object_part_text_set(edje, "caption_author", "");
+            edje_object_part_text_set(edje, "caption_series", "");
         }
     }
 }
