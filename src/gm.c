@@ -25,6 +25,7 @@
 #include "raise.h"
 #include "run.h"
 #include "setup.h"
+#include "apps_cleanup.h"
 
 static keys_t* _gm_keys;
 
@@ -95,6 +96,7 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
         choicebox_invalidate_item(choicebox, 0);
     }
     gm_graphics_show_book(canvas);
+    gm_apps_cleanup(main_win);
 }
 
 static void draw_handler(Evas_Object* choicebox __attribute__((unused)),

@@ -46,9 +46,8 @@ gm_get_atom(const char *name)
     return atom;
 }
 
-static
 Ecore_X_Window
-gm_get_fbreader()
+gm_get_active_document_window()
 {
     xcb_get_property_cookie_t cookie;
     xcb_atom_t active_doc_window_id = gm_get_atom("ACTIVE_DOC_WINDOW_ID");
@@ -99,7 +98,7 @@ bad:
 void
 raise_fbreader(Evas * e __attribute__((unused)))
 {
-    Ecore_X_Window fbreader = gm_get_fbreader();
+    Ecore_X_Window fbreader = gm_get_active_document_window();
     if (fbreader)
     {
         printf("Raising\n");
@@ -211,7 +210,7 @@ bad:
 struct bookinfo_t *
 gm_get_titles()
 {
-    Ecore_X_Window fbreader = gm_get_fbreader();
+    Ecore_X_Window fbreader = gm_get_active_document_window();
     xcb_connection_t *conn = gm_connection_get();
     struct bookinfo_t *titles = calloc(sizeof(struct bookinfo_t), 1);
     if(!titles)

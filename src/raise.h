@@ -2,7 +2,7 @@
 #define _RAISE_H 1
 
 #include <Evas.h>
-
+#include <Ecore_X.h>
 
 struct bookinfo_t {
     char *author;
@@ -25,5 +25,7 @@ gm_free_titles(struct bookinfo_t *titles);
 
 extern void
 raise_fbreader(Evas * e);
+
+Ecore_X_Window gm_get_active_document_window();
 
 #endif

@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/gm
+GM_APPS_CLEANUP_ENABLE=1 exec /usr/bin/gm
