@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-09-24 18:50+0200\n"
+"POT-Creation-Date: 2009-09-25 01:28+0700\n"
 "PO-Revision-Date: 2009-09-19 03:57+0700\n"
 "Last-Translator: Louvre <diogenedebian@gmail.com>\n"
 "Language-Team: French <openinkpot-l10n@googlegroups.com>\n"
@@ -100,10 +100,10 @@ msgid "Sound"
 msgstr "Son"
 
 #.
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
+#. TRANSLATORS: Please make this menu string two-language: 'Language
+#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
+#. users to reset language if current language is unknown to them translation
+#. is broken due to some reason, like lack of font).
 #.
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
