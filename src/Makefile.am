@@ -1,7 +1,7 @@
 bin_PROGRAMS = gm
 gm_SOURCES = gm.c apps.c choices.c sock.c setup.c lang.c sound_control.c \
     screen_update_control.c raise.c clock.c battery.c rotation.c \
-	graph.c run.c apps_cleanup.c
+	graph.c run.c apps_cleanup.c help.c
 
 AM_CFLAGS = --std=gnu99 -W -Wall -Werror \
     -DTHEME_DIR='"$(pkgdatadir)/themes/"'

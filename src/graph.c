@@ -15,6 +15,7 @@
 #include "run.h"
 #include "raise.h"
 #include "setup.h"
+#include "help.h"
 
 static void
 gm_graphics_show_captions(Evas_Object *edje);
@@ -115,6 +116,8 @@ static void _keys_handler(void* param __attribute__((unused)),
         gm_graphics_hide(e);
         settings_menu(e);
     }
+    else if(!strcmp(action, "Help"))
+        help_show(e);
     else
         printf("Don't know how to handle action '%s'\n", action);
 }

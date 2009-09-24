@@ -26,6 +26,7 @@
 #include "run.h"
 #include "setup.h"
 #include "apps_cleanup.h"
+#include "help.h"
 
 static keys_t* _gm_keys;
 
@@ -163,6 +164,8 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
     Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
     evas_object_resize(main_canvas_edje, w, h);
     gm_graphics_resize(canvas, w, h);
+
+    help_resize(canvas, w, h);
 }
 
 
@@ -184,6 +187,8 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 
     if(action && !strcmp(action, "GraphicalMenu"))
         gm_graphics_activate(e);
+    else if(action && !strcmp(action, "Help"))
+        help_show(e);
 }
 
 static void run()
