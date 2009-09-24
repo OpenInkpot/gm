@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
@@ -40,17 +40,6 @@ msgstr "Játékok"
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#.
-#. TRANSLATORS: Please make this menu string two-language:
-#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
-#. allow users to reset language if current language is unknown to them
-#. (or translation is broken due to some reason, like lack of font).
-#.
-#: src/gm.c:62
-#, fuzzy
-msgid "Setup <inactive>/ Setup</inactive>"
-msgstr "Beállítás <inactive>/ Setup</inactive>"
-
 #: src/gm.c:134 src/graph.c:188
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive>Nincs megnyitott könyv</inactive>"
@@ -58,11 +47,6 @@ msgstr "<inactive>Nincs megnyitott könyv</inactive>"
 #: src/setup.c:33
 msgid "Version"
 msgstr "Verzió"
-
-#: src/setup.c:56
-#, fuzzy
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>Nem elérhető</inactive>"
 
 #: src/setup.c:57
 msgid "Full"
@@ -84,11 +68,6 @@ msgstr "Képernyő frissítése"
 msgid "Screen rotation type"
 msgstr "Képernyő elforgatás típusa"
 
-#: src/setup.c:93
-#, fuzzy
-msgid "<invisible>N/A</invisible>"
-msgstr "<invisible>Nem elérhető</invisible>"
-
 #: src/setup.c:94
 msgid "OFF"
 msgstr "KI"
@@ -101,12 +80,11 @@ msgstr "BE"
 msgid "Sound"
 msgstr "Hangok"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language(in
 #. English) / Language(localized)'. This will allow users to reset language
 #. if current language is unknown to them translation is broken due to some
 #. reason, like lack of font).
-#.
+#. 
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Nyelv <inactive>/ Language</inactive>"
@@ -146,3 +124,20 @@ msgstr "Válassza ki a képernyő elforgatásának típusát"
 #: src/graph.c:132
 msgid "Setup"
 msgstr "Beállítás"
+
+#. TRANSLATORS: Please make this menu string two-language:
+#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
+#. allow users to reset language if current language is unknown to them
+#. (or translation is broken due to some reason, like lack of font).
+#. 
+#: src/gm.c:62
+msgid "Setup <inactive>/ Setup</inactive>"
+msgstr "Beállítások <inactive>/ Setup</inactive>"
+
+#: src/setup.c:56
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>N/A</inactive>"
+
+#: src/setup.c:93
+msgid "<invisible>N/A</invisible>"
+msgstr "<invisible>N/A</invisible>"
