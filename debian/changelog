@@ -1,3 +1,10 @@
+gm (0.2-12) asimov; urgency=low
+
+  * Add Help
+  * merge translations
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Thu, 24 Sep 2009 18:59:16 +0200
+
 gm (0.2-11) asimov; urgency=low
 
   * Fixed ecore dependency which led to uninstallable package.
