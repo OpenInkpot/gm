@@ -119,10 +119,10 @@ static void
 language_draw(Evas_Object *item)
 {
     /*
-      TRANSLATORS: Please make this menu string two-language: 'Language(in
-      English) / Language(localized)'. This will allow users to reset language
-      if current language is unknown to them translation is broken due to some
-      reason, like lack of font).
+      TRANSLATORS: Please make this menu string two-language: 'Language
+      (localized) <inactive>/ Language(in English)</inactive>'. This will allow
+      users to reset language if current language is unknown to them translation
+      is broken due to some reason, like lack of font).
     */
     edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
     edje_object_part_text_set(item, "value", current_lang());
