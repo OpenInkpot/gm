@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-09-19 03:46+0700\n"
+"POT-Creation-Date: 2009-09-24 18:50+0200\n"
 "PO-Revision-Date: 2009-09-19 03:55+0700\n"
 "Last-Translator: ben1981 <ben1981@centrum.cz>\n"
 "Language-Team: Czech <openinkpot-l10n@googlegroups.com>\n"
@@ -14,28 +14,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gm.c:49
+#: src/gm.c:51
 msgid "Current book"
 msgstr "Aktuální kniha"
 
 #. Special
-#: src/gm.c:50 src/graph.c:124
+#: src/gm.c:52 src/graph.c:127
 msgid "Library"
 msgstr "Knihovna"
 
-#: src/gm.c:51 src/graph.c:125
+#: src/gm.c:53 src/graph.c:128
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/gm.c:52 src/graph.c:127
+#: src/gm.c:54 src/graph.c:130
 msgid "Audio"
 msgstr "Hudba"
 
-#: src/gm.c:53 src/graph.c:130
+#: src/gm.c:55 src/graph.c:133
 msgid "Games"
 msgstr "Hry"
 
-#: src/gm.c:54 src/graph.c:131
+#: src/gm.c:56 src/graph.c:134
 msgid "Applications"
 msgstr "Aplikace"
 
@@ -45,11 +45,11 @@ msgstr "Aplikace"
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
 #.
-#: src/gm.c:62
+#: src/gm.c:64
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Nastavení <inactive>/ Setup</inactive>"
 
-#: src/gm.c:134 src/graph.c:188
+#: src/gm.c:135 src/graph.c:191
 msgid "<inactive>No book is open</inactive>"
 msgstr "<inactive> Žádná kniha není otevřena </inactive>"
 
@@ -139,6 +139,10 @@ msgstr "0 → 90 → 180 → 270 → 0"
 msgid "Select screen rotation type"
 msgstr "Vybrat typ otáčení obrazovky "
 
-#: src/graph.c:132
+#: src/graph.c:135
 msgid "Setup"
 msgstr "Nastavení"
+
+#: src/help.c:44
+msgid "GM: Help"
+msgstr ""
