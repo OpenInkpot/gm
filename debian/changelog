@@ -1,3 +1,13 @@
+gm (0.2-13) asimov; urgency=low
+
+  * Newer etimetool requires --update-clock option to actually set the
+    clock.
+  * Translations added: Belarusian
+  * Help added: Ukrainian
+  * Help updated: Russian
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 28 Sep 2009 04:37:52 +0700
+
 gm (0.2-12) asimov; urgency=low
 
   * Add Help
