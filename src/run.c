@@ -33,7 +33,7 @@ gm_run_madshelf_audio(Evas * e __attribute__((unused))) {
 
 void
 gm_run_etimetool(Evas *e __attribute__((unused))) {
-    run_subshell("/usr/bin/etimetool");
+    run_subshell("/usr/bin/etimetool --update-clock");
 };
 
 void
