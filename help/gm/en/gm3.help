@@ -1,7 +1,9 @@
-<h2>Фонотека:</h2>
-<p>Открывает папки и файлы, которые хранятся во внутренней памяти устройства и на карте памяти. Отображаются только аудио файлы поддерживаемых форматов и папки, которые их содержат. Для навигации по фонотеке используйте кнопки джойстика или программируемые кнопки «1-9». Для перехода между страницами фонотеки воспользуйтесь кнопками джойстика влево/вправо. Для открытия необходимого файла нажмите соответствующую ему цифровую кнопку; или выберите файл с помощью джойстика и нажмите кнопку «ОК».</p> 
-<p>Для возврата в предыдущее меню воспользуйтесь кнопкой «С».</p>
-<p>Для возврата в главное меню нажмите кнопку «MENU».</p>
-<p>Для изменения ориентации страницы (портретная/ландшафтная) нажмите кнопку «Поворот страницы», расположенную в нижней части устройства.</p>
-<p>Для вызова справки нажмите кнопку «0». Нажав кнопку «М» можно вызвать меню книжной полки.</p>
-<p>Можете просмотреть последние открываемые Вами файлы, перейдя в пункт меню «История». При переходе в пункт меню «Избранное» можно просмотреть Ваши избранные файлы. </p>
+<h2>Audio:</h2>
+
+<p>Displays directories and files stored on memory card and internal storage of the device. Displays only audio files of the supported formats and directories, where they are located. For navigation use joystick buttons or programmable “1-9” buttons.  To navigate between the pages of the bookshelf use a joystick buttons left/right. To open desired file, press the appropriate number button, or select the file with the joystick and then press “OK” button.</p>
+<p>To return to the previous menu, press “С” button.</p>
+<p>To return to the main menu, press “MENU” button.</p>
+<p>To change the screen orientation (portrait/landscape), press “Rotate” button in the lower left bottom side of the device. </p>
+<p>To call help, press “0” button.</p>
+<p>You can call bookshelf menu if you press “М” button.</p>
+<p>To open the previously displayed files, proceed to the “Recent files” menu. In the “Favorites” menu the list of the previously added files to favorites are displayed.</p>
