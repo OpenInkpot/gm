@@ -49,11 +49,6 @@ msgstr "Utilitaires"
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurer <inactive>/ Setup</inactive>"
 
-#: src/gm.c:134 src/graph.c:188
-#, fuzzy
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>N/A</inactive>"
-
 #: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>N/A</inactive>"
@@ -142,3 +137,7 @@ msgstr "Désactivé"
 #: src/rotation.c:93
 msgid "Select screen rotation type"
 msgstr "Choisir le type de rotation de l'écran"
+
+#: src/gm.c:134 src/graph.c:188
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Aucun livre ouvert</inactive>"
