@@ -125,10 +125,6 @@ msgstr "设置"
 msgid "Library"
 msgstr "书架"
 
-#: src/setup.c:57
-msgid "Full"
-msgstr "完整"
-
 #: src/setup.c:59
 msgid "Partial"
 msgstr "部分"
@@ -140,3 +136,7 @@ msgstr "自适应"
 #: src/setup.c:66
 msgid "Screen update"
 msgstr "屏幕刷新"
+
+#: src/setup.c:57
+msgid "Full"
+msgstr "完全"
