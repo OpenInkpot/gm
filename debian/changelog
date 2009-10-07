@@ -1,3 +1,9 @@
+gm (0.2-15) asimov; urgency=low
+
+  * Updated translations: French, Chinese, Hungarian
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 07 Oct 2009 15:47:24 +0700
+
 gm (0.2-14) asimov; urgency=low
 
   * Add english help
