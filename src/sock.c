@@ -37,9 +37,12 @@ static int _client_del(void* param  __attribute__((unused)),
 
     printf("_client_del\n");
     /* Handle */
-   if(strlen(MSG_ACTIVATE) == msg->size && 
+   if(strlen(MSG_ACTIVATE) == msg->size &&
         !strncmp(MSG_ACTIVATE, msg->msg, msg->size))
-      ecore_evas_raise(main_win);
+    {
+        ecore_evas_show(main_win);
+        ecore_evas_raise(main_win);
+    }
 
     //printf(": %.*s(%d)\n", msg->size, msg->msg, msg->size);
 
@@ -60,12 +63,23 @@ static int _client_data(void* param  __attribute__((unused)),
 }
 
 void
-gm_socket_server_start(Ecore_Evas *ee, const char *name) 
+gm_socket_server_start(Ecore_Evas *ee, const char *name)
 {
    main_win = ee;
    server = ecore_con_server_add(ECORE_CON_LOCAL_USER, name, 0, NULL);
    if(!server)
-        printf("Can't setup server\n");
+   {
+        server = ecore_con_server_connect(ECORE_CON_LOCAL_USER, name, 0, NULL);
+        if(!server)
+        {
+           printf("Can't setup server\n");
+           return; /* FIXME: do I need to die here? */
+        }
+        ecore_con_server_send(server, MSG_ACTIVATE, strlen(MSG_ACTIVATE));
+        ecore_con_server_flush(server);
+        ecore_con_server_del(server);
+        exit(0); /* FIXME */
+    }
    ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_ADD, _client_add, NULL);
    ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_DATA, _client_data, NULL);
    ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_DEL, _client_del, NULL);
