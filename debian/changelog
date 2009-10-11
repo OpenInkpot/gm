@@ -1,8 +1,16 @@
-gm (0.2-15) asimov; urgency=low
+gm (0.2-16) UNRELEASED; urgency=low
 
   * Updated translations: French, Chinese, Hungarian
+  * Added help translations: Spanish, German, Chinese.
 
  -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 07 Oct 2009 15:47:24 +0700
+
+gm (0.2-15) asimov; urgency=low
+
+  * Don't run second instance of "gm", force already run copy to foreground
+  * Pop menu to top-level if we "activate" menu via socket
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Sun, 11 Oct 2009 08:22:02 +0300
 
 gm (0.2-14) asimov; urgency=low
 
