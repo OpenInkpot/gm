@@ -6,10 +6,11 @@
 #include <libeoi.h>
 #include "choices.h"
 #include "graph.h"
+#include "gm.h"
 
 #define DEFAULT_CHOICEBOX_THEME_FILE "/usr/share/choicebox/choicebox.edj"
 
-void
+bool
 choicebox_pop(Evas_Object *choicebox)
 {
     Evas_Object *parent;
@@ -18,7 +19,7 @@ choicebox_pop(Evas_Object *choicebox)
     parent = evas_object_data_get(choicebox, "parent");
     if(!parent){
         printf("Not parent\n");
-        return;
+        return false;
     }
     evas_object_hide(choicebox);
     edje_object_part_unswallow(main_canvas_edje,  choicebox);
@@ -30,7 +31,23 @@ choicebox_pop(Evas_Object *choicebox)
     evas_object_show(parent);
     Evas_Object *root = evas_object_name_find(canvas, "choicebox");
     if(root == parent)
+    {
         gm_graphics_conditional(canvas);
+        return false;
+    }
+    return true;
+}
+
+void
+gm_choicebox_raise_root(Evas* canvas)
+{
+    Evas_Object *main_edje = evas_object_name_find(canvas, "main_canvas_edje");
+    if(!main_edje)
+        printf("No main edje\n");
+    Evas_Object* box = edje_object_part_swallow_get(main_edje, "contents");
+    while(choicebox_pop(box))
+        box = edje_object_part_swallow_get(main_edje, "contents");
+
 }
 
 static

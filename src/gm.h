@@ -5,4 +5,6 @@
 
 keys_t* gm_keys();
 
+void gm_choicebox_raise_root(Evas*);
+
 #endif

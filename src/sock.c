@@ -4,6 +4,7 @@
 #include <Ecore_Con.h>
 #include <Ecore_Evas.h>
 #include "sock.h"
+#include "gm.h"
 
 #define MSG_ACTIVATE "Activate"
 
@@ -22,7 +23,7 @@ static int _client_add(void* param  __attribute__((unused)),
 {
     Ecore_Con_Event_Client_Add* e = ev;
     client_data_t* msg = malloc(sizeof(client_data_t));
-    printf("_client_add\n");
+//    printf("_client_add\n");
     msg->msg = strdup("");
     msg->size = 0;
     ecore_con_client_data_set(e->client, msg);
@@ -35,13 +36,15 @@ static int _client_del(void* param  __attribute__((unused)),
     Ecore_Con_Event_Client_Del* e = ev;
     client_data_t* msg = ecore_con_client_data_get(e->client);
 
-    printf("_client_del\n");
+//    printf("_client_del\n");
     /* Handle */
    if(strlen(MSG_ACTIVATE) == msg->size &&
         !strncmp(MSG_ACTIVATE, msg->msg, msg->size))
     {
         ecore_evas_show(main_win);
         ecore_evas_raise(main_win);
+        Evas* evas = ecore_evas_get(main_win);
+        gm_choicebox_raise_root(evas);
     }
 
     //printf(": %.*s(%d)\n", msg->size, msg->msg, msg->size);
