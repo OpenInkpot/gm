@@ -1,9 +1,9 @@
-gm (0.2-16) UNRELEASED; urgency=low
+gm (0.2-16) asimov; urgency=low
 
-  * Updated translations: French, Chinese, Hungarian
+  * Updated translations: French, Chinese, Hungaria, Bulgarian.
   * Added help translations: Spanish, German, Chinese.
 
- -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 07 Oct 2009 15:47:24 +0700
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sun, 18 Oct 2009 15:49:34 +0700
 
 gm (0.2-15) asimov; urgency=low
 
