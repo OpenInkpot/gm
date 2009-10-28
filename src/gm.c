@@ -95,7 +95,8 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
     if(choicebox)
         choicebox_invalidate_item(choicebox, 0);
     gm_graphics_show_book(canvas);
-    gm_apps_cleanup(main_win);
+    if(getenv("GM_APPS_CLEANUP_ENABLE"))
+        gm_apps_cleanup(main_win);
 }
 
 static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
@@ -199,8 +200,7 @@ static void run()
     ecore_evas_name_class_set(main_win, "GM", "GM");
 
     Evas* main_canvas = ecore_evas_get(main_win);
-    if(getenv("GM_APPS_CLEANUP_ENABLE"))
-        ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
+    ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
     Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
     evas_object_name_set(main_canvas_edje, "main_canvas_edje");
     edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
