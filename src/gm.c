@@ -268,6 +268,10 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 
     gm_socket_server_stop();
 
+    /* Keep valgrind happy */
+    edje_file_cache_set(0);
+    edje_collection_cache_set(0);
+
     ecore_con_shutdown();
     efreet_shutdown();
     edje_shutdown();
