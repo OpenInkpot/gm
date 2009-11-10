@@ -263,7 +263,8 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 
     run();
 
-    keys_free(_gm_keys);
+    if(_gm_keys)
+        keys_free(_gm_keys);
 
     gm_socket_server_stop();
 
