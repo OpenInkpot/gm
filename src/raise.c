@@ -108,8 +108,14 @@ raise_fbreader(Evas * e __attribute__((unused)))
 }
 
 
-char *
-gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
+/*
+    If save_size given -- will be string not terminated with zero, and
+    len will be stored in *save_size
+*/
+static char *
+gm_get_fb_string_internal(Ecore_X_Window win, xcb_connection_t *conn,
+                char *prop, xcb_atom_t atom_type,
+                int *save_size)
 {
     char *result = NULL;
     xcb_atom_t atom = gm_get_atom(prop);
@@ -118,20 +124,15 @@ gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
         printf("Can't get atom %s\n", prop);
         return NULL;
     }
-    xcb_atom_t utf8_string = gm_get_atom("UTF8_STRING");
-    if(!atom)
-    {
-        printf("Can't get atom UTF8_STRING\n");
-        return NULL;
-    }
     xcb_get_property_cookie_t cookie;
     cookie =  xcb_get_property_unchecked(conn, 0,
                 win,
                 atom,
-                utf8_string,
+                atom_type,
                 0L,
                 LONG_MAX);
     xcb_get_property_reply_t *reply = xcb_get_property_reply(conn, cookie, NULL);
+
     if (!reply)
     {
 //        printf("Not reply\n");
@@ -142,7 +143,7 @@ gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
 //       printf("XCB_NONE\n");
         goto bad;
     }
-    if (reply->type != utf8_string)
+    if (reply->type != atom_type)
     {
         printf("BAD TYPE\n");
         goto bad;
@@ -152,7 +153,10 @@ gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
     if(result)
     {
         memcpy(result, xcb_get_property_value(reply), len);
-        result[len]='\0';
+        if(save_size)
+            *save_size = len;
+        else
+            result[len]='\0';
         free(reply);
 //        printf("Got: %s = %s (%d)\n", prop, result, len);
         return result;
@@ -162,6 +166,31 @@ bad:
         free(result);
     free(reply);
     return NULL;
+}
+
+char *
+gm_get_fb_string(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
+{
+    xcb_atom_t utf8_string = gm_get_atom("UTF8_STRING");
+    if(!utf8_string)
+    {
+        printf("Can't get atom UTF8_STRING\n");
+        return NULL;
+    }
+    return gm_get_fb_string_internal(win, conn, prop, utf8_string, NULL);
+}
+
+char *
+gm_get_fb_string_blob(Ecore_X_Window win, xcb_connection_t *conn, char *prop,
+                int *save_size)
+{
+    xcb_atom_t atom_type = gm_get_atom("STRING");
+    if(!atom_type)
+    {
+        printf("Can't get atom STRING\n");
+        return NULL;
+    }
+    return gm_get_fb_string_internal(win, conn, prop, atom_type, save_size);
 }
 
 int
@@ -220,7 +249,10 @@ gm_get_titles()
     titles->filepath = gm_get_fb_string(fbreader, conn, "ACTIVE_DOC_FILEPATH");
     titles->series = gm_get_fb_string(fbreader, conn, "ACTIVE_DOC_SERIES");
     titles->title = gm_get_fb_string(fbreader, conn, "ACTIVE_DOC_TITLE");
-    titles->series_number = gm_get_fb_int(fbreader, conn, "ACTIVE_DOC_SERIES_NUMBER");
+    titles->series_number = gm_get_fb_int(fbreader, conn,
+                                        "ACTIVE_DOC_SERIES_NUMBER");
+    titles->cover_image = gm_get_fb_string_blob(fbreader, conn,
+                            "ACTIVE_DOC_COVER_IMAGE", &titles->cover_size);
     return titles;
 }
 
@@ -234,5 +266,6 @@ gm_free_titles(struct bookinfo_t *titles)
     free(titles->filepath);
     free(titles->series);
     free(titles->title);
+    free(titles->cover_image);
     free(titles);
 }

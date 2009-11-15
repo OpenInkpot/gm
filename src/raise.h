@@ -15,6 +15,8 @@ struct bookinfo_t {
     char *size;
     int current_position;
     int pages_count;
+    char *cover_image;
+    int cover_size;
 };
 
 extern struct bookinfo_t *

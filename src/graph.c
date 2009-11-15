@@ -1,11 +1,13 @@
 #define _GNU_SOURCE
 
-#include <stdio.h>
-#include <string.h>
 #include <ctype.h>
 #include <libintl.h>
 #include <locale.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 #include <Evas.h>
 #include <Edje.h>
@@ -42,6 +44,9 @@ gm_graphics_hide(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
+    Evas_Object * image = evas_object_name_find(evas, "cover_image");
+    if(image)
+        evas_object_del(image);
     evas_object_hide(edje);
     evas_object_show(main_edje);
     evas_object_focus_set(choicebox, 1);
@@ -169,30 +174,123 @@ gm_graphics_show_clock(Evas *evas) {
     }
 }
 
+
+static void
+gm_get_image_geom(const char* fn, int *iw, int *ih)
+{
+    Evas_Imaging_Image *im = evas_imaging_image_load(fn, NULL);
+    if(im) {
+        evas_imaging_image_size_get(im, iw, ih);
+        evas_imaging_image_free(im);
+    }
+    else
+        printf("Can't load %s\n", fn);
+}
+
+static const char *filename_pattern = "/tmp/gm-cover-image-XXXXXX";
+static char *filename = NULL;
+
+static void
+gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
+{
+    Evas_Object* image;
+    Evas_Object* design = evas_object_name_find(evas, "graphics");
+    image = evas_object_name_find(evas, "cover_image");
+    if(image)
+        evas_object_del(image);
+
+        if(filename)
+        {
+            unlink(filename);
+            free(filename);
+        }
+    if(bookinfo->cover_image)
+    {
+            printf("Create image object\n");
+            image = evas_object_image_add(evas);
+            evas_object_color_set(image, 0x55, 0x55, 0x55, 0xff);
+            evas_object_name_set(image, "cover_image");
+        filename = strdup(filename_pattern);
+        int fd = mkstemp(filename);
+        if(fd > 0)
+        {
+            printf("Writing %d bytes\n", bookinfo->cover_size);
+            int rc = write(fd, bookinfo->cover_image, bookinfo->cover_size);
+            close(fd);
+            if(rc == bookinfo->cover_size)
+            {
+                int x, y, w, h;
+                int iw, ih;
+                double ratio;
+                gm_get_image_geom(filename, &iw, &ih);
+                edje_object_part_geometry_get(design, "cover_image",
+                                                &x, &y, &w, &h);
+                printf("got %d %d %d %d\n", x, y, w, h);
+                w = w - x; h =  h - x;
+                printf("Fit %d %d to %d %d\n", iw, ih, w, h);
+                if ( ih > h)
+                {
+                    printf(" ih > h");
+                    ratio = (double) ih / (double) h;
+                    ih = h;  iw /= ratio;
+                }
+                else
+                {
+                    ratio = (double) iw / (double) w;
+                    iw = w; ih /= ratio;
+                }
+                printf("Calculated %d %d\n", iw, ih);
+                evas_object_stack_above(image, design);
+                evas_object_resize(image, iw, ih);
+                evas_object_move(image, x + (w - iw) /2 , y + (h-ih)/2);
+                evas_object_image_filled_set(image, 1);
+                evas_object_image_load_size_set(image, iw, ih);
+                evas_object_image_file_set(image, filename, NULL);
+                printf("loaded\n");
+                evas_object_show(image);
+//                edje_object_part_swallow(design, "cover_image", image);
+            }
+        }
+    }
+}
+
 void
 gm_graphics_show_book(Evas *evas) {
     char buf[256];
+    evas_event_freeze(evas);
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     if(_active) {
         struct bookinfo_t * bookinfo = gm_get_titles();
+        edje_object_part_text_set(edje, "caption_author", "");
+        edje_object_part_text_set(edje, "caption_author_picture", "");
+        edje_object_part_text_set(edje, "caption_series", "");
         if(bookinfo && bookinfo->title) {
-            edje_object_part_text_set(edje, "caption_title", bookinfo->title);
-            edje_object_part_text_set(edje, "caption_author",bookinfo->author);
-            if(bookinfo->series_number) {
-                snprintf(buf, 256, "%s #%d", bookinfo->series,
-                    bookinfo->series_number);
-                edje_object_part_text_set(edje, "caption_series", buf);
+            if(!bookinfo->cover_image)
+            {
+                edje_object_part_text_set(edje, "caption_title",
+                    bookinfo->title);
+                edje_object_part_text_set(edje, "caption_author",
+                    bookinfo->author);
+                if(bookinfo->series_number) {
+                    snprintf(buf, 256, "%s #%d", bookinfo->series,
+                        bookinfo->series_number);
+                    edje_object_part_text_set(edje, "caption_series", buf);
+                }
             }
             else
+            {
+                edje_object_part_text_set(edje, "caption_author_picture",
+                    bookinfo->title);
                 edje_object_part_text_set(edje, "caption_series",
-                    bookinfo->series);
+                    bookinfo->author);
+                gm_graphics_update_cover_image(bookinfo, evas);
+            }
         } else {
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("<inactive>No book is open</inactive>"));
-            edje_object_part_text_set(edje, "caption_author", "");
-            edje_object_part_text_set(edje, "caption_series", "");
         }
     }
+    evas_event_thaw(evas);
 }
 
 void

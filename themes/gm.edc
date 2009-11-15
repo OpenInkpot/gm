@@ -27,6 +27,10 @@ styles {
         base, "font=sans-serif font_size=24 color=#fff align=left";
     }
     style {
+        name, "book-info-small";
+        base, "font=sans-serif font_size=22 color=#fff align=left wrap=word";
+    }
+    style {
         name, "day";
         base, "font=sans-serif font_size=60 color=#000 align=middle";
     }
@@ -35,6 +39,18 @@ styles {
         base, "font=sans-serif font_size=40 color=#000 align=middle";
     }
 }
+
+#define COVER_IMAGE(x1, y1, x2, y2)                             \
+            part {                                              \
+               name, "cover_image";                             \
+               type, SWALLOW;                                   \
+               description {                                    \
+                  state, "default" 0.0;                         \
+                  rel1 { relative, 0.0 0.0; offset, x1 y1; }     \
+                  rel2 { relative, 0.0 0.0; offset, x2 y2; }   \
+               }                                                \
+            }
+
 
 collections {
     group {
@@ -292,6 +308,7 @@ collections {
             CAPTION("caption_setup", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
             CAPTION("caption_month", DAY_X1, 75, DAY_X2, 110)
 
+            COVER_IMAGE(16, 42, 282, 270);
             part {
                 name, "caption_author";
                 type, TEXTBLOCK;
@@ -300,6 +317,17 @@ collections {
                     text { style, "book-info"; }
                     rel1 { relative, 0.0 0.0; offset, 28 280; }
                     rel2 { relative, 0.0 0.0; offset, 276 361; }
+                }
+            }
+
+            part {
+                name, "caption_author_picture";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "book-info-small"; max, 0 1; }
+                    rel1 { relative, 0.0 0.0; offset, 28 258; }
+                    rel2 { relative, 0.0 0.0; offset, 276 355; }
                 }
             }
 
@@ -417,6 +445,7 @@ collections {
             CAPTION("caption_apps", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
             CAPTION("caption_setup", COL4_X1, ROW2_Y1, COL4_X2, ROW2_Y2)
 
+            COVER_IMAGE(16, 42, 380, 270);
             part {
                 name, "caption_author";
                 type, TEXTBLOCK;
