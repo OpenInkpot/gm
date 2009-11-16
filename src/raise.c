@@ -60,7 +60,7 @@ gm_get_active_document_window()
     Ecore_X_Window root = gm_root_get();
     Ecore_X_Window value = 0;
     xcb_connection_t *conn = gm_connection_get();
-    cookie =  xcb_get_property_unchecked(conn, 0,
+    cookie =  xcb_get_property(conn, 0,
                 root,
                 active_doc_window_id,
                 WINDOW,
@@ -125,7 +125,7 @@ gm_get_fb_string_internal(Ecore_X_Window win, xcb_connection_t *conn,
         return NULL;
     }
     xcb_get_property_cookie_t cookie;
-    cookie =  xcb_get_property_unchecked(conn, 0,
+    cookie =  xcb_get_property(conn, 0,
                 win,
                 atom,
                 atom_type,
@@ -210,7 +210,7 @@ gm_get_fb_int(Ecore_X_Window win, xcb_connection_t *conn, char *prop)
         return 0;
     }
     xcb_get_property_cookie_t cookie;
-    cookie =  xcb_get_property_unchecked(conn, 0,
+    cookie =  xcb_get_property(conn, 0,
                 win,
                 atom,
                 integer_atom,

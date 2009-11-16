@@ -263,9 +263,14 @@ int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
 
     run();
 
-    keys_free(_gm_keys);
+    if(_gm_keys)
+        keys_free(_gm_keys);
 
     gm_socket_server_stop();
+
+    /* Keep valgrind happy */
+    edje_file_cache_set(0);
+    edje_collection_cache_set(0);
 
     ecore_con_shutdown();
     efreet_shutdown();

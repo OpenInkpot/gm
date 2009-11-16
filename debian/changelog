@@ -1,3 +1,12 @@
+gm (0.2-18) asimov; urgency=low
+
+  * Fix rare error (if gm window was closed right after startup,
+    application crashed).
+  * Fix memory leak while reading active doc information
+  * Updated translations: Hungarian, Czech.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 11 Nov 2009 05:38:59 +0600
+
 gm (0.2-17) asimov; urgency=low
 
   * Redraw graphical menu (OI#579)
