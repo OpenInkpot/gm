@@ -28,7 +28,7 @@ styles {
     }
     style {
         name, "book-info-small";
-        base, "font=sans-serif font_size=22 color=#fff align=left wrap=word";
+        base, "font=sans-serif font_size=21 color=#fff align=left wrap=word";
     }
     style {
         name, "day";
@@ -320,14 +320,15 @@ collections {
                 }
             }
 
+            /* two line field with title on place of author line */
             part {
-                name, "caption_author_picture";
+                name, "caption_title_picture";
                 type, TEXTBLOCK;
                 description {
                     state, "default" 0.0;
                     text { style, "book-info-small"; max, 0 1; }
-                    rel1 { relative, 0.0 0.0; offset, 28 258; }
-                    rel2 { relative, 0.0 0.0; offset, 276 355; }
+                    rel1 { relative, 0.0 0.0; offset, 28 254; }
+                    rel2 { relative, 0.0 0.0; offset, 276 350; }
                 }
             }
 
@@ -337,6 +338,18 @@ collections {
                 description {
                     state, "default" 0.0;
                     text { style, "book-info"; max, 0 1; }
+                    align, 0.0 1.0;
+                    rel1 { relative, 0.0 0.0; offset, 28 272; }
+                    rel2 { relative, 0.0 0.0; offset, 276 349; }
+                }
+            }
+
+            part {
+                name, "caption_author_picture";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "book-info-small"; max, 0 1; }
                     align, 0.0 1.0;
                     rel1 { relative, 0.0 0.0; offset, 28 272; }
                     rel2 { relative, 0.0 0.0; offset, 276 349; }
@@ -458,11 +471,34 @@ collections {
             }
 
             part {
+                name, "caption_title_picture";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "book-info-small"; }
+                    rel1 { relative, 0.0 0.0; offset, 28 276; }
+                    rel2 { relative, 0.0 0.0; offset, 380 361; }
+                }
+            }
+
+            part {
                 name, "caption_series";
                 type, TEXTBLOCK;
                 description {
                     state, "default" 0.0;
                     text { style, "book-info"; max, 0 1; }
+                    align, 0.0 1.0;
+                    rel1 { relative, 0.0 0.0; offset, 28 268; }
+                    rel2 { relative, 0.0 0.0; offset, 380 355; }
+                }
+            }
+
+            part {
+                name, "caption_author_picture";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "book-info-small"; max, 0 1; }
                     align, 0.0 1.0;
                     rel1 { relative, 0.0 0.0; offset, 28 268; }
                     rel2 { relative, 0.0 0.0; offset, 380 355; }

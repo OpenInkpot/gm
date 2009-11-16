@@ -199,22 +199,20 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
     if(image)
         evas_object_del(image);
 
-        if(filename)
-        {
-            unlink(filename);
-            free(filename);
-        }
+    if(filename)
+    {
+        unlink(filename);
+        free(filename);
+    }
     if(bookinfo->cover_image)
     {
-            printf("Create image object\n");
-            image = evas_object_image_add(evas);
-            evas_object_color_set(image, 0x55, 0x55, 0x55, 0xff);
-            evas_object_name_set(image, "cover_image");
+        image = evas_object_image_add(evas);
+        evas_object_color_set(image, 0x55, 0x55, 0x55, 0xff);
+        evas_object_name_set(image, "cover_image");
         filename = strdup(filename_pattern);
         int fd = mkstemp(filename);
         if(fd > 0)
         {
-            printf("Writing %d bytes\n", bookinfo->cover_size);
             int rc = write(fd, bookinfo->cover_image, bookinfo->cover_size);
             close(fd);
             if(rc == bookinfo->cover_size)
@@ -225,12 +223,11 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
                 gm_get_image_geom(filename, &iw, &ih);
                 edje_object_part_geometry_get(design, "cover_image",
                                                 &x, &y, &w, &h);
-                printf("got %d %d %d %d\n", x, y, w, h);
+//                printf("got %d %d %d %d\n", x, y, w, h);
                 w = w - x; h =  h - x;
-                printf("Fit %d %d to %d %d\n", iw, ih, w, h);
+//                printf("Fit %d %d to %d %d\n", iw, ih, w, h);
                 if ( ih > h)
                 {
-                    printf(" ih > h");
                     ratio = (double) ih / (double) h;
                     ih = h;  iw /= ratio;
                 }
@@ -239,16 +236,14 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
                     ratio = (double) iw / (double) w;
                     iw = w; ih /= ratio;
                 }
-                printf("Calculated %d %d\n", iw, ih);
+//                printf("Calculated %d %d\n", iw, ih);
                 evas_object_stack_above(image, design);
                 evas_object_resize(image, iw, ih);
                 evas_object_move(image, x + (w - iw) /2 , y + (h-ih)/2);
                 evas_object_image_filled_set(image, 1);
                 evas_object_image_load_size_set(image, iw, ih);
                 evas_object_image_file_set(image, filename, NULL);
-                printf("loaded\n");
                 evas_object_show(image);
-//                edje_object_part_swallow(design, "cover_image", image);
             }
         }
     }
@@ -263,6 +258,7 @@ gm_graphics_show_book(Evas *evas) {
         struct bookinfo_t * bookinfo = gm_get_titles();
         edje_object_part_text_set(edje, "caption_author", "");
         edje_object_part_text_set(edje, "caption_author_picture", "");
+        edje_object_part_text_set(edje, "caption_title_picture", "");
         edje_object_part_text_set(edje, "caption_series", "");
         if(bookinfo && bookinfo->title) {
             if(!bookinfo->cover_image)
@@ -279,9 +275,9 @@ gm_graphics_show_book(Evas *evas) {
             }
             else
             {
-                edje_object_part_text_set(edje, "caption_author_picture",
+                edje_object_part_text_set(edje, "caption_title_picture",
                     bookinfo->title);
-                edje_object_part_text_set(edje, "caption_series",
+                edje_object_part_text_set(edje, "caption_author_picture",
                     bookinfo->author);
                 gm_graphics_update_cover_image(bookinfo, evas);
             }
