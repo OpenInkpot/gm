@@ -207,7 +207,7 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
     if(bookinfo->cover_image)
     {
         image = evas_object_image_add(evas);
-        evas_object_color_set(image, 0x55, 0x55, 0x55, 0xff);
+        evas_object_color_set(image, 0xff, 0xff, 0xff, 0xff);
         evas_object_name_set(image, "cover_image");
         filename = strdup(filename_pattern);
         int fd = mkstemp(filename);
@@ -256,12 +256,13 @@ gm_graphics_show_book(Evas *evas) {
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
     if(_active) {
         struct bookinfo_t * bookinfo = gm_get_titles();
+        edje_object_part_text_set(edje, "caption_title", "");
         edje_object_part_text_set(edje, "caption_author", "");
         edje_object_part_text_set(edje, "caption_author_picture", "");
         edje_object_part_text_set(edje, "caption_title_picture", "");
         edje_object_part_text_set(edje, "caption_series", "");
         if(bookinfo && bookinfo->title) {
-            if(!bookinfo->cover_image)
+            if(!bookinfo->cover_image || bookinfo->cover_size == 0)
             {
                 edje_object_part_text_set(edje, "caption_title",
                     bookinfo->title);
