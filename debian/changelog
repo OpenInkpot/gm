@@ -1,6 +1,7 @@
 gm (0.2-20) asimov; urgency=low
 
   * Fix cover image displaying
+  * Kill old app on ACTIVE_DOC_ID change
 
  -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Wed, 18 Nov 2009 20:02:59 +0200
 
