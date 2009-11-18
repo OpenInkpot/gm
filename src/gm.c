@@ -99,6 +99,35 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
         gm_apps_cleanup(main_win);
 }
 
+static int root_window_prop_change_handler(void* data,
+        int type __attribute__((unused)), void* event)
+{
+    static Ecore_X_Atom atom = 0;
+    static Ecore_X_Window prev_window = 0;
+    const char *atom_name = "ACTIVE_DOC_WINDOW_ID";
+
+    Ecore_X_Event_Window_Property *ev = event;
+    Ecore_X_Window root = (Ecore_X_Window)data;
+
+    if(atom == 0)
+    {
+        ecore_x_atom_get_prefetch(atom_name);
+        ecore_x_atom_get_fetch();
+        atom = ecore_x_atom_get(atom_name);
+    }
+
+    if(ev->win == root && ev->atom == atom)
+    {
+        Ecore_X_Window new_window = gm_get_active_document_window();
+        if(prev_window != new_window && prev_window > 0)
+            ecore_x_window_delete_request_send(prev_window);
+
+        prev_window = new_window;
+    }
+
+    return 1;
+}
+
 static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
                          Evas_Object* item,
                          int item_num,
@@ -230,6 +259,11 @@ static void run()
 
     evas_object_show(main_canvas_edje);
     ecore_evas_show(main_win);
+
+    Ecore_X_Window root = ecore_x_window_root_first_get();
+    ecore_x_event_mask_set(root, ECORE_X_EVENT_MASK_WINDOW_PROPERTY);
+    ecore_event_handler_add(ECORE_X_EVENT_WINDOW_PROPERTY,
+         root_window_prop_change_handler, (void *)root);
 
     ecore_main_loop_begin();
 }
