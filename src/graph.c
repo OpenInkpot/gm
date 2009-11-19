@@ -34,8 +34,8 @@ gm_graphics_show(Evas *evas) {
     Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
     evas_object_hide(main_edje);
     gm_graphics_show_clock(evas);
-    gm_graphics_show_book(evas);
     evas_object_show(edje);
+    gm_graphics_show_book(evas);
     evas_object_focus_set(edje, 1);
 }
 
@@ -254,7 +254,7 @@ gm_graphics_show_book(Evas *evas) {
     char buf[256];
     evas_event_freeze(evas);
     Evas_Object * edje = evas_object_name_find(evas, "graphics");
-    if(_active) {
+    if(_active && evas_object_visible_get(edje)) {
         struct bookinfo_t * bookinfo = gm_get_titles();
         edje_object_part_text_set(edje, "caption_title", "");
         edje_object_part_text_set(edje, "caption_author", "");
