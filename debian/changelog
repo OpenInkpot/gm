@@ -1,3 +1,9 @@
+gm (0.2-21) asimov; urgency=low
+
+  * Fix issue with "popping" image in settings menu
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Thu, 19 Nov 2009 13:55:37 +0200
+
 gm (0.2-20) asimov; urgency=low
 
   * Fix cover image displaying
