@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-09-19 03:46+0700\n"
+"POT-Creation-Date: 2009-09-25 01:28+0700\n"
 "PO-Revision-Date: 2009-09-19 03:57+0700\n"
 "Last-Translator: Louvre <diogenedebian@gmail.com>\n"
 "Language-Team: French <openinkpot-l10n@googlegroups.com>\n"
@@ -15,28 +15,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: src/gm.c:49
+#: src/gm.c:51
 msgid "Current book"
 msgstr "Livre actuel"
 
 #. Special
-#: src/gm.c:50 src/graph.c:124
+#: src/gm.c:52 src/graph.c:127
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: src/gm.c:51 src/graph.c:125
+#: src/gm.c:53 src/graph.c:128
 msgid "Images"
 msgstr "Images"
 
-#: src/gm.c:52 src/graph.c:127
+#: src/gm.c:54 src/graph.c:130
 msgid "Audio"
 msgstr "Audio"
 
-#: src/gm.c:53 src/graph.c:130
+#: src/gm.c:55 src/graph.c:133
 msgid "Games"
 msgstr "Jeux"
 
-#: src/gm.c:54 src/graph.c:131
+#: src/gm.c:56 src/graph.c:134
 msgid "Applications"
 msgstr "Utilitaires"
 
@@ -45,9 +45,17 @@ msgstr "Utilitaires"
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
 #. 
-#: src/gm.c:62
+#: src/gm.c:64
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurer <inactive>/ Setup</inactive>"
+
+#: src/gm.c:135 src/graph.c:191
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Aucun livre ouvert</inactive>"
+
+#: src/setup.c:33
+msgid "Version"
+msgstr "Version"
 
 #: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
@@ -65,6 +73,14 @@ msgstr "Adaptatif"
 msgid "Partial"
 msgstr "Partiel"
 
+#: src/setup.c:66
+msgid "Screen update"
+msgstr "Rafraîchissement de l'écran"
+
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr "Type de rotation de l'écran"
+
 #: src/setup.c:93
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>N/A</invisible>"
@@ -81,10 +97,10 @@ msgstr "ON"
 msgid "Sound"
 msgstr "Son"
 
-#. TRANSLATORS: Please make this menu string two-language: 'Language(in
-#. English) / Language(localized)'. This will allow users to reset language
-#. if current language is unknown to them translation is broken due to some
-#. reason, like lack of font).
+#. TRANSLATORS: Please make this menu string two-language: 'Language
+#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
+#. users to reset language if current language is unknown to them translation
+#. is broken due to some reason, like lack of font).
 #. 
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
@@ -98,21 +114,9 @@ msgstr "Configurer l'horloge"
 msgid "Settings"
 msgstr "Réglages"
 
-#: src/graph.c:132
-msgid "Setup"
-msgstr "Configurer"
-
-#: src/setup.c:33
-msgid "Version"
-msgstr "Version"
-
-#: src/setup.c:87
-msgid "Screen rotation type"
-msgstr "Type de rotation de l'écran"
-
-#: src/setup.c:66
-msgid "Screen update"
-msgstr "Rafraîchissement de l'écran"
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr "Désactivé"
 
 #: src/rotation.c:29
 msgid "0 ↔ 90 Degrees Clockwise"
@@ -130,14 +134,14 @@ msgstr "0 ↔ 90 degrés sens antihoraire"
 msgid "0 → 90 → 180 → 270 → 0"
 msgstr "0 → 90 → 180 → 270 → 0"
 
-#: src/rotation.c:28
-msgid "Disabled"
-msgstr "Désactivé"
-
 #: src/rotation.c:93
 msgid "Select screen rotation type"
 msgstr "Choisir le type de rotation de l'écran"
 
-#: src/gm.c:134 src/graph.c:188
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Aucun livre ouvert</inactive>"
+#: src/graph.c:135
+msgid "Setup"
+msgstr "Configurer"
+
+#: src/help.c:44
+msgid "GM: Help"
+msgstr "GM: Aide"
