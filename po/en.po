@@ -1,7 +1,7 @@
 # English translations for gm package.
 # This file is put in the public domain.
 # dottedmag <dottedmag@dottedmag.net>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
@@ -40,12 +40,11 @@ msgstr "Games"
 msgid "Applications"
 msgstr "Applications"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/gm.c:64
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Setup"
@@ -98,12 +97,11 @@ msgstr "ON"
 msgid "Sound"
 msgstr "Sound"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Language"
@@ -146,4 +144,4 @@ msgstr "Setup"
 
 #: src/help.c:44
 msgid "GM: Help"
-msgstr ""
+msgstr "GM: Help"
