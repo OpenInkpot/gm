@@ -98,10 +98,6 @@ msgstr "Звук"
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Язык <inactive>/ Language</inactive>"
 
-#: src/setup.c:134
-msgid "Clock setup"
-msgstr "Настройки часов"
-
 #: src/setup.c:183
 msgid "Settings"
 msgstr "Настройки"
@@ -145,3 +141,7 @@ msgstr "Фото"
 #: src/gm.c:54 src/graph.c:130
 msgid "Audio"
 msgstr "Аудио"
+
+#: src/setup.c:134
+msgid "Clock setup"
+msgstr "Настройка даты и времени"
