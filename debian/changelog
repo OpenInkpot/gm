@@ -1,8 +1,13 @@
-gm (0.2-22) asimov; urgency=low
+gm (0.2-23) asimov; urgency=low
 
   * Workaround "popping" settings icon (close #703)
 
  -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Fri, 04 Dec 2009 01:24:48 +0200
+
+gm (0.2-22) asimov; urgency=low
+  * Translations updated: Spanish, English, French, Russian.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 03 Dec 2009 13:18:29 +0600
 
 gm (0.2-21) asimov; urgency=low
 

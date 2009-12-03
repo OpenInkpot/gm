@@ -2,7 +2,7 @@
 # gm
 # This file is put in the public domain.
 # Alexander V. Nikolaev <avn@openinkpot.org>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
@@ -24,14 +24,6 @@ msgstr "Текущая книга"
 msgid "Library"
 msgstr "Библиотека"
 
-#: src/gm.c:53 src/graph.c:128
-msgid "Images"
-msgstr "Фототека"
-
-#: src/gm.c:54 src/graph.c:130
-msgid "Audio"
-msgstr "Фонотека"
-
 #: src/gm.c:55 src/graph.c:133
 msgid "Games"
 msgstr "Игры"
@@ -40,12 +32,11 @@ msgstr "Игры"
 msgid "Applications"
 msgstr "Приложения"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/gm.c:64
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Настройки <inactive>/ Setup</inactive>"
@@ -98,19 +89,14 @@ msgstr "Вкл."
 msgid "Sound"
 msgstr "Звук"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Язык <inactive>/ Language</inactive>"
-
-#: src/setup.c:134
-msgid "Clock setup"
-msgstr "Настройки часов"
 
 #: src/setup.c:183
 msgid "Settings"
@@ -147,3 +133,15 @@ msgstr "Настройки"
 #: src/help.c:44
 msgid "GM: Help"
 msgstr "GM: Справка"
+
+#: src/gm.c:53 src/graph.c:128
+msgid "Images"
+msgstr "Фото"
+
+#: src/gm.c:54 src/graph.c:130
+msgid "Audio"
+msgstr "Аудио"
+
+#: src/setup.c:134
+msgid "Clock setup"
+msgstr "Настройка даты и времени"
