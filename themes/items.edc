@@ -1,4 +1,5 @@
 images {
+    image: "icon-none.png" COMP;
     image: "icon-book.png" COMP;
     image: "icon-lib.png" COMP;
     image: "icon-photo.png" COMP;
@@ -110,6 +111,11 @@ collections {
                  rel2 { relative, 1.0 1.0; offset, -24 -7; }
              }
              description {
+                state, "icon-none" 0.0;
+                inherit, "default" 0.0;
+                image { normal, "icon-none.png"; }
+             }
+             description {
                  state, "icon-book" 0.0;
                  inherit, "default" 0.0;
                  image { normal, "icon-book.png"; }
@@ -155,7 +161,7 @@ collections {
                 name, "set-icon-none";
                 signal, "set-icon-none";
                 script {
-                    set_state(PART:"icon", "default", 0.0);
+                    set_state(PART:"icon", "icon-none", 0.0);
                 }
             }
             program {

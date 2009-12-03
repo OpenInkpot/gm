@@ -138,15 +138,16 @@ static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
     char buf[256];
     struct bookinfo_t *bookinfo;
 
-    if(item_num <= (int)MAIN_MENU_SIZE && main_menu[item_num].icon_signal)
-        edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
-    else
-        edje_object_signal_emit(item, "set-icon-none", "");
-
+    /* blanking */
+    edje_object_signal_emit(item, "set-icon-none", "");
     edje_object_part_text_set(item, "text","");
     edje_object_part_text_set(item, "lefttop","");
     edje_object_part_text_set(item, "leftbottom","");
     edje_object_part_text_set(item, "rightbottom","");
+
+    /* Icon */
+    if(item_num <= (int)MAIN_MENU_SIZE && main_menu[item_num].icon_signal)
+        edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
 
     if((item_num == 0) && main_menu[item_num].title ) {
         bookinfo = gm_get_titles();
