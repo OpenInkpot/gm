@@ -204,7 +204,7 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
         unlink(filename);
         free(filename);
     }
-    if(bookinfo->cover_image)
+    if(bookinfo->cover_image && bookinfo->cover_size > 0)
     {
         image = evas_object_image_add(evas);
         evas_object_color_set(image, 0xff, 0xff, 0xff, 0xff);
@@ -223,9 +223,7 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
                 gm_get_image_geom(filename, &iw, &ih);
                 edje_object_part_geometry_get(design, "cover_image",
                                                 &x, &y, &w, &h);
-//                printf("got %d %d %d %d\n", x, y, w, h);
                 w = w - x; h =  h - x;
-//                printf("Fit %d %d to %d %d\n", iw, ih, w, h);
                 if ( ih > h)
                 {
                     ratio = (double) ih / (double) h;
@@ -236,7 +234,6 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
                     ratio = (double) iw / (double) w;
                     iw = w; ih /= ratio;
                 }
-//                printf("Calculated %d %d\n", iw, ih);
                 evas_object_stack_above(image, design);
                 evas_object_resize(image, iw, ih);
                 evas_object_move(image, x + (w - iw) /2 , y + (h-ih)/2);
@@ -262,26 +259,11 @@ gm_graphics_show_book(Evas *evas) {
         edje_object_part_text_set(edje, "caption_title_picture", "");
         edje_object_part_text_set(edje, "caption_series", "");
         if(bookinfo && bookinfo->title) {
-            if(!bookinfo->cover_image || bookinfo->cover_size == 0)
-            {
-                edje_object_part_text_set(edje, "caption_title",
-                    bookinfo->title);
-                edje_object_part_text_set(edje, "caption_author",
-                    bookinfo->author);
-                if(bookinfo->series_number) {
-                    snprintf(buf, 256, "%s #%d", bookinfo->series,
-                        bookinfo->series_number);
-                    edje_object_part_text_set(edje, "caption_series", buf);
-                }
-            }
-            else
-            {
-                edje_object_part_text_set(edje, "caption_title_picture",
-                    bookinfo->title);
-                edje_object_part_text_set(edje, "caption_author_picture",
-                    bookinfo->author);
-                gm_graphics_update_cover_image(bookinfo, evas);
-            }
+            edje_object_part_text_set(edje, "caption_title",
+                bookinfo->title);
+            edje_object_part_text_set(edje, "caption_author",
+                bookinfo->author);
+            gm_graphics_update_cover_image(bookinfo, evas);
         } else {
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("<inactive>No book is open</inactive>"));
