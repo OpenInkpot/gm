@@ -1,6 +1,6 @@
 # translation of gm.po to italian
 # This file is put in the public domain.
-#
+# 
 # Mascal <mascal@mascal.it>, 2009.
 msgid ""
 msgstr ""
@@ -39,12 +39,11 @@ msgstr "Giochi"
 msgid "Applications"
 msgstr "Applicazioni"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/gm.c:64
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurazione <inactive>/ Setup</inactive>"
@@ -97,12 +96,11 @@ msgstr "ON"
 msgid "Sound"
 msgstr "Suono"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/setup.c:127
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Lingua <inactive>/ Language</inactive>"
@@ -145,4 +143,4 @@ msgstr "Configurazione"
 
 #: src/help.c:44
 msgid "GM: Help"
-msgstr ""
+msgstr "GM: Aiuto"
