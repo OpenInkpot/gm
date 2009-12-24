@@ -1,3 +1,11 @@
+gm (0.2-24) asimov; urgency=low
+
+  * Update backgrounds
+  * Add gray border around cover image (close #684)
+  * Elipsis in author/title in graphics mode (close #701)
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Thu, 24 Dec 2009 13:41:51 +0200
+
 gm (0.2-23) asimov; urgency=low
 
   * Workaround "popping" settings icon (close #703)
@@ -5,6 +13,7 @@ gm (0.2-23) asimov; urgency=low
  -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Fri, 04 Dec 2009 01:24:48 +0200
 
 gm (0.2-22) asimov; urgency=low
+
   * Translations updated: Spanish, English, French, Russian.
 
  -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 03 Dec 2009 13:18:29 +0600
