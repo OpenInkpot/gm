@@ -311,24 +311,37 @@ collections {
             COVER_IMAGE(16, 42, 282, 270);
             part {
                 name, "caption_title";
-                type, TEXTBLOCK;
+                type, TEXT;
                 description {
                     state, "default" 0.0;
-                    text { style, "book-info"; }
+                    color, 255 255 255 255;
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5; 
+                        elipsis, 0.0;
+                    }
                     rel1 { relative, 0.0 0.0; offset, 28 280; }
-                    rel2 { relative, 0.0 0.0; offset, 276 361; }
+                    rel2 { relative, 0.0 0.0; offset, 276 310; }
                 }
             }
 
             part {
                 name, "caption_author";
-                type, TEXTBLOCK;
+                type, TEXT;
                 description {
                     state, "default" 0.0;
-                    text { style, "book-info"; max, 0 1; }
-                    align, 0.0 1.0;
-                    rel1 { relative, 0.0 0.0; offset, 28 272; }
-                    rel2 { relative, 0.0 0.0; offset, 276 349; }
+                    color, 255 255 255 255;
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5; 
+                        elipsis, 0.0;
+                    }
+                    rel1 { relative, 0.0 0.0; offset, 28 315; }
+                    rel2 { relative, 0.0 0.0; offset, 276 355; }
                 }
             }
 
@@ -425,23 +438,34 @@ collections {
             COVER_IMAGE(16, 42, 380, 270);
             part {
                 name, "caption_title";
-                type, TEXTBLOCK;
+                type, TEXT;
                 description {
                     state, "default" 0.0;
-                    text { style, "book-info"; }
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5; 
+                        elipsis, 0.0;
+                    }
                     rel1 { relative, 0.0 0.0; offset, 28 276; }
-                    rel2 { relative, 0.0 0.0; offset, 380 361; }
+                    rel2 { relative, 0.0 0.0; offset, 380 310; }
                 }
             }
 
             part {
                 name, "caption_author";
-                type, TEXTBLOCK;
+                type, TEXT;
                 description {
                     state, "default" 0.0;
-                    text { style, "book-info"; max, 0 1; }
-                    align, 0.0 1.0;
-                    rel1 { relative, 0.0 0.0; offset, 28 268; }
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5; 
+                        elipsis, 0.0;
+                    }
+                    rel1 { relative, 0.0 0.0; offset, 28 315; }
                     rel2 { relative, 0.0 0.0; offset, 380 355; }
                 }
             }
