@@ -1,5 +1,6 @@
-gm (0.2-24) asimov; urgency=low
+gm (0.3) zelazny; urgency=low
 
+  * Convert versioning to "native"
   * Update backgrounds
   * Add gray border around cover image (close #684)
   * Elipsis in author/title in graphics mode (close #701)
