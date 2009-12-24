@@ -435,7 +435,7 @@ collections {
             CAPTION("caption_apps", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
             CAPTION("caption_setup", COL4_X1, ROW2_Y1, COL4_X2, ROW2_Y2)
 
-            COVER_IMAGE(16, 42, 380, 270);
+            COVER_IMAGE(16, 45, 380, 265);
             part {
                 name, "caption_title";
                 type, TEXT;

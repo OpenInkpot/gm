@@ -47,6 +47,9 @@ gm_graphics_hide(Evas *evas) {
     Evas_Object * image = evas_object_name_find(evas, "cover_image");
     if(image)
         evas_object_del(image);
+    Evas_Object* border = evas_object_name_find(evas, "border");
+    if(border)
+        evas_object_del(border);
     evas_object_hide(edje);
     evas_object_show(main_edje);
     evas_object_focus_set(choicebox, 1);
@@ -194,10 +197,21 @@ static void
 gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
 {
     Evas_Object* image;
+    Evas_Object* hide_logo;
+    Evas_Object* border;
     Evas_Object* design = evas_object_name_find(evas, "graphics");
     image = evas_object_name_find(evas, "cover_image");
     if(image)
         evas_object_del(image);
+
+    border = evas_object_name_find(evas, "border");
+    if(border)
+        evas_object_del(border);
+
+    hide_logo = evas_object_name_find(evas, "hide_logo");
+    if(hide_logo)
+        evas_object_del(hide_logo);
+
 
     if(filename)
     {
@@ -224,6 +238,11 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
                 edje_object_part_geometry_get(design, "cover_image",
                                                 &x, &y, &w, &h);
                 w = w - x; h =  h - x;
+                hide_logo = evas_object_rectangle_add(evas);
+                evas_object_color_set(hide_logo, 0x55, 0x56, 0x56, 0xFF);
+                evas_object_name_set(hide_logo, "hide_logo");
+                evas_object_show(hide_logo);
+                edje_object_part_swallow(design, "cover_image", hide_logo);
                 if ( ih > h)
                 {
                     ratio = (double) ih / (double) h;
@@ -236,11 +255,26 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
                 }
                 evas_object_stack_above(image, design);
                 evas_object_resize(image, iw, ih);
-                evas_object_move(image, x + (w - iw) /2 , y + (h-ih)/2);
+                x = x + (w - iw) / 2;
+                y = y + (h - ih) / 2;
+                evas_object_move(image,x , y);
                 evas_object_image_filled_set(image, 1);
                 evas_object_image_load_size_set(image, iw, ih);
                 evas_object_image_file_set(image, filename, NULL);
                 evas_object_show(image);
+
+#define BORDER_SIZE 3
+                x -= BORDER_SIZE; y -= BORDER_SIZE;
+                iw += BORDER_SIZE * 2; ih += BORDER_SIZE * 2;
+#undef BORDER_SIZE
+
+                border = evas_object_rectangle_add(evas);
+                evas_object_name_set(border, "border");
+                evas_object_color_set(border, 0x33, 0x33, 0x33, 0xFF);
+                evas_object_resize(border, iw, ih);
+                evas_object_move(border, x, y);
+                evas_object_show(border);
+                evas_object_stack_above(image, border);
             }
         }
     }
