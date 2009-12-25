@@ -1,3 +1,9 @@
+gm (0.3.1) zelazny; urgency=low
+
+  * Fix stray <inactive> tag in TEXT fields.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sat, 26 Dec 2009 01:21:37 +0600
+
 gm (0.3) zelazny; urgency=low
 
   * Convert versioning to "native"
