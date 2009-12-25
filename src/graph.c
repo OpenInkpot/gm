@@ -300,7 +300,7 @@ gm_graphics_show_book(Evas *evas) {
             gm_graphics_update_cover_image(bookinfo, evas);
         } else {
             edje_object_part_text_set(edje, "caption_title",
-                                      gettext("<inactive>No book is open</inactive>"));
+                                      gettext("No book is open"));
         }
     }
     evas_event_thaw(evas);

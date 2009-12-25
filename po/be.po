@@ -44,8 +44,8 @@ msgid "Clock setup"
 msgstr "Настаўленні гадзінніку "
 
 #: src/gm.c:128
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Кніга не адкрыта</inactive>"
+msgid "No book is open"
+msgstr "Кніга не адкрыта"
 
 #: src/setup.c:24
 msgid "<inactive>N/A</inactive>"

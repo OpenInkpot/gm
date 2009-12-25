@@ -57,8 +57,8 @@ msgstr "Uzstādījumi <inactive>/ Setup</inactive>"
 
 #: src/gm.c:134
 #: src/graph.c:188
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Atvērtas grāmatas nav</inactive>"
+msgid "No book is open"
+msgstr "Atvērtas grāmatas nav"
 
 #: src/setup.c:33
 msgid "Version"

@@ -50,8 +50,8 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Налаштувати <inactive>/ Setup</inactive>"
 
 #: src/gm.c:135 src/graph.c:191
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Немає відкритої книги</inactive>"
+msgid "No book is open"
+msgstr "Немає відкритої книги"
 
 #: src/setup.c:33
 msgid "Version"

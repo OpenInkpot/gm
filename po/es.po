@@ -49,8 +49,8 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurar <inactive>/ Setup</inactive>"
 
 #: src/gm.c:135 src/graph.c:191
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Ningún libro abierto</inactive>"
+msgid "No book is open"
+msgstr "Ningún libro abierto"
 
 #: src/setup.c:33
 msgid "Version"

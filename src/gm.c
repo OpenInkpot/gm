@@ -162,8 +162,10 @@ static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
             else
                 edje_object_part_text_set(item, "leftbottom",bookinfo->series);
         } else {
-            edje_object_part_text_set(item, "text",
-                gettext("<inactive>No book is open</inactive>"));
+            char *str;
+            asprintf(&str, "<inactive>%s</inactive>", gettext("No book is open"));
+            edje_object_part_text_set(item, "text", str);
+            free(str);
         }
         gm_free_titles(bookinfo);
     } else
