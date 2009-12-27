@@ -40,16 +40,25 @@ gm_graphics_show(Evas *evas) {
 }
 
 static void
-gm_graphics_hide(Evas *evas) {
-    Evas_Object * edje = evas_object_name_find(evas, "graphics");
-    Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
-    Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
+gm_graphics_hide_cover(Evas* evas)
+{
     Evas_Object * image = evas_object_name_find(evas, "cover_image");
     if(image)
         evas_object_del(image);
     Evas_Object* border = evas_object_name_find(evas, "border");
     if(border)
         evas_object_del(border);
+    Evas_Object* hide_logo = evas_object_name_find(evas, "hide_logo");
+    if(hide_logo)
+        evas_object_del(hide_logo);
+}
+
+static void
+gm_graphics_hide(Evas* evas) {
+    Evas_Object * edje = evas_object_name_find(evas, "graphics");
+    Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
+    Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
+    gm_graphics_hide_cover(evas);
     evas_object_hide(edje);
     evas_object_show(main_edje);
     evas_object_focus_set(choicebox, 1);
@@ -200,19 +209,7 @@ gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
     Evas_Object* hide_logo;
     Evas_Object* border;
     Evas_Object* design = evas_object_name_find(evas, "graphics");
-    image = evas_object_name_find(evas, "cover_image");
-    if(image)
-        evas_object_del(image);
-
-    border = evas_object_name_find(evas, "border");
-    if(border)
-        evas_object_del(border);
-
-    hide_logo = evas_object_name_find(evas, "hide_logo");
-    if(hide_logo)
-        evas_object_del(hide_logo);
-
-
+    gm_graphics_hide_cover(evas);
     if(filename)
     {
         unlink(filename);
@@ -299,6 +296,7 @@ gm_graphics_show_book(Evas *evas) {
                 bookinfo->author);
             gm_graphics_update_cover_image(bookinfo, evas);
         } else {
+            gm_graphics_hide_cover(evas);
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("No book is open"));
         }
