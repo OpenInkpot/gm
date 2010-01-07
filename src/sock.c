@@ -18,8 +18,8 @@ typedef struct
 } client_data_t;
 
 
-static int _client_add(void* param  __attribute__((unused)),
-            int ev_type __attribute__((unused)), void* ev)
+static int _client_add(void *param  __attribute__((unused)),
+            int ev_type __attribute__((unused)), void *ev)
 {
     Ecore_Con_Event_Client_Add* e = ev;
     client_data_t* msg = malloc(sizeof(client_data_t));
@@ -30,11 +30,11 @@ static int _client_add(void* param  __attribute__((unused)),
     return 0;
 }
 
-static int _client_del(void* param  __attribute__((unused)),
-            int ev_type __attribute__((unused)), void* ev)
+static int _client_del(void *param  __attribute__((unused)),
+            int ev_type __attribute__((unused)), void *ev)
 {
-    Ecore_Con_Event_Client_Del* e = ev;
-    client_data_t* msg = ecore_con_client_data_get(e->client);
+    Ecore_Con_Event_Client_Del *e = ev;
+    client_data_t *msg = ecore_con_client_data_get(e->client);
 
 //    printf("_client_del\n");
     /* Handle */
@@ -54,11 +54,11 @@ static int _client_del(void* param  __attribute__((unused)),
     return 0;
 }
 
-static int _client_data(void* param  __attribute__((unused)),
-             int ev_type  __attribute__((unused)), void* ev)
+static int _client_data(void *param  __attribute__((unused)),
+             int ev_type  __attribute__((unused)), void *ev)
 {
-    Ecore_Con_Event_Client_Data* e = ev;
-    client_data_t* msg = ecore_con_client_data_get(e->client);
+    Ecore_Con_Event_Client_Data *e = ev;
+    client_data_t *msg = ecore_con_client_data_get(e->client);
     msg->msg = realloc(msg->msg, msg->size + e->size);
     memcpy(msg->msg + msg->size, e->data, e->size);
     msg->size += e->size;

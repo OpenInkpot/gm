@@ -4,7 +4,7 @@
 #include "apps_cleanup.h"
 
 /* Crazy hack: need to be replaced with something saner */
-void gm_apps_cleanup(Ecore_Evas* win)
+void gm_apps_cleanup(Ecore_Evas *win)
 {
     Ecore_X_Window skip[] = {
         ecore_evas_software_x11_window_get(win),
@@ -17,7 +17,7 @@ void gm_apps_cleanup(Ecore_Evas* win)
     ecore_x_query_tree_prefetch(root);
     ecore_x_query_tree_fetch();
     int num;
-    Ecore_X_Window* windows = ecore_x_window_children_get(root, &num);
+    Ecore_X_Window *windows = ecore_x_window_children_get(root, &num);
 
     for(int i = 0; i < num; ++i)
     {

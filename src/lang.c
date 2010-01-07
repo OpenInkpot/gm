@@ -9,21 +9,23 @@
 #include "choices.h"
 
 
-static languages_t* languages;
+static languages_t *languages;
 
-void*
+void *
 init_langs() {
     languages = languages_get_supported();
     return languages; /* return void* only for checking and trhow error */
 }
 
 void
-shutdown_langs() {
+shutdown_langs()
+{
     languages_free(languages);
 }
 
 const char *
-current_lang() {
+current_lang()
+{
     int i;
     for(i = 0; i < languages->n; ++i)
     {
@@ -41,14 +43,14 @@ current_lang() {
     return "Unknown";
 }
 
-static void lang_draw(Evas_Object* choicebox __attribute__((unused)),
-                      Evas_Object* item,
+static void lang_draw(Evas_Object *choicebox __attribute__((unused)),
+                      Evas_Object *item,
                       int item_num,
                       int page_position __attribute__((unused)),
-                      void* param __attribute__((unused)))
+                      void *param __attribute__((unused)))
 {
-    language_t* lang = languages->langs + item_num;
-    char* buf;
+    language_t *lang = languages->langs + item_num;
+    char *buf;
     if(lang->native_name)
         asprintf(&buf, "%s / %s", lang->native_name, lang->name);
     else
@@ -62,13 +64,14 @@ static void lang_handler(Evas_Object* choicebox __attribute__((unused)),
                     bool is_alt __attribute__((unused)),
                     void* param __attribute__((unused)))
 {
-    language_t* lang = languages->langs + item_num;
+    language_t *lang = languages->langs + item_num;
     languages_set(languages, lang->internal_name);
     ecore_main_loop_quit();
 }
 
-void lang_menu(Evas_Object *parent) {
-    Evas * canvas = evas_object_evas_get(parent);
+void lang_menu(Evas_Object *parent)
+{
+    Evas *canvas = evas_object_evas_get(parent);
     Evas_Object *choicebox;
     choicebox = choicebox_push(parent, canvas,
                lang_handler,
@@ -76,6 +79,7 @@ void lang_menu(Evas_Object *parent) {
                "lang-choicebox", languages->n , 0, NULL);
     if(!choicebox)
         printf("We all dead\n");
-    Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
+    Evas_Object *main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "contents", "Select language");
 }
+

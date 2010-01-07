@@ -64,7 +64,7 @@ static int _get_state()
     return 100 * (now - min) / (max - min);
 }
 
-void update_battery(Evas_Object* top)
+void update_battery(Evas_Object *top)
 {
     int charge = _get_state();
 

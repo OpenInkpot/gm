@@ -8,11 +8,12 @@
 
 
 static int
-update_clock(void *ptr) {
+update_clock(void *ptr)
+{
     Evas_Object *top = (Evas_Object *) ptr;
     char buf[256];
     time_t curtime;
-    struct tm * loctime;
+    struct tm *loctime;
     curtime = time (NULL);
     loctime = localtime (&curtime);
     if(loctime->tm_year < 108) /* 2008 */
@@ -27,8 +28,9 @@ update_clock(void *ptr) {
 }
 
 static int
-update_clock_gr(void *ptr) {
-    Evas * evas = (Evas *) ptr;
+update_clock_gr(void *ptr)
+{
+    Evas *evas = (Evas *) ptr;
     gm_graphics_show_clock(evas);
     return 1;
 }

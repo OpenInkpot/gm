@@ -39,29 +39,29 @@ choicebox_pop(Evas_Object *choicebox)
 }
 
 void
-gm_choicebox_raise_root(Evas* canvas)
+gm_choicebox_raise_root(Evas *canvas)
 {
     Evas_Object *main_edje = evas_object_name_find(canvas, "main_canvas_edje");
     if(!main_edje)
         printf("No main edje\n");
-    Evas_Object* box = edje_object_part_swallow_get(main_edje, "contents");
+    Evas_Object *box = edje_object_part_swallow_get(main_edje, "contents");
     while(choicebox_pop(box))
         box = edje_object_part_swallow_get(main_edje, "contents");
 
 }
 
 static
-void page_handler(Evas_Object* self,
-                                int a,
-                                int b,
-                                void* param __attribute__((unused)))
+void page_handler(Evas_Object *self,
+                               int a,
+                               int b,
+                               void* param __attribute__((unused)))
 {
     Evas *canvas = evas_object_evas_get(self);
     Evas_Object *main_edje = evas_object_name_find(canvas, "main_canvas_edje");
     choicebox_aux_edje_footer_handler(main_edje, "footer", a, b);
 }
 
-static void close_handler(Evas_Object* choicebox __attribute__((unused)),
+static void close_handler(Evas_Object *choicebox __attribute__((unused)),
                           void *param __attribute__((unused)))
 {
     choicebox_pop(choicebox);
@@ -87,7 +87,8 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
 
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
     Evas_Object* choicebox = choicebox_new(canvas, &info, data);
-    if(!choicebox) {
+    if(!choicebox)
+    {
          printf("no choicebox\n");
         return NULL;
     }

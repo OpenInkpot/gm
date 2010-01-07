@@ -68,7 +68,7 @@ screen_draw(Evas_Object *item)
 }
 
 static void
-screen_set(Evas_Object * self) {
+screen_set(Evas_Object *self) {
     screen_update_t scr = detect_screen_update_type();
     if(scr < 0)
         return;
@@ -153,16 +153,16 @@ struct setup_menu_item_t setup_menu_items[] = {
 
 #define MENU_ITEMS_NUM (sizeof(setup_menu_items)/sizeof(setup_menu_items[0]))
 
-static void settings_draw(Evas_Object* choicebox __attribute__((unused)),
-                         Evas_Object* item,
+static void settings_draw(Evas_Object *choicebox __attribute__((unused)),
+                         Evas_Object *item,
                          int item_num,
                          int page_position __attribute__((unused)),
-                         void* param __attribute__((unused)))
+                         void *param __attribute__((unused)))
 {
     setup_menu_items[item_num].draw(item);
 }
 
-static void settings_handler(Evas_Object* choicebox,
+static void settings_handler(Evas_Object *choicebox,
                     int item_num,
                     bool is_alt __attribute__((unused)),
                     void* param __attribute__((unused)))
@@ -172,13 +172,13 @@ static void settings_handler(Evas_Object* choicebox,
 }
 
 void settings_menu(Evas *canvas) {
-    Evas_Object * choicebox = evas_object_name_find(canvas, "choicebox");
+    Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
                settings_draw,
                "settings-choicebox", MENU_ITEMS_NUM, 0, NULL);
     if(!choicebox)
         printf("We all dead\n");
-    Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
+    Evas_Object *main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "path", gettext("Settings"));
 }

@@ -30,8 +30,8 @@ gm_graphics_show_book(Evas *evas);
 
 static void
 gm_graphics_show(Evas *evas) {
-    Evas_Object * edje = evas_object_name_find(evas, "graphics");
-    Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
+    Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    Evas_Object *main_edje = evas_object_name_find(evas, "main_window_edje");
     evas_object_hide(main_edje);
     gm_graphics_show_clock(evas);
     evas_object_show(edje);
@@ -40,24 +40,24 @@ gm_graphics_show(Evas *evas) {
 }
 
 static void
-gm_graphics_hide_cover(Evas* evas)
+gm_graphics_hide_cover(Evas *evas)
 {
-    Evas_Object * image = evas_object_name_find(evas, "cover_image");
+    Evas_Object *image = evas_object_name_find(evas, "cover_image");
     if(image)
         evas_object_del(image);
-    Evas_Object* border = evas_object_name_find(evas, "border");
+    Evas_Object *border = evas_object_name_find(evas, "border");
     if(border)
         evas_object_del(border);
-    Evas_Object* hide_logo = evas_object_name_find(evas, "hide_logo");
+    Evas_Object *hide_logo = evas_object_name_find(evas, "hide_logo");
     if(hide_logo)
         evas_object_del(hide_logo);
 }
 
 static void
-gm_graphics_hide(Evas* evas) {
-    Evas_Object * edje = evas_object_name_find(evas, "graphics");
-    Evas_Object * choicebox = evas_object_name_find(evas, "choicebox");
-    Evas_Object * main_edje = evas_object_name_find(evas, "main_window_edje");
+gm_graphics_hide(Evas *evas) {
+    Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    Evas_Object *choicebox = evas_object_name_find(evas, "choicebox");
+    Evas_Object *main_edje = evas_object_name_find(evas, "main_window_edje");
     gm_graphics_hide_cover(evas);
     evas_object_hide(edje);
     evas_object_show(main_edje);
@@ -101,12 +101,12 @@ gm_graphics_resize(Evas *evas, int x, int y) {
     gm_graphics_show_clock(evas);
 }
 
-static void _keys_handler(void* param __attribute__((unused)),
-                          Evas* e,
+static void _keys_handler(void *param __attribute__((unused)),
+                          Evas *e,
                           Evas_Object *r __attribute__((unused)),
-                          void* event_info)
+                          void *event_info)
 {
-    const char* action = keys_lookup_by_event(gm_keys(), "graphical-menu",
+    const char *action = keys_lookup_by_event(gm_keys(), "graphical-menu",
                                               (Evas_Event_Key_Up*)event_info);
 
     if(!action)
@@ -143,10 +143,7 @@ static void
 gm_graphics_show_captions(Evas_Object *edje) {
     edje_object_part_text_set(edje, "caption_library", gettext("Library"));
     edje_object_part_text_set(edje, "caption_photo", gettext("Images"));
-    char* s;
-    asprintf(&s, "<inactive>%s</inactive>", gettext("Audio"));
-    edje_object_part_text_set(edje, "caption_audio", s);
-    free(s);
+    edje_object_part_text_set(edje, "caption_audio", gettext("Audio"));
     edje_object_part_text_set(edje, "caption_games", gettext("Games"));
     edje_object_part_text_set(edje, "caption_apps", gettext("Applications"));
     edje_object_part_text_set(edje, "caption_setup", gettext("Setup"));
@@ -154,7 +151,7 @@ gm_graphics_show_captions(Evas_Object *edje) {
 
 static void
 _set_strftime(Evas_Object *edje, const char *part, const char *tmpl,
-        struct tm * loctime) {
+        struct tm *loctime) {
     char buf[256];
     strftime(buf, 256, tmpl, loctime);
     edje_object_part_text_set(edje, part, buf);
@@ -164,7 +161,7 @@ void
 gm_graphics_show_clock(Evas *evas) {
     if(_active) {
        time_t curtime;
-       struct tm * loctime;
+       struct tm *loctime;
        curtime = time (NULL);
        loctime = localtime (&curtime);
        Evas_Object *edje = evas_object_name_find(evas, "graphics");
@@ -188,10 +185,11 @@ gm_graphics_show_clock(Evas *evas) {
 
 
 static void
-gm_get_image_geom(const char* fn, int *iw, int *ih)
+gm_get_image_geom(const char *fn, int *iw, int *ih)
 {
     Evas_Imaging_Image *im = evas_imaging_image_load(fn, NULL);
-    if(im) {
+    if(im)
+    {
         evas_imaging_image_size_get(im, iw, ih);
         evas_imaging_image_free(im);
     }
@@ -203,12 +201,12 @@ static const char *filename_pattern = "/tmp/gm-cover-image-XXXXXX";
 static char *filename = NULL;
 
 static void
-gm_graphics_update_cover_image(struct bookinfo_t* bookinfo, Evas* evas)
+gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
 {
-    Evas_Object* image;
-    Evas_Object* hide_logo;
-    Evas_Object* border;
-    Evas_Object* design = evas_object_name_find(evas, "graphics");
+    Evas_Object *image;
+    Evas_Object *hide_logo;
+    Evas_Object *border;
+    Evas_Object *design = evas_object_name_find(evas, "graphics");
     gm_graphics_hide_cover(evas);
     if(filename)
     {
@@ -281,21 +279,25 @@ void
 gm_graphics_show_book(Evas *evas) {
     char buf[256];
     evas_event_freeze(evas);
-    Evas_Object * edje = evas_object_name_find(evas, "graphics");
-    if(_active && evas_object_visible_get(edje)) {
-        struct bookinfo_t * bookinfo = gm_get_titles();
+    Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    if(_active && evas_object_visible_get(edje))
+    {
+        struct bookinfo_t *bookinfo = gm_get_titles();
         edje_object_part_text_set(edje, "caption_title", "");
         edje_object_part_text_set(edje, "caption_author", "");
         edje_object_part_text_set(edje, "caption_author_picture", "");
         edje_object_part_text_set(edje, "caption_title_picture", "");
         edje_object_part_text_set(edje, "caption_series", "");
-        if(bookinfo && bookinfo->title) {
+        if(bookinfo && bookinfo->title)
+        {
             edje_object_part_text_set(edje, "caption_title",
                 bookinfo->title);
             edje_object_part_text_set(edje, "caption_author",
                 bookinfo->author);
             gm_graphics_update_cover_image(bookinfo, evas);
-        } else {
+        }
+        else
+        {
             gm_graphics_hide_cover(evas);
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("No book is open"));

@@ -15,7 +15,7 @@
 
 #define BUFSIZE 16
 
-static int detect_threshold(const char* control_file)
+static int detect_threshold(const char *control_file)
 {
     int fd = open(control_file, O_RDONLY);
     if(fd == -1)
@@ -61,7 +61,7 @@ static int detect_threshold(const char* control_file)
     return threshold;
 }
 
-static int set_threshold(const char* control_file, int threshold)
+static int set_threshold(const char *control_file, int threshold)
 {
     int fd = open(control_file, O_WRONLY | O_TRUNC);
     if(fd == -1)

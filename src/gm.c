@@ -28,9 +28,9 @@
 #include "apps_cleanup.h"
 #include "help.h"
 
-static keys_t* _gm_keys;
+static keys_t *_gm_keys;
 
-keys_t* gm_keys()
+keys_t *gm_keys()
 {
     if(!_gm_keys)
         _gm_keys = keys_alloc("gm");
@@ -43,7 +43,7 @@ struct main_menu_item {
     char * icon_signal;
 };
 
-void stub(Evas * e __attribute__((unused))) {
+void stub(Evas * e__attribute__((unused))) {
     printf("Stub\n");
 };
 
@@ -66,7 +66,7 @@ struct main_menu_item main_menu[] = {
 
 #define MAIN_MENU_SIZE (sizeof(main_menu)/sizeof(main_menu[0]))
 
-static void die(const char* fmt, ...)
+static void die(const char *fmt, ...)
 {
     va_list ap;
     va_start(ap, fmt);
@@ -75,20 +75,20 @@ static void die(const char* fmt, ...)
     exit(EXIT_FAILURE);
 }
 
-static int exit_handler(void* param __attribute__((unused)),
+static int exit_handler(void *param __attribute__((unused)),
                         int ev_type __attribute__((unused)),
-                        void* event __attribute__((unused)))
+                        void *event __attribute__((unused)))
 {
     ecore_main_loop_quit();
     return 1;
 }
 
-static void main_win_close_handler(Ecore_Evas* main_win __attribute__((unused)))
+static void main_win_close_handler(Ecore_Evas *main_win __attribute__((unused)))
 {
     ecore_main_loop_quit();
 }
 
-static void main_win_focus_in_handler(Ecore_Evas* main_win)
+static void main_win_focus_in_handler(Ecore_Evas *main_win)
 {
     Evas *canvas = ecore_evas_get(main_win);
     Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
@@ -99,8 +99,8 @@ static void main_win_focus_in_handler(Ecore_Evas* main_win)
         gm_apps_cleanup(main_win);
 }
 
-static int root_window_prop_change_handler(void* data,
-        int type __attribute__((unused)), void* event)
+static int root_window_prop_change_handler(void *data,
+        int type __attribute__((unused)), void *event)
 {
     static Ecore_X_Atom atom = 0;
     static Ecore_X_Window prev_window = 0;
@@ -128,11 +128,11 @@ static int root_window_prop_change_handler(void* data,
     return 1;
 }
 
-static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
-                         Evas_Object* item,
+static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
+                         Evas_Object *item,
                          int item_num,
                          int page_position __attribute__((unused)),
-                         void* param __attribute__((unused)))
+                         void *param __attribute__((unused)))
 {
     /* All time formatting taken from libc manual, don't hurt me */
     char buf[256];
@@ -178,23 +178,24 @@ static void draw_handler(Evas_Object* choicebox __attribute__((unused)),
 
 
 static
-void main_menu_handler(Evas_Object* choicebox __attribute__((unused)),
+void main_menu_handler(Evas_Object *choicebox __attribute__((unused)),
                     int item_num,
                     bool is_alt __attribute__((unused)),
-                    void* param)
+                    void *param)
 {
     main_menu[item_num].execute(param);
 }
 
-static void main_win_resize_handler(Ecore_Evas* main_win)
+static void main_win_resize_handler(Ecore_Evas *main_win)
 {
-    Evas* canvas = ecore_evas_get(main_win);
+    Evas *canvas = ecore_evas_get(main_win);
     int w, h;
     evas_output_size_get(canvas, &w, &h);
 
     eoi_process_resize(main_win);
 
-    Evas_Object* main_canvas_edje = evas_object_name_find(canvas, "main_canvas_edje");
+    Evas_Object *main_canvas_edje = evas_object_name_find(canvas,
+                    "main_canvas_edje");
     evas_object_resize(main_canvas_edje, w, h);
     gm_graphics_resize(canvas, w, h);
 
@@ -202,20 +203,20 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 }
 
 
-static void main_win_signal_handler(void* param,
-        Evas_Object* o __attribute__((unused)),
-        const char* emission __attribute__((unused)),
-        const char* source __attribute__((unused)))
+static void main_win_signal_handler(void *param,
+        Evas_Object *o __attribute__((unused)),
+        const char *emission __attribute__((unused)),
+        const char *source __attribute__((unused)))
 {
-    Evas_Object* r = evas_object_name_find((Evas *) param, "choicebox");
+    Evas_Object *r = evas_object_name_find((Evas *) param, "choicebox");
     evas_object_del(r);
 }
 
-static void main_win_key_handler(void* param __attribute__((unused)),
-        Evas* e __attribute__((unused)),
-        Evas_Object *r __attribute__((unused)), void* event_info)
+static void main_win_key_handler(void *param __attribute__((unused)),
+        Evas *e __attribute__((unused)),
+        Evas_Object *r __attribute__((unused)), void *event_info)
 {
-    const char* action = keys_lookup_by_event(gm_keys(), "text-menu",
+    const char *action = keys_lookup_by_event(gm_keys(), "text-menu",
                                               (Evas_Event_Key_Up*)event_info);
 
     if(action && !strcmp(action, "GraphicalMenu"))
@@ -226,18 +227,19 @@ static void main_win_key_handler(void* param __attribute__((unused)),
 
 static void run()
 {
-    Ecore_Evas* main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+    Ecore_Evas *main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
     gm_socket_server_start(main_win, "gm");
     ecore_evas_title_set(main_win, "GM");
     ecore_evas_name_class_set(main_win, "GM", "GM");
 
-    Evas* main_canvas = ecore_evas_get(main_win);
+    Evas *main_canvas = ecore_evas_get(main_win);
     ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
-    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
+    Evas_Object *main_canvas_edje = edje_object_add(main_canvas);
     evas_object_name_set(main_canvas_edje, "main_canvas_edje");
     edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
     gm_init_clock_and_battery(main_canvas_edje, main_canvas);
-    edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
+    edje_object_signal_callback_add(main_canvas_edje, "*", "*",
+        main_win_signal_handler, NULL);
     edje_object_part_text_set(main_canvas_edje, "footer", "");
     edje_object_part_text_set(main_canvas_edje, "path", "");
     evas_object_move(main_canvas_edje, 0, 0);
@@ -245,8 +247,9 @@ static void run()
 
     gm_graphics_init(main_canvas);
 
-    Evas_Object* choicebox = choicebox_push(NULL, main_canvas,
-        main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, 1, main_canvas);
+    Evas_Object *choicebox = choicebox_push(NULL, main_canvas,
+        main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, 1,
+        main_canvas);
     if(!choicebox) {
         printf("no choicebox\n");
         return;
@@ -272,11 +275,11 @@ static void run()
 }
 
 static
-void exit_all(void* param __attribute__((unused))) {
+void exit_all(void *param __attribute__((unused))) {
     ecore_main_loop_quit();
 }
 
-int main(int argc __attribute__((unused)), char** argv __attribute__((unused)))
+int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 {
     setlocale(LC_ALL, "");
     textdomain("gm");
