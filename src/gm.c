@@ -233,13 +233,13 @@ static void run()
 
     Evas* main_canvas = ecore_evas_get(main_win);
     ecore_evas_callback_delete_request_set(main_win, main_win_close_handler);
-    Evas_Object* main_canvas_edje = edje_object_add(main_canvas);
+
+    Evas_Object *main_canvas_edje = eoi_main_window_create(main_canvas);
     evas_object_name_set(main_canvas_edje, "main_canvas_edje");
-    edje_object_file_set(main_canvas_edje, THEME_DIR "/gm.edj", "main_window");
     gm_init_clock_and_battery(main_canvas_edje, main_canvas);
     edje_object_signal_callback_add(main_canvas_edje, "*", "*", main_win_signal_handler, NULL);
     edje_object_part_text_set(main_canvas_edje, "footer", "");
-    edje_object_part_text_set(main_canvas_edje, "path", "");
+    edje_object_part_text_set(main_canvas_edje, "title", "");
     evas_object_move(main_canvas_edje, 0, 0);
     evas_object_resize(main_canvas_edje, 600, 800);
 
