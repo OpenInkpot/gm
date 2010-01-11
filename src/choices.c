@@ -25,7 +25,7 @@ choicebox_pop(Evas_Object *choicebox)
     edje_object_part_unswallow(main_canvas_edje,  choicebox);
     evas_object_del(choicebox);
     edje_object_part_text_set(main_canvas_edje, "footer", "");
-    edje_object_part_text_set(main_canvas_edje, "path", "");
+    edje_object_part_text_set(main_canvas_edje, "title", "");
     edje_object_part_swallow(main_canvas_edje, "contents", parent);
     evas_object_focus_set(parent , true);
     evas_object_show(parent);
