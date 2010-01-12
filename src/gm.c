@@ -1,3 +1,4 @@
+#define _GNU_SOURCE 1
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,9 +44,6 @@ struct main_menu_item {
     char * icon_signal;
 };
 
-void stub(Evas * e__attribute__((unused))) {
-    printf("Stub\n");
-};
 
 struct main_menu_item main_menu[] = {
     {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special

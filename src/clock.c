@@ -3,29 +3,13 @@
 #include <Evas.h>
 #include <Edje.h>
 #include <Ecore.h>
+
+#include <libeoi_clock.h>
+#include <libeoi_battery.h>
+
 #include "clock.h"
 #include "graph.h"
 
-
-static int
-update_clock(void *ptr)
-{
-    Evas_Object *top = (Evas_Object *) ptr;
-    char buf[256];
-    time_t curtime;
-    struct tm *loctime;
-    curtime = time (NULL);
-    loctime = localtime (&curtime);
-    if(loctime->tm_year < 108) /* 2008 */
-        edje_object_part_text_set(top, "clock", "--:--");
-    else
-    {
-        strftime(buf, 256, "%H:%M", loctime);
-        edje_object_part_text_set(top, "clock", buf);
-    }
-    update_battery(top);
-    return 1;
-}
 
 static int
 update_clock_gr(void *ptr)
@@ -37,7 +21,7 @@ update_clock_gr(void *ptr)
 
 void
 gm_init_clock_and_battery(Evas_Object *top, Evas *evas) {
-    ecore_timer_add(60, &update_clock, top);
     ecore_timer_add(60, &update_clock_gr, evas);
-    update_clock(top);
+    eoi_run_clock(top);
+    eoi_run_battery(top);
 }
