@@ -11,6 +11,6 @@ Standards-Version: 3.8.3
 Package: gm
 Priority: optional
 Architecture: any
-Depends: ${shlibs:Depends}, libecore-svn-03 (>= 0.9.9.062-3)
+Depends: ${shlibs:Depends}
 Description: Global Menu
 
