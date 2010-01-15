@@ -1,4 +1,4 @@
-gm (0.3.3) UNRELEASED; urgency=low
+gm (0.3.3) zelazny; urgency=low
 
   * Cleanups:
     - Use main_window widgets group from libeoi
