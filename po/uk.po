@@ -50,73 +50,20 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Налаштувати <inactive>/ Setup</inactive>"
 
 #: src/gm.c:135 src/graph.c:191
-msgid "No book is open"
-msgstr "Немає відкритої книги"
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Немає відкритої книги</inactive>"
 
 #: src/setup.c:33
 msgid "Version"
 msgstr "Версія програмного забезпечення"
 
-#: src/setup.c:56
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>параметр не підтримується</inactive>"
-
-#: src/setup.c:57
-msgid "Full"
-msgstr "повне"
-
-#: src/setup.c:58
-msgid "Adaptive"
-msgstr "адаптивне"
-
-#: src/setup.c:59
-msgid "Partial"
-msgstr "частинами"
-
-#: src/setup.c:66
-msgid "Screen update"
-msgstr "Тип оновлення екрана"
-
-#: src/setup.c:87
-msgid "Screen rotation type"
-msgstr "Режим обертання екрана"
-
-#: src/setup.c:93
-msgid "<invisible>N/A</invisible>"
-msgstr "<invisible>не доступно</invisible>"
-
-#: src/setup.c:94
-msgid "OFF"
-msgstr "вимк."
-
-#: src/setup.c:95
-msgid "ON"
-msgstr "увімк."
-
 #: src/setup.c:102
 msgid "Sound"
 msgstr "Звук"
 
-#. TRANSLATORS: Please make this menu string two-language: 'Language
-#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
-#. users to reset language if current language is unknown to them translation
-#. is broken due to some reason, like lack of font).
-#. 
-#: src/setup.c:127
-msgid "Language <inactive>/ Language</inactive>"
-msgstr "Мова інтерфейсу <inactive>/ Language</inactive>"
-
 #: src/setup.c:134
 msgid "Clock setup"
 msgstr "Встановити час та дату"
-
-#: src/setup.c:183
-msgid "Settings"
-msgstr "Загальні налаштування пристрою"
-
-#: src/rotation.c:28
-msgid "Disabled"
-msgstr "не обертати"
 
 #: src/rotation.c:29
 msgid "0 ↔ 90 Degrees Clockwise"
@@ -134,14 +81,67 @@ msgstr "0° ↔ 90° проти годинникової стрілки"
 msgid "0 → 90 → 180 → 270 → 0"
 msgstr "0° → 90° → 180° → 270° → 0°"
 
-#: src/rotation.c:93
-msgid "Select screen rotation type"
-msgstr "Оберіть режим обертання екрана"
-
-#: src/graph.c:135
-msgid "Setup"
-msgstr "Налаштувати"
-
 #: src/help.c:44
 msgid "GM: Help"
 msgstr "Головне меню: Довідка"
+
+#: src/setup.c:95
+msgid "ON"
+msgstr "Увімк."
+
+#: src/setup.c:57
+msgid "Full"
+msgstr "Повне"
+
+#: src/setup.c:56
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>Не доступно</inactive>"
+
+#: src/setup.c:59
+msgid "Partial"
+msgstr "Частинами"
+
+#: src/setup.c:58
+msgid "Adaptive"
+msgstr "Адаптивне"
+
+#: src/setup.c:87
+msgid "Screen rotation type"
+msgstr "Тип обертання екрана"
+
+#: src/setup.c:66
+msgid "Screen update"
+msgstr "Оновлення екрана"
+
+#: src/setup.c:94
+msgid "OFF"
+msgstr "Вимк."
+
+#: src/setup.c:93
+msgid "<invisible>N/A</invisible>"
+msgstr "<invisible>Не доступно</invisible>"
+
+#. TRANSLATORS: Please make this menu string two-language: 'Language
+#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
+#. users to reset language if current language is unknown to them translation
+#. is broken due to some reason, like lack of font).
+#. 
+#: src/setup.c:127
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "Мова<inactive>/ Language</inactive>"
+
+#: src/setup.c:183
+msgid "Settings"
+msgstr "Налаштування"
+
+#: src/rotation.c:28
+msgid "Disabled"
+msgstr "Не обертати"
+
+#: src/rotation.c:93
+msgid "Select screen rotation type"
+msgstr "Оберіть тип обертання екрана"
+
+#: src/graph.c:135
+msgid "Setup"
+msgstr "Налаштування"
