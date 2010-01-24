@@ -101,19 +101,9 @@ gm_graphics_resize(Evas *evas, int x, int y) {
     gm_graphics_show_clock(evas);
 }
 
-static void _keys_handler(void *param __attribute__((unused)),
-                          Evas *e,
-                          Evas_Object *r __attribute__((unused)),
-                          void *event_info)
+static bool _action(Evas *e, const char *action)
 {
-    const char *action = keys_lookup_by_event(gm_keys(), "graphical-menu",
-                                              (Evas_Event_Key_Up*)event_info);
-
-    if(!action)
-        return;
-
-    if(!strcmp(action, "TextMenu")) gm_graphics_deactivate(e);
-    else if(!strcmp(action, "CurrentBook")) raise_fbreader(e);
+    if(!strcmp(action, "CurrentBook")) raise_fbreader(e);
     else if(!strcmp(action, "DateTimeSetup")) gm_run_etimetool(e);
     else if(!strcmp(action, "Books")) gm_run_madshelf_books(e);
     else if(!strcmp(action, "Images")) gm_run_madshelf_images(e);
@@ -133,9 +123,75 @@ static void _keys_handler(void *param __attribute__((unused)),
         gm_graphics_hide(e);
         settings_menu(e);
     }
+    else
+        return false;
+    return true;
+}
+
+static void
+_cursor_move(Evas *evas, const char *move)
+{
+    Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    char *current = evas_object_data_get(edje, "cursor-position");
+    if(!current)
+    {
+        current = "CurrentBook";
+        printf("CurrentBook assumed\n");
+    }
+    char *source;
+    asprintf(&source, "%s_%s", move, current);
+    edje_object_signal_emit(edje, "cursor_keypress", source);
+    free(source);
+}
+
+static void
+_selected(void *data, Evas_Object *o, const char *emission, const char *source)
+{
+    Evas *evas = evas_object_evas_get(o);
+    Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    char *old = evas_object_data_get(edje, "cursor-position");
+    printf("Emission: %s, source: %s old:%s\n", emission, source, old);
+    evas_object_data_set(edje, "cursor-position", strdup(source));
+    free(old);
+}
+
+
+static void
+_cursor_select(Evas *evas)
+{
+    Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    char *action = evas_object_data_get(edje, "cursor-position");
+    if(action)
+    {
+        printf("Executing %s\n", action);
+        _action(evas, action);
+    }
+    else
+        printf("No current action\n");
+}
+
+static void _keys_handler(void *param __attribute__((unused)),
+                          Evas *e,
+                          Evas_Object *r __attribute__((unused)),
+                          void *event_info)
+{
+    const char *action = keys_lookup_by_event(gm_keys(), "graphical-menu",
+                                              (Evas_Event_Key_Up*)event_info);
+
+    if(!action)
+        return;
+
+    if(!strcmp(action, "TextMenu")) gm_graphics_deactivate(e);
     else if(!strcmp(action, "Help"))
         help_show(e);
-    else
+    else if(!strcmp(action, "CursorUp") || !strcmp(action, "CursorDown")  ||
+            !strcmp(action, "CursorLeft")  || !strcmp(action, "CursorRight"))
+    {
+        _cursor_move(e, action);
+    }
+    else if(!strcmp(action, "CursorSelect"))
+        _cursor_select(e);
+    else if(!_action(e, action))
         printf("Don't know how to handle action '%s'\n", action);
 }
 
@@ -327,6 +383,11 @@ gm_graphics_init(Evas *evas) {
                                   EVAS_CALLBACK_KEY_UP,
                                   &_keys_handler,
                                   evas);
+    edje_object_signal_callback_add(edje,
+                                    "cursor_selected",
+                                    "*",
+                                    _selected,
+                                    NULL);
     gm_graphics_show_captions(edje);
 }
 
