@@ -1,4 +1,10 @@
-gm (0.3.3) UNRELEASED; urgency=low
+gm (0.3.4) zelazny; urgency=low
+
+  * Remove obsolete manual Ecore dependency
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Fri, 15 Jan 2010 11:02:54 +0600
+
+gm (0.3.3) zelazny; urgency=low
 
   * Cleanups:
     - Use main_window widgets group from libeoi
