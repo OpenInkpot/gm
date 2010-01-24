@@ -1,3 +1,9 @@
+gm (0.3.5) zelazny; urgency=low
+
+  * Experimental cursors in vertical layout of graphic face
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Mon, 25 Jan 2010 01:36:31 +0200
+
 gm (0.3.4) zelazny; urgency=low
 
   * Remove obsolete manual Ecore dependency
