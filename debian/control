@@ -14,3 +14,9 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Description: Global Menu
 
+Package: gm-dbg
+Priority: extra
+Architecture: any
+Depends: gm (= ${binary:Version})
+Section: debug
+Description: Global Menu -- debug symbols
