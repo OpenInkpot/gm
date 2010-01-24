@@ -312,10 +312,10 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 
     ecore_con_shutdown();
     efreet_shutdown();
-    edje_shutdown();
     ecore_evas_shutdown();
     ecore_shutdown();
     evas_shutdown();
+    edje_shutdown();
     shutdown_langs();
     return 0;
 }
