@@ -8,6 +8,7 @@ images {
     image: "start_menu.png" COMP;
     image: "start_menu_horiz.png" COMP;
     image: "cursor_small.png" COMP;
+    image: "cursor_white.png" COMP;
 }
 
 styles {
@@ -66,35 +67,35 @@ styles {
 
 #define CURSOR_STATE(name_, vertex, keypress, dir)                  \
     program {                                                       \
-        name, STR(cursor_keypress##_##name_##_##dir);             \
-        signal, "cursor_keypress";                                   \
-        source, SIGNAL_SOURCE(keypress, name_);                      \
+        name, STR(cursor_keypress##_##name_##_##dir);               \
+        signal, "cursor_keypress";                                  \
+        source, SIGNAL_SOURCE(keypress, name_);                     \
         action, SIGNAL_EMIT "cursor_show" STR(vertex);              \
-        after, STR(cursor_action##_##name_##_##dir);              \
+        after, STR(cursor_action##_##name_##_##dir);                \
     }                                                               \
     program {                                                       \
-        name, STR(cursor_action##_##name_##_##dir);               \
+        name, STR(cursor_action##_##name_##_##dir);                 \
         action, SIGNAL_EMIT "cursor_selected" STR(vertex);          \
-        after, PROGRAM_NAME(cursor_hide, name_);                     \
+        after, PROGRAM_NAME(cursor_hide, name_);                    \
     }
 
-#define CURSOR_PROGRAM(name_, left, right, up, down)                 \
+#define CURSOR_PROGRAM(name_, left, right, up, down)                \
     program {                                                       \
-        name, PROGRAM_NAME(cursor_hide, name_);                      \
+        name, PROGRAM_NAME(cursor_hide, name_);                     \
         signal, "cursor_hide";                                      \
-        action, STATE_SET "default" 0.0;                             \
-        target, CURSOR_NAME(name_);                                  \
+        action, STATE_SET "default" 0.0;                            \
+        target, CURSOR_NAME(name_);                                 \
     }                                                               \
     program {                                                       \
-        name, PROGRAM_NAME(cursor_show, name_);                      \
+        name, PROGRAM_NAME(cursor_show, name_);                     \
         signal, "cursor_show";                                      \
-        source, STR(name_);                                          \
-        action, STATE_SET "selected" 0.0;                              \
-        target, CURSOR_NAME(name_);                                  \
+        source, STR(name_);                                         \
+        action, STATE_SET "selected" 0.0;                           \
+        target, CURSOR_NAME(name_);                                 \
     }                                                               \
-    CURSOR_STATE(name_, left, CursorLeft, Left)                            \
-    CURSOR_STATE(name_, right, CursorRight, Right)                          \
-    CURSOR_STATE(name_, up, CursorUp, Up)                                \
+    CURSOR_STATE(name_, left, CursorLeft, Left)                     \
+    CURSOR_STATE(name_, right, CursorRight, Right)                  \
+    CURSOR_STATE(name_, up, CursorUp, Up)                           \
     CURSOR_STATE(name_, down, CursorDown, Down)                            
 
 collections {
@@ -192,7 +193,7 @@ collections {
                 COL2_X1, CURSOR_ROW3_Y1, COL2_X2, CURSOR_ROW3_Y2)
             CURSOR_LOCATION(Settings, "cursor_small.png",
                 COL3_X1, CURSOR_ROW3_Y1, COL3_X2, CURSOR_ROW3_Y2)
-            CURSOR_LOCATION(CurrentBook, "cursor_small.png",
+            CURSOR_LOCATION(CurrentBook, "cursor_white.png",
                 15, CURSOR_ROW1_Y1, 284, CURSOR_ROW1_Y2)
             CURSOR_LOCATION(DateTimeSetup, "cursor_small.png",
                 DAY_X1, CURSOR_ROW1_Y1, DAY_X2, CURSOR_ROW1_Y2)
@@ -239,16 +240,16 @@ collections {
             CAPTION("caption_dayofweek", DAY_X1, 215, DAY_X2, 248)
         }
         programs {
-            CURSOR_PROGRAM(CurrentBook, DateTimeSetup, DateTimeSetup,
+            CURSOR_PROGRAM(CurrentBook, Settings, DateTimeSetup,
                                         Applications, Books)
-            CURSOR_PROGRAM(DateTimeSetup, CurrentBook, CurrentBook,
-                                            Applications, Images)
-            CURSOR_PROGRAM(Books, Audio, Images, CurrentBook, Games)
+            CURSOR_PROGRAM(DateTimeSetup, CurrentBook, Books,
+                                            Games, Images)
+            CURSOR_PROGRAM(Books, DateTimeSetup, Images, CurrentBook, Games)
             CURSOR_PROGRAM(Images, Books, Audio, DateTimeSetup, Applications)
-            CURSOR_PROGRAM(Audio, Images, Books, DateTimeSetup, Settings)
-            CURSOR_PROGRAM(Games, Settings, Applications, Books, CurrentBook)
-            CURSOR_PROGRAM(Applications, Games, Settings, Images, DateTimeSetup)
-            CURSOR_PROGRAM(Settings, Applications, Games, Audio, DateTimeSetup)
+            CURSOR_PROGRAM(Audio, Images, Games, Application, Settings)
+            CURSOR_PROGRAM(Games, Audio, Applications, Books, DateTimeSetup)
+            CURSOR_PROGRAM(Applications, Games, Settings, Images, Audio)
+            CURSOR_PROGRAM(Settings, Applications, CurrentBook, Audio, CurrentBook)
         }
     }
     group {
@@ -279,6 +280,13 @@ collections {
 #undef COL4_X1
 #undef COL4_X2
 
+#undef CURSOR_ROW1_Y1
+#undef CURSOR_ROW1_Y2
+#undef CURSOR_ROW2_Y1
+#undef CURSOR_ROW2_Y2
+#undef CURSOR_ROW3_Y1
+#undef CURSOR_ROW3_Y2
+
 #define ROW1_Y1  322
 #define ROW1_Y2  359
 #define ROW2_Y1  536
@@ -292,6 +300,12 @@ collections {
 #define COL3_X2  586
 #define COL4_X1  607
 #define COL4_X2  783
+
+
+#define CURSOR_ROW2_Y1  426
+#define CURSOR_ROW2_Y2  574
+#define CURSOR_ROW3_Y1  638
+#define CURSOR_ROW3_Y2  784
 
 #define CAPTION(t, x1, y1, x2, y2) \
             part { \
@@ -335,6 +349,25 @@ collections {
             CAPTION("caption_games", COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2)
             CAPTION("caption_apps", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
             CAPTION("caption_setup", COL4_X1, ROW2_Y1, COL4_X2, ROW2_Y2)
+
+            CURSOR_LOCATION(CurrentBook, "cursor_white.png",
+                18, 44, 388, 366)
+            CURSOR_LOCATION(DateTimeSetup, "cursor_small.png",
+                411, 69, 784, 154)
+
+            CURSOR_LOCATION(Books, "cursor_small.png",
+                COL3_X1, CURSOR_ROW2_Y1, COL3_X2, CURSOR_ROW2_Y2)
+            CURSOR_LOCATION(Images, "cursor_small.png",
+                COL4_X1, CURSOR_ROW2_Y1, COL4_X2, CURSOR_ROW2_Y2)
+            CURSOR_LOCATION(Audio, "cursor_small.png",
+                COL1_X1, CURSOR_ROW3_Y1, COL1_X2, CURSOR_ROW3_Y2)
+            CURSOR_LOCATION(Games, "cursor_small.png",
+                COL2_X1, CURSOR_ROW3_Y1, COL2_X2, CURSOR_ROW3_Y2)
+            CURSOR_LOCATION(Applications, "cursor_small.png",
+                COL3_X1, CURSOR_ROW3_Y1, COL3_X2, CURSOR_ROW3_Y2)
+            CURSOR_LOCATION(Settings, "cursor_small.png",
+                COL4_X1, CURSOR_ROW3_Y1, COL4_X2, CURSOR_ROW3_Y2)
+
 
             COVER_IMAGE(16, 45, 380, 265);
             part {
@@ -394,6 +427,24 @@ collections {
                     rel2 { relative, 0.0 0.0; offset, 600 155; }
                 }
             }
+        }
+        programs {
+            CURSOR_PROGRAM(CurrentBook, Settings, DateTimeSetup, 
+                                        Settings, Audio)
+            CURSOR_PROGRAM(DateTimeSetup, CurrentBook, Books,
+                                        Games, Books)
+            CURSOR_PROGRAM(Books, DateTimeSetup, Images,
+                                  DateTimeSetup, Applications)
+            CURSOR_PROGRAM(Images, Books, Audio,
+                                   Applications, Settings)
+            CURSOR_PROGRAM(Audio, Images, Games,
+                                  CurrentBook, Games)
+            CURSOR_PROGRAM(Games, Audio, Applications,
+                                  Audio, DateTimeSetup)
+            CURSOR_PROGRAM(Applications, Games, Settings,
+                                  Books, Images)
+            CURSOR_PROGRAM(Settings, Applications, CurrentBook,
+                                     Images, CurrentBook)
         }
     }
 }
