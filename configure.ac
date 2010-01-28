@@ -11,4 +11,6 @@ PKG_CHECK_MODULES(LIBLANGUAGE,[liblanguage])
 PKG_CHECK_MODULES(LIBKEYS, [libkeys])
 PKG_CHECK_MODULES(LIBEOI, [libeoi])
 
-AC_OUTPUT(Makefile src/Makefile themes/Makefile po/Makefile data/Makefile)
+AC_OUTPUT([Makefile src/Makefile po/Makefile data/Makefile
+themes/Makefile themes/default/Makefile themes/azbooka/Makefile
+])
