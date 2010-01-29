@@ -19,6 +19,8 @@
 #include "setup.h"
 #include "help.h"
 
+//#define DEBUG 1
+
 static void
 gm_graphics_show_captions(Evas_Object *edje);
 
@@ -140,9 +142,21 @@ _cursor_move(Evas *evas, const char *move)
     }
     char *source;
     asprintf(&source, "%s_%s", move, current);
+#ifdef
+    printf("Send: %s\n", source);
+#endif
     edje_object_signal_emit(edje, "cursor_keypress", source);
     free(source);
 }
+
+#ifdef DEBUG
+static void
+_emission(void *data, Evas_Object *o, const char *emission, const char *source)
+{
+    if(!strncmp(emission, "cursor", 6))
+        printf("Emission: %s, source: %s\n", emission, source);
+}
+#endif
 
 static void
 _selected(void *data, Evas_Object *o, const char *emission, const char *source)
@@ -150,9 +164,11 @@ _selected(void *data, Evas_Object *o, const char *emission, const char *source)
     Evas *evas = evas_object_evas_get(o);
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
     char *old = evas_object_data_get(edje, "cursor-position");
-    printf("Emission: %s, source: %s old:%s\n", emission, source, old);
-    evas_object_data_set(edje, "cursor-position", strdup(source));
+#ifdef DEBUG
+    printf("Cursor moved: %s -> %s\n", old, source);
+#endif
     free(old);
+    evas_object_data_set(edje, "cursor-position", strdup(source));
 }
 
 
@@ -180,7 +196,7 @@ static void _keys_handler(void *param __attribute__((unused)),
 
     if(!action)
         return;
-
+    evas_event_freeze(e);
     if(!strcmp(action, "TextMenu")) gm_graphics_deactivate(e);
     else if(!strcmp(action, "Help"))
         help_show(e);
@@ -193,6 +209,7 @@ static void _keys_handler(void *param __attribute__((unused)),
         _cursor_select(e);
     else if(!_action(e, action))
         printf("Don't know how to handle action '%s'\n", action);
+    evas_event_thaw(e);
 }
 
 static void
@@ -383,6 +400,9 @@ gm_graphics_init(Evas *evas) {
                                   EVAS_CALLBACK_KEY_UP,
                                   &_keys_handler,
                                   evas);
+#ifdef DEBUG
+    edje_object_signal_callback_add(edje, "*", "*", _emission, NULL);
+#endif
     edje_object_signal_callback_add(edje,
                                     "cursor_selected",
                                     "*",

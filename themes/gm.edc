@@ -70,19 +70,18 @@ styles {
         name, STR(cursor_keypress##_##name_##_##dir);               \
         signal, "cursor_keypress";                                  \
         source, SIGNAL_SOURCE(keypress, name_);                     \
-        action, SIGNAL_EMIT "cursor_show" STR(vertex);              \
-        after, STR(cursor_action##_##name_##_##dir);                \
+        script {                                                    \
+            emit("cursor_hide", STR(name_));                        \
+            emit("cursor_show", STR(vertex));                       \
+            emit("cursor_selected", STR(vertex));                   \
+        }                                                           \
     }                                                               \
-    program {                                                       \
-        name, STR(cursor_action##_##name_##_##dir);                 \
-        action, SIGNAL_EMIT "cursor_selected" STR(vertex);          \
-        after, PROGRAM_NAME(cursor_hide, name_);                    \
-    }
 
 #define CURSOR_PROGRAM(name_, left, right, up, down)                \
     program {                                                       \
         name, PROGRAM_NAME(cursor_hide, name_);                     \
         signal, "cursor_hide";                                      \
+        source, STR(name_);                                         \
         action, STATE_SET "default" 0.0;                            \
         target, CURSOR_NAME(name_);                                 \
     }                                                               \
@@ -239,18 +238,19 @@ collections {
             STYLED("caption_clock", "clock", 337, 274, 538, 351)
             CAPTION("caption_dayofweek", DAY_X1, 215, DAY_X2, 248)
         }
+
         programs {
             CURSOR_PROGRAM(CurrentBook, Settings, DateTimeSetup,
-                                        Applications, Books)
+                                        Settings, Books)
             CURSOR_PROGRAM(DateTimeSetup, CurrentBook, Books,
                                             Games, Images)
             CURSOR_PROGRAM(Books, DateTimeSetup, Images, CurrentBook, Games)
             CURSOR_PROGRAM(Images, Books, Audio, DateTimeSetup, Applications)
-            CURSOR_PROGRAM(Audio, Images, Games, Application, Settings)
+            CURSOR_PROGRAM(Audio, Images, Games, Applications, Settings)
             CURSOR_PROGRAM(Games, Audio, Applications, Books, DateTimeSetup)
             CURSOR_PROGRAM(Applications, Games, Settings, Images, Audio)
             CURSOR_PROGRAM(Settings, Applications, CurrentBook, Audio, CurrentBook)
-        }
+        } 
     }
     group {
         name, "horizontal_graphics";
@@ -302,10 +302,10 @@ collections {
 #define COL4_X2  783
 
 
-#define CURSOR_ROW2_Y1  426
-#define CURSOR_ROW2_Y2  574
-#define CURSOR_ROW3_Y1  638
-#define CURSOR_ROW3_Y2  784
+#define CURSOR_ROW2_Y1  217
+#define CURSOR_ROW2_Y2  366
+#define CURSOR_ROW3_Y1  434
+#define CURSOR_ROW3_Y2  584
 
 #define CAPTION(t, x1, y1, x2, y2) \
             part { \
