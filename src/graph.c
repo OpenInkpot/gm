@@ -142,7 +142,7 @@ _cursor_move(Evas *evas, const char *move)
     }
     char *source;
     asprintf(&source, "%s_%s", move, current);
-#ifdef
+#ifdef DEBUG
     printf("Send: %s\n", source);
 #endif
     edje_object_signal_emit(edje, "cursor_keypress", source);
