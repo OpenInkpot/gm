@@ -3,6 +3,7 @@
 #include <libintl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -10,8 +11,11 @@
 #include <liblops.h>
 #include <Evas.h>
 #include <Edje.h>
+#include <Ecore_File.h>
+#include <Efreet.h>
 #include <libchoicebox.h>
 #include "setup.h"
+#include "graph.h"
 #include "lang.h"
 #include "choices.h"
 #include "sound_control.h"
@@ -19,11 +23,20 @@
 #include "rotation.h"
 #include "run.h"
 
+static Efreet_Ini *_settings;
+static char *_settings_path;
+
 struct setup_menu_item_t {
     void (*draw)(Evas_Object *self);
     void (*select) (Evas_Object *self);
     void *arg;
 };
+
+static
+gm_settings_save()
+{
+    efreet_ini_save(_settings, _settings_path);
+}
 
 #define VERSION_SIZE 1024
 
@@ -142,12 +155,32 @@ datetime_set(Evas_Object *item)
     gm_run_etimetool(canvas);
 }
 
+static void
+main_view_draw(Evas_Object *item)
+{
+    edje_object_part_text_set(item, "title", gettext("Main menu view"));
+    edje_object_part_text_set(item, "value",
+        gm_graphics_mode_get() ? gettext("Graphic") : gettext("Text"));
+}
+
+static void
+main_view_set(Evas_Object *item)
+{
+    bool value = (gm_graphics_mode_get() ? 0 : 1);
+    gm_graphics_mode_set(value);
+    efreet_ini_boolean_set(_settings, "graphics", value);
+    gm_settings_save();
+    // FIXME: why not redrawn automatically?
+//    main_view_draw(item);
+}
+
 struct setup_menu_item_t setup_menu_items[] = {
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &rotation_menu, 0},
 //    {&sound_draw, &sound_set, 0},
     {&language_draw, &lang_menu, 0},
     {&datetime_draw, &datetime_set, 0},
+    {&main_view_draw, main_view_set, 0},
     {&version_draw, &version_set, 0},
 };
 
@@ -182,4 +215,46 @@ void settings_menu(Evas *canvas) {
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,
         "main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "title", gettext("Settings"));
+}
+
+#define USER_CONFIG_DIR "%s/.e/apps/gm"
+#define USER_CONFIG_FILE "gm.ini"
+
+static const char *
+gm_settings_get(char *key, const char* default_value)
+{
+    const char *tmp = efreet_ini_string_get(_settings, key);
+    if(!tmp)
+        return default_value;
+    return tmp;
+}
+
+void
+gm_settings_load()
+{
+    char *path;
+    char *home = getenv("HOME");
+    if(!home)
+        home="/home";
+    asprintf(&path, USER_CONFIG_DIR, home);
+    ecore_file_mkpath(path);
+    free(path);
+
+    asprintf(&_settings_path, USER_CONFIG_DIR "/" USER_CONFIG_FILE, home);
+    _settings = efreet_ini_new(_settings_path);
+    if(!efreet_ini_section_set(_settings, "config"))
+    {
+        efreet_ini_section_add(_settings, "config");
+        efreet_ini_section_set(_settings, "config");
+    }
+
+    gm_graphics_mode_set(strcmp(gm_settings_get("graphics", "true"), "false"));
+}
+
+void
+gm_settings_free()
+{
+    if(_settings)
+        efreet_ini_free(_settings);
+    free(_settings_path);
 }

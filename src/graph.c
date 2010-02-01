@@ -66,22 +66,23 @@ gm_graphics_hide(Evas *evas) {
     evas_object_focus_set(choicebox, 1);
 }
 
-static int _active = 0;
+static int _active = true;
 
 void
-gm_graphics_activate(Evas *evas) {
-    _active = 1;
-    gm_graphics_show(evas);
+gm_graphics_mode_set(int value)
+{
+    _active = value;
 }
 
-static void
-gm_graphics_deactivate(Evas *evas) {
-    _active = 0;
-    gm_graphics_hide(evas);
+int
+gm_graphics_mode_get()
+{
+    return _active;
 }
 
 void
-gm_graphics_conditional(Evas *evas) {
+gm_graphics_conditional(Evas *evas)
+{
     if(_active)
         gm_graphics_show(evas);
 }
@@ -197,8 +198,7 @@ static void _keys_handler(void *param __attribute__((unused)),
     if(!action)
         return;
     evas_event_freeze(e);
-    if(!strcmp(action, "TextMenu")) gm_graphics_deactivate(e);
-    else if(!strcmp(action, "Help"))
+    if(!strcmp(action, "Help"))
         help_show(e);
     else if(!strcmp(action, "CursorUp") || !strcmp(action, "CursorDown")  ||
             !strcmp(action, "CursorLeft")  || !strcmp(action, "CursorRight"))

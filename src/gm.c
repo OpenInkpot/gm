@@ -217,9 +217,7 @@ static void main_win_key_handler(void *param __attribute__((unused)),
     const char *action = keys_lookup_by_event(gm_keys(), "text-menu",
                                               (Evas_Event_Key_Up*)event_info);
 
-    if(action && !strcmp(action, "GraphicalMenu"))
-        gm_graphics_activate(e);
-    else if(action && !strcmp(action, "Help"))
+    if(action && !strcmp(action, "Help"))
         help_show(e);
 }
 
@@ -243,6 +241,7 @@ static void run()
     evas_object_move(main_canvas_edje, 0, 0);
     evas_object_resize(main_canvas_edje, 600, 800);
 
+    gm_settings_load();
     gm_graphics_init(main_canvas);
 
     Evas_Object *choicebox = choicebox_push(NULL, main_canvas,
@@ -262,6 +261,7 @@ static void run()
     ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
 
     evas_object_show(main_canvas_edje);
+    gm_graphics_conditional(main_canvas);
     ecore_evas_show(main_win);
 
     Ecore_X_Window root = ecore_x_window_root_first_get();
@@ -305,7 +305,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
         keys_free(_gm_keys);
 
     gm_socket_server_stop();
-
+    gm_settings_free();
     /* Keep valgrind happy */
     edje_file_cache_set(0);
     edje_collection_cache_set(0);

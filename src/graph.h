@@ -2,7 +2,10 @@
 #define _GRAPH_H 1
 
 extern void
-gm_graphics_activate(Evas *evas);
+gm_graphics_mode_set(int value);
+
+extern int
+gm_graphics_mode_get();
 
 extern void
 gm_graphics_conditional(Evas *evas);
