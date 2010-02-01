@@ -19,18 +19,9 @@ msgstr ""
 msgid "Current book"
 msgstr "Текущая книга"
 
-#. Special
-#: src/gm.c:52 src/graph.c:127
-msgid "Library"
-msgstr "Библиотека"
-
 #: src/gm.c:55 src/graph.c:133
 msgid "Games"
 msgstr "Игры"
-
-#: src/gm.c:56 src/graph.c:134
-msgid "Applications"
-msgstr "Приложения"
 
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
@@ -42,8 +33,8 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Настройки <inactive>/ Setup</inactive>"
 
 #: src/gm.c:135 src/graph.c:191
-msgid "No book is open"
-msgstr "Нет открытой книги"
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Нет открытой книги</inactive>"
 
 #: src/setup.c:33
 msgid "Version"
@@ -145,3 +136,12 @@ msgstr "Аудио"
 #: src/setup.c:134
 msgid "Clock setup"
 msgstr "Настройка даты и времени"
+
+#. Special
+#: src/gm.c:52 src/graph.c:127
+msgid "Library"
+msgstr "Книги"
+
+#: src/gm.c:56 src/graph.c:134
+msgid "Applications"
+msgstr "Программы"
