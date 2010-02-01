@@ -4,11 +4,23 @@
 #include <Edje.h>
 #include <libchoicebox.h>
 #include <libeoi.h>
+#include <libkeys.h>
 #include "choices.h"
+#include "help.h"
 #include "graph.h"
 #include "gm.h"
 
 #define DEFAULT_CHOICEBOX_THEME_FILE "/usr/share/choicebox/choicebox.edj"
+
+static void help_key_handler(void *param __attribute__((unused)),
+        Evas *e,
+        Evas_Object *r __attribute__((unused)), void *event_info)
+{
+    const char *action = keys_lookup_by_event(gm_keys(), "text-menu",
+                                              (Evas_Event_Key_Up*)event_info);
+    if(action && !strcmp(action, "Help"))
+        help_show(e);
+}
 
 bool
 choicebox_pop(Evas_Object *choicebox)
@@ -104,6 +116,10 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
     edje_object_part_swallow(main_canvas_edje, "contents", choicebox);
 
     choicebox_aux_subscribe_key_up(choicebox);
+    evas_object_event_callback_add(choicebox,
+                                   EVAS_CALLBACK_KEY_UP,
+                                   &help_key_handler,
+                                   NULL);
     evas_object_focus_set(choicebox, true);
     evas_object_show(choicebox);
     return choicebox;

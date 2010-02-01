@@ -210,17 +210,6 @@ static void main_win_signal_handler(void *param,
     evas_object_del(r);
 }
 
-static void main_win_key_handler(void *param __attribute__((unused)),
-        Evas *e __attribute__((unused)),
-        Evas_Object *r __attribute__((unused)), void *event_info)
-{
-    const char *action = keys_lookup_by_event(gm_keys(), "text-menu",
-                                              (Evas_Event_Key_Up*)event_info);
-
-    if(action && !strcmp(action, "Help"))
-        help_show(e);
-}
-
 static void run()
 {
     Ecore_Evas *main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
@@ -251,11 +240,6 @@ static void run()
         printf("no choicebox\n");
         return;
     }
-
-    evas_object_event_callback_add(choicebox,
-                                   EVAS_CALLBACK_KEY_UP,
-                                   &main_win_key_handler,
-                                   main_canvas);
 
     ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
     ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
