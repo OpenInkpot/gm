@@ -50,8 +50,8 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurer <inactive>/ Setup</inactive>"
 
 #: src/gm.c:135 src/graph.c:191
-msgid "No book is open"
-msgstr "Aucun livre ouvert"
+msgid "<inactive>No book is open</inactive>"
+msgstr "<inactive>Aucun livre ouvert</inactive>"
 
 #: src/setup.c:33
 msgid "Version"
@@ -60,10 +60,6 @@ msgstr "Version"
 #: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>N/A</inactive>"
-
-#: src/setup.c:57
-msgid "Full"
-msgstr "Plein"
 
 #: src/setup.c:58
 msgid "Adaptive"
@@ -110,10 +106,6 @@ msgstr "Langue <inactive>/ Language</inactive>"
 msgid "Clock setup"
 msgstr "Configurer l'horloge"
 
-#: src/setup.c:183
-msgid "Settings"
-msgstr "Réglages"
-
 #: src/rotation.c:28
 msgid "Disabled"
 msgstr "Désactivé"
@@ -145,3 +137,11 @@ msgstr "Configurer"
 #: src/help.c:44
 msgid "GM: Help"
 msgstr "GM: Aide"
+
+#: src/setup.c:57
+msgid "Full"
+msgstr "Complet"
+
+#: src/setup.c:183
+msgid "Settings"
+msgstr "Réglages"
