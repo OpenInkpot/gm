@@ -38,13 +38,8 @@ gm_graphics_show_book(Evas *evas);
 
 static void
 gm_graphics_show(Evas *evas) {
-    printf("Show\n");
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
-    if(!edje)
-        printf("no graphics\n");
     Evas_Object *main_edje = evas_object_name_find(evas, "main_window_edje");
-    if(!main_edje)
-        printf("no main\n");
     evas_object_hide(main_edje);
     gm_graphics_show_clock(evas);
     evas_object_show(edje);
@@ -161,17 +156,15 @@ gm_graphics_cursor_set(Evas_Object *edje, const char *position)
         edje_object_signal_emit(edje, "cursor_hide", current);
     }
 
-    if(position)
-        position = strdup(position);
-    else
+    if(!position)
     {
         if(current)
-            position = strdup(current);
+            position = current;
         else
-            position = strdup("Library");
+            position = "Books";
     }
     edje_object_signal_emit(edje, "cursor_show", position);
-    evas_object_data_set(edje, "cursor-position", position);
+    evas_object_data_set(edje, "cursor-position", strdup(position));
 #ifdef DEBUG
     printf("Send: %s\n", position);
 #endif
@@ -456,7 +449,7 @@ gm_graphics_init(Evas *evas) {
                                gm_graphics_resize, NULL);
 
     gm_graphics_show_captions(edje);
-    gm_graphics_cursor_set(edje, "Library");
+    gm_graphics_cursor_set(edje, NULL);
 }
 
 
