@@ -1,3 +1,12 @@
+gm (0.3.8) zelazny; urgency=low
+
+  * Update cursors
+  * Preserve cursor position after rotation
+  * Integrate eabout
+  * Adopt libeoi1 -> libeoi2 transition
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Sat, 20 Feb 2010 08:53:52 +0200
+
 gm (0.3.7) zelazny; urgency=low
 
   * Renumber entries in graphics mode (#651)
