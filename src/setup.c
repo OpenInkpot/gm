@@ -13,6 +13,7 @@
 #include <Edje.h>
 #include <Ecore_File.h>
 #include <Efreet.h>
+#include <Ecore.h>
 #include <libchoicebox.h>
 #include "setup.h"
 #include "graph.h"
@@ -32,7 +33,7 @@ struct setup_menu_item_t {
     void *arg;
 };
 
-static
+static void
 gm_settings_save()
 {
     efreet_ini_save(_settings, _settings_path);
@@ -62,6 +63,9 @@ version_draw(Evas_Object *item)
 static void
 version_set(Evas_Object *item __attribute__((unused)))
 {
+    Ecore_Exe *exe = ecore_exe_run("/usr/bin/eabout", NULL);
+    if(exe)
+        ecore_exe_free(exe);
 }
 
 
