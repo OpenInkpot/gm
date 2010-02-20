@@ -9,6 +9,7 @@ images {
     image: "start_menu_horiz.png" COMP;
     image: "cursor_small.png" COMP;
     image: "cursor_white.png" COMP;
+    image: "big-frame-cursor-white.png" COMP;
 }
 
 styles {
@@ -197,7 +198,7 @@ collections {
             CURSOR_LOCATION(DateTimeSetup, "cursor_small.png",
                 DAY_X1, CURSOR_ROW1_Y1, DAY_X2, CURSOR_ROW1_Y2)
 
-            COVER_IMAGE(16, 42, 282, 270);
+            COVER_IMAGE(20, 45, 275, 265);
             part {
                 name, "caption_title";
                 type, TEXT;
