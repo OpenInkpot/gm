@@ -10,7 +10,7 @@
 #include "graph.h"
 #include "gm.h"
 
-#define DEFAULT_CHOICEBOX_THEME_FILE "/usr/share/choicebox/choicebox.edj"
+#define DEFAULT_CHOICEBOX_THEME_FILE "choicebox"
 
 static void help_key_handler(void *param __attribute__((unused)),
         Evas *e,
@@ -19,7 +19,7 @@ static void help_key_handler(void *param __attribute__((unused)),
     const char *action = keys_lookup_by_event(gm_keys(), "text-menu",
                                               (Evas_Event_Key_Up*)event_info);
     if(action && !strcmp(action, "Help"))
-        help_show(e);
+        gm_help_show(e);
 }
 
 bool
@@ -89,7 +89,7 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
         NULL,
         DEFAULT_CHOICEBOX_THEME_FILE,
         "full",
-        own_edje ? THEME_DIR "/items.edj" : DEFAULT_CHOICEBOX_THEME_FILE,
+        own_edje ? "gm-items" : DEFAULT_CHOICEBOX_THEME_FILE,
         own_edje ? "item-default" : "item-settings",
         handler,
         draw_handler,

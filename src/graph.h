@@ -11,9 +11,6 @@ extern void
 gm_graphics_conditional(Evas *evas);
 
 extern void
-gm_graphics_resize(Evas *evas, int x, int y);
-
-extern void
 gm_graphics_show_book(Evas *evas);
 
 extern void

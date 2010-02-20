@@ -3,7 +3,6 @@
 
 #include <Evas.h>
 
-void help_show(Evas* evas);
-void help_resize(Evas* evas, int w, int h);
+void gm_help_show(Evas* evas);
 
 #endif

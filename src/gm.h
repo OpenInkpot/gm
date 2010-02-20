@@ -3,6 +3,8 @@
 
 #include <libkeys.h>
 
+#define THEME_EDJE "gm"
+
 keys_t* gm_keys();
 
 void gm_choicebox_raise_root(Evas*);

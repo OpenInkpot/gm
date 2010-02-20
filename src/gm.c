@@ -184,23 +184,6 @@ void main_menu_handler(Evas_Object *choicebox __attribute__((unused)),
     main_menu[item_num].execute(param);
 }
 
-static void main_win_resize_handler(Ecore_Evas *main_win)
-{
-    Evas *canvas = ecore_evas_get(main_win);
-    int w, h;
-    evas_output_size_get(canvas, &w, &h);
-
-    eoi_process_resize(main_win);
-
-    Evas_Object *main_canvas_edje = evas_object_name_find(canvas,
-                    "main_canvas_edje");
-    evas_object_resize(main_canvas_edje, w, h);
-    gm_graphics_resize(canvas, w, h);
-
-    help_resize(canvas, w, h);
-}
-
-
 static void main_win_signal_handler(void *param,
         Evas_Object *o __attribute__((unused)),
         const char *emission __attribute__((unused)),
@@ -241,7 +224,7 @@ static void run()
         return;
     }
 
-    ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
+    eoi_fullwindow_object_register(main_win, main_canvas_edje);
     ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
 
     evas_object_show(main_canvas_edje);

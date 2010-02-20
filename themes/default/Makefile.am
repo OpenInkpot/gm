@@ -1,12 +1,12 @@
 MAINTAINERCLEANFILES = Makefile.in
 
-EDC= ${srcdir}/../gm.edc ${srcdir}/../items.edc
+EDC= ${srcdir}/../gm.edc ${srcdir}/../gm-items.edc
 EDJ = $(EDC:%.edc=%.edj)
 
 EXTRA_DIST = $(EDC)
 CLEANFILES = $(EDJ)
 
-themedir = $(pkgdatadir)/oi/themes/default
+themedir = $(datadir)/eoi/themes/default
 theme_DATA = $(EDJ)
 
 all: $(EDJ)

@@ -12,6 +12,9 @@
 #include <Evas.h>
 #include <Edje.h>
 
+#include <libeoi.h>
+#include <libeoi_themes.h>
+
 #include "graph.h"
 #include "gm.h"
 #include "run.h"
@@ -20,6 +23,9 @@
 #include "help.h"
 
 //#define DEBUG 1
+
+static void
+gm_graphics_cursor_set(Evas_Object *edje, const char *position);
 
 static void
 gm_graphics_show_captions(Evas_Object *edje);
@@ -32,8 +38,13 @@ gm_graphics_show_book(Evas *evas);
 
 static void
 gm_graphics_show(Evas *evas) {
+    printf("Show\n");
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
+    if(!edje)
+        printf("no graphics\n");
     Evas_Object *main_edje = evas_object_name_find(evas, "main_window_edje");
+    if(!main_edje)
+        printf("no main\n");
     evas_object_hide(main_edje);
     gm_graphics_show_clock(evas);
     evas_object_show(edje);
@@ -87,21 +98,28 @@ gm_graphics_conditional(Evas *evas)
         gm_graphics_show(evas);
 }
 
-void
-gm_graphics_resize(Evas *evas, int x, int y) {
-    Evas_Object * edje = evas_object_name_find(evas, "graphics");
+static void
+gm_graphics_resize(Ecore_Evas *window __attribute__((unused)),
+                   Evas_Object *edje, int x, int y,
+                   void *param __attribute__((unused)))
+{
+    const char *file;
+    const char *collection;
+    char *replacement = (y > 600) ? "vertical_graphics" : "horizontal_graphics";
 
-    if(y > 600)
-        edje_object_file_set(edje, THEME_DIR "/gm.edj", "vertical_graphics");
-    else
-        edje_object_file_set(edje, THEME_DIR "/gm.edj", "horizontal_graphics");
+    edje_object_file_get(edje, &file, &collection);
+    if(!strcmp(collection, replacement))
+        return;
+    edje_object_file_set(edje, file, replacement);
 
     evas_object_move(edje, 0, 0);
     evas_object_resize(edje, x, y);
 
+    Evas *evas = evas_object_evas_get(edje);
     gm_graphics_show_captions(edje);
     gm_graphics_show_book(evas);
     gm_graphics_show_clock(evas);
+    gm_graphics_cursor_set(edje, NULL);
 }
 
 static bool _action(Evas *e, const char *action)
@@ -129,6 +147,35 @@ static bool _action(Evas *e, const char *action)
     else
         return false;
     return true;
+}
+
+static void
+gm_graphics_cursor_set(Evas_Object *edje, const char *position)
+{
+    char *current = evas_object_data_get(edje, "cursor-position");
+    if(current)
+    {
+#ifdef DEBUG
+        printf("Send: %s\n", current);
+#endif
+        edje_object_signal_emit(edje, "cursor_hide", current);
+    }
+
+    if(position)
+        position = strdup(position);
+    else
+    {
+        if(current)
+            position = strdup(current);
+        else
+            position = strdup("Library");
+    }
+    edje_object_signal_emit(edje, "cursor_show", position);
+    evas_object_data_set(edje, "cursor-position", position);
+#ifdef DEBUG
+    printf("Send: %s\n", position);
+#endif
+    free(current);
 }
 
 static void
@@ -160,7 +207,9 @@ _emission(void *data, Evas_Object *o, const char *emission, const char *source)
 #endif
 
 static void
-_selected(void *data, Evas_Object *o, const char *emission, const char *source)
+_selected(void *data __attribute__((unused)),
+          Evas_Object *o, const char *emission __attribute__((unused)),
+          const char *source)
 {
     Evas *evas = evas_object_evas_get(o);
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
@@ -199,7 +248,7 @@ static void _keys_handler(void *param __attribute__((unused)),
         return;
     evas_event_freeze(e);
     if(!strcmp(action, "Help"))
-        help_show(e);
+        gm_help_show(e);
     else if(!strcmp(action, "CursorUp") || !strcmp(action, "CursorDown")  ||
             !strcmp(action, "CursorLeft")  || !strcmp(action, "CursorRight"))
     {
@@ -233,11 +282,11 @@ _set_strftime(Evas_Object *edje, const char *part, const char *tmpl,
 void
 gm_graphics_show_clock(Evas *evas) {
     if(_active) {
+       Evas_Object *edje = evas_object_name_find(evas, "graphics");
        time_t curtime;
        struct tm *loctime;
        curtime = time (NULL);
        loctime = localtime (&curtime);
-       Evas_Object *edje = evas_object_name_find(evas, "graphics");
        if(loctime->tm_year < 108) /* 2008 */
        {
            edje_object_part_text_set(edje, "caption_day", "--");
@@ -350,7 +399,6 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
 
 void
 gm_graphics_show_book(Evas *evas) {
-    char buf[256];
     evas_event_freeze(evas);
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
     if(_active && evas_object_visible_get(edje))
@@ -381,17 +429,11 @@ gm_graphics_show_book(Evas *evas) {
 
 void
 gm_graphics_init(Evas *evas) {
-    Evas_Object *edje;
-    edje = edje_object_add(evas);
-    evas_object_name_set(edje, "graphics");
-
     int w, h;
     evas_output_size_get(evas, &w, &h);
-
-    if(h > 600)
-        edje_object_file_set(edje, THEME_DIR "/gm.edj", "vertical_graphics");
-    else
-        edje_object_file_set(edje, THEME_DIR "/gm.edj", "horizontal_graphics");
+    Evas_Object *edje = eoi_create_themed_edje(evas, THEME_EDJE,
+        (h > 600) ? "vertical_graphics" : "horizontal_graphics");
+    evas_object_name_set(edje, "graphics");
 
     evas_object_move(edje, 0, 0);
     evas_object_resize(edje, w, h);
@@ -400,6 +442,7 @@ gm_graphics_init(Evas *evas) {
                                   EVAS_CALLBACK_KEY_UP,
                                   &_keys_handler,
                                   evas);
+
 #ifdef DEBUG
     edje_object_signal_callback_add(edje, "*", "*", _emission, NULL);
 #endif
@@ -408,7 +451,12 @@ gm_graphics_init(Evas *evas) {
                                     "*",
                                     _selected,
                                     NULL);
+    eoi_resize_object_register(ecore_evas_ecore_evas_get(evas),
+                               edje,
+                               gm_graphics_resize, NULL);
+
     gm_graphics_show_captions(edje);
+    gm_graphics_cursor_set(edje, "Library");
 }
 
 

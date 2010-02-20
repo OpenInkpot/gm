@@ -14,6 +14,12 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Description: Global Menu
 
+Package: gm-theme-azbooka
+Priority: optional
+Architecture: any
+Depends: gm
+Description: Global Menu -- Azbooka
+
 Package: gm-dbg
 Priority: extra
 Architecture: any
