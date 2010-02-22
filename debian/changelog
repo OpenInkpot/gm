@@ -1,3 +1,10 @@
+gm (0.3.9) zelazny; urgency=low
+
+  * Icons for rotation
+  * Cursors for dark regions 
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Mon, 22 Feb 2010 15:08:28 +0200
+
 gm (0.3.8) zelazny; urgency=low
 
   * Update cursors
