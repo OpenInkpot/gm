@@ -44,7 +44,7 @@ gm_settings_save()
 static void
 version_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", gettext("Version"));
+    edje_object_part_text_set(item, "lefttop", gettext("Version"));
     char version_str[VERSION_SIZE]="N/A";
     int fd = open("/etc/openinkpot-version", O_RDONLY);
     if (fd != -1) {
@@ -57,7 +57,7 @@ version_draw(Evas_Object *item)
         }
         close(fd);
     }
-    edje_object_part_text_set(item, "value", version_str);
+    edje_object_part_text_set(item, "rightbottom", version_str);
 }
 
 static void
@@ -80,8 +80,8 @@ static void
 screen_draw(Evas_Object *item)
 {
     screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "title", gettext("Screen update"));
-    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
+    edje_object_part_text_set(item, "lefttop", gettext("Screen update"));
+    edje_object_part_text_set(item, "rightbottom", gettext(screen_states[scr+1]));
 }
 
 static void
@@ -101,8 +101,9 @@ screen_set(Evas_Object *self) {
 static void
 rotation_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", gettext("Screen rotation type"));
-    edje_object_part_text_set(item, "value", current_rotation());
+    edje_object_part_text_set(item, "lefttop", gettext("Screen rotation type"));
+    edje_object_part_text_set(item, "rightbottom", gm_current_rotation());
+    //gm_set_rotation_icon(item);
 }
 
 #if 0
@@ -141,15 +142,15 @@ language_draw(Evas_Object *item)
       users to reset language if current language is unknown to them translation
       is broken due to some reason, like lack of font).
     */
-    edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
-    edje_object_part_text_set(item, "value", current_lang());
+    edje_object_part_text_set(item, "lefttop", gettext("Language <inactive>/ Language</inactive>"));
+    edje_object_part_text_set(item, "rightbottom", current_lang());
 }
 
 static void
 datetime_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", gettext("Clock setup"));
-    edje_object_part_text_set(item, "value", "");
+    edje_object_part_text_set(item, "lefttop", gettext("Clock setup"));
+    edje_object_part_text_set(item, "rightbottom", "");
 }
 
 static void
@@ -162,8 +163,8 @@ datetime_set(Evas_Object *item)
 static void
 main_view_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "title", gettext("Main menu view"));
-    edje_object_part_text_set(item, "value",
+    edje_object_part_text_set(item, "lefttop", gettext("Main menu view"));
+    edje_object_part_text_set(item, "rightbottom",
         gm_graphics_mode_get() ? gettext("Graphic") : gettext("Text"));
 }
 
@@ -180,7 +181,7 @@ main_view_set(Evas_Object *item)
 
 struct setup_menu_item_t setup_menu_items[] = {
     {&screen_draw, &screen_set, 0},
-    {&rotation_draw, &rotation_menu, 0},
+    {&rotation_draw, &gm_rotation_menu, 0},
 //    {&sound_draw, &sound_set, 0},
     {&language_draw, &lang_menu, 0},
     {&datetime_draw, &datetime_set, 0},
@@ -196,6 +197,7 @@ static void settings_draw(Evas_Object *choicebox __attribute__((unused)),
                          int page_position __attribute__((unused)),
                          void *param __attribute__((unused)))
 {
+    edje_object_signal_emit(item, "set-icon-none", "");
     setup_menu_items[item_num].draw(item);
 }
 
@@ -213,7 +215,7 @@ void settings_menu(Evas *canvas) {
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
                settings_draw,
-               "settings-choicebox", MENU_ITEMS_NUM, 0, NULL);
+               "settings-choicebox", MENU_ITEMS_NUM, 1, NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,

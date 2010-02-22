@@ -8,6 +8,10 @@ images {
     image: "icon-games.png" COMP;
     image: "icon-setup.png" COMP;
     image: "icon-clock.png" COMP;
+    image: "icon-rotate-off.png" COMP;
+    image: "icon-rotate-cw.png" COMP;
+    image: "icon-rotate-ccw.png" COMP;
+    image: "icon-rotate-reverse.png" COMP;
 }
 
 styles {
@@ -38,7 +42,21 @@ styles {
     }
 }
 
+#define ICON_IMAGE(state_, image_)                              \
+             description {                                      \
+                state, state_ 0.0;                              \
+                inherit, "default" 0.0;                         \
+                image { normal, image_; }                       \
+             }
 
+#define ICON_PROGRAM(name_, state_)                                     \
+            program {                                                   \
+                name, name_;                                            \
+                signal, name_;                                          \
+                script {                                                \
+                    set_state(PART:"icon", state_, 0.0);                \
+                }                                                       \
+            }
 
 collections {
    group {
@@ -110,116 +128,34 @@ collections {
                  rel1 { relative, 1.0 1.0; offset, -88 -62; }
                  rel2 { relative, 1.0 1.0; offset, -24 -7; }
              }
-             description {
-                state, "icon-none" 0.0;
-                inherit, "default" 0.0;
-                image { normal, "icon-none.png"; }
-             }
-             description {
-                 state, "icon-book" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-book.png"; }
-             }
-             description {
-                 state, "icon-lib" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-lib.png"; }
-             }
-             description {
-                 state, "icon-photo" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-photo.png"; }
-             }
-             description {
-                 state, "icon-phono" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-phono.png"; }
-             }
-             description {
-                 state, "icon-apps" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-apps.png"; }
-             }
-             description {
-                 state, "icon-games" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-games.png"; }
-             }
-             description {
-                 state, "icon-setup" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-setup.png"; }
-             }
-             description {
-                 state, "icon-clock" 0.0;
-                 inherit, "default" 0.0;
-                 image { normal, "icon-clock.png"; }
-             }
+             ICON_IMAGE("icon-none", "icon-none.png")
+             ICON_IMAGE("icon-book", "icon-book.png")
+             ICON_IMAGE("icon-lib", "icon-lib.png")
+             ICON_IMAGE("icon-photo", "icon-photo.png")
+             ICON_IMAGE("icon-phono", "icon-phono.png")
+             ICON_IMAGE("icon-apps", "icon-apps.png")
+             ICON_IMAGE("icon-games", "icon-games.png")
+             ICON_IMAGE("icon-setup", "icon-setup.png")
+             ICON_IMAGE("icon-clock", "icon-clock.png")
+             ICON_IMAGE("icon-rotate-off", "icon-rotate-off.png")
+             ICON_IMAGE("icon-rotate-reverse", "icon-rotate-reverse.png")
+             ICON_IMAGE("icon-rotate-ccw", "icon-rotate-ccw.png")
+             ICON_IMAGE("icon-rotate-cw", "icon-rotate-cw.png")
          }
     programs {
-            program {
-                name, "set-icon-none";
-                signal, "set-icon-none";
-                script {
-                    set_state(PART:"icon", "icon-none", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-book";
-                signal, "set-icon-book";
-                script {
-                    set_state(PART:"icon", "icon-book", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-lib";
-                signal, "set-icon-lib";
-                script {
-                    set_state(PART:"icon", "icon-lib", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-photo";
-                signal, "set-icon-photo";
-                script {
-                    set_state(PART:"icon", "icon-photo", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-phono";
-                signal, "set-icon-phono";
-                script {
-                    set_state(PART:"icon", "icon-phono", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-apps";
-                signal, "set-icon-apps";
-                script {
-                    set_state(PART:"icon", "icon-apps", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-games";
-                signal, "set-icon-games";
-                script {
-                    set_state(PART:"icon", "icon-games", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-setup";
-                signal, "set-icon-setup";
-                script {
-                    set_state(PART:"icon", "icon-setup", 0.0);
-                }
-            }
-            program {
-                name, "set-icon-clock";
-                signal, "set-icon-clock";
-                script {
-                    set_state(PART:"icon", "icon-clock", 0.0);
-                }
-            }
+            ICON_PROGRAM("set-icon-none", "icon-none")
+            ICON_PROGRAM("set-icon-book", "icon-book")
+            ICON_PROGRAM("set-icon-lib", "icon-lib")
+            ICON_PROGRAM("set-icon-photo", "icon-photo")
+            ICON_PROGRAM("set-icon-phono", "icon-phono")
+            ICON_PROGRAM("set-icon-apps", "icon-apps")
+            ICON_PROGRAM("set-icon-games", "icon-games")
+            ICON_PROGRAM("set-icon-setup", "icon-setup")
+            ICON_PROGRAM("set-icon-clock", "icon-clock")
+            ICON_PROGRAM("set-icon-rotate-off", "icon-rotate-off")
+            ICON_PROGRAM("set-icon-rotate-reverse", "icon-rotate-reverse")
+            ICON_PROGRAM("set-icon-rotate-ccw", "icon-rotate-ccw")
+            ICON_PROGRAM("set-icon-rotate-cw", "icon-rotate-cw")
     }
       }
    }
