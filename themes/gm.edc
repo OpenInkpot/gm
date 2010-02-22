@@ -8,8 +8,9 @@ images {
     image: "start_menu.png" COMP;
     image: "start_menu_horiz.png" COMP;
     image: "cursor_small.png" COMP;
-    image: "cursor_white.png" COMP;
+    image: "cursor-wide.png" COMP;
     image: "big-frame-cursor-white.png" COMP;
+    image: "big-frame-cursor-white-horiz.png" COMP;
 }
 
 styles {
@@ -193,8 +194,8 @@ collections {
                 COL2_X1, CURSOR_ROW3_Y1, COL2_X2, CURSOR_ROW3_Y2)
             CURSOR_LOCATION(Settings, "cursor_small.png",
                 COL3_X1, CURSOR_ROW3_Y1, COL3_X2, CURSOR_ROW3_Y2)
-            CURSOR_LOCATION(CurrentBook, "cursor_white.png",
-                15, CURSOR_ROW1_Y1, 284, CURSOR_ROW1_Y2)
+            CURSOR_LOCATION(CurrentBook, "big-frame-cursor-white.png",
+                15, 37, 284, 359)
             CURSOR_LOCATION(DateTimeSetup, "cursor_small.png",
                 DAY_X1, CURSOR_ROW1_Y1, DAY_X2, CURSOR_ROW1_Y2)
 
@@ -351,9 +352,9 @@ collections {
             CAPTION("caption_apps", COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2)
             CAPTION("caption_setup", COL4_X1, ROW2_Y1, COL4_X2, ROW2_Y2)
 
-            CURSOR_LOCATION(CurrentBook, "cursor_white.png",
-                18, 44, 388, 366)
-            CURSOR_LOCATION(DateTimeSetup, "cursor_small.png",
+            CURSOR_LOCATION(CurrentBook, "big-frame-cursor-white-horiz.png",
+                17, 39, 389, 367)
+            CURSOR_LOCATION(DateTimeSetup, "cursor-wide.png",
                 411, 69, 784, 154)
 
             CURSOR_LOCATION(Books, "cursor_small.png",
