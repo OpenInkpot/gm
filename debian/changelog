@@ -1,3 +1,9 @@
+gm (0.3.10) zelazny; urgency=low
+
+  * Fix memory loak
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 23 Feb 2010 14:16:28 +0200
+
 gm (0.3.9) zelazny; urgency=low
 
   * Icons for rotation
