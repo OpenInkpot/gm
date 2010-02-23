@@ -416,6 +416,7 @@ gm_graphics_show_book(Evas *evas) {
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("No book is open"));
         }
+        gm_free_titles(bookinfo);
     }
     evas_event_thaw(evas);
 }
