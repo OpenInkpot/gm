@@ -1,3 +1,10 @@
+gm (0.3.11) zelazny; urgency=low
+
+  * Fix .edj compilation
+  * Drop direct build-dep on libchoicebox-dev
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Thu, 25 Feb 2010 16:52:06 +0200
+
 gm (0.3.10) zelazny; urgency=low
 
   * Fix memory loak
