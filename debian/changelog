@@ -1,3 +1,9 @@
+gm (0.3.12) zelazny; urgency=low
+
+  * Rework logo handling in azbooka skin
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Sat, 27 Feb 2010 00:39:38 +0200
+
 gm (0.3.11) zelazny; urgency=low
 
   * Fix .edj compilation
