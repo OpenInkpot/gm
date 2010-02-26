@@ -56,13 +56,14 @@ styles {
 #define LOGO_PROGRAMS                                           \
             program {                                           \
                 name, "show-logo";                              \
-                signal, "show-logo";                            \
+                signal, "no-book";                              \
                 action, STATE_SET "default" 0.0;                \
                 target, "azbooka_logo";                         \
             }                                                   \
             program {                                           \
                 name, "hide-logo";                              \
-                signal, "hide-logo";                            \
+                signal, "book-cover";                           \
+                signal, "book-no-cover";                        \
                 action, STATE_SET "hidden" 0.0;                 \
                 target, "azbooka_logo";                         \
             }                                                   

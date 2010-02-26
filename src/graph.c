@@ -316,7 +316,6 @@ static void
 gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
 {
     Evas_Object *image;
-    Evas_Object *hide_logo;
     Evas_Object *border;
     Evas_Object *design = evas_object_name_find(evas, "graphics");
     gm_graphics_hide_cover(evas);
@@ -327,7 +326,7 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
     }
     if(bookinfo->cover_image && bookinfo->cover_size > 0)
     {
-        edje_object_signal_emit(design, "hide-logo", "");
+        edje_object_signal_emit(design, "book-cover", "");
         image = evas_object_image_add(evas);
         evas_object_color_set(image, 0xff, 0xff, 0xff, 0xff);
         evas_object_name_set(image, "cover_image");
@@ -382,7 +381,7 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
         }
     }
     else
-        edje_object_signal_emit(design, "hide-logo", "");
+        edje_object_signal_emit(design, "book-no-cover", "");
 }
 
 void
@@ -408,7 +407,7 @@ gm_graphics_show_book(Evas *evas) {
         else
         {
             gm_graphics_hide_cover(evas);
-            edje_object_signal_emit(edje, "show-logo", "");
+            edje_object_signal_emit(edje, "no-book", "");
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("No book is open"));
         }
@@ -445,7 +444,7 @@ gm_graphics_init(Evas *evas) {
                                edje,
                                gm_graphics_resize, NULL);
 
-    edje_object_signal_emit(edje, "show-logo", NULL);
+    edje_object_signal_emit(edje, "no-book", NULL);
     gm_graphics_show_captions(edje);
     gm_graphics_cursor_set(edje, NULL);
 }
