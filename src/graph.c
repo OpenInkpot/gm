@@ -56,9 +56,6 @@ gm_graphics_hide_cover(Evas *evas)
     Evas_Object *border = evas_object_name_find(evas, "border");
     if(border)
         evas_object_del(border);
-    Evas_Object *hide_logo = evas_object_name_find(evas, "hide_logo");
-    if(hide_logo)
-        evas_object_del(hide_logo);
 }
 
 static void
@@ -330,6 +327,7 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
     }
     if(bookinfo->cover_image && bookinfo->cover_size > 0)
     {
+        edje_object_signal_emit(design, "hide-logo", "");
         image = evas_object_image_add(evas);
         evas_object_color_set(image, 0xff, 0xff, 0xff, 0xff);
         evas_object_name_set(image, "cover_image");
@@ -341,18 +339,13 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
             close(fd);
             if(rc == bookinfo->cover_size)
             {
-                int x, y, w, h;
                 int iw, ih;
                 double ratio;
-                gm_get_image_geom(filename, &iw, &ih);
+                int x, y, w, h;
                 edje_object_part_geometry_get(design, "cover_image",
-                                                &x, &y, &w, &h);
+                                              &x, &y, &w, &h);
+                gm_get_image_geom(filename, &iw, &ih);
                 w = w - x; h =  h - x;
-                hide_logo = evas_object_rectangle_add(evas);
-                evas_object_color_set(hide_logo, 0x55, 0x56, 0x56, 0xFF);
-                evas_object_name_set(hide_logo, "hide_logo");
-                evas_object_show(hide_logo);
-                edje_object_part_swallow(design, "cover_image", hide_logo);
                 if ( ih > h)
                 {
                     ratio = (double) ih / (double) h;
@@ -388,6 +381,8 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
             }
         }
     }
+    else
+        edje_object_signal_emit(design, "hide-logo", "");
 }
 
 void
@@ -413,6 +408,7 @@ gm_graphics_show_book(Evas *evas) {
         else
         {
             gm_graphics_hide_cover(evas);
+            edje_object_signal_emit(edje, "show-logo", "");
             edje_object_part_text_set(edje, "caption_title",
                                       gettext("No book is open"));
         }
@@ -449,6 +445,7 @@ gm_graphics_init(Evas *evas) {
                                edje,
                                gm_graphics_resize, NULL);
 
+    edje_object_signal_emit(edje, "show-logo", NULL);
     gm_graphics_show_captions(edje);
     gm_graphics_cursor_set(edje, NULL);
 }

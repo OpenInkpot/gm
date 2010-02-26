@@ -12,7 +12,7 @@ theme_DATA = $(EDJ)
 
 all: $(EDJ)
 gm-items.edj: ${srcdir}/../gm-items.edc
-	edje_cc -id ${srcdir} -id  ${srcdir}/.. -o $@ $<
+	edje_cc -DAZBOOKA -id ${srcdir} -id  ${srcdir}/.. -o $@ $<
 
 gm.edj: ${srcdir}/../gm.edc
-	edje_cc -id ${srcdir} -id  ${srcdir}/.. -o $@ $<
+	edje_cc -DAZBOOKA -id ${srcdir} -id  ${srcdir}/.. -o $@ $<

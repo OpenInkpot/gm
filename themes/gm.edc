@@ -11,6 +11,9 @@ images {
     image: "cursor-wide.png" COMP;
     image: "big-frame-cursor-white.png" COMP;
     image: "big-frame-cursor-white-horiz.png" COMP;
+#ifdef AZBOOKA
+    image: "azbooka-logo.png" COMP;
+#endif
 }
 
 styles {
@@ -29,6 +32,40 @@ styles {
         base, "font=sans-serif font_size=40 color=#000 align=middle";
     }
 }
+
+#define AZBOOKA_LOGO(x1, y1, x2, y2)                            \
+            part {                                              \
+                name, "azbooka_logo";                           \
+                type, IMAGE;                                    \
+                description {                                   \
+                    state, "default" 0.0;                       \
+                    color, 255 255 255 255;                     \
+                    image { normal, "azbooka-logo.png"; }       \
+                    rel1 { relative, 0.0 0.0; offset, x1 y1; }  \
+                    rel2 { relative, 0.0 0.0; offset, x2 y2; }  \
+                }                                               \
+                description {                                   \
+                    state, "hidden" 0.0;                        \
+                    inherit, "default" 0.0;                     \
+                    color, 0 0 0 0;                             \
+                    rel1 { relative, 0.0 0.0; offset, x1 y1; }  \
+                    rel2 { relative, 0.0 0.0; offset, x2 y2; }  \
+                }                                               \
+            }
+
+#define LOGO_PROGRAMS                                           \
+            program {                                           \
+                name, "show-logo";                              \
+                signal, "show-logo";                            \
+                action, STATE_SET "default" 0.0;                \
+                target, "azbooka_logo";                         \
+            }                                                   \
+            program {                                           \
+                name, "hide-logo";                              \
+                signal, "hide-logo";                            \
+                action, STATE_SET "hidden" 0.0;                 \
+                target, "azbooka_logo";                         \
+            }                                                   
 
 #define COVER_IMAGE(x1, y1, x2, y2)                             \
             part {                                              \
@@ -199,6 +236,9 @@ collections {
             CURSOR_LOCATION(DateTimeSetup, "cursor_small.png",
                 DAY_X1, CURSOR_ROW1_Y1, DAY_X2, CURSOR_ROW1_Y2)
 
+#ifdef AZBOOKA
+            AZBOOKA_LOGO(90, 76, 193, 241);
+#endif
             COVER_IMAGE(20, 45, 275, 265);
             part {
                 name, "caption_title";
@@ -242,6 +282,9 @@ collections {
         }
 
         programs {
+#ifdef AZBOOKA
+            LOGO_PROGRAMS
+#endif
             CURSOR_PROGRAM(CurrentBook, Settings, DateTimeSetup,
                                         Settings, Books)
             CURSOR_PROGRAM(DateTimeSetup, CurrentBook, Books,
@@ -370,7 +413,9 @@ collections {
             CURSOR_LOCATION(Settings, "cursor_small.png",
                 COL4_X1, CURSOR_ROW3_Y1, COL4_X2, CURSOR_ROW3_Y2)
 
-
+#ifdef AZBOOKA
+            AZBOOKA_LOGO(141, 71, 245, 237)
+#endif
             COVER_IMAGE(16, 45, 380, 265);
             part {
                 name, "caption_title";
@@ -431,6 +476,9 @@ collections {
             }
         }
         programs {
+#ifdef AZBOOKA
+            LOGO_PROGRAMS
+#endif
             CURSOR_PROGRAM(CurrentBook, Settings, DateTimeSetup, 
                                         Settings, Audio)
             CURSOR_PROGRAM(DateTimeSetup, CurrentBook, Books,
