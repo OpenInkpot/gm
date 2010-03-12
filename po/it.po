@@ -1,12 +1,12 @@
 # translation of gm.po to italian
 # This file is put in the public domain.
-# 
+#
 # Mascal <mascal@mascal.it>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gm\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2009-09-25 01:28+0700\n"
+"POT-Creation-Date: 2010-03-13 03:58+0600\n"
 "PO-Revision-Date: 2009-09-19 03:58+0700\n"
 "Last-Translator: Mascal <mascal@mascal.it>\n"
 "Language-Team: \n"
@@ -14,133 +14,147 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gm.c:51
+#: src/gm.c:49
 msgid "Current book"
 msgstr "Libro attuale"
 
 #. Special
-#: src/gm.c:52 src/graph.c:127
+#: src/gm.c:50 src/graph.c:256
 msgid "Library"
 msgstr "Biblioteca"
 
-#: src/gm.c:53 src/graph.c:128
+#: src/gm.c:51 src/graph.c:257
 msgid "Images"
 msgstr "Immagini"
 
-#: src/gm.c:54 src/graph.c:130
+#: src/gm.c:52 src/graph.c:258
 msgid "Audio"
 msgstr "Audio"
 
-#: src/gm.c:55 src/graph.c:133
+#: src/gm.c:53 src/graph.c:259
 msgid "Games"
 msgstr "Giochi"
 
-#: src/gm.c:56 src/graph.c:134
+#: src/gm.c:54 src/graph.c:260
 msgid "Applications"
 msgstr "Applicazioni"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#. 
-#: src/gm.c:64
+#.
+#: src/gm.c:62
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurazione <inactive>/ Setup</inactive>"
 
-#: src/gm.c:135 src/graph.c:191
+#: src/gm.c:164 src/graph.c:412
 msgid "No book is open"
 msgstr "Nessun libro aperto"
 
-#: src/setup.c:33
+#: src/setup.c:47
 msgid "Version"
 msgstr "versione"
 
-#: src/setup.c:56
+#: src/setup.c:73
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>N/A</inactive>"
 
-#: src/setup.c:57
+#: src/setup.c:74
 msgid "Full"
 msgstr "Pieno"
 
-#: src/setup.c:58
+#: src/setup.c:75
 msgid "Adaptive"
 msgstr "Adattivo"
 
-#: src/setup.c:59
+#: src/setup.c:76
 msgid "Partial"
 msgstr "Parziale"
 
-#: src/setup.c:66
+#: src/setup.c:83
 msgid "Screen update"
 msgstr "Aggiornamento schermo"
 
-#: src/setup.c:87
+#: src/setup.c:104
 msgid "Screen rotation type"
 msgstr "Tipo di rotazione schermo"
 
-#: src/setup.c:93
+#: src/setup.c:111
 msgid "<invisible>N/A</invisible>"
 msgstr "<invisible>N/A</invisible>"
 
-#: src/setup.c:94
+#: src/setup.c:112
 msgid "OFF"
 msgstr "OFF"
 
-#: src/setup.c:95
+#: src/setup.c:113
 msgid "ON"
 msgstr "ON"
 
-#: src/setup.c:102
+#: src/setup.c:120
 msgid "Sound"
 msgstr "Suono"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#. 
-#: src/setup.c:127
+#.
+#: src/setup.c:145
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Lingua <inactive>/ Language</inactive>"
 
-#: src/setup.c:134
+#: src/setup.c:152
 msgid "Clock setup"
 msgstr "Settaggio orario"
 
-#: src/setup.c:183
+#: src/setup.c:166
+msgid "Main menu view"
+msgstr ""
+
+#: src/setup.c:168
+msgid "Graphic"
+msgstr ""
+
+#: src/setup.c:168
+msgid "Text"
+msgstr ""
+
+#: src/setup.c:223
 msgid "Settings"
 msgstr "Preferenze"
 
-#: src/rotation.c:28
+#: src/rotation.c:29
 msgid "Disabled"
 msgstr "Disattivato"
 
-#: src/rotation.c:29
+#: src/rotation.c:30
 msgid "0 ↔ 90 Degrees Clockwise"
 msgstr "0 ↔ 90 gradi orario"
 
-#: src/rotation.c:30
+#: src/rotation.c:31
 msgid "0 ↔ 180 Degrees"
 msgstr "0 ↔ 180 gradi"
 
-#: src/rotation.c:31
+#: src/rotation.c:32
 msgid "0 ↔ 90 Degrees Counterclockwise"
 msgstr "0 ↔ 90 gradi antiorario"
 
-#: src/rotation.c:32
+#: src/rotation.c:35
 msgid "0 → 90 → 180 → 270 → 0"
 msgstr "0 → 90 → 180 → 270 → 0"
 
-#: src/rotation.c:93
+#: src/rotation.c:118
 msgid "Select screen rotation type"
 msgstr "Seleziona il tipo di rotazione dello schermo"
 
-#: src/graph.c:135
+#: src/graph.c:261
 msgid "Setup"
 msgstr "Configurazione"
 
-#: src/help.c:44
+#: src/help.c:9
 msgid "GM: Help"
 msgstr "GM: Aiuto"
