@@ -1,0 +1,229 @@
+images {
+    image: "icon-none.png" COMP;
+    image: "icon-book.png" COMP;
+    image: "icon-lib.png" COMP;
+    image: "icon-photo.png" COMP;
+    image: "icon-phono.png" COMP;
+    image: "icon-apps.png" COMP;
+    image: "icon-games.png" COMP;
+    image: "icon-setup.png" COMP;
+    image: "icon-clock.png" COMP;
+    image: "icon-rotate-off.png" COMP;
+    image: "icon-rotate-cw.png" COMP;
+    image: "icon-rotate-ccw.png" COMP;
+    image: "icon-rotate-reverse.png" COMP;
+}
+
+/* styles { */
+/*     style { */
+/*         name, "text"; */
+/*         base, "font=sans-serif font_size=28 color=#000 align=left valign=middle"; */
+/*         tag, "inactive" "+color=#555"; */
+/*         tag, "/inactive" "-"; */
+/*     } */
+
+/*     style { */
+/*         name, "lefttop"; */
+/*         base, "font=sans-serif font_size=20 color=#000 align=left valign=top"; */
+/*         tag, "inactive" "+color=#555"; */
+/*         tag, "/inactive" "-"; */
+/*     }; */
+/*     style { */
+/*         name, "leftbottom"; */
+/*         base, "font=sans-serif:italic font_size=20 color=#000 align=left valign=bottom"; */
+/*         tag, "inactive" "+color=#555"; */
+/*         tag, "/inactive" "-"; */
+/*     }; */
+/*     style { */
+/*         name, "rightbottom"; */
+/*         base, "font=sans-serif font_size=20 color=#000 align=right valign=bottom"; */
+/*         tag, "inactive" "+color=#555"; */
+/*         tag, "/inactive" "-"; */
+/*     } */
+/* } */
+
+#define ICON_IMAGE(state_, image_)                              \
+    description {                                               \
+        state, state_ 0.0;                                      \
+        inherit, "default" 0.0;                                 \
+        image { normal, image_; }                               \
+    }
+
+#define ICON_PROGRAM(name_, state_)                                     \
+    program {                                                           \
+        name, name_;                                                    \
+        signal, name_;                                                  \
+        script {                                                        \
+            set_state(PART:"icon", state_, 0.0);                        \
+        }                                                               \
+    }
+
+collections {
+    group {
+        name, "item-main-menu";
+        parts {
+            /* Standard menu items */
+            part {
+                name, "menu-label";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text {
+                        style, "menu-label";
+                    }
+                    rel1 { offset, 95 0; }
+                    rel2 { offset, -16 -1; }
+                }
+            }
+
+            /* "Current book" menu item */
+            part {
+                name, "no-book-clipper";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 0;
+                }
+                descrition {
+                    state, "enabled" 0.0;
+                    color, 255 255 255 255;
+                }
+            }
+            part {
+                name, "no-book-icon";
+                clip_to, "no-book-clipper";
+                description {
+                    state, "default" 0.0;
+                    rel1 { offset, 30 20; }
+                    rel2 { relative, 0.0 0.0; offset, 66 56; }
+                    image { normal, "no-book.png"; }
+                }
+                description {
+                    state, "disabled" 0.0;
+                }
+            }
+
+            /* Book info */
+            part {
+                name, "title";
+                type, TEXT;
+                description {
+                    state, "default" 0.0;
+                    rel1 { offset, 6 7; }
+                    rel2 { relative, 1.0 0.0; offset, -78 29; }
+                    text {
+                        font, "DejaVu Sans:style=Condensed Bold";
+                        size, 22;
+                        align, 0.0 0.5;
+                    }
+                }
+            }
+            part {
+                name, "author";
+                type, TEXT;
+                description {
+                    state, "default" 0.0;
+                    rel1 {
+                        offset, 
+        }
+
+      name, "item-default";
+      parts {
+        /* Big text in the center of item */
+        part {
+            name, "text";
+            type, TEXTBLOCK;
+            description {
+                state, "default" 0.0;
+                text {
+                    style, "text";
+                    max, 0 1;
+                }
+                align, 0 0.5;
+                rel1 { relative, 0.0 0.0; offset, 17 0; }
+                rel2 { relative, 1.0 1.0; offset, -18 -1; }
+            }
+        }
+        part {
+            name, "lefttop";
+            type, TEXTBLOCK;
+            description {
+                state, "default" 0.0;
+                color, 0 0 0 255;
+                text {
+                    style, "lefttop";
+                }
+                rel1 { relative, 0.0 0.0; offset, 17 0; }
+                rel2 { relative, 1.0 1.0; offset, -18 -1; }
+            }
+        }
+        part {
+           name, "leftbottom";
+           type, TEXTBLOCK;
+           description {
+              state, "default" 0.0;
+              color, 0 0 0 255;
+              text {
+                 style, "leftbottom";
+                 min, 0 1;
+              }
+              align, 0.5 1.0;
+              rel1 { relative, 0.0 1.0; offset, 17 -1; }
+              rel2 { relative, 1.0 1.0; offset, -18 -1; }
+           }
+        }
+        part {
+           name, "rightbottom";
+           type, TEXTBLOCK;
+           description {
+              state, "default" 0.0;
+              color, 0 0 0 255;
+              text {
+                 style, "rightbottom";
+                 min, 0 1;
+               }
+              align, 0.5 1.0;
+              rel1 { relative, 0.0 1.0; offset, 17 -1; }
+              rel2 { relative, 1.0 1.0; offset, -18 -1; }
+           }
+        }
+         part {
+             name, "icon";
+             type, IMAGE;
+             description {
+                 state, "default" 0.0;
+                 rel1 { relative, 1.0 1.0; offset, -88 -62; }
+                 rel2 { relative, 1.0 1.0; offset, -24 -7; }
+             }
+             ICON_IMAGE("icon-none", "icon-none.png")
+             ICON_IMAGE("icon-book", "icon-book.png")
+             ICON_IMAGE("icon-lib", "icon-lib.png")
+             ICON_IMAGE("icon-photo", "icon-photo.png")
+             ICON_IMAGE("icon-phono", "icon-phono.png")
+             ICON_IMAGE("icon-apps", "icon-apps.png")
+             ICON_IMAGE("icon-games", "icon-games.png")
+             ICON_IMAGE("icon-setup", "icon-setup.png")
+             ICON_IMAGE("icon-clock", "icon-clock.png")
+             ICON_IMAGE("icon-rotate-off", "icon-rotate-off.png")
+             ICON_IMAGE("icon-rotate-reverse", "icon-rotate-reverse.png")
+             ICON_IMAGE("icon-rotate-ccw", "icon-rotate-ccw.png")
+             ICON_IMAGE("icon-rotate-cw", "icon-rotate-cw.png")
+         }
+    programs {
+            ICON_PROGRAM("set-icon-none", "icon-none")
+            ICON_PROGRAM("set-icon-book", "icon-book")
+            ICON_PROGRAM("set-icon-lib", "icon-lib")
+            ICON_PROGRAM("set-icon-photo", "icon-photo")
+            ICON_PROGRAM("set-icon-phono", "icon-phono")
+            ICON_PROGRAM("set-icon-apps", "icon-apps")
+            ICON_PROGRAM("set-icon-games", "icon-games")
+            ICON_PROGRAM("set-icon-setup", "icon-setup")
+            ICON_PROGRAM("set-icon-clock", "icon-clock")
+            ICON_PROGRAM("set-icon-rotate-off", "icon-rotate-off")
+            ICON_PROGRAM("set-icon-rotate-reverse", "icon-rotate-reverse")
+            ICON_PROGRAM("set-icon-rotate-ccw", "icon-rotate-ccw")
+            ICON_PROGRAM("set-icon-rotate-cw", "icon-rotate-cw")
+    }
+      }
+   }
+}

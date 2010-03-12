@@ -37,8 +37,8 @@ msgid "Applications"
 msgstr "Праграмы"
 
 #: src/gm.c:135 src/graph.c:191
-msgid "<inactive>No book is open</inactive>"
-msgstr "<inactive>Кніга не адкрыта</inactive>"
+msgid "No book is open"
+msgstr "Кніга не адкрыта"
 
 #: src/setup.c:56
 msgid "<inactive>N/A</inactive>"
