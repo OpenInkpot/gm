@@ -1,3 +1,10 @@
+gm (0.3.14) zelazny; urgency=low
+
+  * New Azbooka skin
+  * Translations updated: Russian, Chinese, Ukrainian, Polish, Dutch, Czech.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 22 Mar 2010 06:10:47 +0600
+
 gm (0.3.13) zelazny; urgency=low
 
   * Merge translarions from l10n.openinkpot.org
