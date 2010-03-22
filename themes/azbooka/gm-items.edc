@@ -38,8 +38,6 @@ collections {
                 name, "big";
                 base, "font=DejaVu\\ Sans\\ Condensed:style=bold font_size=22 color=#000 ellipsis=right";
                 tag, "br" "\n";
-                tag, "inactive" "+font=DejaVu\\ Sans\\ Condensed color=#555";
-                tag, "/inactive" "-";
             }
             style {
                 name, "small";
