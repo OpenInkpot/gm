@@ -307,8 +307,8 @@ collections {
                 CURSOR_STATE(Book,   18,      42,             281,     357, 210);
                 CURSOR_STATE(Date,   300,     70,             581,     359, 85);
                 CURSOR_STATE(Books,  COL1_X1, CURSOR_ROW1_Y1, COL1_X2, CURSOR_ROW1_Y2, 85);
-                CURSOR_STATE(Audio,  COL2_X1, CURSOR_ROW1_Y1, COL2_X2, CURSOR_ROW1_Y2, 85);
-                CURSOR_STATE(Images, COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Images,COL2_X1, CURSOR_ROW1_Y1, COL2_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Audio,  COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
                 CURSOR_STATE(Games,  COL1_X1, CURSOR_ROW2_Y1, COL1_X2, CURSOR_ROW2_Y2, 85);
                 CURSOR_STATE(Apps,   COL2_X1, CURSOR_ROW2_Y1, COL2_X2, CURSOR_ROW2_Y2, 85);
                 CURSOR_STATE(Setup,  COL3_X1, CURSOR_ROW2_Y1, COL3_X2, CURSOR_ROW2_Y2, 85);
@@ -420,9 +420,9 @@ collections {
                 _MOVE(Book, Setup)
                 _MOVE(Date, Book)
                 _MOVE(Books, Date)
-                _MOVE(Audio, Books)
-                _MOVE(Images, Audio)
-                _MOVE(Games, Images)
+                _MOVE(Images, Books)
+                _MOVE(Audio, Images)
+                _MOVE(Games, Audio)
                 _MOVE(Apps, Games)
                 _MOVE(Setup, Apps)
             END_CURSOR_MOVE();
@@ -431,19 +431,19 @@ collections {
                 _MOVE(Book, Games)
                 _MOVE(Date, Setup)
                 _MOVE(Books, Book)
-                _MOVE(Audio, Book)
-                _MOVE(Images, Date)
+                _MOVE(Images, Book)
+                _MOVE(Audio, Date)
                 _MOVE(Games, Books)
-                _MOVE(Apps, Audio)
-                _MOVE(Setup, Images)
+                _MOVE(Apps, Images)
+                _MOVE(Setup, Audio)
             END_CURSOR_MOVE();
 
             CURSOR_MOVE(CursorRight)
                 _MOVE(Book, Date)
                 _MOVE(Date, Books)
-                _MOVE(Books, Audio)
-                _MOVE(Audio, Images)
-                _MOVE(Images, Games)
+                _MOVE(Books, Images)
+                _MOVE(Images, Audio)
+                _MOVE(Audio, Games)
                 _MOVE(Games, Apps)
                 _MOVE(Apps, Setup)
                 _MOVE(Setup, Book)
@@ -451,10 +451,10 @@ collections {
 
             CURSOR_MOVE(CursorDown)
                 _MOVE(Book, Books)
-                _MOVE(Date, Images)
+                _MOVE(Date, Audio)
                 _MOVE(Books, Games)
-                _MOVE(Audio, Apps)
-                _MOVE(Images, Setup)
+                _MOVE(Images, Apps)
+                _MOVE(Audio, Setup)
                 _MOVE(Games, Book)
                 _MOVE(Apps, Book)
                 _MOVE(Setup, Date)
