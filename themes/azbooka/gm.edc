@@ -304,7 +304,7 @@ collections {
                 type, RECT;
 
                 description { state, "default" 0.0; }
-                CURSOR_STATE(Book,   16,      42,             283,     359, 210);
+                CURSOR_STATE(Book,   18,      42,             281,     357, 210);
                 CURSOR_STATE(Date,   300,     70,             581,     359, 85);
                 CURSOR_STATE(Books,  COL1_X1, CURSOR_ROW1_Y1, COL1_X2, CURSOR_ROW1_Y2, 85);
                 CURSOR_STATE(Audio,  COL2_X1, CURSOR_ROW1_Y1, COL2_X2, CURSOR_ROW1_Y2, 85);
@@ -546,7 +546,7 @@ collections {
                 type, RECT;
 
                 description { state, "default" 0.0; }
-                CURSOR_STATE(Book,   16,      46,             388,     365, 210);
+                CURSOR_STATE(Book,   18,      46,             386,     363, 210);
                 CURSOR_STATE(Date,   410,     68,             783,     156, 85);
                 CURSOR_STATE(Books,  COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
                 CURSOR_STATE(Images, COL4_X1, CURSOR_ROW1_Y1, COL4_X2, CURSOR_ROW1_Y2, 85);
