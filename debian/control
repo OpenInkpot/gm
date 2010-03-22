@@ -2,7 +2,7 @@ Source: gm
 Section: gui
 Maintainer: Alexander V. Nikolaev <avn@daemon.hole.ru>
 Uploaders: Mikhail Gusarov <dottedmag@dottedmag.net>, Alexander Kerner <lunohod@openinkpot.org>
-Build-Depends: debhelper (>= 7), cdbs, automake, pkg-config, libecore-dev, libevas-dev, libedje-dev, libefreet-dev, liblanguage-dev, libxcb-atom1-dev, liblops-dev, libkeys-dev, libeoi-dev (>= 0.2.1)
+Build-Depends: debhelper (>= 7), cdbs, automake, pkg-config, libecore-dev, libevas-dev, libedje-dev, libefreet-dev, liblanguage-dev, libxcb-atom1-dev, liblops-dev, libkeys-dev, libeoi-dev (>= 0.2.1), erot (>= 0.2.2)
 XCS-Cross-Host-Build-Depends: debhelper (>= 7), cdbs, cdbs-embedded, automake, pkg-config, libedje-bin
 XCS-Cross-Build-Depends: libecore-dev, libevas-dev, libedje-dev, libefreet-dev, liblanguage-dev, libxcb-atom1-dev, liblops-dev, libkeys-dev, libeoi-dev (>= 0.2.1)
 Priority: optional
@@ -17,8 +17,9 @@ Description: Global Menu
 Package: gm-theme-azbooka
 Priority: optional
 Architecture: any
-Depends: gm
-Description: Global Menu -- Azbooka
+Depends: gm, dejavu-fonts
+Description: Global Menu -- Azbooka skin
+ This package contains 'azbooka' skin developed for Azbooka 516
 
 Package: gm-dbg
 Priority: extra

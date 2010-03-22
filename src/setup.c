@@ -44,20 +44,28 @@ gm_settings_save()
 static void
 version_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "lefttop", gettext("Version"));
-    char version_str[VERSION_SIZE]="N/A";
-    int fd = open("/etc/openinkpot-version", O_RDONLY);
-    if (fd != -1) {
-        int r = readn(fd, version_str, VERSION_SIZE-1);
-        if( r > 0) {
-            version_str[r-1]='\0';
-            char *c = strchr(version_str,'\n');
-            if(c)
-                *c = '\0';
+    static char *version = NULL;
+    if (!version) {
+        version = "N/A";
+
+        int fd = open("/etc/openinkpot-version", O_RDONLY);
+        if (fd != -1) {
+            char version_str[VERSION_SIZE];
+            int r = readn(fd, version_str, VERSION_SIZE-1);
+            if (r > 0) {
+                version_str[r-1] = '\0';
+                char *c = strchr(version_str,'\n');
+                if(c)
+                    *c = '\0';
+                version = strdup(version_str);
+            }
+            close(fd);
         }
-        close(fd);
     }
-    edje_object_part_text_set(item, "rightbottom", version_str);
+
+    edje_object_part_text_set(item, "title", gettext("Version"));
+    edje_object_part_text_set(item, "value", version);
+    edje_object_signal_emit(item, "set-icon-version", "");
 }
 
 static void
@@ -76,12 +84,20 @@ const char * screen_states[] = {
     _("Partial")
 };
 
+const char *screen_state_icons[] = {
+    "set-icon-none",
+    "set-icon-update-full",
+    "set-icon-update-adaptive",
+    "set-icon-update-zone",
+};
+
 static void
 screen_draw(Evas_Object *item)
 {
     screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "lefttop", gettext("Screen update"));
-    edje_object_part_text_set(item, "rightbottom", gettext(screen_states[scr+1]));
+    edje_object_part_text_set(item, "title", gettext("Screen update"));
+    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
+    edje_object_signal_emit(item, screen_state_icons[scr+1], "");
 }
 
 static void
@@ -90,10 +106,9 @@ screen_set(Evas_Object *self) {
     if(scr < 0)
         return;
 
-    scr ++;
+    scr++;
     if(scr > SCREEN_UPDATE_PARTIAL)
         scr = SCREEN_UPDATE_FULL;
-    printf("screen: %d\n", scr);
         set_screen_update_type(scr);
         choicebox_invalidate_item(self, 0);
 }
@@ -101,37 +116,10 @@ screen_set(Evas_Object *self) {
 static void
 rotation_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "lefttop", gettext("Screen rotation type"));
-    edje_object_part_text_set(item, "rightbottom", gm_current_rotation());
-    //gm_set_rotation_icon(item);
+    edje_object_part_text_set(item, "title", gettext("Screen rotation type"));
+    edje_object_part_text_set(item, "value", gm_current_rotation());
+    gm_set_rotation_icon(item);
 }
-
-#if 0
-const char * sound_states[] = {
-    _("<invisible>N/A</invisible>"),
-    _("OFF"),
-    _("ON")
-};
-
-static void
-sound_draw(Evas_Object *item)
-{
-    sound_t snd = detect_sound();
-    edje_object_part_text_set(item, "lefttop", gettext("Sound"));
-    edje_object_part_text_set(item, "rightbottom", gettext(sound_states[snd+1]));
-}
-
-static void
-sound_set(Evas_Object * self) {
-    sound_t snd = detect_sound();
-    if(snd == SOUND_ON)
-       set_sound(SOUND_OFF);
-    else if (snd == SOUND_OFF)
-       set_sound(SOUND_OFF);
-    choicebox_invalidate_item(self, 2);
-}
-
-#endif
 
 static void
 language_draw(Evas_Object *item)
@@ -142,15 +130,17 @@ language_draw(Evas_Object *item)
       users to reset language if current language is unknown to them translation
       is broken due to some reason, like lack of font).
     */
-    edje_object_part_text_set(item, "lefttop", gettext("Language <inactive>/ Language</inactive>"));
-    edje_object_part_text_set(item, "rightbottom", current_lang());
+    edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
+    edje_object_part_text_set(item, "value", current_lang());
+    edje_object_signal_emit(item, "set-icon-lang", "");
 }
 
 static void
 datetime_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "lefttop", gettext("Clock setup"));
-    edje_object_part_text_set(item, "rightbottom", "");
+    edje_object_part_text_set(item, "title", gettext("Clock setup"));
+    edje_object_part_text_set(item, "value", "");
+    edje_object_signal_emit(item, "set-icon-time", "");
 }
 
 static void
@@ -163,9 +153,13 @@ datetime_set(Evas_Object *item)
 static void
 main_view_draw(Evas_Object *item)
 {
-    edje_object_part_text_set(item, "lefttop", gettext("Main menu view"));
-    edje_object_part_text_set(item, "rightbottom",
+    edje_object_part_text_set(item, "title", gettext("Main menu view"));
+    edje_object_part_text_set(item, "value",
         gm_graphics_mode_get() ? gettext("Graphic") : gettext("Text"));
+
+    edje_object_signal_emit(item, gm_graphics_mode_get()
+                            ? "set-icon-main-menu-graphical"
+                            : "set-icon-main-menu-text", "");
 }
 
 static void
@@ -175,14 +169,11 @@ main_view_set(Evas_Object *item)
     gm_graphics_mode_set(value);
     efreet_ini_boolean_set(_settings, "graphics", value);
     gm_settings_save();
-    // FIXME: why not redrawn automatically?
-//    main_view_draw(item);
 }
 
 struct setup_menu_item_t setup_menu_items[] = {
     {&screen_draw, &screen_set, 0},
     {&rotation_draw, &gm_rotation_menu, 0},
-//    {&sound_draw, &sound_set, 0},
     {&language_draw, &lang_menu, 0},
     {&datetime_draw, &datetime_set, 0},
     {&main_view_draw, main_view_set, 0},
@@ -215,7 +206,7 @@ void settings_menu(Evas *canvas) {
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
                settings_draw,
-               "settings-choicebox", MENU_ITEMS_NUM, 1, NULL);
+               "settings-choicebox", MENU_ITEMS_NUM, CHOICEBOX_GM_SETTINGS, NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,

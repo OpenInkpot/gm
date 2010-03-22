@@ -1,14 +1,20 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
+#include <libintl.h>
+#include <err.h>
+
 #include <Evas.h>
 #include <Ecore.h>
 #include <Edje.h>
-#include <libintl.h>
+
 #include <libchoicebox.h>
 #include "choices.h"
 
 #define _(x) x
+
+#define PATH_MAX 4096
 
 enum rotation {
     DISABLED = 0,
@@ -33,23 +39,42 @@ rotation_t rotation_states[] = {
         "set-icon-rotate-ccw" },
     { CYCLE,
         _("0 \342\206\222 90 \342\206\222 180 \342\206\222 270 \342\206\222 0"),
-        "set-icon-none"}
+        "set-icon-rotate-loop"}
 };
 
 static int
-current_rotation()
+read_current_rotation()
 {
-    int i = CYCLE, j;
-    FILE *f;
+    char filename[PATH_MAX];
+    snprintf(filename, PATH_MAX, "%s/.e/apps/erot/config", getenv("HOME"));
+    FILE *f = fopen(filename, "r");
+    if (f != NULL) {
+        int i;
+        fscanf(f, "%d", &i);
+        fclose(f);
+        return i;
+    }
 
     f = fopen("/etc/default/erot", "r");
     if(f != NULL) {
+        int i;
         fscanf(f, "%d", &i);
         fclose(f);
     }
 
-    for(j = 0; j < ROTATION_COUNT && rotation_states[j].value != i; j++);
-    return j;
+    return CYCLE;
+}
+
+static int
+current_rotation()
+{
+    int i = read_current_rotation();
+
+    for(int j = 0; j < ROTATION_COUNT; j++)
+        if (rotation_states[j].value == i)
+            return j;
+
+    return 4;
 }
 
 const char *
@@ -64,19 +89,27 @@ gm_set_rotation_icon(Evas_Object *item)
 {
     int j = current_rotation();
     edje_object_signal_emit(item, rotation_states[j].icon, "");
-        printf("send: %s\n", rotation_states[j].icon);
+    printf("sendxx: %s\n", rotation_states[j].icon);
 }
 
 static void
 set_rotation(int rotation)
 {
-    FILE *f;
+    char filename[PATH_MAX];
+    snprintf(filename, PATH_MAX, "%s/.e/apps/erot", getenv("HOME"));
+    ecore_file_mkpath(filename);
 
-    f = fopen("/etc/default/erot", "w");
-    if(f != NULL) {
-        fprintf(f, "%d", rotation);
-        fclose(f);
+    strcat(filename, "/config");
+    FILE *f = fopen(filename, "w");
+    if (f == NULL) {
+        warn("%s", filename);
+        return;
     }
+
+    fprintf(stderr, "%d", rotation);
+
+    fprintf(f, "%d", rotation);
+    fclose(f);
 }
 
 static void rotation_draw(Evas_Object *choicebox __attribute__((unused)),
@@ -86,7 +119,7 @@ static void rotation_draw(Evas_Object *choicebox __attribute__((unused)),
                       void* param __attribute__((unused)))
 {
     edje_object_part_text_set(item,
-                              "lefttop",
+                              "title",
                               gettext(rotation_states[item_num].text));
     edje_object_signal_emit(item, rotation_states[item_num].icon, "");
     printf("send: %s\n", rotation_states[item_num].icon);
@@ -111,9 +144,9 @@ void gm_rotation_menu(Evas_Object *parent)
     choicebox = choicebox_push(parent, canvas,
                rotation_handler,
                rotation_draw,
-               "rotation-choicebox", ROTATION_COUNT , 1, parent);
+               "rotation-choicebox", ROTATION_COUNT, CHOICEBOX_GM_SETTINGS, parent);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
-    edje_object_part_text_set(main_canvas_edje, "contents", gettext("Select screen rotation type"));
+    edje_object_part_text_set(main_canvas_edje, "title", gettext("Select screen rotation type"));
 }

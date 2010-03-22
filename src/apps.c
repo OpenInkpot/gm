@@ -75,7 +75,12 @@ static void apps_draw_handler(Evas_Object *choicebox __attribute__((unused)),
     desktop = ecore_list_index_goto((Ecore_List *) param, item_num);
     if (!desktop)
         return;
-    edje_object_part_text_set(item, "text", desktop->name);
+    edje_object_part_text_set(item, "center-caption", desktop->name);
+
+    if (desktop->icon) {
+        fprintf(stderr, "%s\n", desktop->icon);
+        edje_object_signal_emit(item, desktop->icon, "");
+    }
 }
 
 static void apps_handler(Evas_Object *choicebox __attribute__((unused)),
@@ -107,7 +112,7 @@ void run_desktop_files(Evas *canvas, const char *path, const char *category)
                    apps_draw_handler,
                    "desktop-choicebox",
                    count,
-                   1,
+                   CHOICEBOX_GM_APPS,
                    (void *) desktops);
     if(!choicebox)
         printf("We all dead\n");

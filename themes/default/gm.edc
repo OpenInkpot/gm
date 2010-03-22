@@ -1,0 +1,752 @@
+#define CONCAT(x, y)  x##y
+#define TRIPLER(x, y, z) x##y##z
+#define STR(x) XSTR(x)
+#define XSTR(x) #x
+
+images {
+    image, "start-menu-1-left-bottom-corner.png" COMP;
+    image, "start-menu-1-right-bottom-corner.png" COMP;
+    image, "start-menu-date-left-bottom-corner.png" COMP;
+    image, "start-menu-date-right-bottom-corner.png" COMP;
+
+    image, "start-menu-left-top-corner-small.png" COMP;
+    image, "start-menu-right-top-corner-small.png" COMP;
+    image, "start-menu-left-bottom-corner-small.png" COMP;
+    image, "start-menu-right-bottom-corner-small.png" COMP;
+    image, "start-menu-binder-small.png" COMP;
+}
+
+styles {
+    style {
+        name, "caption";
+        base, "font=sans-serif font_size=28 color=#000 align=middle";
+        tag, "inactive" "+color=#bbb";
+        tag, "/inactive" "-";
+    }
+    style {
+        name, "day";
+        base, "font=sans-serif font_size=60 color=#000 align=middle";
+    }
+    style {
+        name, "clock";
+        base, "font=sans-serif font_size=40 color=#000 align=middle";
+    }
+}
+
+#define COVER_IMAGE(x1, y1, x2, y2)                              \
+    part {                                                       \
+        name, "cover_image";                                     \
+        type, SWALLOW;                                           \
+        description {                                            \
+            state, "default" 0.0;                                \
+            rel1 { relative, 0.0 0.0; offset, x1 y1; }           \
+            rel2 { relative, 0.0 0.0; offset, x2 y2; }           \
+        }                                                        \
+    }
+
+#define ITEM(N, NAME, X1, Y1, X2, Y2)                                   \
+            part {                                                      \
+                name, XSTR(N-bg);                                       \
+                type, RECT;                                             \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    color, 210 210 210 255;                             \
+                    rel1 { offset, X1 Y1; }                             \
+                    rel2 { relative, 0.0 0.0; offset, X2 Y2; }          \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-top-bg);                                   \
+                type, RECT;                                             \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    color, 85 85 85 255;                                \
+                    rel1 { to, XSTR(N-bg); offset, 0 -10; }             \
+                    rel2 { to, XSTR(N-bg); relative, 1.0 0.0; offset, -1 -2; } \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-top);                                      \
+                images { image, XSTR(start-menu-label-N.png) COMP; }    \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-top-bg); offset, 74 -15; }           \
+                    rel2 { to, XSTR(N-top-bg); relative, 0.0 1.0; offset, 103 -1; } \
+                    image { normal, XSTR(start-menu-label-N.png); }     \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-top-left);                                 \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-top-bg); }                        \
+                    rel2 { to, XSTR(N-top-bg); relative, 0.0 1.0; offset, 3 -1; } \
+                    image { normal, "start-menu-left-top-corner-small.png"; } \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-top-right);                                \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-top-bg); relative, 1.0 0.0; offset, -4 0; } \
+                    rel2 { to, XSTR(N-top-bg); }                        \
+                    image { normal, "start-menu-right-top-corner-small.png"; } \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-binder);                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-bg); offset, 0 5; }               \
+                    rel2 { to, XSTR(N-bg); relative, 1.0 0.0; offset, -1 25; } \
+                    image { normal, "start-menu-binder-small.png"; }    \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-icon);                                     \
+                images { image, XSTR(start-menu-icon-NAME.png) COMP; }  \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-bg); offset, 31 39; }             \
+                    rel2 { to, XSTR(N-bg); offset, -32 -40; }           \
+                    image { normal, XSTR(start-menu-icon-NAME.png); }   \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, STR(CONCAT(caption_,NAME));                       \
+                type, TEXTBLOCK;                                        \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    color, 0 0 0 255;                                   \
+                    text { style, "caption"; }                          \
+                    align, 0.5 0.0;                                     \
+                    rel1 { to, XSTR(N-bg); offset, 0 137; }             \
+                    rel2 { to, XSTR(N-bg); offset, -1 -1; }             \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-bottom-left);                              \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-bg); relative, 0.0 1.0; offset, 0 -2; } \
+                    rel2 { to, XSTR(N-bg); relative, 0.0 1.0; offset, 1 -1; } \
+                    image { normal, "start-menu-left-bottom-corner-small.png"; } \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, XSTR(N-bottom-right);                             \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, XSTR(N-bg); relative, 1.0 1.0; offset, -2 -2; } \
+                    rel2 { to, XSTR(N-bg); relative, 1.0 1.0; offset, -1 -1; } \
+                    image { normal, "start-menu-right-bottom-corner-small.png"; } \
+                }                                                       \
+            };                                                          \
+
+
+#define CURSOR_STATE(NAME, X1, Y1, X2, Y2, C)   \
+            description {                       \
+                state, XSTR(NAME) 0.0;          \
+                inherit, "default" 0.0;         \
+                color, C C C 255;               \
+                rel1 {                          \
+                    offset, X1 Y1;              \
+                }                               \
+                rel2 {                          \
+                    relative, 0.0 0.0;          \
+                    offset, X2 Y2;              \
+                }                               \
+            }
+
+#define CURSOR_PROGRAM(name_)                            \
+    program {                                            \
+        signal, "cursor_set";                            \
+        source, STR(name_);                              \
+        action, STATE_SET STR(name_) 0.0;                \
+        target, "cursor-bg";                             \
+    }
+
+#define CURSOR_SELECT_PROGRAM                                   \
+            /* Figure out what item to run and emit it back */  \
+            program {                                           \
+                signal, "select";                               \
+                script {                                        \
+                    new st[256];                                \
+                    new Float:f;                                \
+                    get_state(PART:"cursor-bg", st, 255, f);    \
+                    emit("activate", st);                       \
+                }                                               \
+            }
+
+#define CURSOR_SET_PROGRAM                      \
+            /* Move cursor to specified item */ \
+            program {                           \
+                signal, "cursor_set";           \
+                source, "default";              \
+                action, STATE_SET "Books" 0.0;  \
+                target, "cursor-bg";            \
+            }
+
+#define CURSOR_MOVE(DIR)                                            \
+    program {                                                       \
+        signal, "move";                                             \
+        source, STR(DIR);                                           \
+        script {                                                    \
+            new st[256];                                            \
+            new Float:f;                                            \
+            get_state(PART:"cursor-bg", st, 255, f);
+
+#define END_CURSOR_MOVE() {}}}
+
+#define _MOVE(FROM, TO)                            \
+    if (!strcmp(st, STR(FROM))) {                  \
+        set_state(PART:"cursor-bg", STR(TO), 0.0); \
+    } else
+
+#define CURSOR_GRAPHICS                                                 \
+            part {                                                      \
+                name, "cursor-left-top";                                \
+                images { image, "cursor-frame-left-top.png" COMP; }     \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; }                           \
+                    rel2 { to, "cursor-bg"; relative, 0.0 0.0; offset, 7 7; } \
+                    image { normal, "cursor-frame-left-top.png"; }      \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-top";                                     \
+                type, RECT;                                             \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; offset, 8 0; }              \
+                    rel2 { to, "cursor-bg"; relative, 1.0 0.0; offset, -9 2; } \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-right-top";                               \
+                images { image, "cursor-frame-right-top.png" COMP; }    \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; relative, 1.0 0.0; offset, -8 0; } \
+                    rel2 { to, "cursor-bg"; relative, 1.0 0.0; offset, -1 7; } \
+                    image { normal, "cursor-frame-right-top.png"; }     \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-right";                                   \
+                type, RECT;                                             \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; relative, 1.0 0.0; offset, -3 8; } \
+                    rel2 { to, "cursor-bg"; offset, -1 -9; }            \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-right-bottom";                            \
+                images { image, "cursor-frame-right-bottom.png" COMP; } \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; relative, 1.0 1.0; offset, -8 -8; } \
+                    rel2 { to, "cursor-bg"; }                           \
+                    image { normal, "cursor-frame-right-bottom.png"; }  \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-bottom";                                  \
+                type, RECT;                                             \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; relative, 0.0 1.0; offset, 8 -3; } \
+                    rel2 { to, "cursor-bg"; offset, -9 -1; }            \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-left-bottom";                             \
+                images { image, "cursor-frame-left-bottom.png" COMP; }  \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; relative, 0.0 1.0; offset, 0 -8; } \
+                    rel2 { to, "cursor-bg"; relative, 0.0 1.0; offset, 7 -1; } \
+                    image { normal, "cursor-frame-left-bottom.png"; }   \
+                }                                                       \
+            }                                                           \
+            part {                                                      \
+                name, "cursor-left";                                    \
+                type, RECT;                                             \
+                clip_to, "cursor-bg";                                   \
+                description {                                           \
+                    state, "default" 0.0;                               \
+                    rel1 { to, "cursor-bg"; offset, 0 8; }              \
+                    rel2 { to, "cursor-bg"; relative, 0.0 1.0; offset, 2 -9; } \
+                }                                                       \
+            }
+
+collections {
+    group {
+        name, "vertical_graphics";
+        images {
+            image, "start-menu-1-top.png" COMP;
+            image, "start-menu-1-splitter.png" COMP;
+            image, "start-menu-date-top.png" COMP;
+        }
+        parts {
+            part {
+                name, "bg";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                }
+            }
+            /* -- Book -- */
+            part {
+                name, "1-bg";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 85 85 85 255;
+                    rel1 { offset, 16 37; }
+                    rel2 { relative, 0 0; offset, 283 359; }
+                }
+            }
+            part {
+                name, "1-top";
+                description {
+                    state, "default" 0.0;
+                    rel1 { to, "1-bg"; offset, 0 -24; }
+                    rel2 { to, "1-bg"; relative, 1.0 0.0; offset, -1 -1; }
+                    image { normal, "start-menu-1-top.png"; }
+                }
+            }
+            part {
+                name, "1-splitter";
+                description {
+                    state, "default" 0.0;
+                    rel1 { to, "1-bg"; offset, 0 233; }
+                    rel2 { to, "1-bg"; relative, 1.0 0.0; offset, -1 234; }
+                    image { normal, "start-menu-1-splitter.png"; }
+                }
+            }
+            part {
+                name, "1-left-bottom-corner";
+                description {
+                    state, "default" 0.0;
+                    rel1 { to, "1-bg"; relative, 0.0 1.0; offset, 0 -2; }
+                    rel2 { to, "1-bg"; relative, 0.0 1.0; offset, 1 -1; }
+                    image { normal, "start-menu-1-left-bottom-corner.png"; }
+                }
+            }
+            part {
+                name, "1-right-bottom-corner";
+                description {
+                    state, "default" 0.0;
+                    rel1 { to, "1-bg"; relative, 1.0 1.0; offset, -2 -2; }
+                    rel2 { to, "1-bg"; relative, 1.0 1.0; offset, -1 -1; }
+                    image { normal, "start-menu-1-right-bottom-corner.png"; }
+                }
+            }
+            /* -- Date -- */
+            part {
+                name, "date-bg";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 210 210 210 255;
+                    rel1 { offset, 300 65; }
+                    rel2 { relative, 0 0; offset, 581 359; }
+                }
+            }
+            part {
+                name, "date-top";
+                description {
+                    state, "default" 0.0;
+                    rel1 {
+                        to, "date-bg";
+                        offset, 0 -37;
+                    }
+                    rel2 {
+                        to, "date-bg";
+                        relative, 1.0 0.0;
+                        offset, -1 -1;
+                    }
+                    image {
+                        normal, "start-menu-date-top.png";
+                    }
+                }
+            }
+            part {
+                name, "date-left-bottom-corner";
+                description {
+                    state, "default" 0.0;
+                    rel1 { to, "date-bg"; relative, 0.0 1.0; offset, 0 -2; }
+                    rel2 { to, "date-bg"; relative, 0.0 1.0; offset, 0 -1; }
+                    image { normal, "start-menu-date-left-bottom-corner.png"; }
+                }
+            }
+            part {
+                name, "date-right-bottom-corner";
+                description {
+                    state, "default" 0.0;
+                    rel1 { to, "date-bg"; relative, 1.0 1.0; offset, -1 -2; }
+                    rel2 { to, "date-bg"; relative, 1.0 1.0; offset, -1 -1; }
+                    image { normal, "start-menu-date-right-bottom-corner.png"; }
+                }
+            }
+
+            /* -- 2-7 -- */
+
+
+#define ROW1_Y1  396
+#define ROW1_Y2  575
+#define ROW2_Y1  608
+#define ROW2_Y2  787
+
+#define COL1_X1  16
+#define COL1_X2  194
+#define COL2_X1  210
+#define COL2_X2  388
+#define COL3_X1  404
+#define COL3_X2  582
+
+            ITEM(2, library, COL1_X1, ROW1_Y1, COL1_X2, ROW1_Y2);
+            ITEM(3, audio,   COL2_X1, ROW1_Y1, COL2_X2, ROW1_Y2);
+            ITEM(4, photo,   COL3_X1, ROW1_Y1, COL3_X2, ROW1_Y2);
+            ITEM(5, games,   COL1_X1, ROW2_Y1, COL1_X2, ROW2_Y2);
+            ITEM(6, apps,    COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2);
+            ITEM(7, setup,   COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2);
+
+            /* -- Cursor -- */
+
+#define CURSOR_ROW1_Y1  426
+#define CURSOR_ROW1_Y2  ROW1_Y2
+#define CURSOR_ROW2_Y1  638
+#define CURSOR_ROW2_Y2  ROW2_Y2
+
+            part {
+                name, "cursor-bg";
+                type, RECT;
+
+                description { state, "default" 0.0; }
+                CURSOR_STATE(Book,   16,      42,             283,     359, 210);
+                CURSOR_STATE(Date,   300,     70,             581,     359, 85);
+                CURSOR_STATE(Books,  COL1_X1, CURSOR_ROW1_Y1, COL1_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Audio,  COL2_X1, CURSOR_ROW1_Y1, COL2_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Images, COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Games,  COL1_X1, CURSOR_ROW2_Y1, COL1_X2, CURSOR_ROW2_Y2, 85);
+                CURSOR_STATE(Apps,   COL2_X1, CURSOR_ROW2_Y1, COL2_X2, CURSOR_ROW2_Y2, 85);
+                CURSOR_STATE(Setup,  COL3_X1, CURSOR_ROW2_Y1, COL3_X2, CURSOR_ROW2_Y2, 85);
+            }
+
+            CURSOR_GRAPHICS
+
+#define DAY_X1   300
+#define DAY_Y1   116
+#define DAY_X2   582
+#define DAY_Y2   210
+
+#define CAPTION(t, x1, y1, x2, y2) \
+            part { \
+                name, t; \
+                type, TEXTBLOCK; \
+                mouse_events, 0; \
+                description { \
+                    state, "default" 0.0; \
+                    color, 0 0 0 255; \
+                    text { \
+                        style, "caption"; \
+                        max, 0 1; \
+                    } \
+                    align, 0.5 0.5; \
+                    rel1 { relative, 0.0 0.0; offset, x1 y1; } \
+                    rel2 { relative, 0.0 0.0; offset, x2 y2; } \
+                } \
+            }
+
+
+            CAPTION("caption_month", DAY_X1, 75, DAY_X2, 110)
+
+            COVER_IMAGE(20, 45, 275, 265);
+            part {
+                name, "caption_title";
+                type, TEXT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5;
+                        elipsis, 0.0;
+                    }
+                    rel1 { relative, 0.0 0.0; offset, 28 280; }
+                    rel2 { relative, 0.0 0.0; offset, 276 310; }
+                }
+            }
+
+            part {
+                name, "caption_author";
+                type, TEXT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5;
+                        elipsis, 0.0;
+                    }
+                    rel1 { relative, 0.0 0.0; offset, 28 315; }
+                    rel2 { relative, 0.0 0.0; offset, 276 355; }
+                }
+            }
+
+#define STYLED(t, s, x1, y1, x2, y2) \
+            part { \
+                name, t; \
+                type, TEXTBLOCK; \
+                mouse_events, 0; \
+                description { \
+                    state, "default" 0.0; \
+                    color, 0 0 0 255; \
+                    text { \
+                        style, s; \
+                        max, 0 1; \
+                    } \
+                    align, 0.5 0.5; \
+                    rel1 { relative, 0.0 0.0; offset, x1 y1; } \
+                    rel2 { relative, 0.0 0.0; offset, x2 y2; } \
+                } \
+            }
+
+            STYLED("caption_day", "day", DAY_X1, DAY_Y1, DAY_X2, DAY_Y2)
+            STYLED("caption_clock", "clock", 337, 274, 538, 351)
+            CAPTION("caption_dayofweek", DAY_X1, 215, DAY_X2, 248)
+        }
+
+        programs {
+            CURSOR_SELECT_PROGRAM;
+            CURSOR_SET_PROGRAM;
+            CURSOR_PROGRAM(Book);
+            CURSOR_PROGRAM(Date);
+            CURSOR_PROGRAM(Books);
+            CURSOR_PROGRAM(Images);
+            CURSOR_PROGRAM(Audio);
+            CURSOR_PROGRAM(Games);
+            CURSOR_PROGRAM(Apps);
+            CURSOR_PROGRAM(Setup);
+
+            /* Cursor movement handing */
+            CURSOR_MOVE(CursorLeft)
+                _MOVE(Book, Setup)
+                _MOVE(Date, Book)
+                _MOVE(Books, Date)
+                _MOVE(Audio, Books)
+                _MOVE(Images, Audio)
+                _MOVE(Games, Images)
+                _MOVE(Apps, Games)
+                _MOVE(Setup, Apps)
+            END_CURSOR_MOVE();
+
+            CURSOR_MOVE(CursorUp)
+                _MOVE(Book, Games)
+                _MOVE(Date, Setup)
+                _MOVE(Books, Book)
+                _MOVE(Audio, Book)
+                _MOVE(Images, Date)
+                _MOVE(Games, Books)
+                _MOVE(Apps, Audio)
+                _MOVE(Setup, Images)
+            END_CURSOR_MOVE();
+
+            CURSOR_MOVE(CursorRight)
+                _MOVE(Book, Date)
+                _MOVE(Date, Books)
+                _MOVE(Books, Audio)
+                _MOVE(Audio, Images)
+                _MOVE(Images, Games)
+                _MOVE(Games, Apps)
+                _MOVE(Apps, Setup)
+                _MOVE(Setup, Book)
+            END_CURSOR_MOVE();
+
+            CURSOR_MOVE(CursorDown)
+                _MOVE(Book, Books)
+                _MOVE(Date, Images)
+                _MOVE(Books, Games)
+                _MOVE(Audio, Apps)
+                _MOVE(Images, Setup)
+                _MOVE(Games, Book)
+                _MOVE(Apps, Book)
+                _MOVE(Setup, Date)
+            END_CURSOR_MOVE();
+        }
+    }
+
+    group {
+        name, "horizontal_graphics";
+        parts {
+            part {
+                name, "bg";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                }
+            }
+
+#undef ROW1_Y1
+#undef ROW1_Y2
+#undef ROW2_Y1
+#undef ROW2_Y2
+
+#undef COL1_X1
+#undef COL1_X2
+#undef COL2_X1
+#undef COL2_X2
+#undef COL3_X1
+#undef COL3_X2
+#undef COL4_X1
+#undef COL4_X2
+
+#undef CURSOR_ROW1_Y1
+#undef CURSOR_ROW1_Y2
+#undef CURSOR_ROW2_Y1
+#undef CURSOR_ROW2_Y2
+#undef CURSOR_ROW3_Y1
+#undef CURSOR_ROW3_Y2
+
+#define ROW1_Y1  190
+#define ROW1_Y2  369
+#define ROW2_Y1  404
+#define ROW2_Y2  583
+
+#define COL1_X1  15
+#define COL1_X2  192
+#define COL2_X1  213
+#define COL2_X2  390
+#define COL3_X1  410
+#define COL3_X2  587
+#define COL4_X1  607
+#define COL4_X2  784
+
+            ITEM(2, library, COL3_X1, ROW1_Y1, COL3_X2, ROW1_Y2);
+            ITEM(3, audio,   COL4_X1, ROW1_Y1, COL4_X2, ROW1_Y2);
+            ITEM(4, photo,   COL1_X1, ROW2_Y1, COL1_X2, ROW2_Y2);
+            ITEM(5, games,   COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2);
+            ITEM(6, apps,    COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2);
+            ITEM(7, setup,   COL4_X1, ROW2_Y1, COL4_X2, ROW2_Y2);
+
+#define CURSOR_ROW2_Y1  218
+#define CURSOR_ROW2_Y2  369
+#define CURSOR_ROW3_Y1  432
+#define CURSOR_ROW3_Y2  583
+
+#define CAPTION(t, x1, y1, x2, y2) \
+            part { \
+                name, t; \
+                type, TEXTBLOCK; \
+                mouse_events, 0; \
+                description { \
+                    state, "default" 0.0; \
+                    color, 0 0 0 255; \
+                    text { \
+                        style, "caption"; \
+                        max, 0 1; \
+                    } \
+                    align, 0.5 0.5; \
+                    rel1 { relative, 0.0 0.0; offset, x1 y1; } \
+                    rel2 { relative, 0.0 0.0; offset, x2 y2; } \
+                } \
+            }
+
+#define STYLED(t, s, x1, y1, x2, y2) \
+            part { \
+                name, t; \
+                type, TEXTBLOCK; \
+                mouse_events, 0; \
+                description { \
+                    state, "default" 0.0; \
+                    color, 0 0 0 255; \
+                    text { \
+                        style, s; \
+                        max, 0 1; \
+                    } \
+                    align, 0.5 0.5; \
+                    rel1 { relative, 0.0 0.0; offset, x1 y1; } \
+                    rel2 { relative, 0.0 0.0; offset, x2 y2; } \
+                } \
+            }
+
+            COVER_IMAGE(16, 45, 380, 265);
+            part {
+                name, "caption_title";
+                type, TEXT;
+                description {
+                    state, "default" 0.0;
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5; 
+                        elipsis, 0.0;
+                    }
+                    rel1 { relative, 0.0 0.0; offset, 28 276; }
+                    rel2 { relative, 0.0 0.0; offset, 380 310; }
+                }
+            }
+
+            part {
+                name, "caption_author";
+                type, TEXT;
+                description {
+                    state, "default" 0.0;
+                    text {
+                        text, "";
+                        font, "sans-serif";
+                        size, 24;
+                        align, 0.0 0.5; 
+                        elipsis, 0.0;
+                    }
+                    rel1 { relative, 0.0 0.0; offset, 28 315; }
+                    rel2 { relative, 0.0 0.0; offset, 380 355; }
+                }
+            }
+
+            STYLED("caption_clock", "clock", 600, 70, 780, 150)
+            part {
+                name, "caption_date";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "caption"; }
+                    rel1 { relative, 0.0 0.0; offset, 408 72; }
+                    rel2 { relative, 0.0 0.0; offset, 600 155; }
+                }
+            }
+
+            part {
+                name, "caption_dayofweek";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "caption"; max, 0 1; }
+                    align, 0.0 0.9;
+                    rel1 { relative, 0.0 0.0; offset, 408 72; }
+                    rel2 { relative, 0.0 0.0; offset, 600 155; }
+                }
+            }
+        }
+        programs {
+        }
+    }
+}

@@ -41,7 +41,7 @@ keys_t *gm_keys()
 struct main_menu_item {
     char *title;
     void (*execute)(Evas *evas_ptr);
-    char * icon_signal;
+    char *icon_signal;
 };
 
 
@@ -138,40 +138,39 @@ static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
 
     /* blanking */
     edje_object_signal_emit(item, "set-icon-none", "");
-    edje_object_part_text_set(item, "text","");
-    edje_object_part_text_set(item, "lefttop","");
-    edje_object_part_text_set(item, "leftbottom","");
-    edje_object_part_text_set(item, "rightbottom","");
+    edje_object_part_text_set(item, "center-caption","");
+    edje_object_part_text_set(item, "title","");
+    edje_object_part_text_set(item, "author","");
+    edje_object_part_text_set(item, "series","");
 
     /* Icon */
     if(item_num <= (int)MAIN_MENU_SIZE && main_menu[item_num].icon_signal)
         edje_object_signal_emit(item, main_menu[item_num].icon_signal, "");
 
-    if((item_num == 0) && main_menu[item_num].title ) {
+    if((item_num == 0) && main_menu[item_num].title) {
         bookinfo = gm_get_titles();
         if(bookinfo && bookinfo->title) {
-            edje_object_part_text_set(item, "text", bookinfo->title);
-            edje_object_part_text_set(item, "lefttop",bookinfo->author);
+            edje_object_part_text_set(item, "title", bookinfo->title);
+            edje_object_part_text_set(item, "author",bookinfo->author);
             if(bookinfo->series_number) {
                 snprintf(buf, 256, "%s #%d", bookinfo->series,
                     bookinfo->series_number);
-                edje_object_part_text_set(item, "leftbottom", buf);
+                edje_object_part_text_set(item, "series", buf);
             }
             else
-                edje_object_part_text_set(item, "leftbottom",bookinfo->series);
+                edje_object_part_text_set(item, "series",bookinfo->series);
+            edje_object_signal_emit(item, "set-book", "");
         } else {
             char *str;
             asprintf(&str, "<inactive>%s</inactive>", gettext("No book is open"));
-            edje_object_part_text_set(item, "text", str);
+            edje_object_part_text_set(item, "center-caption", str);
             free(str);
+            edje_object_signal_emit(item, "set-icon-no-book", "");
         }
         gm_free_titles(bookinfo);
-    } else
-    if (main_menu[item_num].title) {
-        edje_object_part_text_set(item, "text",
-        gettext(main_menu[item_num].title));
+    } else if (main_menu[item_num].title) {
+        edje_object_part_text_set(item, "center-caption", gettext(main_menu[item_num].title));
     }
-
 }
 
 
@@ -193,9 +192,9 @@ static void main_win_signal_handler(void *param,
     evas_object_del(r);
 }
 
-static void run()
+static void run(bool horizontal)
 {
-    Ecore_Evas *main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+    Ecore_Evas *main_win = ecore_evas_software_x11_new(0, 0, 0, 0, horizontal ? 800 : 600, horizontal ? 600 : 800);
     gm_socket_server_start(main_win, "gm");
     ecore_evas_title_set(main_win, "GM");
     ecore_evas_name_class_set(main_win, "GM", "GM");
@@ -211,13 +210,13 @@ static void run()
     edje_object_part_text_set(main_canvas_edje, "footer", "");
     edje_object_part_text_set(main_canvas_edje, "title", "");
     evas_object_move(main_canvas_edje, 0, 0);
-    evas_object_resize(main_canvas_edje, 600, 800);
+    evas_object_resize(main_canvas_edje, horizontal ? 800 : 600, horizontal? 600 :800);
 
     gm_settings_load();
     gm_graphics_init(main_canvas);
 
     Evas_Object *choicebox = choicebox_push(NULL, main_canvas,
-        main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, 1,
+        main_menu_handler, draw_handler, "choicebox", MAIN_MENU_SIZE, CHOICEBOX_MAIN_MENU,
         main_canvas);
     if(!choicebox) {
         printf("no choicebox\n");
@@ -244,7 +243,7 @@ void exit_all(void *param __attribute__((unused))) {
     ecore_main_loop_quit();
 }
 
-int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
+int main(int argc, char **argv __attribute__((unused)))
 {
     setlocale(LC_ALL, "");
     textdomain("gm");
@@ -266,7 +265,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
     ecore_x_io_error_handler_set(exit_all, NULL);
     ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
-    run();
+    run(argc > 1);
 
     if(_gm_keys)
         keys_free(_gm_keys);

@@ -83,14 +83,30 @@ Evas_Object *
 choicebox_push(Evas_Object *parent, Evas *canvas,
     choicebox_handler_t handler,
     choicebox_draw_handler_t draw_handler,
-    const char *name, int size, int own_edje, void *data)
+    const char *name, int size, choicebox_type_t type, void *data)
 {
+    char *theme;
+    char *group;
+    if (type == CHOICEBOX_MAIN_MENU) {
+        theme = "gm-items";
+        group = "item-main-menu";
+    } else if (type == CHOICEBOX_DEFAULT_SETTINGS) {
+        theme = DEFAULT_CHOICEBOX_THEME_FILE;
+        group = "item-settings";
+    } else if (type == CHOICEBOX_GM_SETTINGS) {
+        theme = "gm-items";
+        group = "item-settings";
+    } else if (type == CHOICEBOX_GM_APPS) {
+        theme = "gm-items";
+        group = "item-apps";
+    }
+
     choicebox_info_t info = {
         NULL,
         DEFAULT_CHOICEBOX_THEME_FILE,
         "full",
-        own_edje ? "gm-items" : DEFAULT_CHOICEBOX_THEME_FILE,
-        own_edje ? "item-default" : "item-settings",
+        theme,
+        group,
         handler,
         draw_handler,
         page_handler,
@@ -104,8 +120,8 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
          printf("no choicebox\n");
         return NULL;
     }
-    eoi_register_fullscreen_choicebox(choicebox);
     choicebox_set_size(choicebox, size);
+    eoi_register_fullscreen_choicebox(choicebox);
     evas_object_name_set(choicebox, name);
     if(parent)
     {

@@ -1,46 +1,15 @@
 images {
     image: "icon-none.png" COMP;
-    image: "icon-book.png" COMP;
-    image: "icon-lib.png" COMP;
-    image: "icon-photo.png" COMP;
-    image: "icon-phono.png" COMP;
-    image: "icon-apps.png" COMP;
-    image: "icon-games.png" COMP;
-    image: "icon-setup.png" COMP;
-    image: "icon-clock.png" COMP;
-    image: "icon-rotate-off.png" COMP;
-    image: "icon-rotate-cw.png" COMP;
-    image: "icon-rotate-ccw.png" COMP;
-    image: "icon-rotate-reverse.png" COMP;
 }
 
-/* styles { */
-/*     style { */
-/*         name, "text"; */
-/*         base, "font=sans-serif font_size=28 color=#000 align=left valign=middle"; */
-/*         tag, "inactive" "+color=#555"; */
-/*         tag, "/inactive" "-"; */
-/*     } */
-
-/*     style { */
-/*         name, "lefttop"; */
-/*         base, "font=sans-serif font_size=20 color=#000 align=left valign=top"; */
-/*         tag, "inactive" "+color=#555"; */
-/*         tag, "/inactive" "-"; */
-/*     }; */
-/*     style { */
-/*         name, "leftbottom"; */
-/*         base, "font=sans-serif:italic font_size=20 color=#000 align=left valign=bottom"; */
-/*         tag, "inactive" "+color=#555"; */
-/*         tag, "/inactive" "-"; */
-/*     }; */
-/*     style { */
-/*         name, "rightbottom"; */
-/*         base, "font=sans-serif font_size=20 color=#000 align=right valign=bottom"; */
-/*         tag, "inactive" "+color=#555"; */
-/*         tag, "/inactive" "-"; */
-/*     } */
-/* } */
+styles {
+    style {
+        name, "title";
+        base, "font=DejaVu\\ Sans\\ Condensed:style=bold font_size=22 color=#000 align=left";
+        tag, "inactive" "";
+                        tag, "/inactive" "";
+    }
+}
 
 #define ICON_IMAGE(state_, image_)                              \
     description {                                               \
@@ -59,171 +28,285 @@ images {
     }
 
 collections {
+    /*
+     * Text main menu item
+     */
     group {
         name, "item-main-menu";
-        parts {
-            /* Standard menu items */
-            part {
-                name, "menu-label";
-                type, TEXTBLOCK;
-                description {
-                    state, "default" 0.0;
-                    text {
-                        style, "menu-label";
-                    }
-                    rel1 { offset, 95 0; }
-                    rel2 { offset, -16 -1; }
-                }
+        styles {
+            style {
+                name, "big";
+                base, "font=DejaVu\\ Sans\\ Condensed:style=bold font_size=22 color=#000 ellipsis=right";
+                tag, "br" "\n";
+                tag, "inactive" "+font=DejaVu\\ Sans\\ Condensed color=#555";
+                tag, "/inactive" "-";
             }
+            style {
+                name, "small";
+                base, "font=DejaVu\\ Sans\\ Condensed font_size=18 color=#000 ellipsis=right";
+            }
+        }
 
-            /* "Current book" menu item */
+        parts {
             part {
-                name, "no-book-clipper";
+                /* This rect is resized when icon is hidden/shown */
+                name, "icon-margin";
                 type, RECT;
                 description {
                     state, "default" 0.0;
-                    color, 255 255 255 0;
+                    color, 0 0 0 0;
+                    rel1 { offset, 98 0; }
                 }
-                descrition {
-                    state, "enabled" 0.0;
-                    color, 255 255 255 255;
+                description {
+                    color, 0 0 0 0;
+                    rel1 { offset, 10 0; }
+                    state, "no-icon" 0.0;
                 }
             }
             part {
-                name, "no-book-icon";
-                clip_to, "no-book-clipper";
+                name, "center-caption";
+                type, TEXTBLOCK;
                 description {
                     state, "default" 0.0;
-                    rel1 { offset, 30 20; }
-                    rel2 { relative, 0.0 0.0; offset, 66 56; }
-                    image { normal, "no-book.png"; }
-                }
-                description {
-                    state, "disabled" 0.0;
+                    text { style, "big"; max, 0 1; }
+                    rel1 { to, "icon-margin"; }
                 }
             }
-
-            /* Book info */
             part {
                 name, "title";
-                type, TEXT;
+                type, TEXTBLOCK;
                 description {
                     state, "default" 0.0;
-                    rel1 { offset, 6 7; }
-                    rel2 { relative, 1.0 0.0; offset, -78 29; }
-                    text {
-                        font, "DejaVu Sans:style=Condensed Bold";
-                        size, 22;
-                        align, 0.0 0.5;
-                    }
+                    text { style, "big"; }
+                    rel1 { to, "icon-margin"; offset, 0 2; }
                 }
             }
             part {
                 name, "author";
-                type, TEXT;
+                type, TEXTBLOCK;
                 description {
                     state, "default" 0.0;
-                    rel1 {
-                        offset, 
-        }
+                    text { style, "small"; }
+                    rel1 { to, "icon-margin"; offset, 0 27; }
+                }
+            }
+            part {
+                name, "series";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "small"; }
+                    rel1 { to, "icon-margin"; offset, 0 47; }
+                    rel2 { offset, -78 -1; }
+                }
+            }
+            part {
+                name, "icon";
+                images {
+                    image, "none.png" COMP;
+                    image, "icon-no-book.png" COMP;
+                    image, "icon-lib.png" COMP;
+                    image, "icon-photo.png" COMP;
+                    image, "icon-phono.png" COMP;
+                    image, "icon-apps.png" COMP;
+                    image, "icon-games.png" COMP;
+                    image, "icon-setup.png" COMP;
+                }
+                description {
+                    state, "default" 0.0;
+                    min, 65 65;
+                    max, 65 65;
+                    rel1 { offset, 15 5; }
+                    rel2 { relative, 0.0 0.0; offset, 80 70; }
+                    image { normal, "none.png"; }
+                }
+                ICON_IMAGE("icon-none", "icon-none.png");
+                ICON_IMAGE("icon-no-book", "icon-no-book.png");
+                ICON_IMAGE("icon-lib", "icon-lib.png");
+                ICON_IMAGE("icon-photo", "icon-photo.png");
+                ICON_IMAGE("icon-phono", "icon-phono.png");
+                ICON_IMAGE("icon-apps", "icon-apps.png");
+                ICON_IMAGE("icon-games", "icon-games.png");
+                ICON_IMAGE("icon-setup", "icon-setup.png");
+                programs {
+                    ICON_PROGRAM("set-icon-none", "icon-none");
+                    ICON_PROGRAM("set-icon-no-book", "icon-no-book");
+                    ICON_PROGRAM("set-icon-lib", "icon-lib");
+                    ICON_PROGRAM("set-icon-photo", "icon-photo");
+                    ICON_PROGRAM("set-icon-phono", "icon-phono");
+                    ICON_PROGRAM("set-icon-apps", "icon-apps");
+                    ICON_PROGRAM("set-icon-games", "icon-games");
+                    ICON_PROGRAM("set-icon-setup", "icon-setup");
 
-      name, "item-default";
-      parts {
-        /* Big text in the center of item */
-        part {
-            name, "text";
-            type, TEXTBLOCK;
-            description {
-                state, "default" 0.0;
-                text {
-                    style, "text";
-                    max, 0 1;
+                    program {
+                        signal, "set-book";
+                        script {
+                            set_state(PART:"icon-margin", "no-icon", 0.0);
+                        }
+                    }
+                    program {
+                        signal, "set-icon-no-book";
+                        script {
+                            set_state(PART:"icon-margin", "default", 0.0);
+                        }
+                    }
                 }
-                align, 0 0.5;
-                rel1 { relative, 0.0 0.0; offset, 17 0; }
-                rel2 { relative, 1.0 1.0; offset, -18 -1; }
             }
         }
-        part {
-            name, "lefttop";
-            type, TEXTBLOCK;
-            description {
-                state, "default" 0.0;
-                color, 0 0 0 255;
-                text {
-                    style, "lefttop";
-                }
-                rel1 { relative, 0.0 0.0; offset, 17 0; }
-                rel2 { relative, 1.0 1.0; offset, -18 -1; }
-            }
-        }
-        part {
-           name, "leftbottom";
-           type, TEXTBLOCK;
-           description {
-              state, "default" 0.0;
-              color, 0 0 0 255;
-              text {
-                 style, "leftbottom";
-                 min, 0 1;
-              }
-              align, 0.5 1.0;
-              rel1 { relative, 0.0 1.0; offset, 17 -1; }
-              rel2 { relative, 1.0 1.0; offset, -18 -1; }
-           }
-        }
-        part {
-           name, "rightbottom";
-           type, TEXTBLOCK;
-           description {
-              state, "default" 0.0;
-              color, 0 0 0 255;
-              text {
-                 style, "rightbottom";
-                 min, 0 1;
-               }
-              align, 0.5 1.0;
-              rel1 { relative, 0.0 1.0; offset, 17 -1; }
-              rel2 { relative, 1.0 1.0; offset, -18 -1; }
-           }
-        }
-         part {
-             name, "icon";
-             type, IMAGE;
-             description {
-                 state, "default" 0.0;
-                 rel1 { relative, 1.0 1.0; offset, -88 -62; }
-                 rel2 { relative, 1.0 1.0; offset, -24 -7; }
-             }
-             ICON_IMAGE("icon-none", "icon-none.png")
-             ICON_IMAGE("icon-book", "icon-book.png")
-             ICON_IMAGE("icon-lib", "icon-lib.png")
-             ICON_IMAGE("icon-photo", "icon-photo.png")
-             ICON_IMAGE("icon-phono", "icon-phono.png")
-             ICON_IMAGE("icon-apps", "icon-apps.png")
-             ICON_IMAGE("icon-games", "icon-games.png")
-             ICON_IMAGE("icon-setup", "icon-setup.png")
-             ICON_IMAGE("icon-clock", "icon-clock.png")
-             ICON_IMAGE("icon-rotate-off", "icon-rotate-off.png")
-             ICON_IMAGE("icon-rotate-reverse", "icon-rotate-reverse.png")
-             ICON_IMAGE("icon-rotate-ccw", "icon-rotate-ccw.png")
-             ICON_IMAGE("icon-rotate-cw", "icon-rotate-cw.png")
-         }
-    programs {
-            ICON_PROGRAM("set-icon-none", "icon-none")
-            ICON_PROGRAM("set-icon-book", "icon-book")
-            ICON_PROGRAM("set-icon-lib", "icon-lib")
-            ICON_PROGRAM("set-icon-photo", "icon-photo")
-            ICON_PROGRAM("set-icon-phono", "icon-phono")
-            ICON_PROGRAM("set-icon-apps", "icon-apps")
-            ICON_PROGRAM("set-icon-games", "icon-games")
-            ICON_PROGRAM("set-icon-setup", "icon-setup")
-            ICON_PROGRAM("set-icon-clock", "icon-clock")
-            ICON_PROGRAM("set-icon-rotate-off", "icon-rotate-off")
-            ICON_PROGRAM("set-icon-rotate-reverse", "icon-rotate-reverse")
-            ICON_PROGRAM("set-icon-rotate-ccw", "icon-rotate-ccw")
-            ICON_PROGRAM("set-icon-rotate-cw", "icon-rotate-cw")
     }
-      }
-   }
+
+    /*
+     * "Games" and "Apps" menus
+     */
+    group {
+        name, "item-apps";
+        parts {
+            /* Big text in the center of item */
+            part {
+                name, "center-caption";
+                type, TEXTBLOCK;
+                multiline, 1;
+                description {
+                    state, "default" 0.0;
+                    rel1 { offset, 50 0; }
+                    text { style, "title"; max, 0 1; text, "foobar?"; }
+                }
+            }
+            /* Icon to the right */
+            part {
+                name, "icon";
+                images {
+                    image, "icon-bridges.png" COMP;
+                    image, "icon-fifteen.png" COMP;
+                    image, "icon-flip.png" COMP;
+                    image, "icon-pegs.png" COMP;
+                    image, "icon-solo.png" COMP;
+                    image, "icon-twiddle.png" COMP;
+                }
+                description {
+                    state, "default" 0.0;
+                    min, 36 36;
+                    max, 36 36;
+                    rel1 { offset, 0 20; }
+                    rel2 { relative, 0.0 0.0; offset, 36 56; }
+                }
+                ICON_IMAGE("icon-bridges", "icon-bridges.png");
+                ICON_IMAGE("icon-fifteen", "icon-fifteen.png");
+                ICON_IMAGE("icon-flip", "icon-flip.png");
+                ICON_IMAGE("icon-pegs", "icon-pegs.png");
+                ICON_IMAGE("icon-solo", "icon-solo.png");
+                ICON_IMAGE("icon-twiddle", "icon-twiddle.png");
+            }
+            programs {
+                ICON_PROGRAM("bridges", "icon-bridges");
+                ICON_PROGRAM("fifteen", "icon-fifteen");
+                ICON_PROGRAM("flip", "icon-flip");
+                ICON_PROGRAM("pegs", "icon-pegs");
+                ICON_PROGRAM("solo", "icon-solo");
+                ICON_PROGRAM("twiddle", "icon-twiddle");
+            }
+        }
+    }
+    /*
+     * "Settings" menu, "Select rotation type", "Select language" submenus
+     */
+    group {
+        name, "item-settings";
+
+        parts {
+            /* Big text in the center of item */
+            part {
+                name, "title";
+                type, TEXTBLOCK;
+                multiline, 1;
+                description {
+                    state, "default" 0.0;
+                    text { style, "title"; max, 0 1; }
+                }
+            }
+            /* Smallish text at the bottom right */
+            part {
+                name, "value";
+                type, TEXTBLOCK;
+                styles {
+                    style {
+                        name, "value";
+                        base, "font=DejaVu\\ Sans\\ Condensed font_size=18 color=#000 align=right";
+                    }
+                }
+                description {
+                    state, "default" 0.0;
+                    text { style, "value"; }
+                    rel1 { offset, 0 49; }
+                }
+            }
+            /* Icon to the right */
+            part {
+                name, "icon";
+                images {
+                    image, "icon-rotate-off.png" COMP;
+
+                    image, "icon-update-adaptive.png" COMP;
+                    image, "icon-update-full.png" COMP;
+                    image, "icon-update-zone.png" COMP;
+
+                    image, "icon-rotate-cw.png" COMP;
+                    image, "icon-rotate-ccw.png" COMP;
+                    image, "icon-rotate-reverse.png" COMP;
+                    image, "icon-rotate-loop.png" COMP;
+
+                    image, "icon-version.png" COMP;
+                    image, "icon-lang.png" COMP;
+                    image, "icon-time.png" COMP;
+
+                    image, "icon-main-menu-graphical.png" COMP;
+                    image, "icon-main-menu-text.png" COMP;
+                }
+                description {
+                    state, "default" 0.0;
+                    rel1 { relative, 1.0 0.0; offset, -37 9; }
+                    rel2 { relative, 1.0 0.0; offset, -2 45; }
+                }
+                ICON_IMAGE("icon-none", "icon-none.png");
+
+                ICON_IMAGE("icon-update-adaptive", "icon-update-adaptive.png");
+                ICON_IMAGE("icon-update-full", "icon-update-full.png");
+                ICON_IMAGE("icon-update-zone", "icon-update-zone.png");
+
+                ICON_IMAGE("icon-rotate-off", "icon-rotate-off.png");
+                ICON_IMAGE("icon-rotate-reverse", "icon-rotate-reverse.png");
+                ICON_IMAGE("icon-rotate-ccw", "icon-rotate-ccw.png");
+                ICON_IMAGE("icon-rotate-cw", "icon-rotate-cw.png");
+                ICON_IMAGE("icon-rotate-loop", "icon-rotate-loop.png");
+
+                ICON_IMAGE("icon-version", "icon-version.png");
+                ICON_IMAGE("icon-lang", "icon-lang.png");
+                ICON_IMAGE("icon-time", "icon-time.png");
+
+                ICON_IMAGE("icon-main-menu-graphical", "icon-main-menu-graphical.png");
+                ICON_IMAGE("icon-main-menu-text", "icon-main-menu-text.png");
+            }
+            programs {
+                ICON_PROGRAM("set-icon-none", "icon-none");
+
+                ICON_PROGRAM("set-icon-update-adaptive", "icon-update-adaptive");
+                ICON_PROGRAM("set-icon-update-full", "icon-update-full");
+                ICON_PROGRAM("set-icon-update-zone", "icon-update-zone");
+
+                ICON_PROGRAM("set-icon-rotate-off", "icon-rotate-off");
+                ICON_PROGRAM("set-icon-rotate-reverse", "icon-rotate-reverse");
+                ICON_PROGRAM("set-icon-rotate-ccw", "icon-rotate-ccw");
+                ICON_PROGRAM("set-icon-rotate-cw", "icon-rotate-cw");
+                ICON_PROGRAM("set-icon-rotate-loop", "icon-rotate-loop");
+
+                ICON_PROGRAM("set-icon-version", "icon-version");
+                ICON_PROGRAM("set-icon-lang", "icon-lang");
+                ICON_PROGRAM("set-icon-time", "icon-time");
+
+                ICON_PROGRAM("set-icon-main-menu-graphical", "icon-main-menu-graphical");
+                ICON_PROGRAM("set-icon-main-menu-text", "icon-main-menu-text");
+            }
+        }
+    }
 }
+

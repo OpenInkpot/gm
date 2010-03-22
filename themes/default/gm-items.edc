@@ -61,6 +61,8 @@ styles {
 collections {
    group {
       name, "item-default";
+      alias, "item-main-menu";
+
       parts {
         /* Big text in the center of item */
         part {

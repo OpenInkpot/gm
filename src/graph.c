@@ -116,8 +116,8 @@ gm_graphics_resize(Ecore_Evas *window __attribute__((unused)),
 
 static bool _action(Evas *e, const char *action)
 {
-    if(!strcmp(action, "CurrentBook")) raise_fbreader(e);
-    else if(!strcmp(action, "DateTimeSetup")) gm_run_etimetool(e);
+    if(!strcmp(action, "Book")) raise_fbreader(e);
+    else if(!strcmp(action, "Date")) gm_run_etimetool(e);
     else if(!strcmp(action, "Books")) gm_run_madshelf_books(e);
     else if(!strcmp(action, "Images")) gm_run_madshelf_images(e);
     else if(!strcmp(action, "Audio")) gm_run_madshelf_audio(e);
@@ -126,12 +126,12 @@ static bool _action(Evas *e, const char *action)
         gm_graphics_hide(e);
         gm_run_games(e);
     }
-    else if(!strcmp(action, "Applications"))
+    else if(!strcmp(action, "Apps"))
     {
         gm_graphics_hide(e);
         gm_run_applications(e);
     }
-    else if(!strcmp(action, "Settings"))
+    else if(!strcmp(action, "Setup"))
     {
         gm_graphics_hide(e);
         settings_menu(e);
@@ -144,86 +144,30 @@ static bool _action(Evas *e, const char *action)
 static void
 gm_graphics_cursor_set(Evas_Object *edje, const char *position)
 {
-    char *current = evas_object_data_get(edje, "cursor-position");
-    if(current)
-    {
-#ifdef DEBUG
-        printf("Send: %s\n", current);
-#endif
-        edje_object_signal_emit(edje, "cursor_hide", current);
-    }
-
-    if(!position)
-    {
-        if(current)
-            position = current;
-        else
-            position = "Books";
-    }
-    edje_object_signal_emit(edje, "cursor_show", position);
-    evas_object_data_set(edje, "cursor-position", strdup(position));
-#ifdef DEBUG
-    printf("Send: %s\n", position);
-#endif
-    free(current);
+    edje_object_signal_emit(edje, "cursor_set", position ? position : "default");
 }
 
 static void
 _cursor_move(Evas *evas, const char *move)
 {
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
-    char *current = evas_object_data_get(edje, "cursor-position");
-    if(!current)
-    {
-        current = "CurrentBook";
-        printf("CurrentBook assumed\n");
-    }
-    char *source;
-    asprintf(&source, "%s_%s", move, current);
-#ifdef DEBUG
-    printf("Send: %s\n", source);
-#endif
-    edje_object_signal_emit(edje, "cursor_keypress", source);
-    free(source);
+    edje_object_signal_emit(edje, "move", move);
 }
 
-#ifdef DEBUG
 static void
-_emission(void *data, Evas_Object *o, const char *emission, const char *source)
-{
-    if(!strncmp(emission, "cursor", 6))
-        printf("Emission: %s, source: %s\n", emission, source);
-}
-#endif
-
-static void
-_selected(void *data __attribute__((unused)),
+_activate(void *data __attribute__((unused)),
           Evas_Object *o, const char *emission __attribute__((unused)),
           const char *source)
 {
     Evas *evas = evas_object_evas_get(o);
-    Evas_Object *edje = evas_object_name_find(evas, "graphics");
-    char *old = evas_object_data_get(edje, "cursor-position");
-#ifdef DEBUG
-    printf("Cursor moved: %s -> %s\n", old, source);
-#endif
-    free(old);
-    evas_object_data_set(edje, "cursor-position", strdup(source));
+    _action(evas, source);
 }
-
 
 static void
 _cursor_select(Evas *evas)
 {
     Evas_Object *edje = evas_object_name_find(evas, "graphics");
-    char *action = evas_object_data_get(edje, "cursor-position");
-    if(action)
-    {
-        printf("Executing %s\n", action);
-        _action(evas, action);
-    }
-    else
-        printf("No current action\n");
+    edje_object_signal_emit(edje, "select", "");
 }
 
 static void _keys_handler(void *param __attribute__((unused)),
@@ -279,17 +223,17 @@ gm_graphics_show_clock(Evas *evas) {
        loctime = localtime (&curtime);
        if(loctime->tm_year < 108) /* 2008 */
        {
-           edje_object_part_text_set(edje, "caption_day", "--");
+           edje_object_part_text_set(edje, "caption_day", "");
            edje_object_part_text_set(edje, "caption_dayofweek", "");
            edje_object_part_text_set(edje, "caption_month", "");
-           edje_object_part_text_set(edje, "caption_clock", "-- : --");
+           edje_object_part_text_set(edje, "caption_clock", "--:--");
        }
        else
        {
            _set_strftime(edje, "caption_day", "%d", loctime);
            _set_strftime(edje, "caption_dayofweek", "%A", loctime);
            _set_strftime(edje, "caption_month", "%B %Y", loctime);
-           _set_strftime(edje, "caption_clock", "%H : %M", loctime);
+           _set_strftime(edje, "caption_clock", "%H:%M", loctime);
            _set_strftime(edje, "caption_date", "%d.%m.%y", loctime);
        }
     }
@@ -432,13 +376,10 @@ gm_graphics_init(Evas *evas) {
                                   &_keys_handler,
                                   evas);
 
-#ifdef DEBUG
-    edje_object_signal_callback_add(edje, "*", "*", _emission, NULL);
-#endif
     edje_object_signal_callback_add(edje,
-                                    "cursor_selected",
+                                    "activate",
                                     "*",
-                                    _selected,
+                                    _activate,
                                     NULL);
     eoi_resize_object_register(ecore_evas_ecore_evas_get(evas),
                                edje,
@@ -448,5 +389,4 @@ gm_graphics_init(Evas *evas) {
     gm_graphics_show_captions(edje);
     gm_graphics_cursor_set(edje, NULL);
 }
-
 
