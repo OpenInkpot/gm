@@ -13,7 +13,7 @@ struct bookinfo_t {
     int series_number;
     char *type;
     char *size;
-    int current_position;
+    int current_page;
     int pages_count;
     char *cover_image;
     int cover_size;

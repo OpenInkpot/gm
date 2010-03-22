@@ -253,6 +253,8 @@ gm_get_titles()
                                         "ACTIVE_DOC_SERIES_NUMBER");
     titles->cover_image = gm_get_fb_string_blob(fbreader, conn,
                             "ACTIVE_DOC_COVER_IMAGE", &titles->cover_size);
+    titles->pages_count = gm_get_fb_int(fbreader, conn, "ACTIVE_DOC_PAGES_COUNT");
+    titles->current_page = gm_get_fb_int(fbreader, conn, "ACTIVE_DOC_CURRENT_PAGE");
     return titles;
 }
 

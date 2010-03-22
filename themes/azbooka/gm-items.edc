@@ -43,6 +43,10 @@ collections {
                 name, "small";
                 base, "font=DejaVu\\ Sans\\ Condensed font_size=18 color=#000 ellipsis=right";
             }
+            style {
+                name, "small-right";
+                base, "font=DejaVu\\ Sans\\ Condensed font_size=18 color=#000 align=right";
+            }
         }
 
         parts {
@@ -96,6 +100,18 @@ collections {
                     text { style, "small"; }
                     rel1 { to, "icon-margin"; offset, 0 47; }
                     rel2 { offset, -78 -1; }
+                }
+            }
+            part {
+                name, "progress";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "small-right"; }
+                    rel1 {
+                        relative, 1.0 0.0;
+                        offset, -78 47;
+                    }
                 }
             }
             part {

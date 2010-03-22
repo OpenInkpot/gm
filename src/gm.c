@@ -142,6 +142,7 @@ static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
     edje_object_part_text_set(item, "title","");
     edje_object_part_text_set(item, "author","");
     edje_object_part_text_set(item, "series","");
+    edje_object_part_text_set(item, "progress","");
 
     /* Icon */
     if(item_num <= (int)MAIN_MENU_SIZE && main_menu[item_num].icon_signal)
@@ -166,6 +167,10 @@ static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
             edje_object_part_text_set(item, "center-caption", str);
             free(str);
             edje_object_signal_emit(item, "set-icon-no-book", "");
+        }
+        if (bookinfo->pages_count) {
+            snprintf(buf, 256, "%d%%", 100 * bookinfo->current_page / bookinfo->pages_count);
+            edje_object_part_text_set(item, "progress", buf);
         }
         gm_free_titles(bookinfo);
     } else if (main_menu[item_num].title) {

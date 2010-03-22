@@ -1,3 +1,11 @@
+gm (0.3.15) zelazny; urgency=low
+
+  * Fixed cursor on "Current book" item in graphical menu (OI#859)
+  * Fixed swapped Images and Audio items in graphical menu (OI#865)
+  * Adjusted rendering of "Setup" entry in text menu.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Tue, 23 Mar 2010 01:56:54 +0600
+
 gm (0.3.14) zelazny; urgency=low
 
   * New Azbooka skin
