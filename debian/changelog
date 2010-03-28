@@ -1,3 +1,10 @@
+gm (0.3.16) zelazny; urgency=low
+
+  * Adjust limits of full and partial screen update types
+  * Updated Bulgarian localization
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 29 Mar 2010 05:06:59 +0700
+
 gm (0.3.15) zelazny; urgency=low
 
   * Fixed cursor on "Current book" item in graphical menu (OI#859)
