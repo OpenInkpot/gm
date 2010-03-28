@@ -11,7 +11,7 @@
 
 /* FIXME: HAL? N516-only right now */
 #define SCREEN_UPDATE_CONTROL_FILE "/sys/class/graphics/fb1/manual_refresh_threshold"
-#define SCREEN_UPDATE_ADAPTIVE_THRESHOLD 12
+#define SCREEN_UPDATE_ADAPTIVE_THRESHOLD 50
 
 #define BUFSIZE 16
 
@@ -89,9 +89,9 @@ screen_update_t detect_screen_update_type()
     int val = detect_threshold(SCREEN_UPDATE_CONTROL_FILE);
     if(val == -1)
         return SCREEN_UPDATE_NOT_AVAILABLE;
-    if(val == 0)
+    if(val < 10)
         return SCREEN_UPDATE_FULL;
-    if(val < 100)
+    if(val < 90)
         return SCREEN_UPDATE_ADAPTIVE;
     return SCREEN_UPDATE_PARTIAL;
 }
@@ -108,7 +108,7 @@ int set_screen_update_type(screen_update_t screen_update)
         val = SCREEN_UPDATE_ADAPTIVE_THRESHOLD;
         break;
     case SCREEN_UPDATE_PARTIAL:
-        val = 100;
+        val = 90;
         break;
     default:
         errno = EINVAL;
