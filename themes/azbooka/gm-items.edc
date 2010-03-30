@@ -196,6 +196,8 @@ collections {
                     image, "icon-pegs.png" COMP;
                     image, "icon-solo.png" COMP;
                     image, "icon-twiddle.png" COMP;
+                    image, "icon-edict.png" COMP;
+                    image, "icon-efsck.png" COMP;
                 }
                 description {
                     state, "default" 0.0;
@@ -210,6 +212,8 @@ collections {
                 ICON_IMAGE("icon-pegs", "icon-pegs.png");
                 ICON_IMAGE("icon-solo", "icon-solo.png");
                 ICON_IMAGE("icon-twiddle", "icon-twiddle.png");
+                ICON_IMAGE("icon-edict", "icon-edict.png");
+                ICON_IMAGE("icon-efsck", "icon-efsck.png");
             }
             programs {
                 ICON_PROGRAM("bridges", "icon-bridges");
@@ -218,6 +222,8 @@ collections {
                 ICON_PROGRAM("pegs", "icon-pegs");
                 ICON_PROGRAM("solo", "icon-solo");
                 ICON_PROGRAM("twiddle", "icon-twiddle");
+                ICON_PROGRAM("edict", "icon-edict");
+                ICON_PROGRAM("efsck", "icon-efsck");
             }
         }
     }
