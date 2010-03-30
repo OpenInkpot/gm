@@ -3,6 +3,7 @@
 common-binary-post-install-arch::
 	install -d -m 755  debian/tmp/etc/X11/Xsession.d
 	install -m 755 debian/Xsession debian/tmp/etc/X11/Xsession.d/99gm
+	install -m 755 debian/cur-user debian/tmp/etc/X11/Xsession.d/08cur-user
 	mkdir -p debian/tmp/usr/share/keys/help
 	install -m 644 gm_help.ini debian/tmp/usr/share/keys/help/gm.ini
 	cp -a help debian/tmp/usr/share

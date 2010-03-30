@@ -6,8 +6,8 @@ styles {
     style {
         name, "title";
         base, "font=DejaVu\\ Sans\\ Condensed:style=bold font_size=22 color=#000 align=left";
-        tag, "inactive" "";
-                        tag, "/inactive" "";
+        tag, "inactive" "+color=#555";
+        tag, "/inactive" "-";
     }
 }
 

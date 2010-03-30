@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-13 03:58+0600\n"
+"POT-Creation-Date: 2010-03-31 04:40+0700\n"
 "PO-Revision-Date: 2009-09-19 03:55+0700\n"
 "Last-Translator: ben1981 <ben1981@centrum.cz>\n"
 "Language-Team: Czech <openinkpot-l10n@googlegroups.com>\n"
@@ -19,125 +19,147 @@ msgid "Current book"
 msgstr "Aktuální kniha"
 
 #. Special
-#: src/gm.c:50 src/graph.c:256
+#: src/gm.c:50 src/graph.c:200
 msgid "Library"
 msgstr "Knihovna"
 
-#: src/gm.c:51 src/graph.c:257
+#: src/gm.c:51 src/graph.c:201
 msgid "Images"
 msgstr "Obrázky"
 
-#: src/gm.c:52 src/graph.c:258
+#: src/gm.c:52 src/graph.c:202
 msgid "Audio"
 msgstr "Hudba"
 
-#: src/gm.c:53 src/graph.c:259
+#: src/gm.c:53 src/graph.c:203
 msgid "Games"
 msgstr "Hry"
 
-#: src/gm.c:54 src/graph.c:260
+#: src/gm.c:54 src/graph.c:204
 msgid "Applications"
 msgstr "Aplikace"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#. 
+#.
 #: src/gm.c:62
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Nastavení <inactive>/ Setup</inactive>"
 
-#: src/gm.c:164 src/graph.c:412
+#: src/gm.c:166 src/graph.c:356
 msgid "No book is open"
 msgstr "Žádná kniha není otevřena"
 
-#: src/setup.c:47
+#: src/setup.c:67
 msgid "Version"
 msgstr "Verze"
 
-#: src/setup.c:73
+#: src/setup.c:82
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>N/A</inactive>"
 
-#: src/setup.c:74
+#: src/setup.c:83
 msgid "Full"
 msgstr "Úplné"
 
-#: src/setup.c:75
+#: src/setup.c:84
 msgid "Adaptive"
 msgstr "Adaptivní"
 
-#: src/setup.c:76
+#: src/setup.c:85
 msgid "Partial"
 msgstr "Částečné"
 
-#: src/setup.c:83
+#: src/setup.c:99
 msgid "Screen update"
 msgstr "Obnovit obrazovku"
 
-#: src/setup.c:104
+#: src/setup.c:120
 msgid "Screen rotation type"
 msgstr "Typ otáčení obrazovky"
 
-#: src/setup.c:111
-msgid "<invisible>N/A</invisible>"
-msgstr "<inactive>N/A</inactive>"
-
-#: src/setup.c:112
-msgid "OFF"
-msgstr "Vypnout"
-
-#: src/setup.c:113
-msgid "ON"
-msgstr "Zapnout"
-
-#: src/setup.c:120
-msgid "Sound"
-msgstr "Zvuky"
-
+#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#. 
-#: src/setup.c:145
+#.
+#: src/setup.c:134
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Jazyk <inactive>/ Language</inactive>"
 
-#: src/setup.c:152
+#: src/setup.c:142
 msgid "Clock setup"
 msgstr "Nastavení hodin"
 
-#: src/setup.c:223
+#: src/setup.c:157
+msgid "Main menu view"
+msgstr "Vzhled hlavní nabídky"
+
+#: src/setup.c:159
+msgid "Graphic"
+msgstr "Grafický"
+
+#: src/setup.c:159
+msgid "Text"
+msgstr "Textový"
+
+#: src/setup.c:185 src/setup.c:233
+msgid "Profile"
+msgstr ""
+
+#: src/setup.c:277
 msgid "Settings"
 msgstr "Nastavení"
 
-#: src/rotation.c:29
+#: src/setup-gettext.c:7
+msgid "user"
+msgstr ""
+
+#: src/setup-gettext.c:8
+msgid "user1"
+msgstr ""
+
+#: src/setup-gettext.c:9
+msgid "user2"
+msgstr ""
+
+#: src/setup-gettext.c:10
+msgid "user3"
+msgstr ""
+
+#: src/setup-gettext.c:11
+msgid "user4"
+msgstr ""
+
+#: src/rotation.c:35
 msgid "Disabled"
 msgstr "Vypnuto"
 
-#: src/rotation.c:30
+#: src/rotation.c:36
 msgid "0 ↔ 90 Degrees Clockwise"
 msgstr "0 ↔ 90 stupňů po směru hodin"
 
-#: src/rotation.c:31
+#: src/rotation.c:37
 msgid "0 ↔ 180 Degrees"
 msgstr "0 ↔ 180 stupňů"
 
-#: src/rotation.c:32
+#: src/rotation.c:38
 msgid "0 ↔ 90 Degrees Counterclockwise"
 msgstr "0 ↔ 90 stupňů proti směru hodin"
 
-#: src/rotation.c:35
+#: src/rotation.c:41
 msgid "0 → 90 → 180 → 270 → 0"
 msgstr "0 → 90 → 180 → 270 → 0"
 
-#: src/rotation.c:118
+#: src/rotation.c:151
 msgid "Select screen rotation type"
 msgstr "Vybrat typ otáčení obrazovky "
 
-#: src/graph.c:261
+#: src/graph.c:205
 msgid "Setup"
 msgstr "Nastavení"
 
@@ -145,14 +167,14 @@ msgstr "Nastavení"
 msgid "GM: Help"
 msgstr "GM: Nápověda"
 
-#: src/setup.c:168
-msgid "Text"
-msgstr "Textový"
+#~ msgid "<invisible>N/A</invisible>"
+#~ msgstr "<inactive>N/A</inactive>"
 
-#: src/setup.c:166
-msgid "Main menu view"
-msgstr "Vzhled hlavní nabídky"
+#~ msgid "OFF"
+#~ msgstr "Vypnout"
 
-#: src/setup.c:168
-msgid "Graphic"
-msgstr "Grafický"
+#~ msgid "ON"
+#~ msgstr "Zapnout"
+
+#~ msgid "Sound"
+#~ msgstr "Zvuky"

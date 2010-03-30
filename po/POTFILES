@@ -5,6 +5,7 @@ src/lang.c
 src/raise.c
 src/screen_update_control.c
 src/setup.c
+src/setup-gettext.c
 src/sock.c
 src/sound_control.c
 src/rotation.c

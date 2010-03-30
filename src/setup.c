@@ -23,6 +23,7 @@
 #include "screen_update_control.h"
 #include "rotation.h"
 #include "run.h"
+#include "user.h"
 
 static Efreet_Ini *_settings;
 static char *_settings_path;
@@ -163,12 +164,78 @@ main_view_draw(Evas_Object *item)
 }
 
 static void
-main_view_set(Evas_Object *item)
+main_view_set(Evas_Object *item __attribute__((unused)))
 {
     bool value = (gm_graphics_mode_get() ? 0 : 1);
     gm_graphics_mode_set(value);
     efreet_ini_boolean_set(_settings, "graphics", value);
     gm_settings_save();
+}
+
+/* Users. */
+
+/* FIXME: All of this is a gross hack. It could me much more useful to use real
+ * separate accounts, and not just separate home dirs as now. */
+
+#define NUM_USERS 5
+
+static void
+user_draw_main_menu(Evas_Object *item)
+{
+    edje_object_part_text_set(item, "title", gettext("Profile"));
+    edje_object_part_text_set(item, "value", gettext(get_user_name()));
+}
+
+static void
+user_set_handler(Evas_Object *choicebox __attribute__((unused)),
+                 int item_num,
+                 bool is_alt __attribute__((unused)),
+                 void *param __attribute__((unused)))
+{
+    char user[8] = "user";
+    if (item_num != 0)
+        sprintf(user, "user%d", item_num);
+    set_user(user);
+    ecore_main_loop_quit();
+}
+
+static void
+user_set_draw(Evas_Object *choicebox __attribute__((unused)),
+              Evas_Object *item, int item_num,
+              int page_position __attribute__((unused)),
+              void *param __attribute__((unused)))
+{
+    char user[8] = "user";
+    if (item_num != 0)
+        sprintf(user, "user%d", item_num);
+    char homedir[20];
+    sprintf(homedir, "/home/%s", user);
+    bool user_exists = ecore_file_exists(homedir);
+
+    char text[40];
+    sprintf(text, "%s%s%s", user_exists ? "" : "<inactive>",
+            gettext(user), user_exists ? "" : "</inactive>");
+
+    edje_object_part_text_set(item, "title", text);
+}
+
+static void
+user_set_main_menu(Evas_Object *item)
+{
+    Evas *canvas = evas_object_evas_get(item);
+    Evas_Object *choicebox;
+    choicebox = choicebox_push(item, canvas,
+                               user_set_handler,
+                               user_set_draw,
+                               "user-choicebox", NUM_USERS,
+                               CHOICEBOX_GM_SETTINGS, NULL);
+    Evas_Object *main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
+    edje_object_part_text_set(main_canvas_edje, "title", gettext("Profile"));
+
+    int curidx = 0;
+    const char *username = get_user_name();
+    sscanf(username, "user%d", &curidx);
+    choicebox_set_selection(choicebox, curidx);
 }
 
 struct setup_menu_item_t setup_menu_items[] = {
@@ -177,6 +244,7 @@ struct setup_menu_item_t setup_menu_items[] = {
     {&language_draw, &lang_menu, 0},
     {&datetime_draw, &datetime_set, 0},
     {&main_view_draw, main_view_set, 0},
+    {&user_draw_main_menu, user_set_main_menu, 0},
     {&version_draw, &version_set, 0},
 };
 

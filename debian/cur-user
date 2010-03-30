@@ -1,0 +1,8 @@
+# -*- mode: sh -*-
+
+if [ -f /var/lib/gm/cur-user ]; then
+   . /var/lib/gm/cur-user
+   if [ ! -e $HOME ]; then
+     mkdir -p $HOME
+   fi
+fi
