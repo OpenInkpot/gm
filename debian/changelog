@@ -1,3 +1,10 @@
+gm (0.3.18) zelazny; urgency=low
+
+  * Implemented pseudo multi-users (OI#246)
+  * Translations updated: French.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 31 Mar 2010 05:25:34 +0700
+
 gm (0.3.17) zelazny; urgency=low
 
   * New icons for edict and efsck added to Azbooka theme.
