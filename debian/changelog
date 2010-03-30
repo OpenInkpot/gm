@@ -1,3 +1,9 @@
+gm (0.3.17) zelazny; urgency=low
+
+  * New icons for edict and efsck added to Azbooka theme.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 31 Mar 2010 03:30:28 +0700
+
 gm (0.3.16) zelazny; urgency=low
 
   * Adjust limits of full and partial screen update types
