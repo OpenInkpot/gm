@@ -1,6 +1,6 @@
 # translation of gm.po to French
 # This file is put in the public domain.
-#
+# 
 # Louvre <diogenedebian@gmail.com>, 2009.
 msgid ""
 msgstr ""
@@ -40,12 +40,11 @@ msgstr "Jeux"
 msgid "Applications"
 msgstr "Utilitaires"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/gm.c:62
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurer <inactive>/ Setup</inactive>"
@@ -98,12 +97,11 @@ msgstr "ON"
 msgid "Sound"
 msgstr "Son"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/setup.c:145
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Langue <inactive>/ Language</inactive>"
@@ -111,18 +109,6 @@ msgstr "Langue <inactive>/ Language</inactive>"
 #: src/setup.c:152
 msgid "Clock setup"
 msgstr "Configurer l'horloge"
-
-#: src/setup.c:166
-msgid "Main menu view"
-msgstr ""
-
-#: src/setup.c:168
-msgid "Graphic"
-msgstr ""
-
-#: src/setup.c:168
-msgid "Text"
-msgstr ""
 
 #: src/setup.c:223
 msgid "Settings"
@@ -159,3 +145,15 @@ msgstr "Configurer"
 #: src/help.c:9
 msgid "GM: Help"
 msgstr "GM: Aide"
+
+#: src/setup.c:168
+msgid "Text"
+msgstr "Texte"
+
+#: src/setup.c:166
+msgid "Main menu view"
+msgstr "Menu principal"
+
+#: src/setup.c:168
+msgid "Graphic"
+msgstr "Graphique"
