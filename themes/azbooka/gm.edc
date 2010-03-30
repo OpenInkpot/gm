@@ -237,6 +237,13 @@ styles {
 
 collections {
     group {
+        name, "text-menu";
+        data {
+            item, "title" "Азбука 516";
+        }
+    }
+
+    group {
         name, "vertical_graphics";
         parts {
             part  {

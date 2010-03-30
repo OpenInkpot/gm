@@ -37,7 +37,12 @@ choicebox_pop(Evas_Object *choicebox)
     edje_object_part_unswallow(main_canvas_edje,  choicebox);
     evas_object_del(choicebox);
     edje_object_part_text_set(main_canvas_edje, "footer", "");
-    edje_object_part_text_set(main_canvas_edje, "title", "");
+    char *title = evas_object_data_get(parent, "saved-title");
+    edje_object_part_text_set(main_canvas_edje, "title", title ? title : "");
+    if (title) {
+        free(title);
+        evas_object_data_set(parent, "saved-title", NULL);
+    }
     edje_object_part_swallow(main_canvas_edje, "contents", parent);
     evas_object_focus_set(parent , true);
     evas_object_show(parent);
@@ -119,6 +124,10 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
     {
          printf("no choicebox\n");
         return NULL;
+    }
+    char *title = edje_object_part_text_get(main_canvas_edje, "title");
+    if (parent && title) {
+        evas_object_data_set(parent, "saved-title", strdup(title));
     }
     choicebox_set_size(choicebox, size);
     eoi_register_fullscreen_choicebox(choicebox);

@@ -17,6 +17,7 @@
 
 #include <libchoicebox.h>
 #include <libeoi.h>
+#include <libeoi_themes.h>
 #include "lang.h"
 #include "sock.h"
 #include "choices.h"
@@ -226,6 +227,15 @@ static void run(bool horizontal)
     if(!choicebox) {
         printf("no choicebox\n");
         return;
+    }
+
+    Evas_Object *info = eoi_create_themed_edje(main_canvas, "gm", "text-menu");
+    if (info) {
+        char *title = edje_object_data_get(info, "title");
+        if (title) {
+            edje_object_part_text_set(main_canvas_edje, "title", title);
+        }
+        evas_object_del(info);
     }
 
     eoi_fullwindow_object_register(main_win, main_canvas_edje);
