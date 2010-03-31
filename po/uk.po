@@ -164,7 +164,7 @@ msgstr "Профіль"
 
 #: src/setup-gettext.c:7
 msgid "user"
-msgstr ""
+msgstr "Основний користувач"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>Не доступно</invisible>"
