@@ -46,6 +46,5 @@ set_user(const char *name)
     if (!strcmp(name, "user"))
         name = "root";
 
-    store_cur_user_file(!strcmp(name, "user") ? "root" : name,
-                        !strcmp(name, "user") ? "/" : "/home/" );
+    store_cur_user_file(name, !strcmp(name, "root") ? "/" : "/home/" );
 }
