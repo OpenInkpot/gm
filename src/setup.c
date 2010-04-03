@@ -184,6 +184,7 @@ user_draw_main_menu(Evas_Object *item)
 {
     edje_object_part_text_set(item, "title", gettext("Profile"));
     edje_object_part_text_set(item, "value", gettext(get_user_name()));
+    edje_object_signal_emit(item, "set-icon-users", "");
 }
 
 static void
