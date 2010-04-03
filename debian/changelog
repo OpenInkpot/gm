@@ -1,3 +1,10 @@
+gm (0.3.19) zelazny; urgency=low
+
+  * Added icon for "Profiles" item.
+  * Translations updated: English, Ukrainian.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sat, 03 Apr 2010 17:49:14 +0700
+
 gm (0.3.18) zelazny; urgency=low
 
   * Implemented pseudo multi-users (OI#246)
