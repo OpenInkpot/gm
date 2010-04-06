@@ -29,7 +29,11 @@
 const char *
 get_user_name()
 {
-    return !strcmp(getenv("USER"), "root") ? "user" : getenv("USER");
+    if (!getenv("USER"))
+        return "user";
+    if (!strcmp(getenv("USER"), "root"))
+        return "user";
+    return getenv("USER");
 }
 
 static void

@@ -1,3 +1,13 @@
+gm (0.3.21) zelazny; urgency=low
+
+  * Removed errorneous erot build-dependency
+  * Fixed breakage of "Setup" menu on amd64
+  * Fixed overlapped title and current position of current book in text
+    main menu.
+  * Crash with missing USER environment var fixed
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 07 Apr 2010 00:31:07 +0700
+
 gm (0.3.20) zelazny; urgency=low
 
   * Fix cover image positioning
