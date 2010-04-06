@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-31 04:40+0700\n"
+"POT-Creation-Date: 2010-04-06 20:10+0100\n"
 "PO-Revision-Date: 2009-09-19 03:55+0700\n"
 "Last-Translator: ben1981 <ben1981@centrum.cz>\n"
 "Language-Team: Czech <openinkpot-l10n@googlegroups.com>\n"
@@ -109,7 +109,7 @@ msgstr "Textový"
 
 #: src/setup.c:185 src/setup.c:233
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/setup.c:277
 msgid "Settings"
@@ -117,23 +117,23 @@ msgstr "Nastavení"
 
 #: src/setup-gettext.c:7
 msgid "user"
-msgstr ""
+msgstr "uživatel"
 
 #: src/setup-gettext.c:8
 msgid "user1"
-msgstr ""
+msgstr "uživatel1"
 
 #: src/setup-gettext.c:9
 msgid "user2"
-msgstr ""
+msgstr "uživatel2"
 
 #: src/setup-gettext.c:10
 msgid "user3"
-msgstr ""
+msgstr "uživatel3"
 
 #: src/setup-gettext.c:11
 msgid "user4"
-msgstr ""
+msgstr "uživatel4"
 
 #: src/rotation.c:35
 msgid "Disabled"
