@@ -22,6 +22,7 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define STATE_DIR LOCALSTATEDIR "/lib/gm"
 
