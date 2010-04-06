@@ -288,7 +288,8 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
                 edje_object_part_geometry_get(design, "cover_image",
                                               &x, &y, &w, &h);
                 gm_get_image_geom(filename, &iw, &ih);
-                w = w - x; h =  h - x;
+//                printf("geom: x=%d y=%d w=%d h=%d iw=%d ih=%d\n",
+//                    x, y, w, h, iw, ih);
                 if ( ih > h)
                 {
                     ratio = (double) ih / (double) h;
@@ -300,19 +301,8 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
                     iw = w; ih /= ratio;
                 }
                 evas_object_stack_above(image, design);
-                evas_object_resize(image, iw, ih);
                 x = x + (w - iw) / 2;
                 y = y + (h - ih) / 2;
-                evas_object_move(image,x , y);
-                evas_object_image_filled_set(image, 1);
-                evas_object_image_load_size_set(image, iw, ih);
-                evas_object_image_file_set(image, filename, NULL);
-                evas_object_show(image);
-
-#define BORDER_SIZE 3
-                x -= BORDER_SIZE; y -= BORDER_SIZE;
-                iw += BORDER_SIZE * 2; ih += BORDER_SIZE * 2;
-#undef BORDER_SIZE
 
                 border = evas_object_rectangle_add(evas);
                 evas_object_name_set(border, "border");
@@ -321,6 +311,20 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
                 evas_object_move(border, x, y);
                 evas_object_show(border);
                 evas_object_stack_above(image, border);
+//                printf("border at %d %d (%d, %d)\n", x, y, iw, ih);
+
+#define BORDER_SIZE 3
+                x += BORDER_SIZE; y += BORDER_SIZE;
+                iw -= BORDER_SIZE * 2 ; ih -= BORDER_SIZE * 2;
+#undef BORDER_SIZE
+
+                evas_object_resize(image, iw, ih);
+                evas_object_move(image, x , y);
+                evas_object_image_filled_set(image, 1);
+                evas_object_image_load_size_set(image, iw, ih);
+                evas_object_image_file_set(image, filename, NULL);
+                evas_object_show(image);
+//                printf("image at %d %d (%d, %d)\n", x, y, iw, ih);
             }
         }
     }
