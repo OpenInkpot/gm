@@ -1,3 +1,9 @@
+gm (0.3.20) zelazny; urgency=low
+
+  * Fix cover image positioning
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 06 Apr 2010 08:02:42 +0300
+
 gm (0.3.19) zelazny; urgency=low
 
   * Added icon for "Profiles" item.
