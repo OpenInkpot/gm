@@ -1,3 +1,22 @@
+gm (0.3.22) zelazny; urgency=low
+
+  [ András Csehi ]
+  * l10n: Updates to Hungarian (hu) translation
+
+  [ Tomasz Długosz ]
+  * l10n: Updates to Polish (pl) translation
+
+  [ Mirek ]
+  * l10n: Updates to Czech (cs) translation
+
+  [ SuperchargedNL ]
+  * l10n: Updates to Dutch (Flemish) (nl) translation
+
+  [ Alexander Kerner ]
+  * Adjust limits of screen updates
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Mon, 12 Apr 2010 22:37:26 +0200
+
 gm (0.3.21) zelazny; urgency=low
 
   * Removed errorneous erot build-dependency
