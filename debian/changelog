@@ -1,3 +1,9 @@
+gm (0.3.24) zelazny; urgency=low
+
+  * Fix gm-items.edc
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sat, 15 May 2010 21:24:27 +0200
+
 gm (0.3.23) zelazny; urgency=low
 
   [ Vasil Badev ]
