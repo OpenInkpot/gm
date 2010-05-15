@@ -16,30 +16,24 @@ images {
 
 styles {
     style {
-        name, "text";
-        base, "font=sans-serif font_size=28 color=#000 align=left valign=middle";
+        name, "big";
+        base, "font=sans-serif font_size=28 color=#000 align=left valign=middle ellipsis=right";
         tag, "inactive" "+color=#555";
         tag, "/inactive" "-";
     }
 
     style {
-        name, "lefttop";
-        base, "font=sans-serif font_size=20 color=#000 align=left valign=top";
+        name, "small";
+        base, "font=sans-serif font_size=20 color=#000 align=left ellipsis=right";
         tag, "inactive" "+color=#555";
         tag, "/inactive" "-";
     };
     style {
-        name, "leftbottom";
-        base, "font=sans-serif:italic font_size=20 color=#000 align=left valign=bottom";
+        name, "small-right";
+        base, "font=sans-serif font_size=20 color=#000 align=right";
         tag, "inactive" "+color=#555";
         tag, "/inactive" "-";
     };
-    style {
-        name, "rightbottom";
-        base, "font=sans-serif font_size=20 color=#000 align=right valign=bottom";
-        tag, "inactive" "+color=#555";
-        tag, "/inactive" "-";
-    }
 }
 
 #define ICON_IMAGE(state_, image_)                              \
@@ -71,7 +65,7 @@ collections {
             description {
                 state, "default" 0.0;
                 text {
-                    style, "text";
+                    style, "big";
                     max, 0 1;
                 }
                 align, 0 0.5;
@@ -79,49 +73,71 @@ collections {
                 rel2 { relative, 1.0 1.0; offset, -18 -1; }
             }
         }
-        part {
-            name, "lefttop";
-            type, TEXTBLOCK;
-            description {
-                state, "default" 0.0;
-                color, 0 0 0 255;
-                text {
-                    style, "lefttop";
+            part {
+                /* This rect is resized when icon is hidden/shown */
+                name, "icon-margin";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 0 0 0 0;
+                    rel1 { offset, 10 0; }
                 }
-                rel1 { relative, 0.0 0.0; offset, 17 0; }
-                rel2 { relative, 1.0 1.0; offset, -18 -1; }
+                description {
+                    color, 0 0 0 0;
+                    rel1 { offset, 10 0; }
+                    state, "no-icon" 0.0;
+                }
             }
-        }
-        part {
-           name, "leftbottom";
-           type, TEXTBLOCK;
-           description {
-              state, "default" 0.0;
-              color, 0 0 0 255;
-              text {
-                 style, "leftbottom";
-                 min, 0 1;
-              }
-              align, 0.5 1.0;
-              rel1 { relative, 0.0 1.0; offset, 17 -1; }
-              rel2 { relative, 1.0 1.0; offset, -18 -1; }
-           }
-        }
-        part {
-           name, "rightbottom";
-           type, TEXTBLOCK;
-           description {
-              state, "default" 0.0;
-              color, 0 0 0 255;
-              text {
-                 style, "rightbottom";
-                 min, 0 1;
-               }
-              align, 0.5 1.0;
-              rel1 { relative, 0.0 1.0; offset, 17 -1; }
-              rel2 { relative, 1.0 1.0; offset, -18 -1; }
-           }
-        }
+            part {
+                name, "center-caption";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "big"; max, 0 1; }
+                    rel1 { to, "icon-margin"; }
+                }
+            }
+            part {
+                name, "title";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "big"; }
+                    rel1 { to, "icon-margin"; offset, 0 2; }
+                    rel2 { to, "progress"; relative, 0.0 1.0; offset, -1 -1; }
+                }
+            }
+            part {
+                name, "author";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "small"; }
+                    rel1 { to, "icon-margin"; offset, 0 27; }
+                }
+            }
+            part {
+                name, "series";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "small"; }
+                    rel1 { to, "icon-margin"; offset, 0 47; }
+                    rel2 { offset, -78 -1; }
+                }
+            }
+            part {
+                name, "progress";
+                type, TEXTBLOCK;
+                description {
+                    state, "default" 0.0;
+                    text { style, "small-right"; }
+                    rel1 {
+                        relative, 1.0 0.0;
+                        offset, -78 47;
+                    }
+                }
+            }
          part {
              name, "icon";
              type, IMAGE;
@@ -158,6 +174,18 @@ collections {
             ICON_PROGRAM("set-icon-rotate-reverse", "icon-rotate-reverse")
             ICON_PROGRAM("set-icon-rotate-ccw", "icon-rotate-ccw")
             ICON_PROGRAM("set-icon-rotate-cw", "icon-rotate-cw")
+                    program {
+                        signal, "set-book";
+                        script {
+                            set_state(PART:"icon-margin", "no-icon", 0.0);
+                        }
+                    }
+                    program {
+                        signal, "set-icon-no-book";
+                        script {
+                            set_state(PART:"icon-margin", "default", 0.0);
+                        }
+                    }
     }
       }
    }
@@ -175,7 +203,7 @@ collections {
                 description {
                     state, "default" 0.0;
                     rel1 { offset, 68 0; }
-                    text { style, "text"; max, 0 1; text, "foobar?"; }
+                    text { style, "big"; max, 0 1; text, "foobar?"; }
                 }
             }
             /* Icon to the right */
@@ -233,7 +261,7 @@ collections {
                 multiline, 1;
                 description {
                     state, "default" 0.0;
-                    text { style, "text"; max, 0 1; }
+                    text { style, "big"; max, 0 1; }
                     rel1 { offset, 14 0; }
                     rel2 { offset, -18 -1; }
                 }
