@@ -1,3 +1,28 @@
+gm (0.3.23) zelazny; urgency=low
+
+  [ Vasil Badev ]
+  * l10n: Updates to Bulgarian (bg) translation
+
+  [ Tomasz Długosz ]
+  * l10n: initial swedish translation
+
+  [ Sven Bring ]
+  * l10n: Updates to Swedish (sv) translation
+
+  [ Shuntya ]
+  * l10n: Updates to Spanish (Castilian) (es) translation
+
+  [ mascal ]
+  * l10n: Updates to Italian (it) translation
+
+  [ Pclent ]
+  * l10n: Updates to French (fr) translation
+
+  [ Alexander Kerner ]
+  * Partially fix default theme
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sat, 15 May 2010 17:17:58 +0200
+
 gm (0.3.22) zelazny; urgency=low
 
   [ András Csehi ]
