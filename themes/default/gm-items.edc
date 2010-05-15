@@ -161,4 +161,169 @@ collections {
     }
       }
    }
+    /*
+     * "Games" and "Apps" menus
+     */
+    group {
+        name, "item-apps";
+        parts {
+            /* Big text in the center of item */
+            part {
+                name, "center-caption";
+                type, TEXTBLOCK;
+                multiline, 1;
+                description {
+                    state, "default" 0.0;
+                    rel1 { offset, 68 0; }
+                    text { style, "text"; max, 0 1; text, "foobar?"; }
+                }
+            }
+            /* Icon to the right */
+            part {
+                name, "icon";
+                images {
+                    image, "icon-bridges.png" COMP;
+                    image, "icon-fifteen.png" COMP;
+                    image, "icon-flip.png" COMP;
+                    image, "icon-pegs.png" COMP;
+                    image, "icon-solo.png" COMP;
+                    image, "icon-twiddle.png" COMP;
+                    image, "icon-edict.png" COMP;
+                    image, "icon-efsck.png" COMP;
+                }
+                description {
+                    state, "default" 0.0;
+                    min, 36 36;
+                    max, 36 36;
+                    rel1 { offset, 18 20; }
+                    rel2 { relative, 0.0 0.0; offset, 54 56; }
+                }
+                ICON_IMAGE("icon-bridges", "icon-bridges.png");
+                ICON_IMAGE("icon-fifteen", "icon-fifteen.png");
+                ICON_IMAGE("icon-flip", "icon-flip.png");
+                ICON_IMAGE("icon-pegs", "icon-pegs.png");
+                ICON_IMAGE("icon-solo", "icon-solo.png");
+                ICON_IMAGE("icon-twiddle", "icon-twiddle.png");
+                ICON_IMAGE("icon-edict", "icon-edict.png");
+                ICON_IMAGE("icon-efsck", "icon-efsck.png");
+            }
+            programs {
+                ICON_PROGRAM("bridges", "icon-bridges");
+                ICON_PROGRAM("fifteen", "icon-fifteen");
+                ICON_PROGRAM("flip", "icon-flip");
+                ICON_PROGRAM("pegs", "icon-pegs");
+                ICON_PROGRAM("solo", "icon-solo");
+                ICON_PROGRAM("twiddle", "icon-twiddle");
+                ICON_PROGRAM("edict", "icon-edict");
+                ICON_PROGRAM("efsck", "icon-efsck");
+            }
+        }
+    }
+    /*
+     * "Settings" menu, "Select rotation type", "Select language" submenus
+     */
+    group {
+        name, "item-settings";
+
+        parts {
+            /* Big text in the center of item */
+            part {
+                name, "title";
+                type, TEXTBLOCK;
+                multiline, 1;
+                description {
+                    state, "default" 0.0;
+                    text { style, "text"; max, 0 1; }
+                    rel1 { offset, 14 0; }
+                    rel2 { offset, -18 -1; }
+                }
+            }
+            /* Smallish text at the bottom right */
+            part {
+                name, "value";
+                type, TEXTBLOCK;
+                styles {
+                    style {
+                        name, "value";
+                        base, "font=sans-serif font_size=20 color=#000 align=right";
+                    }
+                }
+                description {
+                    state, "default" 0.0;
+                    text { style, "value"; }
+                    rel1 { offset, 0 49; }
+                    rel2 { offset, -18 -1; }
+                }
+            }
+            /* Icon to the right */
+            part {
+                name, "icon";
+                images {
+                    image, "icon-rotate-off.png" COMP;
+
+                    image, "icon-update-adaptive.png" COMP;
+                    image, "icon-update-full.png" COMP;
+                    image, "icon-update-zone.png" COMP;
+
+                    image, "icon-rotate-cw.png" COMP;
+                    image, "icon-rotate-ccw.png" COMP;
+                    image, "icon-rotate-reverse.png" COMP;
+                    image, "icon-rotate-loop.png" COMP;
+
+                    image, "icon-version.png" COMP;
+                    image, "icon-lang.png" COMP;
+                    image, "icon-time.png" COMP;
+                    image, "icon-users.png" COMP;
+
+                    image, "icon-main-menu-graphical.png" COMP;
+                    image, "icon-main-menu-text.png" COMP;
+                }
+                description {
+                    state, "default" 0.0;
+                    rel1 { relative, 1.0 0.0; offset, -55 9; }
+                    rel2 { relative, 1.0 0.0; offset, -20 45; }
+                }
+                ICON_IMAGE("icon-none", "icon-none.png");
+
+                ICON_IMAGE("icon-update-adaptive", "icon-update-adaptive.png");
+                ICON_IMAGE("icon-update-full", "icon-update-full.png");
+                ICON_IMAGE("icon-update-zone", "icon-update-zone.png");
+
+                ICON_IMAGE("icon-rotate-off", "icon-rotate-off.png");
+                ICON_IMAGE("icon-rotate-reverse", "icon-rotate-reverse.png");
+                ICON_IMAGE("icon-rotate-ccw", "icon-rotate-ccw.png");
+                ICON_IMAGE("icon-rotate-cw", "icon-rotate-cw.png");
+                ICON_IMAGE("icon-rotate-loop", "icon-rotate-loop.png");
+
+                ICON_IMAGE("icon-version", "icon-version.png");
+                ICON_IMAGE("icon-lang", "icon-lang.png");
+                ICON_IMAGE("icon-time", "icon-time.png");
+                ICON_IMAGE("icon-users", "icon-users.png");
+
+                ICON_IMAGE("icon-main-menu-graphical", "icon-main-menu-graphical.png");
+                ICON_IMAGE("icon-main-menu-text", "icon-main-menu-text.png");
+            }
+            programs {
+                ICON_PROGRAM("set-icon-none", "icon-none");
+
+                ICON_PROGRAM("set-icon-update-adaptive", "icon-update-adaptive");
+                ICON_PROGRAM("set-icon-update-full", "icon-update-full");
+                ICON_PROGRAM("set-icon-update-zone", "icon-update-zone");
+
+                ICON_PROGRAM("set-icon-rotate-off", "icon-rotate-off");
+                ICON_PROGRAM("set-icon-rotate-reverse", "icon-rotate-reverse");
+                ICON_PROGRAM("set-icon-rotate-ccw", "icon-rotate-ccw");
+                ICON_PROGRAM("set-icon-rotate-cw", "icon-rotate-cw");
+                ICON_PROGRAM("set-icon-rotate-loop", "icon-rotate-loop");
+
+                ICON_PROGRAM("set-icon-version", "icon-version");
+                ICON_PROGRAM("set-icon-lang", "icon-lang");
+                ICON_PROGRAM("set-icon-time", "icon-time");
+                ICON_PROGRAM("set-icon-users", "icon-users");
+
+                ICON_PROGRAM("set-icon-main-menu-graphical", "icon-main-menu-graphical");
+                ICON_PROGRAM("set-icon-main-menu-text", "icon-main-menu-text");
+            }
+        }
+    }
 }

@@ -291,6 +291,13 @@ styles {
 
 collections {
     group {
+        name, "text-menu";
+        data {
+            item, "title" "";
+        }
+    }
+
+    group {
         name, "vertical_graphics";
         images {
             image, "start-menu-1-top.png" COMP;
