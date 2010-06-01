@@ -1,3 +1,10 @@
+gm (0.3.25) zelazny; urgency=low
+
+  * Recent && favorites
+  * Add version depend on madshelf with recent && favorites
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 01 Jun 2010 03:38:43 +0300
+
 gm (0.3.24) zelazny; urgency=low
 
   * Fix gm-items.edc
