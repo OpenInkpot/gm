@@ -11,7 +11,7 @@ Standards-Version: 3.8.3
 Package: gm
 Priority: optional
 Architecture: any
-Depends: ${shlibs:Depends}, eabout
+Depends: ${shlibs:Depends}, eabout, madshelf (>= 0.2.57)
 Description: Global Menu
 
 Package: gm-theme-azbooka
