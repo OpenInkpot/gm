@@ -126,6 +126,8 @@ collections {
                     image, "icon-apps.png" COMP;
                     image, "icon-games.png" COMP;
                     image, "icon-setup.png" COMP;
+                    image, "icon-recent.png" COMP;
+                    image, "icon-favorites.png" COMP;
                 }
                 description {
                     state, "default" 0.0;
@@ -143,6 +145,8 @@ collections {
                 ICON_IMAGE("icon-apps", "icon-apps.png");
                 ICON_IMAGE("icon-games", "icon-games.png");
                 ICON_IMAGE("icon-setup", "icon-setup.png");
+                ICON_IMAGE("icon-recent", "icon-recent.png");
+                ICON_IMAGE("icon-favorites", "icon-favorites.png");
                 programs {
                     ICON_PROGRAM("set-icon-none", "icon-none");
                     ICON_PROGRAM("set-icon-no-book", "icon-no-book");
@@ -152,6 +156,8 @@ collections {
                     ICON_PROGRAM("set-icon-apps", "icon-apps");
                     ICON_PROGRAM("set-icon-games", "icon-games");
                     ICON_PROGRAM("set-icon-setup", "icon-setup");
+                    ICON_PROGRAM("set-icon-recent", "icon-recent");
+                    ICON_PROGRAM("set-icon-favorites", "icon-favorites");
 
                     program {
                         signal, "set-book";

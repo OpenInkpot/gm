@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-31 04:40+0700\n"
+"POT-Creation-Date: 2010-05-31 15:13+0000\n"
 "PO-Revision-Date: 2009-09-19 03:51+0700\n"
 "Last-Translator: Vladimir <v@v>\n"
 "Language-Team: Russian <openinkpot-l10n@googlegroups.com>\n"
@@ -15,28 +15,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gm.c:49
+#: src/gm.c:50
 msgid "Current book"
 msgstr "Текущая книга"
 
 #. Special
-#: src/gm.c:50 src/graph.c:200
+#: src/gm.c:51 src/graph.c:200
 msgid "Library"
 msgstr "Книги"
 
-#: src/gm.c:51 src/graph.c:201
+#: src/gm.c:52 src/graph.c:201
 msgid "Images"
 msgstr "Фото"
 
-#: src/gm.c:52 src/graph.c:202
+#: src/gm.c:53 src/graph.c:202
 msgid "Audio"
 msgstr "Аудио"
 
-#: src/gm.c:53 src/graph.c:203
+#: src/gm.c:54 src/graph.c:203
 msgid "Games"
 msgstr "Игры"
 
-#: src/gm.c:54 src/graph.c:204
+#: src/gm.c:55 src/graph.c:204
 msgid "Applications"
 msgstr "Программы"
 
@@ -46,11 +46,20 @@ msgstr "Программы"
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
 #.
-#: src/gm.c:62
+#: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Настройки <inactive>/ Setup</inactive>"
 
-#: src/gm.c:166 src/graph.c:356
+#: src/gm.c:64
+#, fuzzy
+msgid "Recent books"
+msgstr "Недавно открытые книги"
+
+#: src/gm.c:65
+msgid "Favorites"
+msgstr "Избраное"
+
+#: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
 msgstr "Нет открытой книги"
 
@@ -108,11 +117,11 @@ msgstr "Графический"
 msgid "Text"
 msgstr "Текстовый"
 
-#: src/setup.c:185 src/setup.c:233
+#: src/setup.c:185 src/setup.c:234
 msgid "Profile"
 msgstr "Профиль"
 
-#: src/setup.c:277
+#: src/setup.c:283
 msgid "Settings"
 msgstr "Настройки"
 

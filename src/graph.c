@@ -119,6 +119,8 @@ static bool _action(Evas *e, const char *action)
     if(!strcmp(action, "Book")) raise_fbreader(e);
     else if(!strcmp(action, "Date")) gm_run_etimetool(e);
     else if(!strcmp(action, "Books")) gm_run_madshelf_books(e);
+    else if(!strcmp(action, "Favorites")) gm_run_madshelf_favorites(e);
+    else if(!strcmp(action, "Recent")) gm_run_madshelf_recent(e);
     else if(!strcmp(action, "Images")) gm_run_madshelf_images(e);
     else if(!strcmp(action, "Audio")) gm_run_madshelf_audio(e);
     else if(!strcmp(action, "Games"))

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-31 04:40+0700\n"
+"POT-Creation-Date: 2010-05-31 15:13+0000\n"
 "PO-Revision-Date: 2009-09-19 04:01+0700\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,28 +14,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gm.c:49
+#: src/gm.c:50
 msgid "Current book"
 msgstr "正在阅读"
 
 #. Special
-#: src/gm.c:50 src/graph.c:200
+#: src/gm.c:51 src/graph.c:200
 msgid "Library"
 msgstr "书架"
 
-#: src/gm.c:51 src/graph.c:201
+#: src/gm.c:52 src/graph.c:201
 msgid "Images"
 msgstr "图片"
 
-#: src/gm.c:52 src/graph.c:202
+#: src/gm.c:53 src/graph.c:202
 msgid "Audio"
 msgstr "音频"
 
-#: src/gm.c:53 src/graph.c:203
+#: src/gm.c:54 src/graph.c:203
 msgid "Games"
 msgstr "游戏"
 
-#: src/gm.c:54 src/graph.c:204
+#: src/gm.c:55 src/graph.c:204
 msgid "Applications"
 msgstr "应用程序"
 
@@ -45,11 +45,20 @@ msgstr "应用程序"
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
 #.
-#: src/gm.c:62
+#: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "设置<inactive>/Setup</inactive>"
 
-#: src/gm.c:166 src/graph.c:356
+#: src/gm.c:64
+#, fuzzy
+msgid "Recent books"
+msgstr "正在阅读"
+
+#: src/gm.c:65
+msgid "Favorites"
+msgstr ""
+
+#: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
 msgstr "没有正在阅读的书"
 
@@ -107,11 +116,11 @@ msgstr "图形"
 msgid "Text"
 msgstr "文本"
 
-#: src/setup.c:185 src/setup.c:233
+#: src/setup.c:185 src/setup.c:234
 msgid "Profile"
 msgstr ""
 
-#: src/setup.c:277
+#: src/setup.c:283
 msgid "Settings"
 msgstr "配置"
 

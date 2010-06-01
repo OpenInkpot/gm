@@ -5,6 +5,12 @@ void
 gm_run_madshelf_books(Evas * e);
 
 void
+gm_run_madshelf_recent(Evas * e);
+
+void
+gm_run_madshelf_favorites(Evas * e);
+
+void
 gm_run_madshelf_images(Evas * e);
 
 void

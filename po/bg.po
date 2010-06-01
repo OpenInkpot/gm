@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-31 04:40+0700\n"
+"POT-Creation-Date: 2010-05-31 15:13+0000\n"
 "PO-Revision-Date: 2009-09-19 03:53+0700\n"
 "Last-Translator: Васил Бадев <vbadev@gmail.com>\n"
 "Language-Team: Bulgarian <openinkpot-l10n@googlegroups.com>\n"
@@ -14,41 +14,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gm.c:49
+#: src/gm.c:50
 msgid "Current book"
 msgstr "Текуща книга"
 
 #. Special
-#: src/gm.c:50 src/graph.c:200
+#: src/gm.c:51 src/graph.c:200
 msgid "Library"
 msgstr "Библиотека"
 
-#: src/gm.c:51 src/graph.c:201
+#: src/gm.c:52 src/graph.c:201
 msgid "Images"
 msgstr "Галерия"
 
-#: src/gm.c:52 src/graph.c:202
+#: src/gm.c:53 src/graph.c:202
 msgid "Audio"
 msgstr "Фонотека"
 
-#: src/gm.c:53 src/graph.c:203
+#: src/gm.c:54 src/graph.c:203
 msgid "Games"
 msgstr "Игри"
 
-#: src/gm.c:54 src/graph.c:204
+#: src/gm.c:55 src/graph.c:204
 msgid "Applications"
 msgstr "Програми"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#. 
-#: src/gm.c:62
+#.
+#: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Настройки <inactive>/ Setup</inactive>"
 
-#: src/gm.c:166 src/graph.c:356
+#: src/gm.c:64
+#, fuzzy
+msgid "Recent books"
+msgstr "Текуща книга"
+
+#: src/gm.c:65
+msgid "Favorites"
+msgstr ""
+
+#: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
 msgstr "Няма отворена книга"
 
@@ -80,11 +90,12 @@ msgstr "Обновяване на екрана"
 msgid "Screen rotation type"
 msgstr "Завъртане на екрана"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#. 
+#.
 #: src/setup.c:134
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Език <inactive>/ Language</inactive>"
@@ -105,9 +116,33 @@ msgstr "Графичен"
 msgid "Text"
 msgstr "Текстов"
 
-#: src/setup.c:277
+#: src/setup.c:185 src/setup.c:234
+msgid "Profile"
+msgstr "Профил"
+
+#: src/setup.c:283
 msgid "Settings"
 msgstr "Настройки"
+
+#: src/setup-gettext.c:7
+msgid "user"
+msgstr "Потребител"
+
+#: src/setup-gettext.c:8
+msgid "user1"
+msgstr "Потребител 1"
+
+#: src/setup-gettext.c:9
+msgid "user2"
+msgstr "Потребител 2"
+
+#: src/setup-gettext.c:10
+msgid "user3"
+msgstr "Потребител 3"
+
+#: src/setup-gettext.c:11
+msgid "user4"
+msgstr "Потребител 4"
 
 #: src/rotation.c:35
 msgid "Disabled"
@@ -140,30 +175,6 @@ msgstr "Настройки"
 #: src/help.c:9
 msgid "GM: Help"
 msgstr "GM: Помощ"
-
-#: src/setup-gettext.c:8
-msgid "user1"
-msgstr "Потребител 1"
-
-#: src/setup-gettext.c:9
-msgid "user2"
-msgstr "Потребител 2"
-
-#: src/setup-gettext.c:10
-msgid "user3"
-msgstr "Потребител 3"
-
-#: src/setup-gettext.c:11
-msgid "user4"
-msgstr "Потребител 4"
-
-#: src/setup.c:185 src/setup.c:233
-msgid "Profile"
-msgstr "Профил"
-
-#: src/setup-gettext.c:7
-msgid "user"
-msgstr "Потребител"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>N/A</invisible>"

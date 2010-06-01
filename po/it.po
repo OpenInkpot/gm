@@ -1,12 +1,12 @@
 # translation of gm.po to italian
 # This file is put in the public domain.
-# 
+#
 # Mascal <mascal@mascal.it>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gm\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-31 04:40+0700\n"
+"POT-Creation-Date: 2010-05-31 15:13+0000\n"
 "PO-Revision-Date: 2009-09-19 03:58+0700\n"
 "Last-Translator: Mascal <mascal@mascal.it>\n"
 "Language-Team: \n"
@@ -14,41 +14,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gm.c:49
+#: src/gm.c:50
 msgid "Current book"
 msgstr "Libro attuale"
 
 #. Special
-#: src/gm.c:50 src/graph.c:200
+#: src/gm.c:51 src/graph.c:200
 msgid "Library"
 msgstr "Biblioteca"
 
-#: src/gm.c:51 src/graph.c:201
+#: src/gm.c:52 src/graph.c:201
 msgid "Images"
 msgstr "Immagini"
 
-#: src/gm.c:52 src/graph.c:202
+#: src/gm.c:53 src/graph.c:202
 msgid "Audio"
 msgstr "Audio"
 
-#: src/gm.c:53 src/graph.c:203
+#: src/gm.c:54 src/graph.c:203
 msgid "Games"
 msgstr "Giochi"
 
-#: src/gm.c:54 src/graph.c:204
+#: src/gm.c:55 src/graph.c:204
 msgid "Applications"
 msgstr "Applicazioni"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#. 
-#: src/gm.c:62
+#.
+#: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurazione <inactive>/ Setup</inactive>"
 
-#: src/gm.c:166 src/graph.c:356
+#: src/gm.c:64
+#, fuzzy
+msgid "Recent books"
+msgstr "Libro attuale"
+
+#: src/gm.c:65
+msgid "Favorites"
+msgstr ""
+
+#: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
 msgstr "Nessun libro aperto"
 
@@ -80,11 +90,12 @@ msgstr "Aggiornamento schermo"
 msgid "Screen rotation type"
 msgstr "Tipo di rotazione schermo"
 
+#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#. 
+#.
 #: src/setup.c:134
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Lingua <inactive>/ Language</inactive>"
@@ -93,9 +104,45 @@ msgstr "Lingua <inactive>/ Language</inactive>"
 msgid "Clock setup"
 msgstr "Settaggio orario"
 
-#: src/setup.c:277
+#: src/setup.c:157
+msgid "Main menu view"
+msgstr "Vista menu principale"
+
+#: src/setup.c:159
+msgid "Graphic"
+msgstr "Grafica"
+
+#: src/setup.c:159
+msgid "Text"
+msgstr "Testo"
+
+#: src/setup.c:185 src/setup.c:234
+msgid "Profile"
+msgstr "Profilo"
+
+#: src/setup.c:283
 msgid "Settings"
 msgstr "Preferenze"
+
+#: src/setup-gettext.c:7
+msgid "user"
+msgstr "utente"
+
+#: src/setup-gettext.c:8
+msgid "user1"
+msgstr "utente1"
+
+#: src/setup-gettext.c:9
+msgid "user2"
+msgstr "utente2"
+
+#: src/setup-gettext.c:10
+msgid "user3"
+msgstr "utente3"
+
+#: src/setup-gettext.c:11
+msgid "user4"
+msgstr "utente4"
 
 #: src/rotation.c:35
 msgid "Disabled"
@@ -128,42 +175,6 @@ msgstr "Configurazione"
 #: src/help.c:9
 msgid "GM: Help"
 msgstr "GM: Aiuto"
-
-#: src/setup.c:159
-msgid "Graphic"
-msgstr "Grafica"
-
-#: src/setup.c:157
-msgid "Main menu view"
-msgstr "Vista menu principale"
-
-#: src/setup-gettext.c:8
-msgid "user1"
-msgstr "utente1"
-
-#: src/setup-gettext.c:9
-msgid "user2"
-msgstr "utente2"
-
-#: src/setup-gettext.c:10
-msgid "user3"
-msgstr "utente3"
-
-#: src/setup-gettext.c:11
-msgid "user4"
-msgstr "utente4"
-
-#: src/setup.c:159
-msgid "Text"
-msgstr "Testo"
-
-#: src/setup.c:185 src/setup.c:233
-msgid "Profile"
-msgstr "Profilo"
-
-#: src/setup-gettext.c:7
-msgid "user"
-msgstr "utente"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>N/A</invisible>"

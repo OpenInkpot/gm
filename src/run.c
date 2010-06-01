@@ -22,6 +22,17 @@ gm_run_madshelf_books(Evas *e __attribute__((unused)))
     run_subshell("/usr/bin/madshelf --filter=books");
 };
 
+void
+gm_run_madshelf_favorites(Evas *e __attribute__((unused)))
+{
+    run_subshell("/usr/bin/madshelf --favorites");
+};
+
+void
+gm_run_madshelf_recent(Evas *e __attribute__((unused)))
+{
+    run_subshell("/usr/bin/madshelf --filter=books --recent");
+};
 
 void
 gm_run_madshelf_images(Evas *e __attribute__((unused)))

@@ -61,6 +61,8 @@ struct main_menu_item main_menu[] = {
       (or translation is broken due to some reason, like lack of font).
     */
     {_("Setup <inactive>/ Setup</inactive>"), &settings_menu, "set-icon-setup"},
+    {_("Recent books"), &gm_run_madshelf_recent, "set-icon-recent"},
+    {_("Favorites"), &gm_run_madshelf_favorites, "set-icon-favorites"},
 };
 
 #define MAIN_MENU_SIZE (sizeof(main_menu)/sizeof(main_menu[0]))
