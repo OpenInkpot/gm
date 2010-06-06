@@ -26,7 +26,7 @@
 #include "choices.h"
 #include "sound_control.h"
 #include "screen_update_control.h"
-#include "rotation.h"
+//#include "rotation.h"
 #include "run.h"
 #include "user.h"
 #include "gm-configlet.h"
@@ -114,6 +114,7 @@ screen_set(Evas_Object *self) {
         choicebox_invalidate_item(self, 0);
 }
 
+#if 0
 static void
 rotation_draw(Evas_Object *item)
 {
@@ -121,6 +122,7 @@ rotation_draw(Evas_Object *item)
     edje_object_part_text_set(item, "value", gm_current_rotation());
     gm_set_rotation_icon(item);
 }
+#endif
 
 static void
 language_draw(Evas_Object *item)
@@ -280,7 +282,7 @@ static void
 setup_builtins(Eina_List **lst)
 {
     add_builtin_old(lst, &screen_draw, &screen_set, "01screen");
-    add_builtin_old(lst, &rotation_draw, &gm_rotation_menu, "02rotation");
+//    add_builtin_old(lst, &rotation_draw, &gm_rotation_menu, "02rotation");
     add_builtin_old(lst, &language_draw, &lang_menu, "03lang");
     add_builtin_old(lst, &datetime_draw, &datetime_set, "04datetime");
     add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");

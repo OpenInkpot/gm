@@ -8,9 +8,9 @@
 typedef struct configlet_plugin_t configlet_plugin_t;
 struct configlet_plugin_t {
     void * (*load)(void);
-    int (*draw)(void *, Evas_Object *);
-    int (*select)(void*, Evas_Object *);
-    int (*unload)(void *);
+    void (*draw)(void *, Evas_Object *);
+    void (*select)(void*, Evas_Object *);
+    void (*unload)(void *);
     const char *sort_key; // sort key -- sttically allocated
 };
 
