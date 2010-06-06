@@ -20,4 +20,6 @@ gm_configlet_submenu(Evas_Object *parent,
                     void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
                     int items);
 
+typedef const configlet_plugin_t * (*configlet_constructor_t)(void);
+
 #endif

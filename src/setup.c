@@ -1,5 +1,8 @@
 #define _GNU_SOURCE
 #include <dlfcn.h>
+#include <dirent.h>
+#include <err.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <libintl.h>
 #include <sys/types.h>
@@ -16,6 +19,7 @@
 #include <Efreet.h>
 #include <Ecore.h>
 #include <libchoicebox.h>
+#include <libeoi_utils.h>
 #include "setup.h"
 #include "graph.h"
 #include "lang.h"
@@ -29,12 +33,6 @@
 
 static Efreet_Ini *_settings;
 static char *_settings_path;
-
-struct setup_menu_item_t {
-    void (*draw)(Evas_Object *self);
-    void (*select) (Evas_Object *self);
-    void *arg;
-};
 
 static void
 gm_settings_save()
@@ -245,7 +243,7 @@ user_set_main_menu(Evas_Object *item)
 typedef struct configlet_t  configlet_t;
 struct configlet_t {
     void *module;
-    configlet_plugin_t *methods;
+    const configlet_plugin_t *methods;
     void *instance;
     const char *sort_key;
 
@@ -300,12 +298,106 @@ sort_cb(const void *left, const void *right)
                   ((configlet_t *)right)->sort_key);
 }
 
+#define CONFIGLETS_DIR  "/usr/lib/gm/configlets"
+
+static const char *
+get_configlets_dir()
+{
+    return getenv("CONFIGLETS_DIR")
+        ? getenv("CONFIGLETS_DIR") :
+        CONFIGLETS_DIR;
+}
+
+static int filter_files(const struct dirent* d)
+{
+    unsigned short int len = _D_EXACT_NAMLEN(d);
+    return (len > 2) && !strcmp(d->d_name + len - 3, ".so");
+}
+
+static configlet_t *
+load_single_plugin(char *name)
+{
+    char *libname = xasprintf("%s/%s", get_configlets_dir(), name);
+    if(!libname)
+        err(1, "Out of memory while load configlet %s\n", name);
+
+    void *libhandle = dlopen(libname, RTLD_NOW | RTLD_LOCAL);
+    if(!libhandle)
+    {
+        fprintf(stderr, "unable to load %s: %s\n", libname, dlerror());
+        free(libname);
+        return NULL;
+    };
+
+    /* Remove '.so' from filename */
+    name[strlen(name)-3] = 0;
+
+    char *configlet_name = xasprintf("configlet_%s", name);
+    if(!configlet_name)
+        err(1, "Out of memory while load configlet %s\n", name);
+
+    configlet_constructor_t ctor =
+        dlsym(libhandle, configlet_name);
+
+    if(!ctor)
+    {
+        fprintf(stderr, "Unable to get entry point in %s: %s", name, dlerror());
+        free(configlet_name);
+        free(libname);
+        dlclose(libhandle);
+        return NULL;
+    }
+
+    configlet_t *configlet=calloc(1, sizeof(configlet_t));
+    if(!configlet)
+        err(1, "Out of memory while loading configlet\n");
+
+    configlet->methods = ctor();
+    if(configlet->methods->load)
+        configlet->instance = configlet->methods->load();
+
+    configlet->module = libhandle; /* save, to unload later */
+
+    /* ugly, but compatible with builtins */
+    configlet->sort_key = configlet->methods->sort_key;
+
+
+    free(configlet_name);
+    free(libname);
+    return configlet;
+}
+
+
+Eina_List *
+settings_menu_load_plugins()
+{
+    Eina_List *lst = NULL;
+    int i;
+    struct dirent **files;
+    int nfiles = scandir(get_configlets_dir(),
+            &files, &filter_files,  &versionsort);
+
+    if(nfiles == -1)
+    {
+        fprintf(stderr, "Unable to load configlets from %s: %s\n",
+            get_configlets_dir(), strerror(errno));
+        return NULL;
+    }
+
+    for(i = 0; i != nfiles; ++i)
+    {
+        configlet_t *configlet = load_single_plugin(files[i]->d_name);
+        if(configlet)
+            lst = eina_list_append(lst, configlet);
+    }
+    return lst;
+}
+
 Eina_List *
 settings_menu_load()
 {
-    Eina_List *lst = NULL;
+    Eina_List *lst = settings_menu_load_plugins();
     setup_builtins(&lst);
-
     lst = eina_list_sort(lst, eina_list_count(lst), sort_cb);
     return lst;
 }
