@@ -1,4 +1,5 @@
 #define _GNU_SOURCE
+#include <dlfcn.h>
 #include <fcntl.h>
 #include <libintl.h>
 #include <sys/types.h>
@@ -24,6 +25,7 @@
 #include "rotation.h"
 #include "run.h"
 #include "user.h"
+#include "gm-configlet.h"
 
 static Efreet_Ini *_settings;
 static char *_settings_path;
@@ -239,26 +241,108 @@ user_set_main_menu(Evas_Object *item)
     choicebox_set_selection(choicebox, curidx);
 }
 
-struct setup_menu_item_t setup_menu_items[] = {
-    {&screen_draw, &screen_set, 0},
-    {&rotation_draw, &gm_rotation_menu, 0},
-    {&language_draw, &lang_menu, 0},
-    {&datetime_draw, &datetime_set, 0},
-    {&main_view_draw, main_view_set, 0},
-    {&user_draw_main_menu, user_set_main_menu, 0},
-    {&version_draw, &version_set, 0},
+/* not API, private structure */
+typedef struct configlet_t  configlet_t;
+struct configlet_t {
+    void *module;
+    configlet_plugin_t *methods;
+    void *instance;
+    const char *sort_key;
+
+    /* compat layer, will be removed soon */
+    void (*old_style_draw) (Evas_Object *);
+    void (*old_style_select) (Evas_Object *);
 };
 
-#define MENU_ITEMS_NUM (sizeof(setup_menu_items)/sizeof(setup_menu_items[0]))
+Evas_Object *
+gm_configlet_submenu(Evas_Object *parent,
+                    void (*select)(Evas_Object *, int, bool, void*),
+                    void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
+                    int items)
+{
+    Evas *canvas = evas_object_evas_get(parent);
+    return choicebox_push(parent, canvas, select, draw, "configlet-submenu",
+            items, CHOICEBOX_GM_SETTINGS, NULL);
+}
 
-static void settings_draw(Evas_Object *choicebox __attribute__((unused)),
+static void
+add_builtin_old(Eina_List **lst,
+        void (*draw)(Evas_Object *),
+        void (*select)(Evas_Object *),
+        const char *sort_key)
+{
+    configlet_t *configlet=calloc(1, sizeof(configlet_t));
+    configlet->sort_key = sort_key;
+    configlet->old_style_draw = draw;
+    configlet->old_style_select = select;
+    *lst = eina_list_append(*lst, configlet);
+}
+
+static void
+setup_builtins(Eina_List **lst)
+{
+    add_builtin_old(lst, &screen_draw, &screen_set, "01screen");
+    add_builtin_old(lst, &rotation_draw, &gm_rotation_menu, "02rotation");
+    add_builtin_old(lst, &language_draw, &lang_menu, "03lang");
+    add_builtin_old(lst, &datetime_draw, &datetime_set, "04datetime");
+    add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");
+    add_builtin_old(lst, &user_draw_main_menu, user_set_main_menu, "06user");
+    add_builtin_old(lst, &version_draw, &version_set, "99version");
+};
+
+
+static int
+sort_cb(const void *left, const void *right)
+{
+    if(!left) return 1;
+    if(!right) return -1;
+    return strcmp(((configlet_t *)left)->sort_key,
+                  ((configlet_t *)right)->sort_key);
+}
+
+Eina_List *
+settings_menu_load()
+{
+    Eina_List *lst = NULL;
+    setup_builtins(&lst);
+
+    lst = eina_list_sort(lst, eina_list_count(lst), sort_cb);
+    return lst;
+}
+
+static void
+_settings_menu_unload(void *data,
+    Evas *canvas __attribute__((unused)),
+    Evas_Object *object __attribute__((unused)),
+    void * event_type __attribute__((unused)))
+{
+    configlet_t *configlet;
+    Eina_List *list = data;
+    EINA_LIST_FREE(list, configlet)
+    {
+        if(configlet->methods && configlet->instance)
+            configlet->methods->unload(configlet->instance);
+        if(configlet->module)
+            dlclose(configlet->module);
+        free(configlet);
+    }
+}
+
+static void settings_draw(Evas_Object *choicebox,
                          Evas_Object *item,
                          int item_num,
                          int page_position __attribute__((unused)),
                          void *param __attribute__((unused)))
 {
     edje_object_signal_emit(item, "set-icon-none", "");
-    setup_menu_items[item_num].draw(item);
+    Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
+    configlet_t *configlet = eina_list_nth(menu, item_num);
+
+    /* compat callback if exists */
+    if(configlet->old_style_draw)
+        configlet->old_style_draw(item);
+    else
+        configlet->methods->draw(configlet->instance, item);
 }
 
 static void settings_handler(Evas_Object *choicebox,
@@ -266,21 +350,34 @@ static void settings_handler(Evas_Object *choicebox,
                     bool is_alt __attribute__((unused)),
                     void* param __attribute__((unused)))
 {
-    setup_menu_items[item_num].select(choicebox);
+    Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
+    configlet_t *configlet = eina_list_nth(menu, item_num);
+
+    /* compat callback if exists */
+    if(configlet->old_style_select)
+        configlet->old_style_select(choicebox);
+    else
+        configlet->methods->select(configlet->instance, choicebox);
     choicebox_invalidate_item(choicebox, item_num);
 }
 
 void settings_menu(Evas *canvas) {
     Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
+    Eina_List *menu = settings_menu_load();
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
                settings_draw,
-               "settings-choicebox", MENU_ITEMS_NUM, CHOICEBOX_GM_SETTINGS, NULL);
+               "settings-choicebox",
+               eina_list_count(menu),
+               CHOICEBOX_GM_SETTINGS, NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,
         "main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "title", gettext("Settings"));
+    evas_object_event_callback_add(choicebox, EVAS_CALLBACK_DEL,
+        &_settings_menu_unload, menu);
+    evas_object_data_set(choicebox, "setup-menu-items", menu);
 }
 
 #define USER_CONFIG_DIR "%s/.e/apps/gm"
