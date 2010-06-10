@@ -163,7 +163,7 @@ msgstr "用户配置文件"
 
 #: src/setup-gettext.c:7
 msgid "user"
-msgstr "用户"
+msgstr "主用户"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>不可用</invisible>"
