@@ -16,10 +16,10 @@ rotation_la_SOURCES = rotation.c
 rotation_la_LDFLAGS = -module -avoid-version -nostatic
 
 screen_la_SOURCES = screen_update_control.c
-screen_la_LDFLAGS = -module -avoid-version -nostatic
+screen_la_LDFLAGS = -module -avoid-version -nostatic @EFL_LIBS@ -llops
 
 version_la_SOURCES = version.c
-version_la_LDFLAGS = -module -avoid-version -nostatic @LIBLOPS_LIBS@ @EFL_LIBS@
+version_la_LDFLAGS = -module -avoid-version -nostatic @EFL_LIBS@ -llops
 
 datetime_la_SOURCES = datetime.c
 datetime_la_LDFLAGS = -module -avoid-version -nostatic @EFL_LIBS@
