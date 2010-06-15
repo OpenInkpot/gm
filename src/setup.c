@@ -22,7 +22,6 @@
 #include <libeoi_utils.h>
 #include "setup.h"
 #include "graph.h"
-#include "lang.h"
 #include "choices.h"
 #include "sound_control.h"
 #include "run.h"
@@ -38,19 +37,6 @@ gm_settings_save()
     efreet_ini_save(_settings, _settings_path);
 }
 
-static void
-language_draw(Evas_Object *item)
-{
-    /*
-      TRANSLATORS: Please make this menu string two-language: 'Language
-      (localized) <inactive>/ Language(in English)</inactive>'. This will allow
-      users to reset language if current language is unknown to them translation
-      is broken due to some reason, like lack of font).
-    */
-    edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
-    edje_object_part_text_set(item, "value", current_lang());
-    edje_object_signal_emit(item, "set-icon-lang", "");
-}
 
 static void
 main_view_draw(Evas_Object *item)
@@ -157,11 +143,11 @@ Evas_Object *
 gm_configlet_submenu_push(Evas_Object *parent,
                     void (*select)(Evas_Object *, int, bool, void*),
                     void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
-                    int items)
+                    int items, void *param)
 {
     Evas *canvas = evas_object_evas_get(parent);
     return choicebox_push(parent, canvas, select, draw, "configlet-submenu",
-            items, CHOICEBOX_GM_SETTINGS, NULL);
+            items, CHOICEBOX_GM_SETTINGS, param);
 }
 
 /* de-facto alias for choicebox_pop, but documented as configlet API */
@@ -187,7 +173,6 @@ add_builtin_old(Eina_List **lst,
 static void
 setup_builtins(Eina_List **lst)
 {
-    add_builtin_old(lst, &language_draw, &lang_menu, "03lang");
     add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");
     add_builtin_old(lst, &user_draw_main_menu, user_set_main_menu, "06user");
 };

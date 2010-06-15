@@ -6,25 +6,23 @@
 #include <Edje.h>
 #include <libchoicebox.h>
 #include <liblanguage.h>
-#include "choices.h"
+#include "gm-configlet.h"
 
 
-static languages_t *languages;
-
-void *
+static void *
 init_langs() {
-    languages = languages_get_supported();
-    return languages; /* return void* only for checking and trhow error */
+    return languages_get_supported();
 }
 
-void
-shutdown_langs()
+static void
+shutdown_langs(void *data)
 {
+    languages_t *languages = (languages_t *) data;
     languages_free(languages);
 }
 
-const char *
-current_lang()
+static const char *
+current_lang(languages_t *languages)
 {
     int i;
     for(i = 0; i < languages->n; ++i)
@@ -47,8 +45,9 @@ static void lang_draw(Evas_Object *choicebox __attribute__((unused)),
                       Evas_Object *item,
                       int item_num,
                       int page_position __attribute__((unused)),
-                      void *param __attribute__((unused)))
+                      void *param)
 {
+    languages_t *languages = param;
     language_t *lang = languages->langs + item_num;
     char *buf;
     if(lang->native_name)
@@ -64,22 +63,53 @@ static void lang_handler(Evas_Object* choicebox __attribute__((unused)),
                     bool is_alt __attribute__((unused)),
                     void* param __attribute__((unused)))
 {
+    languages_t *languages = param;
     language_t *lang = languages->langs + item_num;
     languages_set(languages, lang->internal_name);
     ecore_main_loop_quit();
 }
 
-void lang_menu(Evas_Object *parent)
+static void language_set(void *data, Evas_Object *parent)
 {
+    languages_t *languages = data;
     Evas *canvas = evas_object_evas_get(parent);
     Evas_Object *choicebox;
-    choicebox = choicebox_push(parent, canvas,
+    choicebox = gm_configlet_submenu_push(parent,
                lang_handler,
                lang_draw,
-               "lang-choicebox", languages->n , CHOICEBOX_GM_SETTINGS, NULL);
+               languages->n,
+               data);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "title", "Select language");
 }
 
+static void
+language_draw(void *data, Evas_Object *item)
+{
+    languages_t *languages = data;
+    /*
+      TRANSLATORS: Please make this menu string two-language: 'Language
+      (localized) <inactive>/ Language(in English)</inactive>'. This will allow
+      users to reset language if current language is unknown to them translation
+      is broken due to some reason, like lack of font).
+    */
+    edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
+    edje_object_part_text_set(item, "value", current_lang(languages));
+    edje_object_signal_emit(item, "set-icon-lang", "");
+}
+
+
+const configlet_plugin_t *
+configlet_lang(void)
+{
+    static const configlet_plugin_t configlet = {
+        .load = init_langs,
+        .unload = shutdown_langs,
+        .draw = language_draw,
+        .select = language_set,
+        .sort_key = "03lang",
+    };
+    return &configlet;
+}

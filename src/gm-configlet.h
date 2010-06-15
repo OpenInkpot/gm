@@ -18,7 +18,8 @@ Evas_Object *
 gm_configlet_submenu_push(Evas_Object *parent,
                     void (*select)(Evas_Object *, int, bool, void*),
                     void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
-                    int items);
+                    int items,
+                    void *param);
 
 void
 gm_configlet_submenu_pop(Evas_Object *);

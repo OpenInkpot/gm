@@ -264,8 +264,6 @@ int main(int argc, char **argv __attribute__((unused)))
 {
     setlocale(LC_ALL, "");
     textdomain("gm");
-    if(!init_langs())
-        die("Unable to init langs\n");
     if(!evas_init())
         die("Unable to initialize Evas\n");
     if(!ecore_init())
@@ -299,6 +297,5 @@ int main(int argc, char **argv __attribute__((unused)))
     ecore_shutdown();
     evas_shutdown();
     edje_shutdown();
-    shutdown_langs();
     return 0;
 }
