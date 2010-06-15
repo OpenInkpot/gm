@@ -142,10 +142,6 @@ msgstr "Тэкст"
 msgid "Profile"
 msgstr "Профіль"
 
-#: src/setup-gettext.c:7
-msgid "user"
-msgstr "Карыстальнік"
-
 #: src/rotation.c:41
 msgid "0 → 90 → 180 → 270 → 0"
 msgstr "0 → 90 → 180 → 270 → 0"
@@ -165,6 +161,10 @@ msgstr "карыстальнік3"
 #: src/setup-gettext.c:9
 msgid "user2"
 msgstr "карыстальнік2"
+
+#: src/setup-gettext.c:7
+msgid "user"
+msgstr "карыстальнік"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>недаступна</invisible>"
