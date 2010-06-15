@@ -114,10 +114,6 @@ msgstr "0 ↔ 180 градусаў"
 msgid "0 ↔ 90 Degrees Counterclockwise"
 msgstr "0 ↔ 90 супраць гадзіннікавай стрэлкі"
 
-#: src/rotation.c:41
-msgid "0 → 90 → 180 → 270 → 0"
-msgstr ""
-
 #: src/rotation.c:151
 msgid "Select screen rotation type"
 msgstr "Выбраць напрамак паварота экрану"
@@ -138,22 +134,6 @@ msgstr "Графіка"
 msgid "Main menu view"
 msgstr "Выгляд галоўнага меню"
 
-#: src/setup-gettext.c:8
-msgid "user1"
-msgstr "Карыстальнік1"
-
-#: src/setup-gettext.c:9
-msgid "user2"
-msgstr "Карыстальнік2"
-
-#: src/setup-gettext.c:10
-msgid "user3"
-msgstr "Карыстальнік3"
-
-#: src/setup-gettext.c:11
-msgid "user4"
-msgstr "Карыстальнік4"
-
 #: src/setup.c:159
 msgid "Text"
 msgstr "Тэкст"
@@ -165,6 +145,26 @@ msgstr "Профіль"
 #: src/setup-gettext.c:7
 msgid "user"
 msgstr "Карыстальнік"
+
+#: src/rotation.c:41
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr "0 → 90 → 180 → 270 → 0"
+
+#: src/setup-gettext.c:8
+msgid "user1"
+msgstr "карыстальнік1"
+
+#: src/setup-gettext.c:11
+msgid "user4"
+msgstr "карыстальнік4"
+
+#: src/setup-gettext.c:10
+msgid "user3"
+msgstr "карыстальнік3"
+
+#: src/setup-gettext.c:9
+msgid "user2"
+msgstr "карыстальнік2"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>недаступна</invisible>"
