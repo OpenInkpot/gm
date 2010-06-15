@@ -53,21 +53,6 @@ language_draw(Evas_Object *item)
 }
 
 static void
-datetime_draw(Evas_Object *item)
-{
-    edje_object_part_text_set(item, "title", gettext("Clock setup"));
-    edje_object_part_text_set(item, "value", "");
-    edje_object_signal_emit(item, "set-icon-time", "");
-}
-
-static void
-datetime_set(Evas_Object *item)
-{
-    Evas* canvas = evas_object_evas_get(item);
-    gm_run_etimetool(canvas);
-}
-
-static void
 main_view_draw(Evas_Object *item)
 {
     edje_object_part_text_set(item, "title", gettext("Main menu view"));
@@ -203,7 +188,6 @@ static void
 setup_builtins(Eina_List **lst)
 {
     add_builtin_old(lst, &language_draw, &lang_menu, "03lang");
-    add_builtin_old(lst, &datetime_draw, &datetime_set, "04datetime");
     add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");
     add_builtin_old(lst, &user_draw_main_menu, user_set_main_menu, "06user");
 };
