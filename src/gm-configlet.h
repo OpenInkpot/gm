@@ -15,10 +15,13 @@ struct configlet_plugin_t {
 };
 
 Evas_Object *
-gm_configlet_submenu(Evas_Object *parent,
+gm_configlet_submenu_push(Evas_Object *parent,
                     void (*select)(Evas_Object *, int, bool, void*),
                     void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
                     int items);
+
+void
+gm_configlet_submenu_pop(Evas_Object *);
 
 typedef const configlet_plugin_t * (*configlet_constructor_t)(void);
 

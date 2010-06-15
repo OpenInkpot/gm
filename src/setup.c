@@ -255,7 +255,7 @@ struct configlet_t {
 };
 
 Evas_Object *
-gm_configlet_submenu(Evas_Object *parent,
+gm_configlet_submenu_push(Evas_Object *parent,
                     void (*select)(Evas_Object *, int, bool, void*),
                     void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
                     int items)
@@ -263,6 +263,13 @@ gm_configlet_submenu(Evas_Object *parent,
     Evas *canvas = evas_object_evas_get(parent);
     return choicebox_push(parent, canvas, select, draw, "configlet-submenu",
             items, CHOICEBOX_GM_SETTINGS, NULL);
+}
+
+/* de-facto alias for choicebox_pop, but documented as configlet API */
+void
+gm_configlet_submenu_pop(Evas_Object *submenu)
+{
+    choicebox_pop(submenu);
 }
 
 static void

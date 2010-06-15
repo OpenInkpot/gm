@@ -135,7 +135,7 @@ static void rotation_submenu_handler(
                     void *param __attribute__((unused)))
 {
     set_rotation(rotation_states[item_num].value);
-    choicebox_pop(choicebox);
+    gm_configlet_submenu_pop(choicebox);
 
     Evas_Object *parent = (Evas_Object*)param;
     choicebox_invalidate_item(parent, 1);
@@ -146,10 +146,10 @@ gm_rotation_menu(void *data __attribute__((unused)), Evas_Object *parent)
 {
     Evas *canvas = evas_object_evas_get(parent);
     Evas_Object *choicebox;
-    choicebox = choicebox_push(parent, canvas,
+    choicebox = gm_configlet_submenu_push(parent,
                rotation_submenu_handler,
                rotation_submenu_draw,
-               "rotation-choicebox", ROTATION_COUNT, CHOICEBOX_GM_SETTINGS, parent);
+               ROTATION_COUNT);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
