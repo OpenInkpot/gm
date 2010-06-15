@@ -1,4 +1,3 @@
-#include "screen_update_control.h"
 #include <liblops.h>
 
 #include <fcntl.h>
@@ -8,6 +7,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#include <gm-configlet.h>
+#include "screen_update_control.h"
+
+#define _(x) x
 
 /* FIXME: HAL? N516-only right now */
 #define SCREEN_UPDATE_CONTROL_FILE "/sys/class/graphics/fb1/manual_refresh_threshold"
@@ -83,7 +87,8 @@ static int set_threshold(const char *control_file, int threshold)
 
 /* Policy */
 
-screen_update_t detect_screen_update_type()
+static screen_update_t
+detect_screen_update_type()
 {
     int val = detect_threshold(SCREEN_UPDATE_CONTROL_FILE);
     if(val == -1)
@@ -95,7 +100,8 @@ screen_update_t detect_screen_update_type()
     return SCREEN_UPDATE_PARTIAL;
 }
 
-int set_screen_update_type(screen_update_t screen_update)
+static int
+set_screen_update_type(screen_update_t screen_update)
 {
     int val;
     switch(screen_update)
@@ -116,3 +122,53 @@ int set_screen_update_type(screen_update_t screen_update)
 
     return set_threshold(SCREEN_UPDATE_CONTROL_FILE, val);
 }
+
+const char * screen_states[] = {
+    _("<inactive>N/A</inactive>"),
+    _("Full"),
+    _("Adaptive"),
+    _("Partial")
+};
+
+const char *screen_state_icons[] = {
+    "set-icon-none",
+    "set-icon-update-full",
+    "set-icon-update-adaptive",
+    "set-icon-update-zone",
+};
+
+static void
+screen_draw(void *data __attribute__((unused)), Evas_Object *item)
+{
+    screen_update_t scr = detect_screen_update_type();
+    edje_object_part_text_set(item, "title", gettext("Screen update"));
+    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
+    edje_object_signal_emit(item, screen_state_icons[scr+1], "");
+}
+
+static void
+screen_set(void *data __attribute__((unused)), Evas_Object *self) {
+    screen_update_t scr = detect_screen_update_type();
+    if(scr < 0)
+        return;
+
+    scr++;
+    if(scr > SCREEN_UPDATE_PARTIAL)
+        scr = SCREEN_UPDATE_FULL;
+        set_screen_update_type(scr);
+        choicebox_invalidate_item(self, 0);
+}
+
+const configlet_plugin_t *
+configlet_screen(void)
+{
+    static const configlet_plugin_t configlet = {
+        .load = NULL,
+        .unload = NULL,
+        .draw = screen_draw,
+        .select = screen_set,
+        .sort_key = "01screen",
+    };
+    return &configlet;
+}
+

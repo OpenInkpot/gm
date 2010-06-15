@@ -25,7 +25,6 @@
 #include "lang.h"
 #include "choices.h"
 #include "sound_control.h"
-#include "screen_update_control.h"
 #include "run.h"
 #include "user.h"
 #include "gm-configlet.h"
@@ -76,42 +75,6 @@ version_set(Evas_Object *item __attribute__((unused)))
         ecore_exe_free(exe);
 }
 
-
-const char * screen_states[] = {
-    _("<inactive>N/A</inactive>"),
-    _("Full"),
-    _("Adaptive"),
-    _("Partial")
-};
-
-const char *screen_state_icons[] = {
-    "set-icon-none",
-    "set-icon-update-full",
-    "set-icon-update-adaptive",
-    "set-icon-update-zone",
-};
-
-static void
-screen_draw(Evas_Object *item)
-{
-    screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "title", gettext("Screen update"));
-    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
-    edje_object_signal_emit(item, screen_state_icons[scr+1], "");
-}
-
-static void
-screen_set(Evas_Object *self) {
-    screen_update_t scr = detect_screen_update_type();
-    if(scr < 0)
-        return;
-
-    scr++;
-    if(scr > SCREEN_UPDATE_PARTIAL)
-        scr = SCREEN_UPDATE_FULL;
-        set_screen_update_type(scr);
-        choicebox_invalidate_item(self, 0);
-}
 
 static void
 language_draw(Evas_Object *item)
@@ -277,7 +240,6 @@ add_builtin_old(Eina_List **lst,
 static void
 setup_builtins(Eina_List **lst)
 {
-    add_builtin_old(lst, &screen_draw, &screen_set, "01screen");
     add_builtin_old(lst, &language_draw, &lang_menu, "03lang");
     add_builtin_old(lst, &datetime_draw, &datetime_set, "04datetime");
     add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");

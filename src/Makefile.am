@@ -1,6 +1,6 @@
 bin_PROGRAMS = gm
 gm_SOURCES = gm.c apps.c choices.c sock.c setup.c lang.c sound_control.c \
-    screen_update_control.c raise.c clock.c battery.c \
+    raise.c clock.c battery.c \
 	graph.c run.c apps_cleanup.c help.c user.c
 
 AM_CFLAGS = --std=gnu99 -W -Wall \
@@ -11,6 +11,9 @@ gm_LDFLAGS = -Wl,--as-needed -export-dynamic
 gm_LDADD = @EFL_LIBS@ @LIBCHOICEBOX_LIBS@ @LIBLANGUAGE_LIBS@ @LIBKEYS_LIBS@ @LIBEOI_LIBS@
 
 libconfigletdir = "${pkglibdir}/configlets"
-libconfiglet_LTLIBRARIES = rotation.la
+libconfiglet_LTLIBRARIES = rotation.la screen.la
 rotation_la_SOURCES = rotation.c
 rotation_la_LDFLAGS = -module -avoid-version -nostatic
+
+screen_la_SOURCES = screen_update_control.c
+screen_la_LDFLAGS = -module -avoid-version -nostatic
