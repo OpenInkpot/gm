@@ -11,9 +11,12 @@ gm_LDFLAGS = -Wl,--as-needed -export-dynamic
 gm_LDADD = @EFL_LIBS@ @LIBCHOICEBOX_LIBS@ @LIBLANGUAGE_LIBS@ @LIBKEYS_LIBS@ @LIBEOI_LIBS@
 
 libconfigletdir = "${pkglibdir}/configlets"
-libconfiglet_LTLIBRARIES = rotation.la screen.la
+libconfiglet_LTLIBRARIES = rotation.la screen.la version.la
 rotation_la_SOURCES = rotation.c
 rotation_la_LDFLAGS = -module -avoid-version -nostatic
 
 screen_la_SOURCES = screen_update_control.c
 screen_la_LDFLAGS = -module -avoid-version -nostatic
+
+version_la_SOURCES = version.c
+version_la_LDFLAGS = -module -avoid-version -nostatic @LIBLOPS_LIBS@ @EFL_LIBS@

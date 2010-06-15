@@ -38,44 +38,6 @@ gm_settings_save()
     efreet_ini_save(_settings, _settings_path);
 }
 
-#define VERSION_SIZE 1024
-
-static void
-version_draw(Evas_Object *item)
-{
-    static char *version = NULL;
-    if (!version) {
-        version = "N/A";
-
-        int fd = open("/etc/openinkpot-version", O_RDONLY);
-        if (fd != -1) {
-            char version_str[VERSION_SIZE];
-            int r = readn(fd, version_str, VERSION_SIZE-1);
-            if (r > 0) {
-                version_str[r-1] = '\0';
-                char *c = strchr(version_str,'\n');
-                if(c)
-                    *c = '\0';
-                version = strdup(version_str);
-            }
-            close(fd);
-        }
-    }
-
-    edje_object_part_text_set(item, "title", gettext("Version"));
-    edje_object_part_text_set(item, "value", version);
-    edje_object_signal_emit(item, "set-icon-version", "");
-}
-
-static void
-version_set(Evas_Object *item __attribute__((unused)))
-{
-    Ecore_Exe *exe = ecore_exe_run("/usr/bin/eabout", NULL);
-    if(exe)
-        ecore_exe_free(exe);
-}
-
-
 static void
 language_draw(Evas_Object *item)
 {
@@ -244,7 +206,6 @@ setup_builtins(Eina_List **lst)
     add_builtin_old(lst, &datetime_draw, &datetime_set, "04datetime");
     add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");
     add_builtin_old(lst, &user_draw_main_menu, user_set_main_menu, "06user");
-    add_builtin_old(lst, &version_draw, &version_set, "99version");
 };
 
 

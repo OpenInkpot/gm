@@ -7,6 +7,7 @@ AC_PROG_CC
 
 AM_PROG_LIBTOOL
 
+PKG_CHECK_MODULES(LIBLOPS, [liblops])
 PKG_CHECK_MODULES(EFL, [ecore ecore-file ecore-evas ecore-con evas edje efreet])
 PKG_CHECK_MODULES(LIBCHOICEBOX,[libchoicebox])
 PKG_CHECK_MODULES(LIBLANGUAGE,[liblanguage])
