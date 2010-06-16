@@ -1,7 +1,6 @@
 bin_PROGRAMS = gm
 gm_SOURCES = gm.c apps.c choices.c sock.c setup.c sound_control.c \
-    raise.c clock.c battery.c \
-	graph.c run.c apps_cleanup.c help.c user.c
+    raise.c clock.c battery.c graph.c run.c apps_cleanup.c help.c
 
 AM_CFLAGS = --std=gnu99 -W -Wall \
     -DLOCALSTATEDIR='"$(localstatedir)"'
@@ -11,7 +10,8 @@ gm_LDFLAGS = -Wl,--as-needed -export-dynamic
 gm_LDADD = @EFL_LIBS@ @LIBCHOICEBOX_LIBS@ @LIBKEYS_LIBS@ @LIBEOI_LIBS@
 
 libconfigletdir = "${pkglibdir}/configlets"
-libconfiglet_LTLIBRARIES = rotation.la screen.la version.la datetime.la lang.la
+libconfiglet_LTLIBRARIES = rotation.la screen.la version.la datetime.la \
+						   lang.la user.la
 rotation_la_SOURCES = rotation.c
 rotation_la_LDFLAGS = -module -avoid-version -nostatic
 
@@ -26,3 +26,6 @@ datetime_la_LDFLAGS = -module -avoid-version -nostatic @EFL_LIBS@
 
 lang_la_SOURCES = lang.c
 lang_la_LDFLAGS = -module -avoid-version -nostatic @EFL_LIBS@ @LIBLANGUAGE_LIBS@ 
+
+user_la_SOURCES = user.c
+user_la_LDFLAGS = -module -avoid-version -nostatic @EFL_LIBS@ @LIBLANGUAGE_LIBS@ 
