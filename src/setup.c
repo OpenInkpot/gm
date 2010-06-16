@@ -36,7 +36,7 @@ gm_settings_save()
 
 
 static void
-main_view_draw(Evas_Object *item)
+main_view_draw(void *data __attribute__((unused)), Evas_Object *item)
 {
     edje_object_part_text_set(item, "title", gettext("Main menu view"));
     edje_object_part_text_set(item, "value",
@@ -48,7 +48,8 @@ main_view_draw(Evas_Object *item)
 }
 
 static void
-main_view_set(Evas_Object *item __attribute__((unused)))
+main_view_set(void *data __attribute__((unused)),
+                Evas_Object *item __attribute__((unused)))
 {
     bool value = (gm_graphics_mode_get() ? 0 : 1);
     gm_graphics_mode_set(value);
@@ -63,10 +64,6 @@ struct configlet_t {
     const configlet_plugin_t *methods;
     void *instance;
     const char *sort_key;
-
-    /* compat layer, will be removed soon */
-    void (*old_style_draw) (Evas_Object *);
-    void (*old_style_select) (Evas_Object *);
 };
 
 Evas_Object *
@@ -86,25 +83,6 @@ gm_configlet_submenu_pop(Evas_Object *submenu)
 {
     choicebox_pop(submenu);
 }
-
-static void
-add_builtin_old(Eina_List **lst,
-        void (*draw)(Evas_Object *),
-        void (*select)(Evas_Object *),
-        const char *sort_key)
-{
-    configlet_t *configlet=calloc(1, sizeof(configlet_t));
-    configlet->sort_key = sort_key;
-    configlet->old_style_draw = draw;
-    configlet->old_style_select = select;
-    *lst = eina_list_append(*lst, configlet);
-}
-
-static void
-setup_builtins(Eina_List **lst)
-{
-    add_builtin_old(lst, &main_view_draw, &main_view_set, "05datetime");
-};
 
 
 static int
@@ -130,6 +108,25 @@ static int filter_files(const struct dirent* d)
 {
     unsigned short int len = _D_EXACT_NAMLEN(d);
     return (len > 2) && !strcmp(d->d_name + len - 3, ".so");
+}
+
+static configlet_t *
+make_configlet(const configlet_plugin_t *methods, void *module)
+{
+    configlet_t *configlet=calloc(1, sizeof(configlet_t));
+    if(!configlet)
+        err(1, "Out of memory while loading configlet\n");
+
+    configlet->methods = methods;
+    if(configlet->methods->load)
+        configlet->instance = configlet->methods->load();
+
+    configlet->module = module; /* save, to unload later */
+
+    /* ugly, but compatible with builtins */
+    configlet->sort_key = configlet->methods->sort_key;
+
+    return configlet;
 }
 
 static configlet_t *
@@ -166,24 +163,13 @@ load_single_plugin(char *name)
         return NULL;
     }
 
-    configlet_t *configlet=calloc(1, sizeof(configlet_t));
-    if(!configlet)
-        err(1, "Out of memory while loading configlet\n");
-
-    configlet->methods = ctor();
-    if(configlet->methods->load)
-        configlet->instance = configlet->methods->load();
-
-    configlet->module = libhandle; /* save, to unload later */
-
-    /* ugly, but compatible with builtins */
-    configlet->sort_key = configlet->methods->sort_key;
-
-
     free(configlet_name);
     free(libname);
-    return configlet;
+    const configlet_plugin_t *methods =  ctor();
+    return make_configlet(methods, libhandle);
 }
+
+
 
 
 Eina_List *
@@ -210,6 +196,22 @@ settings_menu_load_plugins()
     }
     return lst;
 }
+
+static void
+setup_builtins(Eina_List **lst)
+{
+    static const configlet_plugin_t main_view_builtin = {
+        .load = NULL,
+        .unload = NULL,
+        .draw =  &main_view_draw,
+        .select = &main_view_set,
+        .sort_key = "05main-menu-view",
+    };
+
+    *lst = eina_list_append(*lst,
+        make_configlet(&main_view_builtin, NULL));
+};
+
 
 Eina_List *
 settings_menu_load()
@@ -248,11 +250,7 @@ static void settings_draw(Evas_Object *choicebox,
     Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
     configlet_t *configlet = eina_list_nth(menu, item_num);
 
-    /* compat callback if exists */
-    if(configlet->old_style_draw)
-        configlet->old_style_draw(item);
-    else
-        configlet->methods->draw(configlet->instance, item);
+    configlet->methods->draw(configlet->instance, item);
 }
 
 static void settings_handler(Evas_Object *choicebox,
@@ -263,11 +261,7 @@ static void settings_handler(Evas_Object *choicebox,
     Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
     configlet_t *configlet = eina_list_nth(menu, item_num);
 
-    /* compat callback if exists */
-    if(configlet->old_style_select)
-        configlet->old_style_select(choicebox);
-    else
-        configlet->methods->select(configlet->instance, choicebox);
+    configlet->methods->select(configlet->instance, choicebox);
     choicebox_invalidate_item(choicebox, item_num);
 }
 
