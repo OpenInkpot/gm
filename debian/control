@@ -14,6 +14,12 @@ Architecture: any
 Depends: ${shlibs:Depends}, eabout, madshelf (>= 0.2.57)
 Description: Global Menu
 
+Package: gm-dev
+Priority: optional
+Architecture: any
+Depends: gm (=${binary:Version})
+Description: global menu -- headers to build configlets
+
 Package: gm-theme-azbooka
 Priority: optional
 Architecture: any
