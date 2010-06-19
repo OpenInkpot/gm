@@ -1,4 +1,5 @@
 #define _GNU_SOURCE
+#include <libintl.h>
 #include <stdio.h>
 #include <string.h>
 #include <Evas.h>
