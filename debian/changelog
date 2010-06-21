@@ -1,3 +1,11 @@
+gm (0.4.0) zelazny; urgency=low
+
+  * Implemented configlets
+  * Fix epic bug (help screen don't closed when 'menu' key pressed
+  * Update ru/uk translation for recent/favorites
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Mon, 21 Jun 2010 23:23:55 +0300
+
 gm (0.3.25) zelazny; urgency=low
 
   * Recent && favorites
