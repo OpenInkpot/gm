@@ -93,6 +93,7 @@ static void main_win_focus_in_handler(Ecore_Evas *main_win)
 {
     Evas *canvas = ecore_evas_get(main_win);
     Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
+    gm_help_close(canvas);
     if(choicebox)
         choicebox_invalidate_item(choicebox, 0);
     gm_graphics_show_book(canvas);

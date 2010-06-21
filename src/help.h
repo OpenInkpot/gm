@@ -4,5 +4,6 @@
 #include <Evas.h>
 
 void gm_help_show(Evas* evas);
+void gm_help_close(Evas *canvas);
 
 #endif

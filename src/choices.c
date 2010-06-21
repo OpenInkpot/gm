@@ -61,6 +61,7 @@ gm_choicebox_raise_root(Evas *canvas)
     Evas_Object *main_edje = evas_object_name_find(canvas, "main_canvas_edje");
     if(!main_edje)
         printf("No main edje\n");
+    gm_help_close(canvas);
     Evas_Object *box = edje_object_part_swallow_get(main_edje, "contents");
     while(choicebox_pop(box))
         box = edje_object_part_swallow_get(main_edje, "contents");
@@ -90,8 +91,8 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
     choicebox_draw_handler_t draw_handler,
     const char *name, int size, choicebox_type_t type, void *data)
 {
-    char *theme;
-    char *group;
+    char *theme = NULL; /* = NULL to shut up compiler warnings */
+    char *group = NULL;
     if (type == CHOICEBOX_MAIN_MENU) {
         theme = "gm-items";
         group = "item-main-menu";
