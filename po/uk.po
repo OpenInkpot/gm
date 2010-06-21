@@ -53,7 +53,7 @@ msgstr "Налаштувати <inactive>/ Setup</inactive>"
 #: src/gm.c:64
 #, fuzzy
 msgid "Recent books"
-msgstr "Відкрита книга"
+msgstr "Iсторiя"
 
 #: src/gm.c:65
 msgid "Favorites"
