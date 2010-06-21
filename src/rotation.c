@@ -8,8 +8,10 @@
 #include <Evas.h>
 #include <Ecore.h>
 #include <Edje.h>
+#include <Ecore_File.h>
 
 #include <libchoicebox.h>
+#include <gm-configlet.h>
 #include "choices.h"
 
 #define _(x) x
@@ -77,14 +79,14 @@ current_rotation()
     return 4;
 }
 
-const char *
+static const char *
 gm_current_rotation()
 {
     int j = current_rotation();
     return gettext(rotation_states[j].text);
 }
 
-void
+static void
 gm_set_rotation_icon(Evas_Object *item)
 {
     int j = current_rotation();
@@ -112,7 +114,8 @@ set_rotation(int rotation)
     fclose(f);
 }
 
-static void rotation_draw(Evas_Object *choicebox __attribute__((unused)),
+static void rotation_submenu_draw(
+                      Evas_Object *choicebox __attribute__((unused)),
                       Evas_Object *item,
                       int item_num,
                       int page_position __attribute__((unused)),
@@ -125,28 +128,52 @@ static void rotation_draw(Evas_Object *choicebox __attribute__((unused)),
     printf("send: %s\n", rotation_states[item_num].icon);
 }
 
-static void rotation_handler(Evas_Object *choicebox __attribute__((unused)),
+static void rotation_submenu_handler(
+                    Evas_Object *choicebox __attribute__((unused)),
                     int item_num,
                     bool is_alt __attribute__((unused)),
                     void *param __attribute__((unused)))
 {
     set_rotation(rotation_states[item_num].value);
-    choicebox_pop(choicebox);
+    gm_configlet_submenu_pop(choicebox);
 
     Evas_Object *parent = (Evas_Object*)param;
     choicebox_invalidate_item(parent, 1);
 }
 
-void gm_rotation_menu(Evas_Object *parent)
+static void
+gm_rotation_menu(void *data __attribute__((unused)), Evas_Object *parent)
 {
     Evas *canvas = evas_object_evas_get(parent);
     Evas_Object *choicebox;
-    choicebox = choicebox_push(parent, canvas,
-               rotation_handler,
-               rotation_draw,
-               "rotation-choicebox", ROTATION_COUNT, CHOICEBOX_GM_SETTINGS, parent);
+    choicebox = gm_configlet_submenu_push(parent,
+               rotation_submenu_handler,
+               rotation_submenu_draw,
+               ROTATION_COUNT,
+               NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "title", gettext("Select screen rotation type"));
+}
+
+static void
+rotation_draw(void *data __attribute__((unused)), Evas_Object *item)
+{
+    edje_object_part_text_set(item, "title", gettext("Screen rotation type"));
+    edje_object_part_text_set(item, "value", gm_current_rotation());
+    gm_set_rotation_icon(item);
+}
+
+const configlet_plugin_t *
+configlet_rotation(void)
+{
+    static const configlet_plugin_t configlet = {
+        .load = NULL,
+        .unload = NULL,
+        .draw = rotation_draw,
+        .select = gm_rotation_menu,
+        .sort_key = "02rotation",
+    };
+    return &configlet;
 }

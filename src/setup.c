@@ -1,4 +1,8 @@
 #define _GNU_SOURCE
+#include <dlfcn.h>
+#include <dirent.h>
+#include <err.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <libintl.h>
 #include <sys/types.h>
@@ -15,24 +19,14 @@
 #include <Efreet.h>
 #include <Ecore.h>
 #include <libchoicebox.h>
+#include <libeoi_utils.h>
 #include "setup.h"
 #include "graph.h"
-#include "lang.h"
 #include "choices.h"
-#include "sound_control.h"
-#include "screen_update_control.h"
-#include "rotation.h"
-#include "run.h"
-#include "user.h"
+#include "gm-configlet.h"
 
 static Efreet_Ini *_settings;
 static char *_settings_path;
-
-struct setup_menu_item_t {
-    void (*draw)(Evas_Object *self);
-    void (*select) (Evas_Object *self);
-    void *arg;
-};
 
 static void
 gm_settings_save()
@@ -40,119 +34,9 @@ gm_settings_save()
     efreet_ini_save(_settings, _settings_path);
 }
 
-#define VERSION_SIZE 1024
 
 static void
-version_draw(Evas_Object *item)
-{
-    static char *version = NULL;
-    if (!version) {
-        version = "N/A";
-
-        int fd = open("/etc/openinkpot-version", O_RDONLY);
-        if (fd != -1) {
-            char version_str[VERSION_SIZE];
-            int r = readn(fd, version_str, VERSION_SIZE-1);
-            if (r > 0) {
-                version_str[r-1] = '\0';
-                char *c = strchr(version_str,'\n');
-                if(c)
-                    *c = '\0';
-                version = strdup(version_str);
-            }
-            close(fd);
-        }
-    }
-
-    edje_object_part_text_set(item, "title", gettext("Version"));
-    edje_object_part_text_set(item, "value", version);
-    edje_object_signal_emit(item, "set-icon-version", "");
-}
-
-static void
-version_set(Evas_Object *item __attribute__((unused)))
-{
-    Ecore_Exe *exe = ecore_exe_run("/usr/bin/eabout", NULL);
-    if(exe)
-        ecore_exe_free(exe);
-}
-
-
-const char * screen_states[] = {
-    _("<inactive>N/A</inactive>"),
-    _("Full"),
-    _("Adaptive"),
-    _("Partial")
-};
-
-const char *screen_state_icons[] = {
-    "set-icon-none",
-    "set-icon-update-full",
-    "set-icon-update-adaptive",
-    "set-icon-update-zone",
-};
-
-static void
-screen_draw(Evas_Object *item)
-{
-    screen_update_t scr = detect_screen_update_type();
-    edje_object_part_text_set(item, "title", gettext("Screen update"));
-    edje_object_part_text_set(item, "value", gettext(screen_states[scr+1]));
-    edje_object_signal_emit(item, screen_state_icons[scr+1], "");
-}
-
-static void
-screen_set(Evas_Object *self) {
-    screen_update_t scr = detect_screen_update_type();
-    if(scr < 0)
-        return;
-
-    scr++;
-    if(scr > SCREEN_UPDATE_PARTIAL)
-        scr = SCREEN_UPDATE_FULL;
-        set_screen_update_type(scr);
-        choicebox_invalidate_item(self, 0);
-}
-
-static void
-rotation_draw(Evas_Object *item)
-{
-    edje_object_part_text_set(item, "title", gettext("Screen rotation type"));
-    edje_object_part_text_set(item, "value", gm_current_rotation());
-    gm_set_rotation_icon(item);
-}
-
-static void
-language_draw(Evas_Object *item)
-{
-    /*
-      TRANSLATORS: Please make this menu string two-language: 'Language
-      (localized) <inactive>/ Language(in English)</inactive>'. This will allow
-      users to reset language if current language is unknown to them translation
-      is broken due to some reason, like lack of font).
-    */
-    edje_object_part_text_set(item, "title", gettext("Language <inactive>/ Language</inactive>"));
-    edje_object_part_text_set(item, "value", current_lang());
-    edje_object_signal_emit(item, "set-icon-lang", "");
-}
-
-static void
-datetime_draw(Evas_Object *item)
-{
-    edje_object_part_text_set(item, "title", gettext("Clock setup"));
-    edje_object_part_text_set(item, "value", "");
-    edje_object_signal_emit(item, "set-icon-time", "");
-}
-
-static void
-datetime_set(Evas_Object *item)
-{
-    Evas* canvas = evas_object_evas_get(item);
-    gm_run_etimetool(canvas);
-}
-
-static void
-main_view_draw(Evas_Object *item)
+main_view_draw(void *data __attribute__((unused)), Evas_Object *item)
 {
     edje_object_part_text_set(item, "title", gettext("Main menu view"));
     edje_object_part_text_set(item, "value",
@@ -164,7 +48,8 @@ main_view_draw(Evas_Object *item)
 }
 
 static void
-main_view_set(Evas_Object *item __attribute__((unused)))
+main_view_set(void *data __attribute__((unused)),
+                Evas_Object *item __attribute__((unused)))
 {
     bool value = (gm_graphics_mode_get() ? 0 : 1);
     gm_graphics_mode_set(value);
@@ -172,93 +57,200 @@ main_view_set(Evas_Object *item __attribute__((unused)))
     gm_settings_save();
 }
 
-/* Users. */
-
-/* FIXME: All of this is a gross hack. It could me much more useful to use real
- * separate accounts, and not just separate home dirs as now. */
-
-#define NUM_USERS 5
-
-static void
-user_draw_main_menu(Evas_Object *item)
-{
-    edje_object_part_text_set(item, "title", gettext("Profile"));
-    edje_object_part_text_set(item, "value", gettext(get_user_name()));
-    edje_object_signal_emit(item, "set-icon-users", "");
-}
-
-static void
-user_set_handler(Evas_Object *choicebox __attribute__((unused)),
-                 int item_num,
-                 bool is_alt __attribute__((unused)),
-                 void *param __attribute__((unused)))
-{
-    char user[8] = "user";
-    if (item_num != 0)
-        sprintf(user, "user%d", item_num);
-    set_user(user);
-    ecore_main_loop_quit();
-}
-
-static void
-user_set_draw(Evas_Object *choicebox __attribute__((unused)),
-              Evas_Object *item, int item_num,
-              int page_position __attribute__((unused)),
-              void *param __attribute__((unused)))
-{
-    char user[8] = "user";
-    if (item_num != 0)
-        sprintf(user, "user%d", item_num);
-    char homedir[20];
-    sprintf(homedir, "/home/%s", user);
-    bool user_exists = ecore_file_exists(homedir);
-
-    char text[40];
-    sprintf(text, "%s%s%s", user_exists ? "" : "<inactive>",
-            gettext(user), user_exists ? "" : "</inactive>");
-
-    edje_object_part_text_set(item, "title", text);
-}
-
-static void
-user_set_main_menu(Evas_Object *item)
-{
-    Evas *canvas = evas_object_evas_get(item);
-    Evas_Object *choicebox;
-    choicebox = choicebox_push(item, canvas,
-                               user_set_handler,
-                               user_set_draw,
-                               "user-choicebox", NUM_USERS,
-                               CHOICEBOX_GM_SETTINGS, NULL);
-    Evas_Object *main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
-    edje_object_part_text_set(main_canvas_edje, "title", gettext("Profile"));
-
-    int curidx = 0;
-    const char *username = get_user_name();
-    sscanf(username, "user%d", &curidx);
-    choicebox_set_selection(choicebox, curidx);
-}
-
-struct setup_menu_item_t setup_menu_items[] = {
-    {&screen_draw, &screen_set, 0},
-    {&rotation_draw, &gm_rotation_menu, 0},
-    {&language_draw, &lang_menu, 0},
-    {&datetime_draw, &datetime_set, 0},
-    {&main_view_draw, main_view_set, 0},
-    {&user_draw_main_menu, user_set_main_menu, 0},
-    {&version_draw, &version_set, 0},
+/* not API, private structure */
+typedef struct configlet_t  configlet_t;
+struct configlet_t {
+    void *module;
+    const configlet_plugin_t *methods;
+    void *instance;
+    const char *sort_key;
 };
 
-#define MENU_ITEMS_NUM (sizeof(setup_menu_items)/sizeof(setup_menu_items[0]))
+Evas_Object *
+gm_configlet_submenu_push(Evas_Object *parent,
+                    void (*select)(Evas_Object *, int, bool, void*),
+                    void (*draw)(Evas_Object*, Evas_Object *, int, int, void*),
+                    int items, void *param)
+{
+    Evas *canvas = evas_object_evas_get(parent);
+    return choicebox_push(parent, canvas, select, draw, "configlet-submenu",
+            items, CHOICEBOX_GM_SETTINGS, param);
+}
 
-static void settings_draw(Evas_Object *choicebox __attribute__((unused)),
+/* de-facto alias for choicebox_pop, but documented as configlet API */
+void
+gm_configlet_submenu_pop(Evas_Object *submenu)
+{
+    choicebox_pop(submenu);
+}
+
+
+static int
+sort_cb(const void *left, const void *right)
+{
+    if(!left) return 1;
+    if(!right) return -1;
+    return strcmp(((configlet_t *)left)->sort_key,
+                  ((configlet_t *)right)->sort_key);
+}
+
+#define CONFIGLETS_DIR  "/usr/lib/gm/configlets"
+
+static const char *
+get_configlets_dir()
+{
+    return getenv("CONFIGLETS_DIR")
+        ? getenv("CONFIGLETS_DIR") :
+        CONFIGLETS_DIR;
+}
+
+static int filter_files(const struct dirent* d)
+{
+    unsigned short int len = _D_EXACT_NAMLEN(d);
+    return (len > 2) && !strcmp(d->d_name + len - 3, ".so");
+}
+
+static configlet_t *
+make_configlet(const configlet_plugin_t *methods, void *module)
+{
+    configlet_t *configlet=calloc(1, sizeof(configlet_t));
+    if(!configlet)
+        err(1, "Out of memory while loading configlet\n");
+
+    configlet->methods = methods;
+    if(configlet->methods->load)
+        configlet->instance = configlet->methods->load();
+
+    configlet->module = module; /* save, to unload later */
+
+    /* ugly, but compatible with builtins */
+    configlet->sort_key = configlet->methods->sort_key;
+
+    return configlet;
+}
+
+static configlet_t *
+load_single_plugin(char *name)
+{
+    char *libname = xasprintf("%s/%s", get_configlets_dir(), name);
+    if(!libname)
+        err(1, "Out of memory while load configlet %s\n", name);
+
+    void *libhandle = dlopen(libname, RTLD_NOW | RTLD_LOCAL);
+    if(!libhandle)
+    {
+        fprintf(stderr, "unable to load %s: %s\n", libname, dlerror());
+        free(libname);
+        return NULL;
+    };
+
+    /* Remove '.so' from filename */
+    name[strlen(name)-3] = 0;
+
+    char *configlet_name = xasprintf("configlet_%s", name);
+    if(!configlet_name)
+        err(1, "Out of memory while load configlet %s\n", name);
+
+    configlet_constructor_t ctor =
+        dlsym(libhandle, configlet_name);
+
+    if(!ctor)
+    {
+        fprintf(stderr, "Unable to get entry point in %s: %s", name, dlerror());
+        free(configlet_name);
+        free(libname);
+        dlclose(libhandle);
+        return NULL;
+    }
+
+    free(configlet_name);
+    free(libname);
+    const configlet_plugin_t *methods =  ctor();
+    return make_configlet(methods, libhandle);
+}
+
+
+
+
+Eina_List *
+settings_menu_load_plugins()
+{
+    Eina_List *lst = NULL;
+    int i;
+    struct dirent **files;
+    int nfiles = scandir(get_configlets_dir(),
+            &files, &filter_files,  &versionsort);
+
+    if(nfiles == -1)
+    {
+        fprintf(stderr, "Unable to load configlets from %s: %s\n",
+            get_configlets_dir(), strerror(errno));
+        return NULL;
+    }
+
+    for(i = 0; i != nfiles; ++i)
+    {
+        configlet_t *configlet = load_single_plugin(files[i]->d_name);
+        if(configlet)
+            lst = eina_list_append(lst, configlet);
+    }
+    return lst;
+}
+
+static void
+setup_builtins(Eina_List **lst)
+{
+    static const configlet_plugin_t main_view_builtin = {
+        .load = NULL,
+        .unload = NULL,
+        .draw =  &main_view_draw,
+        .select = &main_view_set,
+        .sort_key = "05main-menu-view",
+    };
+
+    *lst = eina_list_append(*lst,
+        make_configlet(&main_view_builtin, NULL));
+};
+
+
+Eina_List *
+settings_menu_load()
+{
+    Eina_List *lst = settings_menu_load_plugins();
+    setup_builtins(&lst);
+    lst = eina_list_sort(lst, eina_list_count(lst), sort_cb);
+    return lst;
+}
+
+static void
+_settings_menu_unload(void *data,
+    Evas *canvas __attribute__((unused)),
+    Evas_Object *object __attribute__((unused)),
+    void * event_type __attribute__((unused)))
+{
+    configlet_t *configlet;
+    Eina_List *list = data;
+    EINA_LIST_FREE(list, configlet)
+    {
+        if(configlet->methods && configlet->instance)
+            configlet->methods->unload(configlet->instance);
+        if(configlet->module)
+            dlclose(configlet->module);
+        free(configlet);
+    }
+}
+
+static void settings_draw(Evas_Object *choicebox,
                          Evas_Object *item,
                          int item_num,
                          int page_position __attribute__((unused)),
                          void *param __attribute__((unused)))
 {
     edje_object_signal_emit(item, "set-icon-none", "");
-    setup_menu_items[item_num].draw(item);
+    Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
+    configlet_t *configlet = eina_list_nth(menu, item_num);
+
+    configlet->methods->draw(configlet->instance, item);
 }
 
 static void settings_handler(Evas_Object *choicebox,
@@ -266,21 +258,30 @@ static void settings_handler(Evas_Object *choicebox,
                     bool is_alt __attribute__((unused)),
                     void* param __attribute__((unused)))
 {
-    setup_menu_items[item_num].select(choicebox);
+    Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
+    configlet_t *configlet = eina_list_nth(menu, item_num);
+
+    configlet->methods->select(configlet->instance, choicebox);
     choicebox_invalidate_item(choicebox, item_num);
 }
 
 void settings_menu(Evas *canvas) {
     Evas_Object *choicebox = evas_object_name_find(canvas, "choicebox");
+    Eina_List *menu = settings_menu_load();
     choicebox = choicebox_push(choicebox, canvas,
                settings_handler,
                settings_draw,
-               "settings-choicebox", MENU_ITEMS_NUM, CHOICEBOX_GM_SETTINGS, NULL);
+               "settings-choicebox",
+               eina_list_count(menu),
+               CHOICEBOX_GM_SETTINGS, NULL);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,
         "main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "title", gettext("Settings"));
+    evas_object_event_callback_add(choicebox, EVAS_CALLBACK_DEL,
+        &_settings_menu_unload, menu);
+    evas_object_data_set(choicebox, "setup-menu-items", menu);
 }
 
 #define USER_CONFIG_DIR "%s/.e/apps/gm"

@@ -3,4 +3,5 @@ usr/share/eoi/themes/default
 usr/share/locale
 usr/share/keys
 usr/share/help
+usr/lib/gm/configlets/*.so
 etc/

@@ -8,7 +8,4 @@ typedef enum {
     SCREEN_UPDATE_PARTIAL
 } screen_update_t;
 
-screen_update_t detect_screen_update_type();
-int set_screen_update_type(screen_update_t screen_update);
-
 #endif
