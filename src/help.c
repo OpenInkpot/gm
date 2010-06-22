@@ -4,6 +4,7 @@
 #include <Edje.h>
 #include <libchoicebox.h>
 #include "gm.h"
+#include "graph.h"
 #include "help.h"
 
 #define HELP_WINDOW_ID "libeoi-help-window"
@@ -32,6 +33,7 @@ void gm_help_close(Evas *canvas)
         if(choicebox)
             choicebox_invalidate_item(choicebox, 0);
     }
+    gm_graphics_conditional(canvas);
 }
 
 void gm_help_show(Evas* evas)

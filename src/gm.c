@@ -245,7 +245,6 @@ static void run(bool horizontal)
     ecore_evas_callback_focus_in_set(main_win, main_win_focus_in_handler);
 
     evas_object_show(main_canvas_edje);
-    gm_graphics_conditional(main_canvas);
     ecore_evas_show(main_win);
 
     Ecore_X_Window root = ecore_x_window_root_first_get();
@@ -253,6 +252,7 @@ static void run(bool horizontal)
     ecore_event_handler_add(ECORE_X_EVENT_WINDOW_PROPERTY,
          root_window_prop_change_handler, (void *)root);
 
+    gm_graphics_conditional(main_canvas);
     ecore_main_loop_begin();
 }
 
