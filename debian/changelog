@@ -1,3 +1,9 @@
+gm (0.4.0.bradbury.3) bradbury; urgency=low
+
+  * Fix more issues with z-order
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 22 Jun 2010 23:34:36 +0300
+
 gm (0.4.0.bradbury.2) bradbury; urgency=low
 
   * Fix issue with broken graphic mode
