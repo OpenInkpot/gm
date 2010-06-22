@@ -1,3 +1,9 @@
+gm (0.4.0.bradbury.2) bradbury; urgency=low
+
+  * Fix issue with broken graphic mode
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 22 Jun 2010 20:01:26 +0300
+
 gm (0.4.0.bradbury.1) bradbury; urgency=low
 
   * Backport to bradbury
