@@ -45,6 +45,7 @@ gm_graphics_show(Evas *evas) {
     evas_object_show(edje);
     gm_graphics_show_book(evas);
     evas_object_focus_set(edje, 1);
+    evas_object_raise(edje);
 }
 
 static void
