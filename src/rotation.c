@@ -150,7 +150,7 @@ gm_rotation_menu(void *data __attribute__((unused)), Evas_Object *parent)
                rotation_submenu_handler,
                rotation_submenu_draw,
                ROTATION_COUNT,
-               NULL);
+               parent);
     if(!choicebox)
         printf("We all dead\n");
     Evas_Object * main_canvas_edje = evas_object_name_find(canvas,"main_canvas_edje");
