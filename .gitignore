@@ -16,6 +16,9 @@ missing
 .deps
 src/gm
 *.o
+*.la
+*.lo
+.libs
 stamp-h1
 po/*.mo
 *.edj
