@@ -76,7 +76,7 @@ static void die(const char *fmt, ...)
     exit(EXIT_FAILURE);
 }
 
-static int exit_handler(void *param __attribute__((unused)),
+static Eina_Bool exit_handler(void *param __attribute__((unused)),
                         int ev_type __attribute__((unused)),
                         void *event __attribute__((unused)))
 {
@@ -101,7 +101,7 @@ static void main_win_focus_in_handler(Ecore_Evas *main_win)
         gm_apps_cleanup(main_win);
 }
 
-static int root_window_prop_change_handler(void *data,
+static Eina_Bool root_window_prop_change_handler(void *data,
         int type __attribute__((unused)), void *event)
 {
     static Ecore_X_Atom atom = 0;

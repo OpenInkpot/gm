@@ -11,7 +11,7 @@
 #include "graph.h"
 
 
-static int
+static Eina_Bool
 update_clock_gr(void *ptr)
 {
     Evas *evas = (Evas *) ptr;
