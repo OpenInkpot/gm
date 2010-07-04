@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <libintl.h>
-#include <Ecore_Data.h>
+#include <Eina.h>
 #include <Evas.h>
 #include <Ecore_File.h>
 #include <Efreet.h>
@@ -10,7 +10,7 @@
 #include "choices.h"
 #include "apps.h"
 
-Ecore_List *
+Eina_List *
 _load_desktops(const char *path, const char *category) {
     char fullname[1024];
     char *filename;
@@ -19,14 +19,7 @@ _load_desktops(const char *path, const char *category) {
     Eina_List *ls_orig;
     Eina_List *l;
     char *data;
-    Ecore_List *desktops = ecore_list_new();
-
-    if(!desktops)
-    {
-        printf("out of memory\n");
-        return desktops;
-    }
-    ecore_list_free_cb_set(desktops, ECORE_FREE_CB(efreet_desktop_free));
+    Eina_List *desktops = NULL;
 
     ls_orig = ls = ecore_file_ls(path);
     if(!ls) {
@@ -52,7 +45,7 @@ _load_desktops(const char *path, const char *category) {
             if(eina_list_search_unsorted(current->categories,
                                          EINA_COMPARE_CB(strcmp), category))
             {
-                ecore_list_append(desktops, current);
+                desktops = eina_list_append(desktops, current);
                 continue;
             }
         }
@@ -72,7 +65,9 @@ static void apps_draw_handler(Evas_Object *choicebox __attribute__((unused)),
                          void *param)
 {
     Efreet_Desktop  *desktop;
-    desktop = ecore_list_index_goto((Ecore_List *) param, item_num);
+    if(!param)
+        return;
+    desktop = eina_list_nth((Eina_List *) param, item_num);
     if (!desktop)
         return;
     edje_object_part_text_set(item, "center-caption", desktop->name);
@@ -89,7 +84,9 @@ static void apps_handler(Evas_Object *choicebox __attribute__((unused)),
                     void *param)
 {
     Efreet_Desktop  *desktop;
-    desktop = ecore_list_index_goto((Ecore_List *) param, item_num);
+    if(!param)
+        return;
+    desktop = eina_list_nth((Eina_List *) param, item_num);
     if (!desktop)
         return;
     efreet_desktop_exec(desktop, NULL, NULL);
@@ -98,14 +95,10 @@ static void apps_handler(Evas_Object *choicebox __attribute__((unused)),
 void run_desktop_files(Evas *canvas, const char *path, const char *category)
 {
     Evas_Object *choicebox;
-    Ecore_List *desktops = _load_desktops(path, category);
+    Eina_List *desktops = _load_desktops(path, category);
     int count;
-    if(!desktops) {
-        printf("Can't read desktops\n");
-        return;
-    }
     Evas_Object *main_choicebox = evas_object_name_find(canvas, "choicebox");
-    count =  ecore_list_count(desktops);
+    count =  eina_list_count(desktops);
     printf("%d desktops loaded\n", count);
     choicebox = choicebox_push(main_choicebox, canvas,
                    apps_handler,
