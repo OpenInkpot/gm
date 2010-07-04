@@ -1,3 +1,9 @@
+gm (0.4.3) zelazny; urgency=low
+
+  * Adjustment to ecore API changes
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sun, 04 Jul 2010 23:10:01 +0200
+
 gm (0.4.2) zelazny; urgency=low
 
   * Fix crashing in "rotation" menu
