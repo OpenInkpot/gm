@@ -1,3 +1,9 @@
+gm (0.4.0.bradbury.4) bradbury; urgency=low
+
+  * Switch ecore-con server from LOCAL_USER to LOCAL_SYSTEM
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sat, 10 Jul 2010 21:47:15 +0200
+
 gm (0.4.0.bradbury.3) bradbury; urgency=low
 
   * Fix more issues with z-order
