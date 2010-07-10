@@ -69,10 +69,10 @@ void
 gm_socket_server_start(Ecore_Evas *ee, const char *name)
 {
    main_win = ee;
-   server = ecore_con_server_add(ECORE_CON_LOCAL_USER, name, 0, NULL);
+   server = ecore_con_server_add(ECORE_CON_LOCAL_SYSTEM, name, 0, NULL);
    if(!server)
    {
-        server = ecore_con_server_connect(ECORE_CON_LOCAL_USER, name, 0, NULL);
+        server = ecore_con_server_connect(ECORE_CON_LOCAL_SYSTEM, name, 0, NULL);
         if(!server)
         {
            printf("Can't setup server\n");
