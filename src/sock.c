@@ -18,7 +18,7 @@ typedef struct
 } client_data_t;
 
 
-static int _client_add(void *param  __attribute__((unused)),
+static Eina_Bool _client_add(void *param  __attribute__((unused)),
             int ev_type __attribute__((unused)), void *ev)
 {
     Ecore_Con_Event_Client_Add* e = ev;
@@ -30,7 +30,7 @@ static int _client_add(void *param  __attribute__((unused)),
     return 0;
 }
 
-static int _client_del(void *param  __attribute__((unused)),
+static Eina_Bool _client_del(void *param  __attribute__((unused)),
             int ev_type __attribute__((unused)), void *ev)
 {
     Ecore_Con_Event_Client_Del *e = ev;
@@ -54,7 +54,7 @@ static int _client_del(void *param  __attribute__((unused)),
     return 0;
 }
 
-static int _client_data(void *param  __attribute__((unused)),
+static Eina_Bool _client_data(void *param  __attribute__((unused)),
              int ev_type  __attribute__((unused)), void *ev)
 {
     Ecore_Con_Event_Client_Data *e = ev;
@@ -69,10 +69,10 @@ void
 gm_socket_server_start(Ecore_Evas *ee, const char *name)
 {
    main_win = ee;
-   server = ecore_con_server_add(ECORE_CON_LOCAL_USER, name, 0, NULL);
+   server = ecore_con_server_add(ECORE_CON_LOCAL_SYSTEM, name, 0, NULL);
    if(!server)
    {
-        server = ecore_con_server_connect(ECORE_CON_LOCAL_USER, name, 0, NULL);
+        server = ecore_con_server_connect(ECORE_CON_LOCAL_SYSTEM, name, 0, NULL);
         if(!server)
         {
            printf("Can't setup server\n");
