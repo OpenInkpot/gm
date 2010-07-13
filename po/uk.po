@@ -57,7 +57,7 @@ msgstr "Iсторiя"
 
 #: src/gm.c:65
 msgid "Favorites"
-msgstr ""
+msgstr "Улюблене"
 
 #: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
