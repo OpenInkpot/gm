@@ -17,7 +17,6 @@ Description: Global Menu
 Package: gm-dev
 Priority: optional
 Architecture: any
-Depends: gm (=${binary:Version})
 Description: global menu -- headers to build configlets
 
 Package: gm-theme-azbooka
