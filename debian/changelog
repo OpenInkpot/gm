@@ -1,3 +1,10 @@
+gm (0.4.5) zelazny; urgency=low
+
+  * Update translations
+  * remove dependency  gm-dev -> gm
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 13 Jul 2010 21:28:36 +0300
+
 gm (0.4.4) zelazny; urgency=low
 
   * Switch ecore-con server from LOCAL_USER to LOCAL_SYSTEM
