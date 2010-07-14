@@ -1,3 +1,9 @@
+gm (0.4.5~bradbury.0) bradbury; urgency=low
+
+  * Backport 0.4.5 to bradbury
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Wed, 14 Jul 2010 13:36:32 +0300
+
 gm (0.4.5) zelazny; urgency=low
 
   * Update translations
