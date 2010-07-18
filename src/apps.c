@@ -94,6 +94,17 @@ static void apps_handler(Evas_Object *choicebox,
         choicebox_pop(choicebox);
 }
 
+static void
+_free_desktops(void *data, Evas *e __attribute__((unused)),
+                Evas_Object *obj __attribute__((unused)),
+                void *event_info __attribute__((unused)))
+{
+    Eina_List *list = data;
+    Efreet_Desktop *desktop;
+    EINA_LIST_FREE(list, desktop)
+        efreet_desktop_free(desktop);
+}
+
 void run_desktop_files(Evas *canvas, const char *path, const char *category)
 {
     Evas_Object *choicebox;
@@ -114,6 +125,8 @@ void run_desktop_files(Evas *canvas, const char *path, const char *category)
     Evas_Object *main_canvas_edje = evas_object_name_find(canvas,
         "main_canvas_edje");
     edje_object_part_text_set(main_canvas_edje, "title", gettext(category));
+    evas_object_event_callback_add(choicebox, EVAS_CALLBACK_DEL,
+            _free_desktops, desktops);
 }
 
 void run_applications(Evas *canvas, void *category) {
