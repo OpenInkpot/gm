@@ -78,7 +78,7 @@ static void apps_draw_handler(Evas_Object *choicebox __attribute__((unused)),
     }
 }
 
-static void apps_handler(Evas_Object *choicebox __attribute__((unused)),
+static void apps_handler(Evas_Object *choicebox,
                     int item_num,
                     bool is_alt __attribute__((unused)),
                     void *param)
@@ -90,6 +90,8 @@ static void apps_handler(Evas_Object *choicebox __attribute__((unused)),
     if (!desktop)
         return;
     efreet_desktop_exec(desktop, NULL, NULL);
+    if(gm_graphics_mode_get())
+        choicebox_pop(choicebox);
 }
 
 void run_desktop_files(Evas *canvas, const char *path, const char *category)
