@@ -48,11 +48,6 @@ msgstr "アプリケーション"
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "設定<inactive>/Setup</inactive>"
 
-#: src/gm.c:64
-#, fuzzy
-msgid "Recent books"
-msgstr "閲覧中の本"
-
 #: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
 msgstr "閲覧中の本はありません"
@@ -173,6 +168,10 @@ msgstr "ユーザ3"
 #: src/setup-gettext.c:11
 msgid "user4"
 msgstr "ユーザ4"
+
+#: src/gm.c:64
+msgid "Recent books"
+msgstr "最近閲覧した本"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>-/-</invisible>"
