@@ -49,15 +49,6 @@ msgstr "Utilitaires"
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurer <inactive>/ Setup</inactive>"
 
-#: src/gm.c:64
-#, fuzzy
-msgid "Recent books"
-msgstr "Livre actuel"
-
-#: src/gm.c:65
-msgid "Favorites"
-msgstr ""
-
 #: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
 msgstr "Aucun livre ouvert"
@@ -174,6 +165,14 @@ msgstr "Configurer"
 #: src/help.c:9
 msgid "GM: Help"
 msgstr "GM: Aide"
+
+#: src/gm.c:65
+msgid "Favorites"
+msgstr "Favoris"
+
+#: src/gm.c:64
+msgid "Recent books"
+msgstr "Livre récents"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>N/A</invisible>"
