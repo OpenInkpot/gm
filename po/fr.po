@@ -1,6 +1,6 @@
 # translation of gm.po to French
 # This file is put in the public domain.
-#
+# 
 # Louvre <diogenedebian@gmail.com>, 2009.
 msgid ""
 msgstr ""
@@ -40,12 +40,11 @@ msgstr "Jeux"
 msgid "Applications"
 msgstr "Utilitaires"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language:
 #. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
 #. allow users to reset language if current language is unknown to them
 #. (or translation is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Configurer <inactive>/ Setup</inactive>"
@@ -91,12 +90,11 @@ msgstr "Rafraîchissement de l'écran"
 msgid "Screen rotation type"
 msgstr "Type de rotation de l'écran"
 
-#.
 #. TRANSLATORS: Please make this menu string two-language: 'Language
 #. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
 #. users to reset language if current language is unknown to them translation
 #. is broken due to some reason, like lack of font).
-#.
+#. 
 #: src/setup.c:134
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "Langue <inactive>/ Language</inactive>"
