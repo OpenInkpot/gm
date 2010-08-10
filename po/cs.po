@@ -52,11 +52,11 @@ msgstr "Nastavení <inactive>/ Setup</inactive>"
 #: src/gm.c:64
 #, fuzzy
 msgid "Recent books"
-msgstr "Aktuální kniha"
+msgstr "Posledně otevřené knihy"
 
 #: src/gm.c:65
 msgid "Favorites"
-msgstr ""
+msgstr "Oblíbené"
 
 #: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
