@@ -50,7 +50,6 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Nastavení <inactive>/ Setup</inactive>"
 
 #: src/gm.c:64
-#, fuzzy
 msgid "Recent books"
 msgstr "Posledně otevřené knihy"
 
