@@ -203,7 +203,7 @@ static void main_win_signal_handler(void *param,
 
 static void run(bool horizontal)
 {
-    Ecore_Evas *main_win = ecore_evas_software_x11_new(0, 0, 0, 0, horizontal ? 800 : 600, horizontal ? 600 : 800);
+    Ecore_Evas *main_win = ecore_evas_software_x11_8_new(0, 0, 0, 0, horizontal ? 800 : 600, horizontal ? 600 : 800);
     gm_socket_server_start(main_win, "gm");
     ecore_evas_title_set(main_win, "GM");
     ecore_evas_name_class_set(main_win, "GM", "GM");
