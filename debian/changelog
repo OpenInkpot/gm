@@ -1,3 +1,9 @@
+gm (0.4.7) zelazny; urgency=low
+
+  * Fix call to ecore_evas_software_x11_window_get
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Fri, 20 Aug 2010 16:08:16 +0200
+
 gm (0.4.6) zelazny; urgency=low
 
   [ Hideki Yoshida ]
