@@ -7,7 +7,7 @@
 void gm_apps_cleanup(Ecore_Evas *win)
 {
     Ecore_X_Window skip[] = {
-        ecore_evas_software_x11_window_get(win),
+        ecore_evas_software_x11_8_window_get(win),
         gm_get_active_document_window(),
         (unsigned)-1
     };
