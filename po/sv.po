@@ -55,7 +55,7 @@ msgstr "Aktuella böcker"
 
 #: src/gm.c:65
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriter"
 
 #: src/gm.c:169 src/graph.c:360
 msgid "No book is open"
