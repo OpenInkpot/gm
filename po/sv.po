@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gm 0.1\n"
 "Report-Msgid-Bugs-To: avn@openinkpot.org\n"
 "POT-Creation-Date: 2010-05-31 15:13+0000\n"
-"PO-Revision-Date: 2009-09-19 03:55+0700\n"
+"PO-Revision-Date: 2010-08-31 11:51+0100\n"
 "Last-Translator: Sven Bring <sven.bring@yahoo.se>\n"
 "Language-Team: Swedish <openinkpot-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -50,9 +50,8 @@ msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Inställningar<inactive>/Setup</inactive>"
 
 #: src/gm.c:64
-#, fuzzy
 msgid "Recent books"
-msgstr "Aktuell bok"
+msgstr "Aktuella böcker"
 
 #: src/gm.c:65
 msgid "Favorites"
@@ -149,24 +148,20 @@ msgid "Disabled"
 msgstr "Ingen"
 
 #: src/rotation.c:36
-#, fuzzy
 msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "0 â 90 grader medurs"
+msgstr "0 ↔ 90 grader medurs"
 
 #: src/rotation.c:37
-#, fuzzy
 msgid "0 ↔ 180 Degrees"
-msgstr "0 â 180 grader"
+msgstr "0 ↔ 180 grader"
 
 #: src/rotation.c:38
-#, fuzzy
 msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "0 â 90 grader moturs"
+msgstr "0 ↔ 90 grader moturs"
 
 #: src/rotation.c:41
-#, fuzzy
 msgid "0 → 90 → 180 → 270 → 0"
-msgstr "0 â 90 â 180 â 270 â 0"
+msgstr "0 → 90 → 180 → 270 → 0"
 
 #: src/rotation.c:151
 msgid "Select screen rotation type"
