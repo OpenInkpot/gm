@@ -85,6 +85,23 @@ gm_configlet_submenu_pop(Evas_Object *submenu)
 }
 
 
+void
+gm_configlet_invalidate_parent(Evas_Object *obj, void *instance)
+{
+    int nth = 0;
+    Evas *evas = evas_object_evas_get(obj);
+    Evas_Object *choicebox = evas_object_name_find(evas, "settings-choicebox");
+    Eina_List *menu = evas_object_data_get(choicebox, "setup-menu-items");
+    while(menu)
+    {
+        configlet_t *configlet = eina_list_data_get(menu);
+        if(instance == configlet->instance)
+            choicebox_invalidate_item(choicebox, nth);
+        menu = eina_list_next(menu);
+        nth++;
+    }
+}
+
 static int
 sort_cb(const void *left, const void *right)
 {
@@ -103,6 +120,7 @@ get_configlets_dir()
         ? getenv("CONFIGLETS_DIR") :
         CONFIGLETS_DIR;
 }
+
 
 static int filter_files(const struct dirent* d)
 {

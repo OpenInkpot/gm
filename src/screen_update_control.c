@@ -147,7 +147,7 @@ screen_draw(void *data __attribute__((unused)), Evas_Object *item)
 }
 
 static void
-screen_set(void *data __attribute__((unused)), Evas_Object *self) {
+screen_set(void *data, Evas_Object *self) {
     screen_update_t scr = detect_screen_update_type();
     if(scr < 0)
         return;
@@ -155,8 +155,8 @@ screen_set(void *data __attribute__((unused)), Evas_Object *self) {
     scr++;
     if(scr > SCREEN_UPDATE_PARTIAL)
         scr = SCREEN_UPDATE_FULL;
-        set_screen_update_type(scr);
-        choicebox_invalidate_item(self, 0);
+    set_screen_update_type(scr);
+    gm_configlet_invalidate_parent(self, data);
 }
 
 const configlet_plugin_t *

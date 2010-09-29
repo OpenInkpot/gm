@@ -24,6 +24,13 @@ gm_configlet_submenu_push(Evas_Object *parent,
 void
 gm_configlet_submenu_pop(Evas_Object *);
 
+/*
+    invalidate item  in parent choicebox (usually called from ->select()(
+*/
+void
+gm_configlet_invalidate_parent(Evas_Object *obj, void *instance);
+
+
 typedef const configlet_plugin_t * (*configlet_constructor_t)(void);
 
 #endif
