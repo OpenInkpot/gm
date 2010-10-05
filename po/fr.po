@@ -172,7 +172,7 @@ msgstr "Favoris"
 
 #: src/gm.c:64
 msgid "Recent books"
-msgstr "Livre récents"
+msgstr "Lectures récentes"
 
 #~ msgid "<invisible>N/A</invisible>"
 #~ msgstr "<invisible>N/A</invisible>"
