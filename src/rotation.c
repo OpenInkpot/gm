@@ -62,6 +62,7 @@ read_current_rotation()
         int i;
         fscanf(f, "%d", &i);
         fclose(f);
+        return i;
     }
 
     return CYCLE;
