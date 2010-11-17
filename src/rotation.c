@@ -77,7 +77,7 @@ current_rotation()
         if (rotation_states[j].value == i)
             return j;
 
-    return 4;
+    return CYCLE;
 }
 
 static const char *
