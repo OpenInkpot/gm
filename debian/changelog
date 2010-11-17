@@ -1,3 +1,9 @@
+gm (0.4.5~bradbury.2) bradbury; urgency=low
+
+  * Fix inconsistent default rotation settings (OI#936).
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 17 Nov 2010 13:22:14 +0300
+
 gm (0.4.5~bradbury.1) bradbury; urgency=low
 
   * Fix issues with apps submenu (really apps and puzzles)
