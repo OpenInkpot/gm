@@ -1,3 +1,10 @@
+gm (0.4.9) zelazny; urgency=low
+
+  * Fix inconsistent default rotation settings (OI#936).
+  * Code style fix.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 17 Nov 2010 13:20:43 +0300
+
 gm (0.4.8) zelazny; urgency=low
 
   * Rework parent menu item updating in configlets
