@@ -105,6 +105,8 @@ raise_fbreader(Evas * e __attribute__((unused)))
         ecore_x_window_raise(fbreader);
         ecore_x_window_focus(fbreader);
     }
+    else
+        gm_run_madshelf_recent(e);
 }
 
 
