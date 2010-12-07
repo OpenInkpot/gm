@@ -1,3 +1,10 @@
+gm (0.4.11) zelazny; urgency=low
+
+  * Use "last open book" field to fire up history if no book is open 
+    (OI#886)
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Tue, 07 Dec 2010 17:19:56 +0200
+
 gm (0.4.10) zelazny; urgency=low
 
   * Show icon in clock position (azbooka skin), when clock not set.
