@@ -2,6 +2,7 @@ INSTALL
 Makefile
 Makefile.in
 aclocal.m4
+libtool
 autom4te.cache
 config.guess
 config.h
@@ -22,3 +23,5 @@ src/gm
 stamp-h1
 po/*.mo
 *.edj
+debian/stamp-*
+*.cdbs-orig

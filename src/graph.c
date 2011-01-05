@@ -226,6 +226,9 @@ gm_graphics_show_clock(Evas *evas) {
        loctime = localtime (&curtime);
        if(loctime->tm_year < 108) /* 2008 */
        {
+           edje_object_signal_emit(edje, "hide-clock", "");
+
+           /* still show dashes, because some skin not hide clock */
            edje_object_part_text_set(edje, "caption_day", "");
            edje_object_part_text_set(edje, "caption_dayofweek", "");
            edje_object_part_text_set(edje, "caption_month", "");
@@ -233,6 +236,7 @@ gm_graphics_show_clock(Evas *evas) {
        }
        else
        {
+           edje_object_signal_emit(edje, "show-clock", "");
            _set_strftime(edje, "caption_day", "%d", loctime);
            _set_strftime(edje, "caption_dayofweek", "%A", loctime);
            _set_strftime(edje, "caption_month", "%B %Y", loctime);

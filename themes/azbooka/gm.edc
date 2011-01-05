@@ -11,6 +11,7 @@ images {
     image: "big-frame-cursor-white.png" COMP;
     image: "big-frame-cursor-white-horiz.png" COMP;
     image: "azbooka-logo.png" COMP;
+    image: "set-clock.png" COMP;
 }
 
 styles {
@@ -87,6 +88,24 @@ styles {
                   rel1 { relative, 0.0 0.0; offset, x1 y1; }     \
                   rel2 { relative, 0.0 0.0; offset, x2 y2; }   \
                }                                                \
+            }
+
+#define CLOCK_PROGRAMS                                                  \
+            program {                                                   \
+                name, "show-clock";                                     \
+                signal, "show-clock";                                   \
+                script {                                                \
+                    set_state(PART:"clock_clip", "default", 0.0);       \
+                    set_state(PART:"clock_icon", "hidden", 0.0);        \
+                }                                                       \
+            }                                                           \
+            program {                                                   \
+                name, "hide-clock";                                     \
+                signal, "hide-clock";                                   \
+                script {                                                \
+                    set_state(PART:"clock_clip", "hidden", 0.0);        \
+                    set_state(PART:"clock_icon", "default", 0.0);       \
+                }                                                       \
             }
 
 
@@ -361,8 +380,25 @@ collections {
             }
 
             part {
+                name, "clock_clip";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                    rel1 { relative, 0.0 0.0; offset, 320 80; };
+                    rel2 { relative, 0.0 0.0; offset, 560 357; };
+                }
+                description {
+                    state, "hidden" 0.0;
+                    inherit, "default" 0.0;
+                    color, 0 0 0 0;
+                }
+            }
+
+            part {
                 name, "caption_dayofweek";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     color, 255 255 255 255;
@@ -375,6 +411,7 @@ collections {
             part {
                 name, "caption_month";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     color, 255 255 255 255;
@@ -387,6 +424,7 @@ collections {
             part {
                 name, "caption_day";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     text { style, "caption_day"; }
@@ -396,8 +434,26 @@ collections {
             }
 
             part {
+                name, "clock_icon";
+                type, IMAGE;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                    rel1 { relative, 0.5 0.5; offset, -80 -80; to, "clock_clip"; }
+                    rel2 { relative, 0.5 0.5; offset, 80 80; to, "clock_clip"; }
+                    image { normal, "set-clock.png";  }
+                }
+                description {
+                    state, "hidden" 0.0;
+                    inherit, "default" 0.0;
+                    color, 0 0 0 0;
+                }
+            }
+
+            part {
                 name, "caption_clock";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     text { style, "caption_clock"; }
@@ -410,6 +466,7 @@ collections {
         programs {
 
             LOGO_PROGRAMS;
+            CLOCK_PROGRAMS;
 
             CURSOR_SELECT_PROGRAM;
             CURSOR_SET_PROGRAM;
@@ -601,8 +658,25 @@ collections {
             }
 
             part {
+                name, "clock_clip";
+                type, RECT;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                    rel1 { relative, 0.0 0.0; offset, 410 68; };
+                    rel2 { relative, 0.0 0.0; offset, 783 156; };
+                }
+                description {
+                    state, "hidden" 0.0;
+                    inherit, "default" 0.0;
+                    color, 0 0 0 0;
+                }
+            }
+
+            part {
                 name, "caption_clock";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     text { style, "caption_clock"; }
@@ -619,6 +693,7 @@ collections {
             part {
                 name, "caption_date";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     text { style, "caption_date"; }
@@ -630,6 +705,7 @@ collections {
             part {
                 name, "caption_dayofweek";
                 type, TEXTBLOCK;
+                clip_to, "clock_clip";
                 description {
                     state, "default" 0.0;
                     text { style, "caption_dayofweek"; }
@@ -638,9 +714,28 @@ collections {
                     rel2 { relative, 0.0 0.0; offset, 606 210; }
                 }
             }
+
+            part {
+                name, "clock_icon";
+                type, IMAGE;
+                description {
+                    state, "default" 0.0;
+                    color, 255 255 255 255;
+                    rel1 { relative, 0.5 0.5; offset, -30 -30; to, "clock_clip"; }
+                    rel2 { relative, 0.5 0.5; offset, 30 30; to, "clock_clip"; }
+                    image { normal, "set-clock.png";  }
+                }
+                description {
+                    state, "hidden" 0.0;
+                    inherit, "default" 0.0;
+                    color, 0 0 0 0;
+                }
+            }
+
         }
         programs {
             LOGO_PROGRAMS;
+            CLOCK_PROGRAMS;
 
             CURSOR_SELECT_PROGRAM;
             CURSOR_SET_PROGRAM;
