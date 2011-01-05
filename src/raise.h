@@ -26,7 +26,7 @@ extern void
 gm_free_titles(struct bookinfo_t *titles);
 
 extern void
-raise_fbreader(Evas * e);
+open_current_book(Evas * e);
 
 Ecore_X_Window gm_get_active_document_window();
 

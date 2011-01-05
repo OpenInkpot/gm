@@ -117,7 +117,7 @@ gm_graphics_resize(Ecore_Evas *window __attribute__((unused)),
 
 static bool _action(Evas *e, const char *action)
 {
-    if(!strcmp(action, "Book")) raise_fbreader(e);
+    if(!strcmp(action, "Book")) open_current_book(e);
     else if(!strcmp(action, "Date")) gm_run_etimetool(e);
     else if(!strcmp(action, "Books")) gm_run_madshelf_books(e);
     else if(!strcmp(action, "Favorites")) gm_run_madshelf_favorites(e);

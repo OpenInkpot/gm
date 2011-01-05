@@ -47,7 +47,7 @@ struct main_menu_item {
 
 
 struct main_menu_item main_menu[] = {
-    {_("Current book"), &raise_fbreader, "set-icon-none" }, // Special
+    {_("Current book"), &open_current_book, "set-icon-none" }, // Special
     {_("Library"), &gm_run_madshelf_books,  "set-icon-lib" },
     {_("Images"), &gm_run_madshelf_images,  "set-icon-photo"},
     {_("Audio"), &gm_run_madshelf_audio, "set-icon-phono"},

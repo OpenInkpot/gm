@@ -96,7 +96,7 @@ bad:
 }
 
 void
-raise_fbreader(Evas * e __attribute__((unused)))
+open_current_book(Evas * e __attribute__((unused)))
 {
     Ecore_X_Window fbreader = gm_get_active_document_window();
     if (fbreader)
