@@ -424,8 +424,8 @@ collections {
 #define COL3_X2  582
 
             ITEM(2, library, COL1_X1, ROW1_Y1, COL1_X2, ROW1_Y2);
-            ITEM(3, audio,   COL2_X1, ROW1_Y1, COL2_X2, ROW1_Y2);
-            ITEM(4, photo,   COL3_X1, ROW1_Y1, COL3_X2, ROW1_Y2);
+            ITEM(3, photo,   COL2_X1, ROW1_Y1, COL2_X2, ROW1_Y2);
+            ITEM(4, audio,   COL3_X1, ROW1_Y1, COL3_X2, ROW1_Y2);
             ITEM(5, games,   COL1_X1, ROW2_Y1, COL1_X2, ROW2_Y2);
             ITEM(6, apps,    COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2);
             ITEM(7, setup,   COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2);
@@ -445,8 +445,8 @@ collections {
                 CURSOR_STATE(Book,   16,      42,             283,     359, 210);
                 CURSOR_STATE(Date,   300,     70,             581,     359, 85);
                 CURSOR_STATE(Books,  COL1_X1, CURSOR_ROW1_Y1, COL1_X2, CURSOR_ROW1_Y2, 85);
-                CURSOR_STATE(Audio,  COL2_X1, CURSOR_ROW1_Y1, COL2_X2, CURSOR_ROW1_Y2, 85);
-                CURSOR_STATE(Images, COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Images, COL2_X1, CURSOR_ROW1_Y1, COL2_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Audio,  COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
                 CURSOR_STATE(Games,  COL1_X1, CURSOR_ROW2_Y1, COL1_X2, CURSOR_ROW2_Y2, 85);
                 CURSOR_STATE(Apps,   COL2_X1, CURSOR_ROW2_Y1, COL2_X2, CURSOR_ROW2_Y2, 85);
                 CURSOR_STATE(Setup,  COL3_X1, CURSOR_ROW2_Y1, COL3_X2, CURSOR_ROW2_Y2, 85);
@@ -557,9 +557,9 @@ collections {
                 _MOVE(Book, Setup)
                 _MOVE(Date, Book)
                 _MOVE(Books, Date)
-                _MOVE(Audio, Books)
-                _MOVE(Images, Audio)
-                _MOVE(Games, Images)
+                _MOVE(Images, Books)
+                _MOVE(Audio, Images)
+                _MOVE(Games, Audio)
                 _MOVE(Apps, Games)
                 _MOVE(Setup, Apps)
             END_CURSOR_MOVE();
@@ -568,19 +568,19 @@ collections {
                 _MOVE(Book, Games)
                 _MOVE(Date, Setup)
                 _MOVE(Books, Book)
-                _MOVE(Audio, Book)
-                _MOVE(Images, Date)
+                _MOVE(Images, Book)
+                _MOVE(Audio, Date)
                 _MOVE(Games, Books)
-                _MOVE(Apps, Audio)
-                _MOVE(Setup, Images)
+                _MOVE(Apps, Images)
+                _MOVE(Setup, Audio)
             END_CURSOR_MOVE();
 
             CURSOR_MOVE(CursorRight)
                 _MOVE(Book, Date)
                 _MOVE(Date, Books)
-                _MOVE(Books, Audio)
-                _MOVE(Audio, Images)
-                _MOVE(Images, Games)
+                _MOVE(Books, Images)
+                _MOVE(Images, Audio)
+                _MOVE(Audio, Games)
                 _MOVE(Games, Apps)
                 _MOVE(Apps, Setup)
                 _MOVE(Setup, Book)
@@ -588,10 +588,10 @@ collections {
 
             CURSOR_MOVE(CursorDown)
                 _MOVE(Book, Books)
-                _MOVE(Date, Images)
+                _MOVE(Date, Audio)
                 _MOVE(Books, Games)
-                _MOVE(Audio, Apps)
-                _MOVE(Images, Setup)
+                _MOVE(Images, Apps)
+                _MOVE(Audio, Setup)
                 _MOVE(Games, Book)
                 _MOVE(Apps, Book)
                 _MOVE(Setup, Date)
@@ -647,8 +647,8 @@ collections {
 #define COL4_X2  784
 
             ITEM(2, library, COL3_X1, ROW1_Y1, COL3_X2, ROW1_Y2);
-            ITEM(3, audio,   COL4_X1, ROW1_Y1, COL4_X2, ROW1_Y2);
-            ITEM(4, photo,   COL1_X1, ROW2_Y1, COL1_X2, ROW2_Y2);
+            ITEM(3, photo,   COL4_X1, ROW1_Y1, COL4_X2, ROW1_Y2);
+            ITEM(4, audio,   COL1_X1, ROW2_Y1, COL1_X2, ROW2_Y2);
             ITEM(5, games,   COL2_X1, ROW2_Y1, COL2_X2, ROW2_Y2);
             ITEM(6, apps,    COL3_X1, ROW2_Y1, COL3_X2, ROW2_Y2);
             ITEM(7, setup,   COL4_X1, ROW2_Y1, COL4_X2, ROW2_Y2);
@@ -693,6 +693,30 @@ collections {
                     rel2 { relative, 0.0 0.0; offset, x2 y2; } \
                 } \
             }
+
+            /* -- Cursor -- */
+
+#define CURSOR_ROW1_Y1  220
+#define CURSOR_ROW1_Y2  370
+#define CURSOR_ROW2_Y1  433
+#define CURSOR_ROW2_Y2  583
+
+            part {
+                name, "cursor-bg";
+                type, RECT;
+
+                description { state, "default" 0.0; }
+                CURSOR_STATE(Book,   18,      46,             386,     363, 210);
+                CURSOR_STATE(Date,   410,     68,             783,     156, 85);
+                CURSOR_STATE(Books,  COL3_X1, CURSOR_ROW1_Y1, COL3_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Images, COL4_X1, CURSOR_ROW1_Y1, COL4_X2, CURSOR_ROW1_Y2, 85);
+                CURSOR_STATE(Audio,  COL1_X1, CURSOR_ROW2_Y1, COL1_X2, CURSOR_ROW2_Y2, 85);
+                CURSOR_STATE(Games,  COL2_X1, CURSOR_ROW2_Y1, COL2_X2, CURSOR_ROW2_Y2, 85);
+                CURSOR_STATE(Apps,   COL3_X1, CURSOR_ROW2_Y1, COL3_X2, CURSOR_ROW2_Y2, 85);
+                CURSOR_STATE(Setup,  COL4_X1, CURSOR_ROW2_Y1, COL4_X2, CURSOR_ROW2_Y2, 85);
+            }
+
+            CURSOR_GRAPHICS;
 
             COVER_IMAGE(16, 45, 380, 265);
             part {
@@ -754,6 +778,61 @@ collections {
             }
         }
         programs {
+            CURSOR_SELECT_PROGRAM;
+            CURSOR_SET_PROGRAM;
+            CURSOR_PROGRAM(Book);
+            CURSOR_PROGRAM(Date);
+            CURSOR_PROGRAM(Books);
+            CURSOR_PROGRAM(Images);
+            CURSOR_PROGRAM(Audio);
+            CURSOR_PROGRAM(Games);
+            CURSOR_PROGRAM(Apps);
+            CURSOR_PROGRAM(Setup);
+
+            /* Cursor movement handing */
+            CURSOR_MOVE(CursorLeft)
+                _MOVE(Book, Setup)
+                _MOVE(Date, Book)
+                _MOVE(Books, Book)
+                _MOVE(Images, Books)
+                _MOVE(Audio, Images)
+                _MOVE(Games, Audio)
+                _MOVE(Apps, Games)
+                _MOVE(Setup, Apps)
+            END_CURSOR_MOVE();
+
+            CURSOR_MOVE(CursorUp)
+                _MOVE(Book, Audio)
+                _MOVE(Date, Setup)
+                _MOVE(Books, Date)
+                _MOVE(Images, Date)
+                _MOVE(Audio, Book)
+                _MOVE(Games, Book)
+                _MOVE(Apps, Books)
+                _MOVE(Setup, Images)
+            END_CURSOR_MOVE();
+
+            CURSOR_MOVE(CursorRight)
+                _MOVE(Book, Books)
+                _MOVE(Date, Book)
+                _MOVE(Books, Images)
+                _MOVE(Images, Audio)
+                _MOVE(Audio, Games)
+                _MOVE(Games, Apps)
+                _MOVE(Apps, Setup)
+                _MOVE(Setup, Book)
+            END_CURSOR_MOVE();
+
+            CURSOR_MOVE(CursorDown)
+                _MOVE(Book, Audio)
+                _MOVE(Date, Books)
+                _MOVE(Books, Apps)
+                _MOVE(Images, Setup)
+                _MOVE(Audio, Book)
+                _MOVE(Games, Book)
+                _MOVE(Apps, Date)
+                _MOVE(Setup, Date)
+            END_CURSOR_MOVE();
         }
     }
 }
