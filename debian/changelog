@@ -1,3 +1,11 @@
+gm (0.4.10) zelazny; urgency=low
+
+  * Fix Audio/Images icon positions in default skin. (OI#946)
+  * Open recent files if no book is open and user requests to open current
+    book. (OI#886)
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 05 Jan 2011 22:44:15 +0100
+
 gm (0.4.9) zelazny; urgency=low
 
   * Fix inconsistent default rotation settings (OI#936).
