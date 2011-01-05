@@ -7,6 +7,7 @@
 #include <xcb/xproto.h>
 #include <xcb/xcb_atom.h>
 #include "raise.h"
+#include "run.h"
 
 #define LONG_MAX 0x7fffffff
 
@@ -96,7 +97,7 @@ bad:
 }
 
 void
-open_current_book(Evas * e __attribute__((unused)))
+open_current_book(Evas *e)
 {
     Ecore_X_Window fbreader = gm_get_active_document_window();
     if (fbreader)
@@ -104,6 +105,10 @@ open_current_book(Evas * e __attribute__((unused)))
         printf("Raising\n");
         ecore_x_window_raise(fbreader);
         ecore_x_window_focus(fbreader);
+    }
+    else
+    {
+        gm_run_madshelf_recent(e);
     }
 }
 
