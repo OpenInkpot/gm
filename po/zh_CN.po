@@ -4,142 +4,57 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gm 0.1\n"
-"Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-03-31 04:40+0700\n"
-"PO-Revision-Date: 2009-09-19 04:01+0700\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Project-Id-Version: OpenInkpot\n"
+"Report-Msgid-Bugs-To: http://openinkpot.org/report/\n"
+"POT-Creation-Date: 2011-02-03 01:20+0300\n"
+"PO-Revision-Date: 2011-03-22 15:52+0000\n"
+"Last-Translator: dottedmag <dottedmag@dottedmag.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: src/gm.c:49
-msgid "Current book"
-msgstr "正在阅读"
-
-#. Special
-#: src/gm.c:50 src/graph.c:200
-msgid "Library"
-msgstr "书架"
-
-#: src/gm.c:51 src/graph.c:201
-msgid "Images"
-msgstr "图片"
-
-#: src/gm.c:52 src/graph.c:202
-msgid "Audio"
-msgstr "音频"
-
-#: src/gm.c:53 src/graph.c:203
-msgid "Games"
-msgstr "游戏"
-
-#: src/gm.c:54 src/graph.c:204
-msgid "Applications"
-msgstr "应用程序"
-
-#. TRANSLATORS: Please make this menu string two-language:
-#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
-#. allow users to reset language if current language is unknown to them
-#. (or translation is broken due to some reason, like lack of font).
-#. 
-#: src/gm.c:62
-msgid "Setup <inactive>/ Setup</inactive>"
-msgstr "设置<inactive>/Setup</inactive>"
-
-#: src/gm.c:166 src/graph.c:356
-msgid "No book is open"
-msgstr "没有正在阅读的书"
-
-#: src/setup.c:67
-msgid "Version"
-msgstr "版本"
-
-#: src/setup.c:82
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>不可用</inactive>"
-
-#: src/setup.c:83
-msgid "Full"
-msgstr "完全"
-
-#: src/setup.c:84
-msgid "Adaptive"
-msgstr "自适应"
-
-#: src/setup.c:85
-msgid "Partial"
-msgstr "部分"
-
-#: src/setup.c:99
-msgid "Screen update"
-msgstr "屏幕刷新"
-
-#: src/setup.c:120
-msgid "Screen rotation type"
-msgstr "屏幕旋转"
-
-#. TRANSLATORS: Please make this menu string two-language: 'Language
-#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
-#. users to reset language if current language is unknown to them translation
-#. is broken due to some reason, like lack of font).
-#. 
-#: src/setup.c:134
-msgid "Language <inactive>/ Language</inactive>"
-msgstr "语言<inactive>/Language</inactive>"
-
-#: src/setup.c:142
+#: src/datetime.c:10
 msgid "Clock setup"
 msgstr "时钟设置"
 
-#: src/setup.c:157
-msgid "Main menu view"
-msgstr "主菜单风格"
+#: src/lang.c:99
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "语言<inactive>/Language</inactive>"
 
-#: src/setup.c:159
-msgid "Graphic"
-msgstr "图形"
+#: src/screen_update_control.c:127
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>不可用</inactive>"
 
-#: src/setup.c:159
-msgid "Text"
-msgstr "文本"
+#: src/screen_update_control.c:128
+msgid "Full"
+msgstr "完全"
 
-#: src/setup.c:277
-msgid "Settings"
-msgstr "配置"
+#: src/screen_update_control.c:129
+msgid "Adaptive"
+msgstr "自适应"
 
-#: src/rotation.c:35
-msgid "Disabled"
-msgstr "禁用"
+#: src/screen_update_control.c:130
+msgid "Partial"
+msgstr "部分"
 
-#: src/rotation.c:36
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "顺时针旋转90度"
+#: src/screen_update_control.c:144
+msgid "Screen update"
+msgstr "屏幕刷新"
 
-#: src/rotation.c:37
-msgid "0 ↔ 180 Degrees"
-msgstr "180度翻转"
-
-#: src/rotation.c:38
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "逆时针旋转90度"
-
-#: src/rotation.c:41
-msgid "0 → 90 → 180 → 270 → 0"
-msgstr "旋转一周"
-
-#: src/rotation.c:151
-msgid "Select screen rotation type"
-msgstr "选择屏幕旋转类型"
-
-#: src/graph.c:205
-msgid "Setup"
-msgstr "设置"
-
-#: src/help.c:9
+#: src/help.c:41
 msgid "GM: Help"
 msgstr "GM:帮助"
+
+#: src/user.c:115 src/user.c:126
+msgid "Profile"
+msgstr "用户配置文件"
+
+#: src/setup-gettext.c:7
+msgid "user"
+msgstr "主用户"
 
 #: src/setup-gettext.c:8
 msgid "user1"
@@ -157,22 +72,94 @@ msgstr "用户3"
 msgid "user4"
 msgstr "用户4"
 
-#: src/setup.c:185 src/setup.c:233
-msgid "Profile"
-msgstr "用户配置文件"
+#: src/version.c:41
+msgid "Version"
+msgstr "版本"
 
-#: src/setup-gettext.c:7
-msgid "user"
-msgstr "主用户"
+#: src/gm.c:50
+msgid "Current book"
+msgstr "正在阅读"
 
-#~ msgid "<invisible>N/A</invisible>"
-#~ msgstr "<invisible>不可用</invisible>"
+#: src/gm.c:51 src/graph.c:203
+msgid "Library"
+msgstr "书架"
 
-#~ msgid "OFF"
-#~ msgstr "关闭"
+#: src/gm.c:52 src/graph.c:204
+msgid "Images"
+msgstr "图片"
 
-#~ msgid "ON"
-#~ msgstr "开启"
+#: src/gm.c:53 src/graph.c:205
+msgid "Audio"
+msgstr "音频"
 
-#~ msgid "Sound"
-#~ msgstr "声音"
+#: src/gm.c:54 src/graph.c:206
+msgid "Games"
+msgstr "游戏"
+
+#: src/gm.c:55 src/graph.c:207
+msgid "Applications"
+msgstr "应用程序"
+
+#: src/gm.c:63
+msgid "Setup <inactive>/ Setup</inactive>"
+msgstr "设置<inactive>/Setup</inactive>"
+
+#: src/gm.c:64
+msgid "Recent books"
+msgstr ""
+
+#: src/gm.c:65
+msgid "Favorites"
+msgstr ""
+
+#: src/gm.c:170 src/graph.c:367
+msgid "No book is open"
+msgstr "没有正在阅读的书"
+
+#: src/rotation.c:37
+msgid "Disabled"
+msgstr "禁用"
+
+#: src/rotation.c:38
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "顺时针旋转90度"
+
+#: src/rotation.c:39
+msgid "0 ↔ 180 Degrees"
+msgstr "180度翻转"
+
+#: src/rotation.c:40
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "逆时针旋转90度"
+
+#: src/rotation.c:43
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr "旋转一周"
+
+#: src/rotation.c:159
+msgid "Select screen rotation type"
+msgstr "选择屏幕旋转类型"
+
+#: src/rotation.c:165
+msgid "Screen rotation type"
+msgstr "屏幕旋转"
+
+#: src/setup.c:41
+msgid "Main menu view"
+msgstr "主菜单风格"
+
+#: src/setup.c:43
+msgid "Graphic"
+msgstr "图形"
+
+#: src/setup.c:43
+msgid "Text"
+msgstr "文本"
+
+#: src/setup.c:299
+msgid "Settings"
+msgstr "配置"
+
+#: src/graph.c:208
+msgid "Setup"
+msgstr "设置"
