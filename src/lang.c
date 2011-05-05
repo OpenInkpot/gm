@@ -110,7 +110,7 @@ configlet_lang(void)
         .unload = shutdown_langs,
         .draw = language_draw,
         .select = language_set,
-        .sort_key = "03lang",
+        .sort_key = "07lang",
     };
     return &configlet;
 }

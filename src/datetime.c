@@ -31,7 +31,7 @@ configlet_datetime(void)
         .unload = NULL,
         .draw = datetime_draw,
         .select = datetime_set,
-        .sort_key = "04datetime",
+        .sort_key = "09datetime",
     };
     return &configlet;
 }

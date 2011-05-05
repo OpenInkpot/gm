@@ -175,7 +175,7 @@ configlet_rotation(void)
         .unload = NULL,
         .draw = rotation_draw,
         .select = gm_rotation_menu,
-        .sort_key = "02rotation",
+        .sort_key = "05rotation",
     };
     return &configlet;
 }

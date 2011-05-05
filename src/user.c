@@ -137,7 +137,7 @@ configlet_user(void)
         .unload = NULL,
         .draw = user_draw_main_menu,
         .select = user_set_main_menu,
-        .sort_key = "06user",
+        .sort_key = "13user",
     };
     return &configlet;
 }

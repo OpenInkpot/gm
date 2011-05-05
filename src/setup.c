@@ -223,7 +223,7 @@ setup_builtins(Eina_List **lst)
         .unload = NULL,
         .draw =  &main_view_draw,
         .select = &main_view_set,
-        .sort_key = "05main-menu-view",
+        .sort_key = "11main-menu-view",
     };
 
     *lst = eina_list_append(*lst,
