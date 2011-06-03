@@ -1,137 +1,156 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Mikhail Gusarov <dottedmag@dottedmag.net>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gm 0.1\n"
-"Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-05-31 15:13+0000\n"
-"PO-Revision-Date: 2010-01-04 11:11+0900\n"
-"Last-Translator: Hideki Yoshida <hideki@acm.org>\n"
+"Project-Id-Version: OpenInkpot\n"
+"Report-Msgid-Bugs-To: http://openinkpot.org/report/\n"
+"POT-Creation-Date: 2011-05-05 15:18+0000\n"
+"PO-Revision-Date: 2011-05-19 11:20+0000\n"
+"Last-Translator: lunohod <lunohod@openinkpot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: src/user.c:115 src/user.c:126
+msgid "Profile"
+msgstr "プロファイル"
+
+#: src/lang.c:99
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "言語<inactive>/Language</inactive>"
+
+#: src/screen_autorefresh_control.c:97
+msgid "Autorefresh interval"
+msgstr ""
+
+#: src/screen_autorefresh_control.c:99
+msgid "N/A"
+msgstr ""
+
+#: src/screen_autorefresh_control.c:137
+msgid "Interval"
+msgstr ""
+
+#: src/setup.c:41
+msgid "Main menu view"
+msgstr "メインメニュービュー"
+
+#: src/setup.c:43
+msgid "Graphic"
+msgstr "グラフィックス"
+
+#: src/setup.c:43
+msgid "Text"
+msgstr "文字"
+
+#: src/setup.c:299
+msgid "Settings"
+msgstr "設定"
 
 #: src/gm.c:50
 msgid "Current book"
 msgstr "閲覧中の本"
 
-#. Special
-#: src/gm.c:51 src/graph.c:200
+#: src/gm.c:51 src/graph.c:203
 msgid "Library"
 msgstr "本棚"
 
-#: src/gm.c:52 src/graph.c:201
+#: src/gm.c:52 src/graph.c:204
 msgid "Images"
 msgstr "画像"
 
-#: src/gm.c:53 src/graph.c:202
+#: src/gm.c:53 src/graph.c:205
 msgid "Audio"
 msgstr "音楽"
 
-#: src/gm.c:54 src/graph.c:203
+#: src/gm.c:54 src/graph.c:206
 msgid "Games"
 msgstr "ゲーム"
 
-#: src/gm.c:55 src/graph.c:204
+#: src/gm.c:55 src/graph.c:207
 msgid "Applications"
 msgstr "アプリケーション"
 
-#. TRANSLATORS: Please make this menu string two-language:
-#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
-#. allow users to reset language if current language is unknown to them
-#. (or translation is broken due to some reason, like lack of font).
-#. 
 #: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "設定<inactive>/Setup</inactive>"
 
-#: src/gm.c:169 src/graph.c:360
-msgid "No book is open"
-msgstr "閲覧中の本はありません"
-
-#: src/setup.c:67
-msgid "Version"
-msgstr "バージョン"
-
-#: src/setup.c:82
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>-/-</inactive>"
-
-#: src/setup.c:83
-msgid "Full"
-msgstr "全体"
-
-#: src/setup.c:84
-msgid "Adaptive"
-msgstr "自動"
-
-#: src/setup.c:85
-msgid "Partial"
-msgstr "部分"
-
-#: src/setup.c:99
-msgid "Screen update"
-msgstr "画面更新"
-
-#: src/setup.c:120
-msgid "Screen rotation type"
-msgstr "画面回転"
-
-#. TRANSLATORS: Please make this menu string two-language: 'Language
-#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
-#. users to reset language if current language is unknown to them translation
-#. is broken due to some reason, like lack of font).
-#. 
-#: src/setup.c:134
-msgid "Language <inactive>/ Language</inactive>"
-msgstr "言語<inactive>/Language</inactive>"
-
-#: src/setup.c:142
-msgid "Clock setup"
-msgstr "日時設定"
-
-#: src/setup.c:283
-msgid "Settings"
-msgstr "設定"
-
-#: src/rotation.c:35
-msgid "Disabled"
-msgstr "なし"
-
-#: src/rotation.c:36
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "0° ↔ 90°時計回り"
-
-#: src/rotation.c:37
-msgid "0 ↔ 180 Degrees"
-msgstr "0° ↔ 180°"
-
-#: src/rotation.c:38
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "0° ↔ 90°反時計回り"
-
-#: src/rotation.c:41
-msgid "0 → 90 → 180 → 270 → 0"
-msgstr "0° → 90° → 180° → 270° → 0°"
-
-#: src/rotation.c:151
-msgid "Select screen rotation type"
-msgstr "画面回転方法の選択"
-
-#: src/graph.c:205
-msgid "Setup"
-msgstr "設定"
-
-#: src/help.c:9
-msgid "GM: Help"
-msgstr "GM: ヘルプ"
+#: src/gm.c:64
+msgid "Recent books"
+msgstr "最近閲覧した本"
 
 #: src/gm.c:65
 msgid "Favorites"
 msgstr "お気に入り"
+
+#: src/gm.c:170 src/graph.c:367
+msgid "No book is open"
+msgstr "閲覧中の本はありません"
+
+#: src/screen_update_control.c:127
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>-/-</inactive>"
+
+#: src/screen_update_control.c:128
+msgid "Full"
+msgstr "全体"
+
+#: src/screen_update_control.c:129
+msgid "Adaptive"
+msgstr "自動"
+
+#: src/screen_update_control.c:130
+msgid "Partial"
+msgstr "部分"
+
+#: src/screen_update_control.c:144
+msgid "Screen update"
+msgstr "画面更新"
+
+#: src/datetime.c:10
+msgid "Clock setup"
+msgstr "日時設定"
+
+#: src/help.c:41
+msgid "GM: Help"
+msgstr "GM: ヘルプ"
+
+#: src/version.c:41
+msgid "Version"
+msgstr "バージョン"
+
+#: src/rotation.c:37
+msgid "Disabled"
+msgstr "なし"
+
+#: src/rotation.c:38
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "0° ↔ 90°時計回り"
+
+#: src/rotation.c:39
+msgid "0 ↔ 180 Degrees"
+msgstr "0° ↔ 180°"
+
+#: src/rotation.c:40
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "0° ↔ 90°反時計回り"
+
+#: src/rotation.c:43
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr "0° → 90° → 180° → 270° → 0°"
+
+#: src/rotation.c:159
+msgid "Select screen rotation type"
+msgstr "画面回転方法の選択"
+
+#: src/rotation.c:165
+msgid "Screen rotation type"
+msgstr "画面回転"
 
 #: src/setup-gettext.c:7
 msgid "user"
@@ -145,22 +164,6 @@ msgstr "ユーザ1"
 msgid "user2"
 msgstr "ユーザ2"
 
-#: src/setup.c:157
-msgid "Main menu view"
-msgstr "メインメニュービュー"
-
-#: src/setup.c:159
-msgid "Graphic"
-msgstr "グラフィックス"
-
-#: src/setup.c:159
-msgid "Text"
-msgstr "文字"
-
-#: src/setup.c:185 src/setup.c:234
-msgid "Profile"
-msgstr "プロファイル"
-
 #: src/setup-gettext.c:10
 msgid "user3"
 msgstr "ユーザ3"
@@ -169,18 +172,8 @@ msgstr "ユーザ3"
 msgid "user4"
 msgstr "ユーザ4"
 
-#: src/gm.c:64
-msgid "Recent books"
-msgstr "最近閲覧した本"
+#: src/graph.c:208
+msgid "Setup"
+msgstr "設定"
 
-#~ msgid "<invisible>N/A</invisible>"
-#~ msgstr "<invisible>-/-</invisible>"
 
-#~ msgid "OFF"
-#~ msgstr "オフ"
-
-#~ msgid "ON"
-#~ msgstr "オン"
-
-#~ msgid "Sound"
-#~ msgstr "音声"

@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Mikhail Gusarov <dottedmag@dottedmag.net>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenInkpot\n"
 "Report-Msgid-Bugs-To: http://openinkpot.org/report/\n"
-"POT-Creation-Date: 2011-02-03 01:20+0300\n"
-"PO-Revision-Date: 2011-03-22 15:52+0000\n"
-"Last-Translator: dottedmag <dottedmag@dottedmag.net>\n"
+"POT-Creation-Date: 2011-05-05 15:18+0000\n"
+"PO-Revision-Date: 2011-05-19 11:20+0000\n"
+"Last-Translator: lunohod <lunohod@openinkpot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,65 +16,41 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: src/datetime.c:10
-msgid "Clock setup"
-msgstr "时钟设置"
+#: src/user.c:115 src/user.c:126
+msgid "Profile"
+msgstr "用户配置文件"
 
 #: src/lang.c:99
 msgid "Language <inactive>/ Language</inactive>"
 msgstr "语言<inactive>/Language</inactive>"
 
-#: src/screen_update_control.c:127
-msgid "<inactive>N/A</inactive>"
-msgstr "<inactive>不可用</inactive>"
+#: src/screen_autorefresh_control.c:97
+msgid "Autorefresh interval"
+msgstr ""
 
-#: src/screen_update_control.c:128
-msgid "Full"
-msgstr "完全"
+#: src/screen_autorefresh_control.c:99
+msgid "N/A"
+msgstr ""
 
-#: src/screen_update_control.c:129
-msgid "Adaptive"
-msgstr "自适应"
+#: src/screen_autorefresh_control.c:137
+msgid "Interval"
+msgstr ""
 
-#: src/screen_update_control.c:130
-msgid "Partial"
-msgstr "部分"
+#: src/setup.c:41
+msgid "Main menu view"
+msgstr "主菜单风格"
 
-#: src/screen_update_control.c:144
-msgid "Screen update"
-msgstr "屏幕刷新"
+#: src/setup.c:43
+msgid "Graphic"
+msgstr "图形"
 
-#: src/help.c:41
-msgid "GM: Help"
-msgstr "GM:帮助"
+#: src/setup.c:43
+msgid "Text"
+msgstr "文本"
 
-#: src/user.c:115 src/user.c:126
-msgid "Profile"
-msgstr "用户配置文件"
-
-#: src/setup-gettext.c:7
-msgid "user"
-msgstr "主用户"
-
-#: src/setup-gettext.c:8
-msgid "user1"
-msgstr "用户1"
-
-#: src/setup-gettext.c:9
-msgid "user2"
-msgstr "用户2"
-
-#: src/setup-gettext.c:10
-msgid "user3"
-msgstr "用户3"
-
-#: src/setup-gettext.c:11
-msgid "user4"
-msgstr "用户4"
-
-#: src/version.c:41
-msgid "Version"
-msgstr "版本"
+#: src/setup.c:299
+msgid "Settings"
+msgstr "配置"
 
 #: src/gm.c:50
 msgid "Current book"
@@ -116,6 +92,38 @@ msgstr ""
 msgid "No book is open"
 msgstr "没有正在阅读的书"
 
+#: src/screen_update_control.c:127
+msgid "<inactive>N/A</inactive>"
+msgstr "<inactive>不可用</inactive>"
+
+#: src/screen_update_control.c:128
+msgid "Full"
+msgstr "完全"
+
+#: src/screen_update_control.c:129
+msgid "Adaptive"
+msgstr "自适应"
+
+#: src/screen_update_control.c:130
+msgid "Partial"
+msgstr "部分"
+
+#: src/screen_update_control.c:144
+msgid "Screen update"
+msgstr "屏幕刷新"
+
+#: src/datetime.c:10
+msgid "Clock setup"
+msgstr "时钟设置"
+
+#: src/help.c:41
+msgid "GM: Help"
+msgstr "GM:帮助"
+
+#: src/version.c:41
+msgid "Version"
+msgstr "版本"
+
 #: src/rotation.c:37
 msgid "Disabled"
 msgstr "禁用"
@@ -144,22 +152,28 @@ msgstr "选择屏幕旋转类型"
 msgid "Screen rotation type"
 msgstr "屏幕旋转"
 
-#: src/setup.c:41
-msgid "Main menu view"
-msgstr "主菜单风格"
+#: src/setup-gettext.c:7
+msgid "user"
+msgstr "主用户"
 
-#: src/setup.c:43
-msgid "Graphic"
-msgstr "图形"
+#: src/setup-gettext.c:8
+msgid "user1"
+msgstr "用户1"
 
-#: src/setup.c:43
-msgid "Text"
-msgstr "文本"
+#: src/setup-gettext.c:9
+msgid "user2"
+msgstr "用户2"
 
-#: src/setup.c:299
-msgid "Settings"
-msgstr "配置"
+#: src/setup-gettext.c:10
+msgid "user3"
+msgstr "用户3"
+
+#: src/setup-gettext.c:11
+msgid "user4"
+msgstr "用户4"
 
 #: src/graph.c:208
 msgid "Setup"
 msgstr "设置"
+
+

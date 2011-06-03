@@ -1,129 +1,157 @@
-# vim: set fileencoding=utf-8
-# gm
+# SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
-# Alexander V. Nikolaev <avn@openinkpot.org>, 2009.
-#
+# 
+# Olexandr  <olexn@ukr.net>, 2011
+# Mikhail Gusarov <dottedmag@dottedmag.net>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gm 0.1\n"
-"Report-Msgid-Bugs-To: avn@openinkpot.org\n"
-"POT-Creation-Date: 2010-05-31 15:13+0000\n"
-"PO-Revision-Date: 2009-09-19 03:48+0700\n"
-"Last-Translator: Vladimir <v@v>\n"
-"Language-Team: Ukrainian <openinkpot-l10n@googlegroups.com>\n"
+"Project-Id-Version: OpenInkpot\n"
+"Report-Msgid-Bugs-To: http://openinkpot.org/report/\n"
+"POT-Creation-Date: 2011-05-05 15:18+0000\n"
+"PO-Revision-Date: 2011-05-22 22:25+0000\n"
+"Last-Translator: Burunduk <olexn@ukr.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: src/user.c:115 src/user.c:126
+msgid "Profile"
+msgstr "Профіль"
+
+#: src/lang.c:99
+msgid "Language <inactive>/ Language</inactive>"
+msgstr "Мова<inactive>/ Language</inactive>"
+
+#: src/screen_autorefresh_control.c:97
+msgid "Autorefresh interval"
+msgstr "Інтервал автооновлення"
+
+#: src/screen_autorefresh_control.c:99
+msgid "N/A"
+msgstr "Н/Д"
+
+#: src/screen_autorefresh_control.c:137
+msgid "Interval"
+msgstr "Інтервал"
+
+#: src/setup.c:41
+msgid "Main menu view"
+msgstr "Вигляд головного меню"
+
+#: src/setup.c:43
+msgid "Graphic"
+msgstr "Графічний"
+
+#: src/setup.c:43
+msgid "Text"
+msgstr "Текстовий"
+
+#: src/setup.c:299
+msgid "Settings"
+msgstr "Налаштування"
 
 #: src/gm.c:50
 msgid "Current book"
 msgstr "Відкрита книга"
 
-#. Special
-#: src/gm.c:51 src/graph.c:200
+#: src/gm.c:51 src/graph.c:203
 msgid "Library"
 msgstr "Бібліотека"
 
-#: src/gm.c:52 src/graph.c:201
+#: src/gm.c:52 src/graph.c:204
 msgid "Images"
 msgstr "Зображення"
 
-#: src/gm.c:53 src/graph.c:202
+#: src/gm.c:53 src/graph.c:205
 msgid "Audio"
 msgstr "Аудіо файли"
 
-#: src/gm.c:54 src/graph.c:203
+#: src/gm.c:54 src/graph.c:206
 msgid "Games"
 msgstr "Ігри"
 
-#: src/gm.c:55 src/graph.c:204
+#: src/gm.c:55 src/graph.c:207
 msgid "Applications"
 msgstr "Програми"
 
-#.
-#. TRANSLATORS: Please make this menu string two-language:
-#. 'Setup(localized) <inactive>/ Setup(in English)</inactive>'. This will
-#. allow users to reset language if current language is unknown to them
-#. (or translation is broken due to some reason, like lack of font).
-#.
 #: src/gm.c:63
 msgid "Setup <inactive>/ Setup</inactive>"
 msgstr "Налаштувати <inactive>/ Setup</inactive>"
 
 #: src/gm.c:64
-#, fuzzy
 msgid "Recent books"
-msgstr "Iсторiя"
+msgstr "Останні книги"
 
 #: src/gm.c:65
 msgid "Favorites"
 msgstr "Улюблене"
 
-#: src/gm.c:169 src/graph.c:360
+#: src/gm.c:170 src/graph.c:367
 msgid "No book is open"
 msgstr "Немає відкритої книги"
 
-#: src/setup.c:67
-msgid "Version"
-msgstr "Версія програмного забезпечення"
-
-#: src/setup.c:82
+#: src/screen_update_control.c:127
 msgid "<inactive>N/A</inactive>"
 msgstr "<inactive>Не доступно</inactive>"
 
-#: src/setup.c:83
+#: src/screen_update_control.c:128
 msgid "Full"
 msgstr "Повне"
 
-#: src/setup.c:84
+#: src/screen_update_control.c:129
 msgid "Adaptive"
 msgstr "Адаптивне"
 
-#: src/setup.c:85
+#: src/screen_update_control.c:130
 msgid "Partial"
 msgstr "Частинами"
 
-#: src/setup.c:99
+#: src/screen_update_control.c:144
 msgid "Screen update"
 msgstr "Оновлення екрана"
 
-#: src/setup.c:120
-msgid "Screen rotation type"
-msgstr "Тип обертання екрана"
-
-#.
-#. TRANSLATORS: Please make this menu string two-language: 'Language
-#. (localized) <inactive>/ Language(in English)</inactive>'. This will allow
-#. users to reset language if current language is unknown to them translation
-#. is broken due to some reason, like lack of font).
-#.
-#: src/setup.c:134
-msgid "Language <inactive>/ Language</inactive>"
-msgstr "Мова<inactive>/ Language</inactive>"
-
-#: src/setup.c:142
+#: src/datetime.c:10
 msgid "Clock setup"
 msgstr "Встановити час та дату"
 
-#: src/setup.c:157
-msgid "Main menu view"
-msgstr "Вигляд головного меню"
+#: src/help.c:41
+msgid "GM: Help"
+msgstr "Головне меню: Довідка"
 
-#: src/setup.c:159
-msgid "Graphic"
-msgstr "Графічний"
+#: src/version.c:41
+msgid "Version"
+msgstr "Версія програмного забезпечення"
 
-#: src/setup.c:159
-msgid "Text"
-msgstr "Текстовий"
+#: src/rotation.c:37
+msgid "Disabled"
+msgstr "Не обертати"
 
-#: src/setup.c:185 src/setup.c:234
-msgid "Profile"
-msgstr "Профіль"
+#: src/rotation.c:38
+msgid "0 ↔ 90 Degrees Clockwise"
+msgstr "0° ↔ 90° за годинниковою стрілкою"
 
-#: src/setup.c:283
-msgid "Settings"
-msgstr "Налаштування"
+#: src/rotation.c:39
+msgid "0 ↔ 180 Degrees"
+msgstr "0° ↔ 180°"
+
+#: src/rotation.c:40
+msgid "0 ↔ 90 Degrees Counterclockwise"
+msgstr "0° ↔ 90° проти годинникової стрілки"
+
+#: src/rotation.c:43
+msgid "0 → 90 → 180 → 270 → 0"
+msgstr "0° → 90° → 180° → 270° → 0°"
+
+#: src/rotation.c:159
+msgid "Select screen rotation type"
+msgstr "Оберіть тип обертання екрана"
+
+#: src/rotation.c:165
+msgid "Screen rotation type"
+msgstr "Тип обертання екрана"
 
 #: src/setup-gettext.c:7
 msgid "user"
@@ -145,46 +173,8 @@ msgstr "Користувач 3"
 msgid "user4"
 msgstr "Користувач 4"
 
-#: src/rotation.c:35
-msgid "Disabled"
-msgstr "Не обертати"
-
-#: src/rotation.c:36
-msgid "0 ↔ 90 Degrees Clockwise"
-msgstr "0° ↔ 90° за годинниковою стрілкою"
-
-#: src/rotation.c:37
-msgid "0 ↔ 180 Degrees"
-msgstr "0° ↔ 180°"
-
-#: src/rotation.c:38
-msgid "0 ↔ 90 Degrees Counterclockwise"
-msgstr "0° ↔ 90° проти годинникової стрілки"
-
-#: src/rotation.c:41
-msgid "0 → 90 → 180 → 270 → 0"
-msgstr "0° → 90° → 180° → 270° → 0°"
-
-#: src/rotation.c:151
-msgid "Select screen rotation type"
-msgstr "Оберіть тип обертання екрана"
-
-#: src/graph.c:205
+#: src/graph.c:208
 msgid "Setup"
 msgstr "Налаштування"
 
-#: src/help.c:9
-msgid "GM: Help"
-msgstr "Головне меню: Довідка"
 
-#~ msgid "<invisible>N/A</invisible>"
-#~ msgstr "<invisible>Не доступно</invisible>"
-
-#~ msgid "OFF"
-#~ msgstr "Вимк."
-
-#~ msgid "ON"
-#~ msgstr "Увімк."
-
-#~ msgid "Sound"
-#~ msgstr "Звук"
