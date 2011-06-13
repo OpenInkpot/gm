@@ -334,6 +334,7 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
 //                printf("image at %d %d (%d, %d)\n", x, y, iw, ih);
             }
         }
+        free(filename);
     }
     else
         edje_object_signal_emit(design, "book-no-cover", "");
