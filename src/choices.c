@@ -148,5 +148,6 @@ choicebox_push(Evas_Object *parent, Evas *canvas,
                                    NULL);
     evas_object_focus_set(choicebox, true);
     evas_object_show(choicebox);
+    evas_object_raise(choicebox);
     return choicebox;
 }
