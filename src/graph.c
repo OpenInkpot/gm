@@ -261,6 +261,9 @@ gm_get_image_geom(const char *fn, int *iw, int *ih)
 }
 
 static const char *filename_pattern = "/tmp/gm-cover-image-XXXXXX";
+
+// filename declare static, because EFL don't allow us to unlink file after
+// passing file to evas_object_image_file_set (file loading is deferred)
 static char *filename = NULL;
 
 static void
@@ -281,7 +284,9 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
         image = evas_object_image_add(evas);
         evas_object_color_set(image, 0xff, 0xff, 0xff, 0xff);
         evas_object_name_set(image, "cover_image");
-        filename = strdup(filename_pattern);
+        filename = strdup(filename_pattern); // Note: filename is static,
+                                             // freed on next "cycle". See
+                                             // note at filename declaration
         int fd = mkstemp(filename);
         if(fd > 0)
         {
@@ -334,7 +339,6 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
 //                printf("image at %d %d (%d, %d)\n", x, y, iw, ih);
             }
         }
-        free(filename);
     }
     else
         edje_object_signal_emit(design, "book-no-cover", "");
