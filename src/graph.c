@@ -302,12 +302,12 @@ gm_graphics_update_cover_image(struct bookinfo_t *bookinfo, Evas *evas)
                 gm_get_image_geom(filename, &iw, &ih);
 //                printf("geom: x=%d y=%d w=%d h=%d iw=%d ih=%d\n",
 //                    x, y, w, h, iw, ih);
-                if ( ih > h)
+                if ( ih != h)
                 {
                     ratio = (double) ih / (double) h;
                     ih = h;  iw /= ratio;
                 }
-                else
+                if ( iw > w )
                 {
                     ratio = (double) iw / (double) w;
                     iw = w; ih /= ratio;
