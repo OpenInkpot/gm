@@ -43,9 +43,11 @@ gm_graphics_show(Evas *evas) {
     evas_object_hide(main_edje);
     gm_graphics_show_clock(evas);
     evas_object_show(edje);
-    gm_graphics_show_book(evas);
     evas_object_focus_set(edje, 1);
     evas_object_raise(edje);
+
+    // FIXME: order is important. Must be last due z-order issues
+    gm_graphics_show_book(evas);
 }
 
 static void
