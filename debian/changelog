@@ -1,3 +1,9 @@
+gm (0.4.14) zelazny; urgency=low
+
+  * Fix various z-order issues with submenus and cover image
+
+ -- Alexander V. Nikolaev <avn@daemon.hole.ru>  Sat, 18 Jun 2011 17:25:11 +0300
+
 gm (0.4.13) zelazny; urgency=low
 
   [ Sven Bring ]
