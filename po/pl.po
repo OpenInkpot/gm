@@ -1,14 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # This file is put in the public domain.
 # 
-# Mikhail Gusarov <dottedmag@dottedmag.net>, 2011
+# Translators:
+# Mikhail Gusarov <dottedmag@dottedmag.net>, 2011.
+#   <vacz@o2.pl>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenInkpot\n"
 "Report-Msgid-Bugs-To: http://openinkpot.org/report/\n"
 "POT-Creation-Date: 2011-05-05 15:18+0000\n"
-"PO-Revision-Date: 2011-05-19 11:20+0000\n"
-"Last-Translator: lunohod <lunohod@openinkpot.org>\n"
+"PO-Revision-Date: 2011-06-07 15:05+0000\n"
+"Last-Translator: vvaldi <vacz@o2.pl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,15 +28,15 @@ msgstr "Język <inactive>/ Language</inactive>"
 
 #: src/screen_autorefresh_control.c:97
 msgid "Autorefresh interval"
-msgstr ""
+msgstr "Częstość autoodświerzania"
 
 #: src/screen_autorefresh_control.c:99
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: src/screen_autorefresh_control.c:137
 msgid "Interval"
-msgstr ""
+msgstr "Interwał"
 
 #: src/setup.c:41
 msgid "Main menu view"
