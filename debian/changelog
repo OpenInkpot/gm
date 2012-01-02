@@ -1,3 +1,9 @@
+gm (0.4.16) zelazny; urgency=low
+
+  * Do not fail if SIGUSR1/SIGUSR2 is received during startup.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 02 Jan 2012 21:55:23 +0100
+
 gm (0.4.15) zelazny; urgency=low
 
   * Add key bindings for PRS505
