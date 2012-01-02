@@ -263,6 +263,13 @@ void exit_all(void *param __attribute__((unused))) {
 
 int main(int argc, char **argv __attribute__((unused)))
 {
+    /* mdev handler may send SIGUSR1/2 before we have got the handler for those
+     * signals. Let's work around it by ignoring SIGUSR1/2 at the startup. Those
+     * signals are nothing but "re-read your state", and if we are starting up,
+     * then we have nothing to re-read */
+    sigaction(SIGUSR1, SIG_IGN, NULL);
+    sigaction(SIGUSR2, SIG_IGN, NULL);
+
     setlocale(LC_ALL, "");
     textdomain("gm");
     if(!evas_init())
