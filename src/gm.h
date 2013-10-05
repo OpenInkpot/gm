@@ -3,7 +3,7 @@
 
 #include <libkeys.h>
 
-#define THEME_EDJE "gm"
+#define THEME_EDJE "gm-scalable"
 
 keys_t* gm_keys();
 
