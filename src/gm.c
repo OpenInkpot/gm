@@ -201,9 +201,13 @@ static void main_win_signal_handler(void *param,
     evas_object_del(r);
 }
 
-static void run(bool horizontal)
+static void run(void)
 {
-    Ecore_Evas *main_win = ecore_evas_software_x11_8_new(0, 0, 0, 0, horizontal ? 800 : 600, horizontal ? 600 : 800);
+    int width, height;
+    Ecore_X_Screen *screen = ecore_x_default_screen_get();
+
+    ecore_x_screen_size_get(screen, &width, &height);
+    Ecore_Evas *main_win = ecore_evas_software_x11_8_new(0, 0, 0, 0, width, height);
     gm_socket_server_start(main_win, "gm");
     ecore_evas_title_set(main_win, "GM");
     ecore_evas_name_class_set(main_win, "GM", "GM");
@@ -219,7 +223,7 @@ static void run(bool horizontal)
     edje_object_part_text_set(main_canvas_edje, "footer", "");
     edje_object_part_text_set(main_canvas_edje, "title", "");
     evas_object_move(main_canvas_edje, 0, 0);
-    evas_object_resize(main_canvas_edje, horizontal ? 800 : 600, horizontal? 600 :800);
+    evas_object_resize(main_canvas_edje, width, height);
 
     gm_settings_load();
     gm_graphics_init(main_canvas);
@@ -277,6 +281,8 @@ int main(int argc, char **argv __attribute__((unused)))
 
     setlocale(LC_ALL, "");
     textdomain("gm");
+    if (!ecore_x_init(NULL))
+        die("Unable to initialize Ecore_X, maybe missing DISPLAY\n");
     if(!evas_init())
         die("Unable to initialize Evas\n");
     if(!ecore_init())
@@ -293,7 +299,7 @@ int main(int argc, char **argv __attribute__((unused)))
     ecore_x_io_error_handler_set(exit_all, NULL);
     ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
-    run(argc > 1);
+    run();
 
     if(_gm_keys)
         keys_free(_gm_keys);
@@ -308,6 +314,7 @@ int main(int argc, char **argv __attribute__((unused)))
     efreet_shutdown();
     ecore_evas_shutdown();
     ecore_shutdown();
+    ecore_x_shutdown();
     evas_shutdown();
     edje_shutdown();
     return 0;

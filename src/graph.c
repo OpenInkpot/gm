@@ -383,7 +383,7 @@ gm_graphics_init(Evas *evas) {
     int w, h;
     evas_output_size_get(evas, &w, &h);
     Evas_Object *edje = eoi_create_themed_edje(evas, THEME_EDJE,
-        (h > 600) ? "vertical_graphics" : "horizontal_graphics");
+        (h > w) ? "vertical_graphics" : "horizontal_graphics");
     evas_object_name_set(edje, "graphics");
 
     evas_object_move(edje, 0, 0);
