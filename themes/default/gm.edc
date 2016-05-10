@@ -46,7 +46,7 @@ styles {
 
 #define ITEM(N, NAME, X1, Y1, X2, Y2)                                   \
             part {                                                      \
-                name, XSTR(N-bg);                                       \
+                name, STR(N-bg);                                       \
                 type, RECT;                                             \
                 description {                                           \
                     state, "default" 0.0;                               \
@@ -56,60 +56,60 @@ styles {
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-top-bg);                                   \
+                name, STR(N-top-bg);                                   \
                 type, RECT;                                             \
                 description {                                           \
                     state, "default" 0.0;                               \
                     color, 85 85 85 255;                                \
-                    rel1 { to, XSTR(N-bg); offset, 0 -10; }             \
-                    rel2 { to, XSTR(N-bg); relative, 1.0 0.0; offset, -1 -2; } \
+                    rel1 { to, STR(N-bg); offset, 0 -10; }             \
+                    rel2 { to, STR(N-bg); relative, 1.0 0.0; offset, -1 -2; } \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-top);                                      \
-                images { image, XSTR(start-menu-label-N.png) COMP; }    \
+                name, STR(N-top);                                      \
+                images { image, STR(start-menu-label-N.png) COMP; }    \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-top-bg); offset, 74 -15; }           \
-                    rel2 { to, XSTR(N-top-bg); relative, 0.0 1.0; offset, 103 -1; } \
-                    image { normal, XSTR(start-menu-label-N.png); }     \
+                    rel1 { to, STR(N-top-bg); offset, 74 -15; }           \
+                    rel2 { to, STR(N-top-bg); relative, 0.0 1.0; offset, 103 -1; } \
+                    image { normal, STR(start-menu-label-N.png); }     \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-top-left);                                 \
+                name, STR(N-top-left);                                 \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-top-bg); }                        \
-                    rel2 { to, XSTR(N-top-bg); relative, 0.0 1.0; offset, 3 -1; } \
+                    rel1 { to, STR(N-top-bg); }                        \
+                    rel2 { to, STR(N-top-bg); relative, 0.0 1.0; offset, 3 -1; } \
                     image { normal, "start-menu-left-top-corner-small.png"; } \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-top-right);                                \
+                name, STR(N-top-right);                                \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-top-bg); relative, 1.0 0.0; offset, -4 0; } \
-                    rel2 { to, XSTR(N-top-bg); }                        \
+                    rel1 { to, STR(N-top-bg); relative, 1.0 0.0; offset, -4 0; } \
+                    rel2 { to, STR(N-top-bg); }                        \
                     image { normal, "start-menu-right-top-corner-small.png"; } \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-binder);                                   \
+                name, STR(N-binder);                                   \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-bg); offset, 0 5; }               \
-                    rel2 { to, XSTR(N-bg); relative, 1.0 0.0; offset, -1 25; } \
+                    rel1 { to, STR(N-bg); offset, 0 5; }               \
+                    rel2 { to, STR(N-bg); relative, 1.0 0.0; offset, -1 25; } \
                     image { normal, "start-menu-binder-small.png"; }    \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-icon);                                     \
-                images { image, XSTR(start-menu-icon-NAME.png) COMP; }  \
+                name, STR(N-icon);                                     \
+                images { image, STR(start-menu-icon-NAME.png) COMP; }  \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-bg); offset, 31 39; }             \
-                    rel2 { to, XSTR(N-bg); offset, -32 -40; }           \
-                    image { normal, XSTR(start-menu-icon-NAME.png); }   \
+                    rel1 { to, STR(N-bg); offset, 31 39; }             \
+                    rel2 { to, STR(N-bg); offset, -32 -40; }           \
+                    image { normal, STR(start-menu-icon-NAME.png); }   \
                 }                                                       \
             }                                                           \
             part {                                                      \
@@ -120,25 +120,25 @@ styles {
                     color, 0 0 0 255;                                   \
                     text { style, "caption"; }                          \
                     align, 0.5 0.0;                                     \
-                    rel1 { to, XSTR(N-bg); offset, 0 137; }             \
-                    rel2 { to, XSTR(N-bg); offset, -1 -1; }             \
+                    rel1 { to, STR(N-bg); offset, 0 137; }             \
+                    rel2 { to, STR(N-bg); offset, -1 -1; }             \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-bottom-left);                              \
+                name, STR(N-bottom-left);                              \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-bg); relative, 0.0 1.0; offset, 0 -2; } \
-                    rel2 { to, XSTR(N-bg); relative, 0.0 1.0; offset, 1 -1; } \
+                    rel1 { to, STR(N-bg); relative, 0.0 1.0; offset, 0 -2; } \
+                    rel2 { to, STR(N-bg); relative, 0.0 1.0; offset, 1 -1; } \
                     image { normal, "start-menu-left-bottom-corner-small.png"; } \
                 }                                                       \
             }                                                           \
             part {                                                      \
-                name, XSTR(N-bottom-right);                             \
+                name, STR(N-bottom-right);                             \
                 description {                                           \
                     state, "default" 0.0;                               \
-                    rel1 { to, XSTR(N-bg); relative, 1.0 1.0; offset, -2 -2; } \
-                    rel2 { to, XSTR(N-bg); relative, 1.0 1.0; offset, -1 -1; } \
+                    rel1 { to, STR(N-bg); relative, 1.0 1.0; offset, -2 -2; } \
+                    rel2 { to, STR(N-bg); relative, 1.0 1.0; offset, -1 -1; } \
                     image { normal, "start-menu-right-bottom-corner-small.png"; } \
                 }                                                       \
             };                                                          \
@@ -146,7 +146,7 @@ styles {
 
 #define CURSOR_STATE(NAME, X1, Y1, X2, Y2, C)   \
             description {                       \
-                state, XSTR(NAME) 0.0;          \
+                state, STR(NAME) 0.0;          \
                 inherit, "default" 0.0;         \
                 color, C C C 255;               \
                 rel1 {                          \
