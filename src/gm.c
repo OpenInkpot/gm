@@ -9,7 +9,6 @@
 #define _(x) x
 
 #include <Ecore.h>
-#include <Ecore_X.h>
 #include <Ecore_Evas.h>
 #include <Edje.h>
 #include <Efreet.h>
@@ -101,35 +100,6 @@ static void main_win_focus_in_handler(Ecore_Evas *main_win)
         gm_apps_cleanup(main_win);
 }
 
-static Eina_Bool root_window_prop_change_handler(void *data,
-        int type __attribute__((unused)), void *event)
-{
-    static Ecore_X_Atom atom = 0;
-    static Ecore_X_Window prev_window = 0;
-    const char *atom_name = "ACTIVE_DOC_WINDOW_ID";
-
-    Ecore_X_Event_Window_Property *ev = event;
-    Ecore_X_Window root = (Ecore_X_Window)data;
-
-    if(atom == 0)
-    {
-        ecore_x_atom_get_prefetch(atom_name);
-        ecore_x_atom_get_fetch();
-        atom = ecore_x_atom_get(atom_name);
-    }
-
-    if(ev->win == root && ev->atom == atom)
-    {
-        Ecore_X_Window new_window = gm_get_active_document_window();
-        if(prev_window != new_window && prev_window > 0)
-            ecore_x_window_delete_request_send(prev_window);
-
-        prev_window = new_window;
-    }
-
-    return 1;
-}
-
 static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
                          Evas_Object *item,
                          int item_num,
@@ -204,10 +174,11 @@ static void main_win_signal_handler(void *param,
 static void run(void)
 {
     int width, height;
-    Ecore_X_Screen *screen = ecore_x_default_screen_get();
 
-    ecore_x_screen_size_get(screen, &width, &height);
-    Ecore_Evas *main_win = ecore_evas_software_x11_8_new(0, 0, 0, 0, width, height);
+    Ecore_Evas *main_win = ecore_evas_new(NULL, 0, 0, 1, 1, NULL);
+    ecore_evas_screen_geometry_get(main_win, NULL, NULL, &width, &height);
+    ecore_evas_resize(main_win, width, height);
+
     gm_socket_server_start(main_win, "gm");
     ecore_evas_title_set(main_win, "GM");
     ecore_evas_name_class_set(main_win, "GM", "GM");
@@ -251,18 +222,8 @@ static void run(void)
     evas_object_show(main_canvas_edje);
     ecore_evas_show(main_win);
 
-    Ecore_X_Window root = ecore_x_window_root_first_get();
-    ecore_x_event_mask_set(root, ECORE_X_EVENT_MASK_WINDOW_PROPERTY);
-    ecore_event_handler_add(ECORE_X_EVENT_WINDOW_PROPERTY,
-         root_window_prop_change_handler, (void *)root);
-
     gm_graphics_conditional(main_canvas);
     ecore_main_loop_begin();
-}
-
-static
-void exit_all(void *param __attribute__((unused))) {
-    ecore_main_loop_quit();
 }
 
 int main(int argc, char **argv __attribute__((unused)))
@@ -281,12 +242,6 @@ int main(int argc, char **argv __attribute__((unused)))
 
     setlocale(LC_ALL, "");
     textdomain("gm");
-    if (!ecore_x_init(NULL))
-        die("Unable to initialize Ecore_X, maybe missing DISPLAY\n");
-    if(!evas_init())
-        die("Unable to initialize Evas\n");
-    if(!ecore_init())
-        die("Unable to initialize Ecore\n");
     if(!ecore_evas_init())
         die("Unable to initialize Ecore_Evas\n");
     if(!edje_init())
@@ -296,7 +251,6 @@ int main(int argc, char **argv __attribute__((unused)))
     if(!ecore_con_init())
         die("Unable to initialize Ecore_Con\n");
 
-    ecore_x_io_error_handler_set(exit_all, NULL);
     ecore_event_handler_add(ECORE_EVENT_SIGNAL_EXIT, exit_handler, NULL);
 
     run();
@@ -313,9 +267,6 @@ int main(int argc, char **argv __attribute__((unused)))
     ecore_con_shutdown();
     efreet_shutdown();
     ecore_evas_shutdown();
-    ecore_shutdown();
-    ecore_x_shutdown();
-    evas_shutdown();
     edje_shutdown();
     return 0;
 }
