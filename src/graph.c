@@ -251,6 +251,8 @@ gm_graphics_show_clock(Evas *evas) {
 static void
 gm_get_image_geom(const char *fn, int *iw, int *ih)
 {
+    /*TODO: Evas_Imaging API is obsolete, needs replacement */
+    #if 0
     Evas_Imaging_Image *im = evas_imaging_image_load(fn, NULL);
     if(im)
     {
@@ -258,6 +260,7 @@ gm_get_image_geom(const char *fn, int *iw, int *ih)
         evas_imaging_image_free(im);
     }
     else
+    #endif
         printf("Can't load %s\n", fn);
 }
 
