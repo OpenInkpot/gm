@@ -23,10 +23,8 @@
 #include "clock.h"
 #include "gm.h"
 #include "graph.h"
-#include "raise.h"
 #include "run.h"
 #include "setup.h"
-#include "apps_cleanup.h"
 #include "help.h"
 
 static keys_t *_gm_keys;
@@ -96,8 +94,6 @@ static void main_win_focus_in_handler(Ecore_Evas *main_win)
     if(choicebox)
         choicebox_invalidate_item(choicebox, 0);
     gm_graphics_show_book(canvas);
-    if(getenv("GM_APPS_CLEANUP_ENABLE"))
-        gm_apps_cleanup(main_win);
 }
 
 static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
@@ -142,7 +138,7 @@ static void draw_handler(Evas_Object *choicebox __attribute__((unused)),
             free(str);
             edje_object_signal_emit(item, "set-icon-no-book", "");
         }
-        if (bookinfo->pages_count) {
+        if (bookinfo && bookinfo->pages_count) {
             snprintf(buf, 256, "%d%%", 100 * bookinfo->current_page / bookinfo->pages_count);
             edje_object_part_text_set(item, "progress", buf);
         }

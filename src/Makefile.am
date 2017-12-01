@@ -1,7 +1,7 @@
 include_HEADERS = gm-configlet.h
 bin_PROGRAMS = gm
 gm_SOURCES = gm.c apps.c choices.c sock.c setup.c sound_control.c \
-    raise.c clock.c battery.c graph.c run.c apps_cleanup.c help.c
+    clock.c battery.c graph.c run.c help.c
 
 AM_CFLAGS = --std=gnu99 -W -Wall \
     -DLOCALSTATEDIR='"$(localstatedir)"'
